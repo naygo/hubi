@@ -6,7 +6,7 @@
   },
   "extends": [
     "eslint:recommended",
-    "prettier",
+    "plugin:prettier/recommended",
     "plugin:@typescript-eslint/recommended"
   ],
   "overrides": [],
@@ -19,8 +19,13 @@
   "rules": {
     "indent": ["error", 2],
     "linebreak-style": ["error", "unix"],
-    "prettier/prettier": "error",
-    "quotes": ["error", "single"],
-    "semi": ["error", "never"]
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true,
+        "semi": false,
+        "trailingComma": "all"
+      }
+    ]
   }
 }
