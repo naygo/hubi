@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --yellow: #e09600;
+  --blue: #02111e;
+  --silver: #e5e5e5;
+  --beige: #ece8e1;
+}
+
+body {
+  background-color: var(--blue);
+}
