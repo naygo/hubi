@@ -1,0 +1,10 @@
+.outlineButton {
+  background-color: transparent;
+  border: 3px solid var(--yellow);
+  color: var(--silver);
+}
+
+.defaultButton {
+  background-color: var(--yellow);
+  color: var(--blue);
+}
