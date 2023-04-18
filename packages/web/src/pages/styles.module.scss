@@ -1,26 +1,27 @@
 .header {
-  background-image: url("../shared/assets/img/header.png");
-  height: 294px;
+  height: auto;
   width: 100%;
-}
-
-.title {
-  font-family: 'Anton', sans-serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 135px;
-  line-height: 162px;
-
-  color: #e09600;
-}
-
-.description {
-  font-family: 'Tajawal', sans-serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 19px;
-  display: flex;
-  align-items: center;
   text-align: center;
+}
+
+.headerImage {
+  height: auto;
+  width: 100% !important; 
+  display: block;
+}
+
+.leftBackground {
+  background: url('../shared/assets/img/background1.png') no-repeat;
+  position: absolute;
+  height: 500px;
+  width: 500px;
+  left: 0;
+}
+
+.rightBackground {
+  background: url('../shared/assets/img/background2.png') no-repeat;
+  position: absolute;
+  height: 500px;
+  width: 500px;
+  right: 0;
 }
