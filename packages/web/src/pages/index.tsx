@@ -10,6 +10,10 @@ import logoNouns from '../shared/assets/img/LogoNouns.svg'
 
 import styles from './styles.module.scss'
 
+function openLinkTree() {
+  window.open('https://linktr.ee/hub.inclusivo', '_blank')
+}
+
 export default function Home() {
   return (
     <div className="h-full">
@@ -47,7 +51,7 @@ export default function Home() {
         </div>
 
         <div>
-          <Button label="Saiba mais" outline />
+          <Button label="Saiba mais" outline onClick={openLinkTree} />
         </div>
       </div>
 
