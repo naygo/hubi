@@ -28,6 +28,7 @@ export default function Home() {
             talentos no cenário inclusivo de VALORANT.
           </p>
         </div>
+        <Button label="Saiba mais" outline />
       </div>
       <footer></footer>
     </div>

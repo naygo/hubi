@@ -9,6 +9,32 @@
   color: var(--blue);
 }
 
+.outlineButton:hover span {
+  display: none;
+}
+
+.buttonHoleLeft {
+  position: absolute;
+  left: -3px;
+  top: 1rem;
+
+  height: 0.75rem;
+  width: 4px;
+
+  z-index: 1;
+}
+
+.buttonHoleRight {
+  position: absolute;
+  right: -3px;
+  top: 1rem;
+
+  height: 0.75rem;
+  width: 4px;
+
+  z-index: 1;
+}
+
 .defaultButton {
   background-color: var(--yellow);
   color: var(--silver);
@@ -17,4 +43,5 @@
 .defaultButton:hover {
   background-color: var(--yellow-dark);
 }
+
 
