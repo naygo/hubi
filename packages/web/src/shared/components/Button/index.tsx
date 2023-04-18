@@ -16,10 +16,21 @@ export const Button = ({ label, outline = false }: ButtonProps) => {
           px-4 
           font-semibold 
           text-lg 
-          transition
-          duration-200
+          relative
         `}
       >
+        {outline && (
+          <span
+            className={styles.buttonHoleLeft}
+            style={{ backgroundColor: "var(--blue)" }}
+          ></span>
+        )}
+        {outline && (
+          <span
+          className={styles.buttonHoleRight}
+          style={{ backgroundColor: "var(--blue)" }}
+        ></span>
+        )}
         {label.toUpperCase()}
       </button>
     </main>
