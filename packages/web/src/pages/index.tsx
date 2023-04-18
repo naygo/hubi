@@ -11,6 +11,7 @@ export default function Home() {
       <header className={styles.header}>
         <Image src={logo} alt='HUB Inclusivo'className={styles.headerImage}/>
       </header>
+
       <div className="flex flex-col justify-center items-center mt-16">
         <div className="text-center max-w-lg">
           <h1 className={styles.title}>OLÁ!</h1>
@@ -32,7 +33,11 @@ export default function Home() {
             talentos no cenário inclusivo de VALORANT.
           </p>
         </div>
-        <Button label="Saiba mais" outline />
+
+        <div className='mt-8'>
+        <Button label="Saiba mais" outline/>
+        </div>
+        
       </div>
       <footer></footer>
     </div>
