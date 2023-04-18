@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 :root {
   --yellow: #e09600;
   --yellow-dark: #b36f00;
@@ -13,8 +14,4 @@
 body {
   background-color: var(--blue);
   color: var(--silver);
-
-  font-family: 'Anton', sans-serif;
-  font-family: 'Barlow Semi Condensed', sans-serif;
-  font-family: 'Tajawal', sans-serif;
 }
