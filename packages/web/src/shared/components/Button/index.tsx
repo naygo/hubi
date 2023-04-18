@@ -1,8 +1,8 @@
-import styles from "./styles.module.css";
+import styles from './styles.module.scss'
 
 interface ButtonProps {
-  label: string;
-  outline?: boolean;
+  label: string
+  outline?: boolean
 }
 
 export const Button = ({ label, outline = false }: ButtonProps) => {
@@ -19,20 +19,10 @@ export const Button = ({ label, outline = false }: ButtonProps) => {
           relative
         `}
       >
-        {outline && (
-          <span
-            className={styles.buttonHoleLeft}
-            style={{ backgroundColor: "var(--blue)" }}
-          ></span>
-        )}
-        {outline && (
-          <span
-          className={styles.buttonHoleRight}
-          style={{ backgroundColor: "var(--blue)" }}
-        ></span>
-        )}
+        {outline && <span className={styles.buttonHoleLeft}></span>}
+        {outline && <span className={styles.buttonHoleRight}></span>}
         {label.toUpperCase()}
       </button>
     </main>
-  );
-};
+  )
+}
