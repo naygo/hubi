@@ -1,0 +1,26 @@
+.header {
+  background-image: url("../shared/assets/img/header.png");
+  height: 294px;
+  width: 100%;
+}
+
+.title {
+  font-family: "Tungsten";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 135px;
+  line-height: 162px;
+
+  color: #e09600;
+}
+
+.description {
+  font-family: "DIN Next Rounded LT Pro";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
