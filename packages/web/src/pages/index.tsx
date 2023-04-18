@@ -1,13 +1,14 @@
-import { Button } from '@/shared/components/Button'
-
-import styles from './styles.module.scss'
 import Image from 'next/image'
+
+import { Button } from '@/shared/components/Button'
 
 import header from '../shared/assets/img/header.png'
 import logo from '../shared/assets/img/LogoDarkBackground.svg'
 import logoTwitter from '../shared/assets/img/LogoTwitter.svg'
 import logoDiscord from '../shared/assets/img/LogoDiscord.svg'
 import logoNouns from '../shared/assets/img/LogoNouns.svg'
+
+import styles from './styles.module.scss'
 
 export default function Home() {
   return (
