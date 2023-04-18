@@ -16,6 +16,11 @@
   width: 500px;
 }
 
+.container {
+  min-height: calc(100vh - 300px); // 300px = header height
+  height: auto;
+}
+
 .leftBackground {
   @extend .backgroundImages;
   background: url('../shared/assets/img/background1.png') no-repeat;

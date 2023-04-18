@@ -6,7 +6,7 @@ import { Button } from '@/shared/components/Button'
 
 import header from '../shared/assets/img/header.png'
 import logo from '../shared/assets/img/LogoDarkBackground.svg'
-import logoNouns from '../shared/assets/img/LogoNouns.svg'
+// import logoNouns from '../shared/assets/img/LogoNouns.svg'
 
 import styles from './styles.module.scss'
 
@@ -28,7 +28,9 @@ export default function Home() {
       <div className={styles.leftBackground}></div>
       <div className={styles.rightBackground}></div>
 
-      <div className="flex flex-col justify-center items-center mt-16 my-16">
+      <div
+        className={`flex flex-col justify-center items-center mt-16 my-16 ${styles.container}`}
+      >
         <div className="text-center max-w-lg my-8">
           <h1 className={`text-8xl yellow`}>OLÁ!</h1>
           <p className="my-8">
