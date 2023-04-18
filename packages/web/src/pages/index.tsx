@@ -1,12 +1,16 @@
 import { Button } from '@/shared/components/Button'
-import Image from 'next/image'
 
+import Image from 'next/image'
 import styles from './styles.module.css'
+
+import logo from '../shared/assets/img/header.png'
 
 export default function Home() {
   return (
     <div>
-      <div className={styles.header}></div>
+      <header className={styles.header}>
+        <Image src={logo} alt='HUB Inclusivo'className={styles.headerImage}/>
+      </header>
       <div className="flex flex-col justify-center items-center mt-16">
         <div className="text-center max-w-lg">
           <h1 className={styles.title}>OLÁ!</h1>
