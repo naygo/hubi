@@ -10,18 +10,20 @@
   display: block;
 }
 
-.leftBackground {
-  background: url('../shared/assets/img/background1.png') no-repeat;
+.backgroundImages {
   position: absolute;
   height: 500px;
   width: 500px;
+}
+
+.leftBackground {
+  @extend .backgroundImages;
+  background: url('../shared/assets/img/background1.png') no-repeat;
   left: 0;
 }
 
 .rightBackground {
+  @extend .backgroundImages;
   background: url('../shared/assets/img/background2.png') no-repeat;
-  position: absolute;
-  height: 500px;
-  width: 500px;
   right: 0;
 }
