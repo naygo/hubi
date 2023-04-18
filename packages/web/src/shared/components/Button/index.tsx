@@ -3,12 +3,14 @@ import styles from './styles.module.scss'
 interface ButtonProps {
   label: string
   outline?: boolean
+  onClick?: () => void
 }
 
-export const Button = ({ label, outline = false }: ButtonProps) => {
+export const Button = ({ label, outline = false, onClick }: ButtonProps) => {
   return (
     <main>
       <button
+        onClick={onClick}
         className={`
           ${outline ? styles.outlineButton : styles.defaultButton}
           rounded-full 

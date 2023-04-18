@@ -1,14 +1,18 @@
+import { FaDiscord, FaTwitter } from 'react-icons/fa'
 import Image from 'next/image'
+import Link from 'next/link'
 
 import { Button } from '@/shared/components/Button'
 
 import header from '../shared/assets/img/header.png'
 import logo from '../shared/assets/img/LogoDarkBackground.svg'
-import logoTwitter from '../shared/assets/img/LogoTwitter.svg'
-import logoDiscord from '../shared/assets/img/LogoDiscord.svg'
 import logoNouns from '../shared/assets/img/LogoNouns.svg'
 
 import styles from './styles.module.scss'
+
+function openLinkTree() {
+  window.open('https://linktr.ee/hub.inclusivo', '_blank')
+}
 
 export default function Home() {
   return (
@@ -47,7 +51,7 @@ export default function Home() {
         </div>
 
         <div>
-          <Button label="Saiba mais" outline />
+          <Button label="Saiba mais" outline onClick={openLinkTree} />
         </div>
       </div>
 
@@ -55,8 +59,14 @@ export default function Home() {
         <Image src={logo} alt="HUB Inclusivo" className={styles.footerImage} />
 
         <div className="h-full flex justify-center align-bottom gap-4">
-          <Image src={logoTwitter} alt="HUB Inclusivo" className={`h-5`} />
-          <Image src={logoDiscord} alt="HUB Inclusivo" className={`h-5`} />
+          <Link href="https://discord.gg/hubinclusivo">
+            <FaDiscord size={30} className={styles.icon} />
+          </Link>
+
+          <Link href="https://twitter.com/hubinclusivo">
+            <FaTwitter size={30} className={styles.icon} />
+          </Link>
+
           {/* <Image src={logoNouns} alt='HUB Inclusivo' className={styles.footerImage} /> */}
         </div>
       </footer>
