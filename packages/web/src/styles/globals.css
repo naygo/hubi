@@ -13,4 +13,6 @@
 body {
   background-color: var(--blue);
   color: var(--silver);
+
+  font-family: 'Anton', sans-serif;
 }
