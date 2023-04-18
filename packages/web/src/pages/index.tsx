@@ -20,9 +20,9 @@ export default function Home() {
       <div className={styles.rightBackground}></div>
 
       <div className="flex flex-col justify-center items-center mt-16 my-16">
-        <div className="text-center max-w-lg">
-          <h1 className={styles.title}>OLÁ!</h1>
-          <p className="mt-4">
+        <div className="text-center max-w-lg my-8">
+          <h1 className={`text-9xl yellow`}>OLÁ!</h1>
+          <p className="my-8">
             Bem-vindo(a) a <b>HUB Inclusivo</b> de <b>VALORANT!</b>
           </p>
           <p className="mt-4">
@@ -41,12 +41,12 @@ export default function Home() {
           </p>
         </div>
 
-        <div className='mt-8'>
+        <div>
           <Button label="Saiba mais" outline />
         </div>
       </div>
 
-      <footer className='flex justify-between px-10'>
+      <footer className='flex justify-between items-center px-10'>
         <Image src={logo} alt='HUB Inclusivo' className={styles.footerImage} />
 
         <div className='h-full flex justify-center align-bottom gap-4'>

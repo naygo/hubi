@@ -10,16 +10,6 @@
   display: block;
 }
 
-.title {
-  font-family: 'Anton', sans-serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 135px;
-  line-height: 162px;
-
-  color: #e09600;
-}
-
 .leftBackground {
   background: url('../shared/assets/img/background1.png') no-repeat;
   position: absolute;
