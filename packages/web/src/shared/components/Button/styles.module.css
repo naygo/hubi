@@ -1,0 +1,20 @@
+.outlineButton {
+  background-color: transparent;
+  border: 3px solid var(--yellow);
+  color: var(--silver);
+}
+
+.outlineButton:hover {
+  background-color: var(--yellow);
+  color: var(--blue);
+}
+
+.defaultButton {
+  background-color: var(--yellow);
+  color: var(--silver);
+}
+
+.defaultButton:hover {
+  background-color: var(--yellow-dark);
+}
+
