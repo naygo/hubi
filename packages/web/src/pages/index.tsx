@@ -31,7 +31,7 @@ export default function Home() {
       <div
         className={`flex flex-col justify-center items-center mt-16 my-16 ${styles.container}`}
       >
-        <div className="text-center max-w-lg my-8">
+        <div className="text-center max-w-xl my-8">
           <h1 className={`text-8xl yellow`}>OLÁ!</h1>
           <p className="my-8">
             Bem-vindo(a) a <b>HUB Inclusivo</b> de <b>VALORANT!</b>
