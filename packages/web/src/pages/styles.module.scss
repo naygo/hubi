@@ -4,6 +4,10 @@
   width: 500px;
 }
 
+.presentationText p {
+  font-size: 1.4rem;
+}
+
 .leftBackground {
   @extend .backgroundImages;
   background: url('../shared/assets/img/background1.png') no-repeat;

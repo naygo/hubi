@@ -20,12 +20,12 @@ export default function Home() {
       <div className={styles.rightBackground}></div>
 
       <div
-        className={`flex flex-col justify-center items-center mt-28 gap-y-10`}
+        className={`flex flex-col justify-center items-center mt-28 gap-y-8`}
       >
-        <h1 className={`text-9xl yellow`}>OLÁ!</h1>
+        <h1 className={`text-8xl yellow`}>OLÁ!</h1>
 
         <div
-          className="text-center my-8 flex flex-col gap-y-8"
+          className={`text-center my-8 flex flex-col gap-y-8 ${styles.presentationText}`}
           style={{ maxWidth: '40rem' }}
         >
           <p>
@@ -47,7 +47,7 @@ export default function Home() {
           </p>
         </div>
 
-        <Button label="Saiba mais" outline onClick={openLinkTree} />
+        <Button label="Saiba mais" outline bigButton onClick={openLinkTree} />
       </div>
 
       <footer className="flex justify-between items-center px-10">
