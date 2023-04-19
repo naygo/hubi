@@ -1,5 +1,25 @@
 $button-transition-time: 0;
 
+.bigButton {
+  padding: 1rem 2rem;
+  span {
+    font-size: 1.5rem;
+  }
+
+  .buttonHole {
+    top: 1.5rem !important;
+  }
+}
+
+.defaultButton {
+  background-color: var(--yellow);
+  color: var(--silver);
+
+  &:hover {
+    background-color: var(--yellow-dark);
+  }
+}
+
 .outlineButton {
   background-color: transparent;
   border: 3px solid var(--yellow);
@@ -31,8 +51,13 @@ $button-transition-time: 0;
 .buttonHole {
   &Left,
   &Right {
+    :has(.bigButton) & {
+      top: 1.6rem !important;
+      height: 1rem;
+    }
+
     position: absolute;
-    top: 1rem;
+    top: 1.2rem;
 
     height: 0.75rem;
     width: 10px;
@@ -49,14 +74,5 @@ $button-transition-time: 0;
 
   &Right {
     right: -3px;
-  }
-}
-
-.defaultButton {
-  background-color: var(--yellow);
-  color: var(--silver);
-
-  &:hover {
-    background-color: var(--yellow-dark);
   }
 }

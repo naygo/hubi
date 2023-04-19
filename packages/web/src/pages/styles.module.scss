@@ -1,35 +1,22 @@
-.header {
-  height: auto;
-  width: 100%;
-  text-align: center;
-}
-
-.headerImage {
-  height: auto;
-  width: 100% !important;
-  display: block;
-}
-
 .backgroundImages {
   position: absolute;
   height: 500px;
   width: 500px;
 }
 
-.container {
-  min-height: calc(100vh - 300px); // 300px = header height
-  height: auto;
+.presentationText p {
+  font-size: 1.4rem;
 }
 
 .leftBackground {
   @extend .backgroundImages;
-  background: url('../shared/assets/img/background1.png') no-repeat;
+  background: url('../shared/assets/img/background1.svg') no-repeat;
   left: 0;
 }
 
 .rightBackground {
   @extend .backgroundImages;
-  background: url('../shared/assets/img/background2.png') no-repeat;
+  background: url('../shared/assets/img/background2.svg') no-repeat;
   right: 0;
 }
 
