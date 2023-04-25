@@ -5,5 +5,5 @@ export const ok = (data: any) => ({
 
 export const serverError = () => ({
   statusCode: 500,
-  msg: 'Internal server error',
+  body: 'Internal server error',
 })
