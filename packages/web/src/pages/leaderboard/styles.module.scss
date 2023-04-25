@@ -1,13 +1,3 @@
-.title {
-  font-family: "Tungsten";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 135px;
-  line-height: 162px;
-
-  color: #e09600;
-}
-
 .input {
   width: 558px;
   height: 52px;
@@ -19,11 +9,18 @@
   color: #768079;
   padding: 16px;
 }
+
 .table {
   margin-top: 54px;
+  
+  p {
+    color: var(--blue);
+  }
+
+  .tableContent {
+    background: #e3dfd9;
+    color: black;
+  }
 }
 
-.tableContent {
-  background: #e3dfd9;
-  color: black;
-}
+
