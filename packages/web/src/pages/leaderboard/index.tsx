@@ -22,8 +22,8 @@ export default function Leaderboard() {
           <div
             key={player.id}
             className={`${styles.tableContent} ${
-              index == 0 ? 'h-20' : 'h-10'
-            } mt-2 text-center grid grid-cols-6 gap-6 items-center`}
+              index == 0 ? 'h-20 rounded-b-3xl' : 'h-10 rounded-full'
+            } mt-3 text-center grid grid-cols-6 gap-6 items-center`}
           >
             <p className="col-span-1 text-center">{index + 1}</p>
             <p className="col-span-1 text-center">{player.pontuacao}</p>
