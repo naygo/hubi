@@ -1,10 +1,10 @@
-import styles from "./styles.module.css";
+import styles from './styles.module.css'
 
 export default function Leaderboard() {
   return (
     <div className="flex items-center justify-center flex-col">
       <div>
-        <h1 className={styles.title}>LEADERBOARD</h1>
+        <h1 className={`text-8xl yellow`}>LEADERBOARD</h1>
       </div>
       <input
         className={styles.input}
@@ -22,7 +22,7 @@ export default function Leaderboard() {
           <div
             key={player.id}
             className={`${styles.tableContent} ${
-              index == 0 ? "h-20" : "h-10"
+              index == 0 ? 'h-20' : 'h-10'
             } mt-2 text-center grid grid-cols-6 gap-6 items-center`}
           >
             <p className="col-span-1 text-center">{index + 1}</p>
@@ -33,56 +33,56 @@ export default function Leaderboard() {
         ))}
       </div>
     </div>
-  );
+  )
 }
 
 const rank = [
   {
     id: 1,
     pontuacao: 1213,
-    nickname: "azureesz",
+    nickname: 'azureesz',
     partidas: 1,
   },
   {
     id: 2,
     pontuacao: 234,
-    nickname: "lyssaz",
+    nickname: 'lyssaz',
     partidas: 1,
   },
   {
     id: 3,
     pontuacao: 1213,
-    nickname: "ilorde",
+    nickname: 'ilorde',
     partidas: 1,
   },
   {
     id: 4,
     pontuacao: 1213,
-    nickname: "erinvlr",
+    nickname: 'erinvlr',
     partidas: 1,
   },
   {
     id: 5,
     pontuacao: 1213,
-    nickname: "aurayse",
+    nickname: 'aurayse',
     partidas: 1,
   },
   {
     id: 6,
     pontuacao: 1213,
-    nickname: "Rapunzel_f",
+    nickname: 'Rapunzel_f',
     partidas: 1,
   },
   {
     id: 7,
     pontuacao: 1213,
-    nickname: "patomac",
+    nickname: 'patomac',
     partidas: 1,
   },
   {
     id: 8,
     pontuacao: 1213,
-    nickname: "1srN",
+    nickname: '1srN',
     partidas: 1,
   },
-];
+]
