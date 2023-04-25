@@ -1,8 +1,10 @@
 import { Module } from '@nestjs/common'
 
-import { WebhooksModule } from '@/main/webhooks/webhooks.module'
+import { WebhooksController } from './presentation/controllers'
+import { HandleMatchEndedService } from './domain/services/webhooks/handleMatchEnded.service'
 
 @Module({
-  imports: [WebhooksModule],
+  controllers: [WebhooksController],
+  providers: [HandleMatchEndedService],
 })
 export class AppModule {}
