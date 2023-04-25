@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --yellow: #e09600;
+  --yellow-dark: #b36f00;
+  --blue: #02111e;
+  --silver: #e5e5e5;
+  --beige: #ece8e1;
+}
+
+body {
+  background-color: var(--blue);
+  color: var(--silver);
+}
+
+h1 {
+  color: var(--yellow);
+  font-family: 'Anton', sans-serif;
+}
+
+span,
+p {
+  font-family: 'Barlow Semi Condensed', sans-serif;
+  font-weight: 400;
+  color: var(--silver);
+  font-size: 1.2rem;
+}
+
+button,
+button p,
+button span {
+  font-family: 'Antonio', sans-serif;
+  font-size: 1.2rem;
+}

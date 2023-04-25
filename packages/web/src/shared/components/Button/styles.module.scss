@@ -1,0 +1,78 @@
+$button-transition-time: 0;
+
+.bigButton {
+  padding: 1rem 2rem;
+  span {
+    font-size: 1.5rem;
+  }
+
+  .buttonHole {
+    top: 1.5rem !important;
+  }
+}
+
+.defaultButton {
+  background-color: var(--yellow);
+  color: var(--silver);
+
+  &:hover {
+    background-color: var(--yellow-dark);
+  }
+}
+
+.outlineButton {
+  background-color: transparent;
+  border: 3px solid var(--yellow);
+  color: var(--silver);
+
+  transition: all $button-transition-time;
+
+  &:hover {
+    background-color: var(--yellow);
+    color: var(--blue);
+
+    .buttonHole {
+      background-color: transparent;
+      transition: all $button-transition-time;
+
+      &Left {
+        // left: -1px;
+        display: none;
+      }
+
+      &Right {
+        // left: 1px;
+        display: none;
+      }
+    }
+  }
+}
+
+.buttonHole {
+  &Left,
+  &Right {
+    :has(.bigButton) & {
+      top: 1.6rem !important;
+      height: 1rem;
+    }
+
+    position: absolute;
+    top: 1.2rem;
+
+    height: 0.75rem;
+    width: 10px;
+    border-radius: 0;
+
+    background-color: var(--blue);
+
+    z-index: 1;
+  }
+
+  &Left {
+    left: -3px;
+  }
+
+  &Right {
+    right: -3px;
+  }
+}

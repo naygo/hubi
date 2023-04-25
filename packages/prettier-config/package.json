@@ -1,0 +1,7 @@
+{
+  "name": "@hubi/prettier-config",
+  "version": "1.0.0",
+  "private": true,
+  "main": "./.prettierrc.json",
+  "license": "UNLICENSED"
+}
