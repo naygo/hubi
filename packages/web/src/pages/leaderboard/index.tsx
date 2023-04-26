@@ -1,40 +1,42 @@
-import styles from './styles.module.scss'
+import styles from './styles.module.css'
 
 export default function Leaderboard() {
   return (
-    <div className="flex items-center justify-center flex-col h-screen">
-      <div>
-        <h1 className={`text-8xl`}>LEADERBOARD</h1>
-      </div>
-
-      <input
-        className={styles.input}
-        name="player"
-        placeholder="Pesquisar uma jogadora..."
-      />
-
-      <div className={styles.table}>
-        <div className="grid grid-cols-6 gap-12">
-          <h3 className="col-span-1">CLASSIFICAÇÃO</h3>
-          <h3 className="col-span-1">PONTUAÇÃO</h3>
-          <h3 className="col-span-3"></h3>
-          <h3 className="col-span-1">PARTIDAS</h3>
+    <div className="flex justify-center">
+      <div className="flex flex-col items-center w-full lg:max-w-5xl">
+        <div>
+          <h1 className={`text-3xl sm:text-8xl`}>LEADERBOARD</h1>
         </div>
-        {rank.map((player, index) => (
-          <div
-            key={player.id}
-            className={`${styles.tableContent} ${
-              index == 0 ? 'h-20 rounded-b-3xl' : 'h-10 rounded-full'
-            } mt-3 text-center grid grid-cols-6 gap-6 items-center`}
-          >
-            <p className="col-span-1 text-center">{index + 1}</p>
-            <p className="col-span-1 text-center">{player.pontuacao}</p>
-            <p className="col-span-3 text-left">{player.nickname}</p>
-            <p className="col-span-1 text-left">
-              {player.partidas} {player.partidas == 1 ? 'Partida' : 'Partidas'}{' '}
-            </p>
+        <input
+          className={`${styles.input} w-full sm:max-w-lg`}
+          name="player"
+          placeholder="Pesquisar uma jogadora..."
+        />
+        <div className={`${styles.table} w-full p-3`}>
+          <div className="grid grid-cols-12 text-center">
+            <p className="col-span-3 md:col-span-2 text-xs">CLASSIFICAÇÃO</p>
+            <p className="col-span-3 md:col-span-3 text-xs">PONTUAÇÃO</p>
+            <p className="col-span-6 md:col-span-4 text-xs"></p>
+            <p className="md:col-span-3 text-xs hidden sm:block">PARTIDAS</p>
           </div>
-        ))}
+          {rank.map((player, index) => (
+            <div
+              w-full
+              key={player.id}
+              className={`${styles.tableContent} ${
+                index == 0 ? 'h-20 rounded-b-3xl' : 'h-10 rounded-full'
+              } mt-3 text-center grid grid-cols-12 gap-6 items-center text-center`}
+            >
+              <p className="col-span-3 md:col-span-2">{index + 1}</p>
+              <p className="col-span-3 md:col-span-3">{player.pontuacao}</p>
+              <p className="col-span-6 md:col-span-4 ">{player.nickname}</p>
+              <p className="md:col-span-3 hidden sm:block">
+                {player.partidas}{' '}
+                {player.partidas == 1 ? 'Partida' : 'Partidas'}{' '}
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   )
