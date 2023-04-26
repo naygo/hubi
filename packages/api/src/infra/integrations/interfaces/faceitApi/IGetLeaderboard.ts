@@ -1,8 +1,13 @@
 export interface IGetLeaderboard {
-  getLeaderboard(): Promise<FaceitGetLeaderboardResponse>
+  getLeaderboard(params: GetLeaderboardParams): Promise<GetLeaderboardResponse>
 }
 
-export interface FaceitGetLeaderboardResponse {
+export interface GetLeaderboardParams {
+  limit: number
+  offset: number
+}
+
+export interface GetLeaderboardResponse {
   leaderboard: unknown
   items: FaceitLeaderboardItem[]
 }

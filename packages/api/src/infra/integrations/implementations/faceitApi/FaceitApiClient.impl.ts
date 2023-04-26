@@ -2,7 +2,10 @@ import { HttpService } from '@nestjs/axios'
 import { Injectable } from '@nestjs/common'
 import { firstValueFrom } from 'rxjs'
 
-import { FaceitGetLeaderboardResponse } from '../../interfaces/faceitApi/IGetLeaderboard'
+import {
+  GetLeaderboardResponse,
+  GetLeaderboardParams,
+} from '../../interfaces/faceitApi/IGetLeaderboard'
 import { IFaceitApiClient } from '../../interfaces/faceitApi'
 
 @Injectable()
@@ -12,14 +15,17 @@ export class FaceitApiClient implements IFaceitApiClient {
       'https://open.faceit.com/data/v4'
   }
 
-  async getLeaderboard(): Promise<FaceitGetLeaderboardResponse> {
+  async getLeaderboard({
+    limit,
+    offset,
+  }: GetLeaderboardParams): Promise<GetLeaderboardResponse> {
     const leaderboard = await firstValueFrom(
-      this.httpService.get<FaceitGetLeaderboardResponse>(
+      this.httpService.get<GetLeaderboardResponse>(
         `/leaderboards/hubs/${process.env.HUB_ID}/general`,
         {
           params: {
-            offset: 0,
-            limit: 50,
+            offset,
+            limit,
           },
           headers: {
             Authorization: `Bearer ${process.env.FACEIT_API_KEY}`,

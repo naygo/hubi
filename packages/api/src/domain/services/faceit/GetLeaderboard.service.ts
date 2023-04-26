@@ -7,9 +7,15 @@ import { Injectable } from '@nestjs/common'
 export class GetLeaderboardService implements Service {
   constructor(private readonly faceitApiClient: FaceitApiClient) {}
 
-  async execute(): Promise<HttpResponse> {
+  async execute({
+    limit = 10,
+    offset = 0,
+  }: GetLeaderboardRequest): Promise<HttpResponse> {
     try {
-      const leaderboard = await this.faceitApiClient.getLeaderboard()
+      const leaderboard = await this.faceitApiClient.getLeaderboard({
+        limit,
+        offset,
+      })
 
       const formattedLeaderboard: GetLeaderboardResponse[] =
         leaderboard.items.map((item) => ({
@@ -24,6 +30,11 @@ export class GetLeaderboardService implements Service {
       return serverError()
     }
   }
+}
+
+export interface GetLeaderboardRequest {
+  limit?: number
+  offset?: number
 }
 
 export interface GetLeaderboardResponse {
