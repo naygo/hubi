@@ -3,7 +3,18 @@ export const ok = (data: unknown) => ({
   body: data,
 })
 
+export const notFound = (message: string) => ({
+  statusCode: 404,
+  body: {
+    statusCode: 404,
+    message,
+  },
+})
+
 export const serverError = () => ({
   statusCode: 500,
-  body: 'Internal server error',
+  body: {
+    statusCode: 500,
+    message: 'Internal server error',
+  },
 })
