@@ -2,13 +2,16 @@ import { HttpModule } from '@nestjs/axios'
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 
-import { HandleMatchEndedService } from './domain/services/webhooks/HandleMatchEnded.service'
+import {
+  GetLeaderboardService,
+  HandleMatchEndedService,
+} from './domain/services'
+import { GetLeaderboardUsecase } from './domain/usecases'
+import { FaceitApiClientImpl } from './infra/integrations/implementations'
 import {
   FaceitController,
   WebhooksController,
 } from './presentation/controllers'
-import { GetLeaderboardService } from './domain/services/faceit/GetLeaderboard.service'
-import { FaceitApiClientImpl } from './infra/integrations/implementations/faceitApi'
 
 @Module({
   controllers: [FaceitController, WebhooksController],
@@ -19,6 +22,10 @@ import { FaceitApiClientImpl } from './infra/integrations/implementations/faceit
 
     // Webhooks
     HandleMatchEndedService,
+
+    // --- Usecases --- //
+    // Faceit
+    GetLeaderboardUsecase,
 
     // --- Integrations --- //
     FaceitApiClientImpl,

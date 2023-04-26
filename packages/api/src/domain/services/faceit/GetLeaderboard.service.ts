@@ -1,21 +1,18 @@
 import { ok, serverError } from '@/domain/helpers'
 import { HttpResponse, Service } from '@/domain/interfaces/protocols'
-import { FaceitApiClientImpl } from '@/infra/integrations/implementations/faceitApi'
+import { GetLeaderboardUsecase } from '@/domain/usecases'
 import { Injectable } from '@nestjs/common'
 
 @Injectable()
 export class GetLeaderboardService implements Service {
-  constructor(private readonly faceitApiClient: FaceitApiClientImpl) {}
+  constructor(private readonly getLeaderboard: GetLeaderboardUsecase) {}
 
   async execute({
     limit = 10,
     offset = 0,
   }: GetLeaderboardRequest): Promise<HttpResponse> {
     try {
-      const leaderboard = await this.faceitApiClient.getLeaderboard({
-        limit,
-        offset,
-      })
+      const leaderboard = await this.getLeaderboard.execute({ limit, offset })
 
       const formattedLeaderboard: GetLeaderboardResponse[] =
         leaderboard.items.map((item) => ({
