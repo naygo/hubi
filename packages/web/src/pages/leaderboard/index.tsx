@@ -40,7 +40,9 @@ export default function Leaderboard({ leaderboard }: LeaderboardProps) {
                 w-full
                 key={player.userId}
                 className={`${styles.tableContent} ${
-                  index == 0 ? 'h-20 rounded-b-3xl' : 'h-10 rounded-full'
+                  index == 0
+                    ? `h-20 rounded-b-3xl ${styles.tableFirstRow}`
+                    : 'h-10 rounded-full'
                 } mt-3 text-center grid grid-cols-12 gap-6 items-center`}
               >
                 <p className="col-span-3 md:col-span-2">{index + 1}</p>
