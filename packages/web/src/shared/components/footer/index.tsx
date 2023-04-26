@@ -9,10 +9,10 @@ import styles from './styles.module.scss'
 
 export const Footer = () => {
   return (
-    <footer className="flex justify-between items-center px-4 sm:px-10">
+    <footer className="flex justify-between px-4 sm:px-10 h-full items-end">
       <Image src={logo} alt="HUB Inclusivo" />
 
-      <div className="h-full flex justify-center align-bottom gap-4">
+      <div className="h-full flex justify-center items-end gap-4 pb-4">
         <Link href="https://discord.gg/hubinclusivo">
           <FaDiscord size={30} className={styles.icon} />
         </Link>
