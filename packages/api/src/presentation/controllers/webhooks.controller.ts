@@ -1,4 +1,4 @@
-import { HandleMatchEndedService } from '@/domain/services/webhooks/handleMatchEnded.service'
+import { HandleMatchEndedService } from '@/domain/services/webhooks/HandleMatchEnded.service'
 import { Body, Controller, Post, Res } from '@nestjs/common'
 import { Response } from 'express'
 
