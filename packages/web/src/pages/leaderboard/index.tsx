@@ -2,15 +2,17 @@ import styles from './styles.module.scss'
 
 export default function Leaderboard() {
   return (
-    <div className="flex items-center justify-center flex-col">
+    <div className="flex items-center justify-center flex-col h-screen">
       <div>
-        <h1 className={`text-8xl yellow`}>LEADERBOARD</h1>
+        <h1 className={`text-8xl`}>LEADERBOARD</h1>
       </div>
+
       <input
         className={styles.input}
         name="player"
         placeholder="Pesquisar uma jogadora..."
       />
+
       <div className={styles.table}>
         <div className="grid grid-cols-6 gap-12">
           <h3 className="col-span-1">CLASSIFICAÇÃO</h3>
