@@ -9,19 +9,21 @@ interface LeaderboardProps {
 export default function Leaderboard({ leaderboard }: LeaderboardProps) {
   return (
     <div className="h-full">
-      {/* <div className={`${styles.leftBackground} hidden sm:absolute`}></div>
-      <div className={`${styles.rightBackground} hidden md:absolute`}></div> */}
+      {/* <div className={`${styles.leftBackground}`}></div>
+      <div className={`${styles.rightBackground}`}></div> */}
 
       <div className="flex justify-center h-full items-center">
         <div className="flex flex-col items-center w-full lg:max-w-5xl">
           <div>
             <h1 className={`text-6xl sm:text-8xl`}>LEADERBOARD</h1>
           </div>
+
           <input
-            className={`${styles.input} my-5 sm:m-10 w-10/12 sm:max-w-lg`}
+            className={`${styles.input} my-5 sm:m-10 w-10/12 sm:max-w-lg focus:outline-none`}
             name="player"
             placeholder="Pesquisar uma jogadora..."
           />
+
           <div className={`${styles.table} w-full p-3 overflow-auto`}>
             <div className="grid grid-cols-12 text-center">
               <p className="col-span-3 md:col-span-2 text-sm sm:text-xl">
