@@ -1,11 +1,11 @@
 import { ok, serverError } from '@/domain/helpers'
 import { HttpResponse, Service } from '@/domain/interfaces/protocols'
-import { FaceitApiClient } from '@/infra/integrations/implementations/faceitApi'
+import { FaceitApiClientImpl } from '@/infra/integrations/implementations/faceitApi'
 import { Injectable } from '@nestjs/common'
 
 @Injectable()
 export class GetLeaderboardService implements Service {
-  constructor(private readonly faceitApiClient: FaceitApiClient) {}
+  constructor(private readonly faceitApiClient: FaceitApiClientImpl) {}
 
   async execute({
     limit = 10,

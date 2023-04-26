@@ -8,7 +8,7 @@ import {
   WebhooksController,
 } from './presentation/controllers'
 import { GetLeaderboardService } from './domain/services/faceit/GetLeaderboard.service'
-import { FaceitApiClient } from './infra/integrations/implementations/faceitApi'
+import { FaceitApiClientImpl } from './infra/integrations/implementations/faceitApi'
 
 @Module({
   controllers: [FaceitController, WebhooksController],
@@ -21,7 +21,7 @@ import { FaceitApiClient } from './infra/integrations/implementations/faceitApi'
     HandleMatchEndedService,
 
     // --- Integrations --- //
-    FaceitApiClient,
+    FaceitApiClientImpl,
   ],
   imports: [ConfigModule.forRoot(), HttpModule],
 })

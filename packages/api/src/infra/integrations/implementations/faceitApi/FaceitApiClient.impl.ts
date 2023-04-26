@@ -9,7 +9,7 @@ import {
 import { IFaceitApiClient } from '../../interfaces/faceitApi'
 
 @Injectable()
-export class FaceitApiClient implements IFaceitApiClient {
+export class FaceitApiClientImpl implements IFaceitApiClient {
   constructor(private readonly httpService: HttpService) {
     this.httpService.axiosRef.defaults.baseURL =
       'https://open.faceit.com/data/v4'
