@@ -28,7 +28,9 @@ export default function Leaderboard() {
             <p className="col-span-1 text-center">{index + 1}</p>
             <p className="col-span-1 text-center">{player.pontuacao}</p>
             <p className="col-span-3 text-left">{player.nickname}</p>
-            <p className="col-span-1 text-left">{player.pontuacao}</p>
+            <p className="col-span-1 text-left">
+              {player.partidas} {player.partidas == 1 ? 'Partida' : 'Partidas'}{' '}
+            </p>
           </div>
         ))}
       </div>
