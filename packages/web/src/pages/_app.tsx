@@ -12,8 +12,12 @@ export default function MyApp({ Component, pageProps }: AppProps) {
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
         />
       </Head>
-      <Component {...pageProps} />
-      <Footer />
+      <div style={{ height: '89vh' }}>
+        <Component {...pageProps} />
+      </div>
+      <div style={{ height: '11vh' }}>
+        <Footer />
+      </div>
     </>
   )
 }
