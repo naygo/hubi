@@ -4,9 +4,10 @@ import { ConfigModule } from '@nestjs/config'
 
 import {
   GetLeaderboardService,
+  GetPlayerInfoService,
   HandleMatchEndedService,
 } from './domain/services'
-import { GetLeaderboardUsecase } from './domain/usecases'
+import { GetLeaderboardUsecase, GetPlayerInfoUsecase } from './domain/usecases'
 import { FaceitApiClientImpl } from './infra/integrations/implementations'
 import {
   FaceitController,
@@ -19,6 +20,7 @@ import {
     // --- Services --- //
     // Faceit
     GetLeaderboardService,
+    GetPlayerInfoService,
 
     // Webhooks
     HandleMatchEndedService,
@@ -26,6 +28,7 @@ import {
     // --- Usecases --- //
     // Faceit
     GetLeaderboardUsecase,
+    GetPlayerInfoUsecase,
 
     // --- Integrations --- //
     // Faceit

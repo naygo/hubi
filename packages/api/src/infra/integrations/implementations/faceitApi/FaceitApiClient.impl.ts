@@ -5,6 +5,8 @@ import { firstValueFrom } from 'rxjs'
 import {
   GetLeaderboardParams,
   GetLeaderboardResponse,
+  GetPlayerInfoParams,
+  GetPlayerInfoResponse,
   IFaceitApiClient,
 } from '../../interfaces'
 
@@ -35,5 +37,22 @@ export class FaceitApiClientImpl implements IFaceitApiClient {
     )
 
     return leaderboard.data
+  }
+
+  async getPlayerInfo(
+    params: GetPlayerInfoParams,
+  ): Promise<GetPlayerInfoResponse> {
+    const playerInfo = await firstValueFrom(
+      this.httpService.get<GetPlayerInfoResponse>(
+        `/players?nickname=${params.nickname}`,
+        {
+          headers: {
+            Authorization: `Bearer ${process.env.FACEIT_API_KEY}`,
+          },
+        },
+      ),
+    )
+
+    return playerInfo.data
   }
 }

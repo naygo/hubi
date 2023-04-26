@@ -1,4 +1,4 @@
 import { IGetLeaderboard } from './IGetLeaderboard'
+import { IGetPLayerInfo } from './IGetPlayerInfo'
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface IFaceitApiClient extends IGetLeaderboard {}
+export interface IFaceitApiClient extends IGetLeaderboard, IGetPLayerInfo {}
