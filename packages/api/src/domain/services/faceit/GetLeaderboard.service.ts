@@ -1,6 +1,6 @@
 import { ok, serverError } from '@/domain/helpers'
 import { HttpResponse, Service } from '@/domain/interfaces/protocols'
-import { FaceitApiClient } from '@/infra/integrations/interfaces'
+import { FaceitApiClient } from '@/infra/integrations/implementations'
 import { Injectable } from '@nestjs/common'
 
 @Injectable()

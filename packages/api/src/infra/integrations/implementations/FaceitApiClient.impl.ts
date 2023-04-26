@@ -1,5 +1,5 @@
 import { HttpService } from '@nestjs/axios'
-import { FaceitApiClient as IFaceitApiClient } from '../interfaces'
+import { IFaceitApiClient } from '../interfaces'
 import { Injectable } from '@nestjs/common'
 import { firstValueFrom } from 'rxjs'
 

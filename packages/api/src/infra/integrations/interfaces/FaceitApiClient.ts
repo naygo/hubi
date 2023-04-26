@@ -1,3 +1,3 @@
-export interface FaceitApiClient {
+export interface IFaceitApiClient {
   getLeaderboard(): Promise<unknown>
 }
