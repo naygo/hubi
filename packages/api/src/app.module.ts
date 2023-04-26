@@ -3,12 +3,12 @@ import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 
 import { HandleMatchEndedService } from './domain/services/webhooks/HandleMatchEnded.service'
-import { FaceitApiClient } from './infra/integrations/implementations'
 import {
   FaceitController,
   WebhooksController,
 } from './presentation/controllers'
 import { GetLeaderboardService } from './domain/services/faceit/GetLeaderboard.service'
+import { FaceitApiClient } from './infra/integrations/implementations/faceitApi'
 
 @Module({
   controllers: [FaceitController, WebhooksController],
