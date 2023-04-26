@@ -1,4 +1,4 @@
-export const ok = (data: any) => ({
+export const ok = (data: unknown) => ({
   statusCode: 200,
   body: data,
 })
