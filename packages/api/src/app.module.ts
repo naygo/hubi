@@ -7,8 +7,16 @@ import {
   GetPlayerInfoService,
   HandleMatchEndedService,
 } from './domain/services'
-import { GetLeaderboardUsecase, GetPlayerInfoUsecase } from './domain/usecases'
-import { FaceitApiClientImpl } from './infra/integrations/implementations'
+import {
+  GetLeaderboardPlayerInfoUsecase,
+  GetLeaderboardUsecase,
+  GetPlayerHubsUsecase,
+  GetPlayerInfoUsecase,
+} from './domain/usecases'
+import {
+  ApiFaceitApiClientImpl,
+  OpenFaceitApiClientImpl,
+} from './infra/integrations/implementations'
 import {
   FaceitController,
   WebhooksController,
@@ -28,11 +36,14 @@ import {
     // --- Usecases --- //
     // Faceit
     GetLeaderboardUsecase,
+    GetLeaderboardPlayerInfoUsecase,
+    GetPlayerHubsUsecase,
     GetPlayerInfoUsecase,
 
     // --- Integrations --- //
     // Faceit
-    FaceitApiClientImpl,
+    ApiFaceitApiClientImpl,
+    OpenFaceitApiClientImpl,
   ],
   imports: [ConfigModule.forRoot(), HttpModule],
 })
