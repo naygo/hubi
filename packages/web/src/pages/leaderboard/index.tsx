@@ -9,8 +9,8 @@ interface LeaderboardProps {
 export default function Leaderboard({ leaderboard }: LeaderboardProps) {
   return (
     <div className="h-full">
-      <div className={styles.leftBackground}></div>
-      <div className={styles.rightBackground}></div>
+      {/* <div className={`${styles.leftBackground} hidden sm:absolute`}></div>
+      <div className={`${styles.rightBackground} hidden md:absolute`}></div> */}
 
       <div className="flex justify-center h-full items-center">
         <div className="flex flex-col items-center w-full lg:max-w-5xl">
