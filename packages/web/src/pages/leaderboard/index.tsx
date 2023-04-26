@@ -1,6 +1,9 @@
 import { GetStaticProps } from 'next'
+import { BsFillArrowLeftCircleFill } from 'react-icons/bs'
+
 import styles from './styles.module.scss'
 import { Leaderboard, getLeaderboard } from '@/services/leaderboard'
+import Link from 'next/link'
 
 interface LeaderboardProps {
   leaderboard: Leaderboard[]
@@ -9,6 +12,9 @@ interface LeaderboardProps {
 export default function Leaderboard({ leaderboard }: LeaderboardProps) {
   return (
     <div className="h-full">
+      <Link className={`absolute ${styles.arrowBack}`} href="/">
+        <BsFillArrowLeftCircleFill className="text-4xl" />
+      </Link>
       {/* <div className={`${styles.leftBackground}`}></div>
       <div className={`${styles.rightBackground}`}></div> */}
 
