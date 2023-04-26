@@ -8,12 +8,13 @@ export interface Leaderboard {
 }
 
 export async function getLeaderboard(): Promise<Leaderboard[]> {
-  const response = await api.get('/faceit/leaderboard')
-  // TODO - enviar formatado do backend
-  return response.data.items.map((item: any) => ({
-    points: item.points,
-    played: item.played,
-    userId: item.player.user_id,
-    nickname: item.player.nickname,
-  }))
+  const response = await api.get<{ leaderboard: Leaderboard[] }>(
+    '/faceit/leaderboard',
+    {
+      params: {
+        limit: 50,
+      },
+    },
+  )
+  return response.data.leaderboard
 }

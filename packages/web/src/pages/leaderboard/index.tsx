@@ -1,6 +1,9 @@
 import { GetStaticProps } from 'next'
+import { BsFillArrowLeftCircleFill } from 'react-icons/bs'
+
 import styles from './styles.module.scss'
 import { Leaderboard, getLeaderboard } from '@/services/leaderboard'
+import Link from 'next/link'
 
 interface LeaderboardProps {
   leaderboard: Leaderboard[]
@@ -9,19 +12,24 @@ interface LeaderboardProps {
 export default function Leaderboard({ leaderboard }: LeaderboardProps) {
   return (
     <div className="h-full">
-      {/* <div className={`${styles.leftBackground} hidden sm:absolute`}></div>
-      <div className={`${styles.rightBackground} hidden md:absolute`}></div> */}
+      <Link className={`absolute ${styles.arrowBack}`} href="/">
+        <BsFillArrowLeftCircleFill className="text-4xl" />
+      </Link>
+      {/* <div className={`${styles.leftBackground}`}></div>
+      <div className={`${styles.rightBackground}`}></div> */}
 
       <div className="flex justify-center h-full items-center">
         <div className="flex flex-col items-center w-full lg:max-w-5xl">
           <div>
             <h1 className={`text-6xl sm:text-8xl`}>LEADERBOARD</h1>
           </div>
+
           <input
-            className={`${styles.input} my-5 sm:m-10 w-10/12 sm:max-w-lg`}
+            className={`${styles.input} my-5 sm:m-10 w-10/12 sm:max-w-lg focus:outline-none`}
             name="player"
             placeholder="Pesquisar uma jogadora..."
           />
+
           <div className={`${styles.table} w-full p-3 overflow-auto`}>
             <div className="grid grid-cols-12 text-center">
               <p className="col-span-3 md:col-span-2 text-sm sm:text-xl">
@@ -40,7 +48,9 @@ export default function Leaderboard({ leaderboard }: LeaderboardProps) {
                 w-full
                 key={player.userId}
                 className={`${styles.tableContent} ${
-                  index == 0 ? 'h-20 rounded-b-3xl' : 'h-10 rounded-full'
+                  index == 0
+                    ? `h-20 rounded-b-3xl ${styles.tableFirstRow}`
+                    : 'h-10 rounded-full'
                 } mt-3 text-center grid grid-cols-12 gap-6 items-center`}
               >
                 <p className="col-span-3 md:col-span-2">{index + 1}</p>
