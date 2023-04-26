@@ -12,7 +12,7 @@ export interface GetLeaderboardResponse {
   items: FaceitLeaderboardItem[]
 }
 
-export interface FaceitLeaderboardItem {
+interface FaceitLeaderboardItem {
   player: {
     user_id: string
     nickname: string

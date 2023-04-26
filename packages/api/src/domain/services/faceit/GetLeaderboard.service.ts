@@ -5,14 +5,17 @@ import { Injectable } from '@nestjs/common'
 
 @Injectable()
 export class GetLeaderboardService implements Service {
-  constructor(private readonly getLeaderboard: GetLeaderboardUsecase) {}
+  constructor(private readonly getLeaderboardUsecase: GetLeaderboardUsecase) {}
 
   async execute({
     limit = 10,
     offset = 0,
   }: GetLeaderboardRequest): Promise<HttpResponse> {
     try {
-      const leaderboard = await this.getLeaderboard.execute({ limit, offset })
+      const leaderboard = await this.getLeaderboardUsecase.execute({
+        limit,
+        offset,
+      })
 
       const formattedLeaderboard: GetLeaderboardResponse[] =
         leaderboard.items.map((item) => ({

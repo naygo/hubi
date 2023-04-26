@@ -28,6 +28,7 @@ import {
     GetLeaderboardUsecase,
 
     // --- Integrations --- //
+    // Faceit
     FaceitApiClientImpl,
   ],
   imports: [ConfigModule.forRoot(), HttpModule],

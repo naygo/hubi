@@ -3,10 +3,10 @@ import { Injectable } from '@nestjs/common'
 import { firstValueFrom } from 'rxjs'
 
 import {
-  GetLeaderboardResponse,
   GetLeaderboardParams,
-} from '../../interfaces/faceitApi/IGetLeaderboard'
-import { IFaceitApiClient } from '../../interfaces/faceitApi'
+  GetLeaderboardResponse,
+  IFaceitApiClient,
+} from '../../interfaces'
 
 @Injectable()
 export class FaceitApiClientImpl implements IFaceitApiClient {

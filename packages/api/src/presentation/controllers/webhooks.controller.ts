@@ -11,7 +11,6 @@ export class WebhooksController {
   @Post('/match-ended')
   async handleMatchEnded(@Body() body: any, @Res() res: Response) {
     const response = await this.handleMatchEndedService.execute(body)
-
     return res.status(response.statusCode).json(response.body)
   }
 }
