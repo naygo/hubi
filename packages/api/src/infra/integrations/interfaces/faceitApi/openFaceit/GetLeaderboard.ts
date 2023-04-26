@@ -1,4 +1,4 @@
-export interface IGetLeaderboard {
+export interface GetLeaderboard {
   getLeaderboard(params: GetLeaderboardParams): Promise<GetLeaderboardResponse>
 }
 

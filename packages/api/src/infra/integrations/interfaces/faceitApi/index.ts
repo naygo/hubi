@@ -1,3 +1,1 @@
-export * from './IFaceItApiClient'
-export * from './IGetLeaderboard'
-export * from './IGetPlayerInfo'
+export * from './openFaceit'

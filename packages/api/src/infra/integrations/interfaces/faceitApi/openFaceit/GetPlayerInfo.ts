@@ -1,4 +1,4 @@
-export interface IGetPLayerInfo {
+export interface GetPLayerInfo {
   getPlayerInfo(params: GetPlayerInfoParams): Promise<GetPlayerInfoResponse>
 }
 

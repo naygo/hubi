@@ -7,11 +7,11 @@ import {
   GetLeaderboardResponse,
   GetPlayerInfoParams,
   GetPlayerInfoResponse,
-  IFaceitApiClient,
-} from '../../interfaces'
+  OpenFaceitApiClient,
+} from '../../interfaces/faceitApi/openFaceit'
 
 @Injectable()
-export class FaceitApiClientImpl implements IFaceitApiClient {
+export class FaceitApiClientImpl implements OpenFaceitApiClient {
   constructor(private readonly httpService: HttpService) {
     this.httpService.axiosRef.defaults.baseURL =
       'https://open.faceit.com/data/v4'
