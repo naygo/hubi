@@ -1,23 +1,29 @@
-import styles from './styles.module.css'
+import styles from './styles.module.scss'
 
 export default function Leaderboard() {
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center mt-5 sm:m-10">
       <div className="flex flex-col items-center w-full lg:max-w-5xl">
         <div>
-          <h1 className={`text-3xl sm:text-8xl`}>LEADERBOARD</h1>
+          <h1 className={`text-6xl sm:text-8xl`}>LEADERBOARD</h1>
         </div>
         <input
-          className={`${styles.input} w-full sm:max-w-lg`}
+          className={`${styles.input} mt-5 sm:m-10  w-10/12 sm:max-w-lg`}
           name="player"
           placeholder="Pesquisar uma jogadora..."
         />
-        <div className={`${styles.table} w-full p-3`}>
+        <div className={`${styles.table} w-full p-3 mt-5 sm:m-10 `}>
           <div className="grid grid-cols-12 text-center">
-            <p className="col-span-3 md:col-span-2 text-xs">CLASSIFICAÇÃO</p>
-            <p className="col-span-3 md:col-span-3 text-xs">PONTUAÇÃO</p>
-            <p className="col-span-6 md:col-span-4 text-xs"></p>
-            <p className="md:col-span-3 text-xs hidden sm:block">PARTIDAS</p>
+            <p className="col-span-3 md:col-span-2 text-sm sm:text-xl">
+              CLASSIFICAÇÃO
+            </p>
+            <p className="col-span-3 md:col-span-3 text-sm  sm:text-xl">
+              PONTUAÇÃO
+            </p>
+            <p className="col-span-6 md:col-span-4 text-sm sm:text-xl"></p>
+            <p className="md:col-span-3 text-xs hidden md:block sm:text-xl">
+              PARTIDAS
+            </p>
           </div>
           {rank.map((player, index) => (
             <div
@@ -25,12 +31,12 @@ export default function Leaderboard() {
               key={player.id}
               className={`${styles.tableContent} ${
                 index == 0 ? 'h-20 rounded-b-3xl' : 'h-10 rounded-full'
-              } mt-3 text-center grid grid-cols-12 gap-6 items-center text-center`}
+              } mt-3 text-center grid grid-cols-12 gap-6 items-center`}
             >
               <p className="col-span-3 md:col-span-2">{index + 1}</p>
               <p className="col-span-3 md:col-span-3">{player.pontuacao}</p>
               <p className="col-span-6 md:col-span-4 ">{player.nickname}</p>
-              <p className="md:col-span-3 hidden sm:block">
+              <p className="md:col-span-3 hidden md:block">
                 {player.partidas}{' '}
                 {player.partidas == 1 ? 'Partida' : 'Partidas'}{' '}
               </p>

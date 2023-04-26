@@ -9,7 +9,7 @@ import styles from './styles.module.scss'
 
 export const Footer = () => {
   return (
-    <footer className="flex justify-between items-center px-10">
+    <footer className="flex justify-between items-center px-4 sm:px-10">
       <Image src={logo} alt="HUB Inclusivo" className={styles.footerImage} />
 
       <div className="h-full flex justify-center align-bottom gap-4">
