@@ -1,18 +1,24 @@
+import { GetStaticProps } from 'next'
 import styles from './styles.module.scss'
+import { Leaderboard, getLeaderboard } from '@/services/leaderboard'
 
-export default function Leaderboard() {
+interface LeaderboardProps {
+  leaderboard: Leaderboard[]
+}
+
+export default function Leaderboard({ leaderboard }: LeaderboardProps) {
   return (
-    <div className="flex justify-center mt-5 sm:m-10">
+    <div className="flex justify-center h-full items-center">
       <div className="flex flex-col items-center w-full lg:max-w-5xl">
         <div>
           <h1 className={`text-6xl sm:text-8xl`}>LEADERBOARD</h1>
         </div>
         <input
-          className={`${styles.input} mt-5 sm:m-10  w-10/12 sm:max-w-lg`}
+          className={`${styles.input} my-5 sm:m-10 w-10/12 sm:max-w-lg`}
           name="player"
           placeholder="Pesquisar uma jogadora..."
         />
-        <div className={`${styles.table} w-full p-3 mt-5 sm:m-10 `}>
+        <div className={`${styles.table} w-full p-3 overflow-auto`}>
           <div className="grid grid-cols-12 text-center">
             <p className="col-span-3 md:col-span-2 text-sm sm:text-xl">
               CLASSIFICAÇÃO
@@ -25,20 +31,19 @@ export default function Leaderboard() {
               PARTIDAS
             </p>
           </div>
-          {rank.map((player, index) => (
+          {leaderboard.map((player, index) => (
             <div
               w-full
-              key={player.id}
+              key={player.userId}
               className={`${styles.tableContent} ${
                 index == 0 ? 'h-20 rounded-b-3xl' : 'h-10 rounded-full'
               } mt-3 text-center grid grid-cols-12 gap-6 items-center`}
             >
               <p className="col-span-3 md:col-span-2">{index + 1}</p>
-              <p className="col-span-3 md:col-span-3">{player.pontuacao}</p>
+              <p className="col-span-3 md:col-span-3">{player.points}</p>
               <p className="col-span-6 md:col-span-4 ">{player.nickname}</p>
               <p className="md:col-span-3 hidden md:block">
-                {player.partidas}{' '}
-                {player.partidas == 1 ? 'Partida' : 'Partidas'}{' '}
+                {player.played} {player.played == 1 ? 'Partida' : 'Partidas'}{' '}
               </p>
             </div>
           ))}
@@ -46,6 +51,15 @@ export default function Leaderboard() {
       </div>
     </div>
   )
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+  const leaderboard = await getLeaderboard()
+  console.log(leaderboard)
+  return {
+    props: { leaderboard },
+    revalidate: 60 * 60 * 24, // 24hours
+  }
 }
 
 const rank = [
