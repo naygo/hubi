@@ -13,6 +13,10 @@ export class FaceitApiClient implements IFaceitApiClient {
   async getLeaderboard(): Promise<unknown> {
     const leaderboard = await firstValueFrom(
       this.httpService.get(`/leaderboards/hubs/${process.env.HUB_ID}/general`, {
+        params: {
+          offset: 0,
+          limit: 50,
+        },
         headers: {
           Authorization: `Bearer ${process.env.FACEIT_API_KEY}`,
         },
