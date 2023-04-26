@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { Button } from '@/shared/components/Button'
 
 // import logoNouns from '../shared/assets/img/LogoNouns.svg'
@@ -42,7 +43,12 @@ export default function Home() {
           </p>
         </div>
 
-        <Button label="Saiba mais" outline bigButton onClick={openLinkTree} />
+        <div className="flex gap-10">
+          <Button label="Saiba mais" outline bigButton onClick={openLinkTree} />
+          <Link href="/leaderboard">
+            <Button label="Ver Leaderboard" outline bigButton />
+          </Link>
+        </div>
       </div>
     </div>
   )
