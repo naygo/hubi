@@ -1,1 +1,1 @@
-export * from './FaceitApiClient'
+export * from './IFaceitApiClient'
