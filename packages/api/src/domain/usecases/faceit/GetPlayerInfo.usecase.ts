@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common'
 
 import { Usecase } from '@/domain/interfaces/protocols'
-import { FaceitApiClientImpl } from '@/infra/integrations/implementations'
+import { OpenFaceitApiClientImpl } from '@/infra/integrations/implementations'
 import {
   GetPlayerInfoParams,
   GetPlayerInfoResponse,
@@ -11,7 +11,7 @@ import {
 export class GetPlayerInfoUsecase
   implements Usecase<GetPlayerInfoParams, GetPlayerInfoResponse>
 {
-  constructor(private readonly faceitApiClient: FaceitApiClientImpl) {}
+  constructor(private readonly faceitApiClient: OpenFaceitApiClientImpl) {}
 
   async execute(params: GetPlayerInfoParams): Promise<GetPlayerInfoResponse> {
     return this.faceitApiClient.getPlayerInfo(params)

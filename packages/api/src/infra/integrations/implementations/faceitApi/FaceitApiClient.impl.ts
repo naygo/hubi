@@ -5,16 +5,22 @@ import { firstValueFrom } from 'rxjs'
 import {
   GetLeaderboardParams,
   GetLeaderboardResponse,
+  GetPlayerHubsParams,
+  GetPlayerHubsResponse,
   GetPlayerInfoParams,
   GetPlayerInfoResponse,
   OpenFaceitApiClient,
 } from '../../interfaces/faceitApi/openFaceit'
 
 @Injectable()
-export class FaceitApiClientImpl implements OpenFaceitApiClient {
+export class OpenFaceitApiClientImpl implements OpenFaceitApiClient {
   constructor(private readonly httpService: HttpService) {
     this.httpService.axiosRef.defaults.baseURL =
       'https://open.faceit.com/data/v4'
+
+    this.httpService.axiosRef.defaults.headers.common[
+      'Authorization'
+    ] = `Bearer ${process.env.FACEIT_API_KEY}`
   }
 
   async getLeaderboard({
@@ -29,14 +35,23 @@ export class FaceitApiClientImpl implements OpenFaceitApiClient {
             offset,
             limit,
           },
-          headers: {
-            Authorization: `Bearer ${process.env.FACEIT_API_KEY}`,
-          },
         },
       ),
     )
 
     return leaderboard.data
+  }
+
+  async getPlayerHubs(
+    params: GetPlayerHubsParams,
+  ): Promise<GetPlayerHubsResponse> {
+    const playerHubs = await firstValueFrom(
+      this.httpService.get<GetPlayerHubsResponse>(
+        `/players/${params.playerId}/hubs`,
+      ),
+    )
+
+    return playerHubs.data
   }
 
   async getPlayerInfo(
