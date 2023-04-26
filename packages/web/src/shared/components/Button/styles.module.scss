@@ -1,4 +1,4 @@
-$button-transition-time: 0;
+$button-transition-time: 0.3s;
 
 .bigButton {
   padding: 1rem 2rem;
@@ -25,24 +25,19 @@ $button-transition-time: 0;
   border: 3px solid var(--yellow);
   color: var(--silver);
 
-  transition: all $button-transition-time;
+  transition: background-color $button-transition-time,
+    color $button-transition-time;
 
   &:hover {
     background-color: var(--yellow);
     color: var(--blue);
 
     .buttonHole {
-      background-color: transparent;
-      transition: all $button-transition-time;
-
-      &Left {
-        // left: -1px;
-        display: none;
-      }
-
+      &Left,
       &Right {
-        // left: 1px;
-        display: none;
+        opacity: 0;
+        transition: opacity 0s;
+        transition-delay: 0s;
       }
     }
   }
@@ -64,6 +59,10 @@ $button-transition-time: 0;
     border-radius: 0;
 
     background-color: var(--blue);
+
+    opacity: 1;
+    transition: opacity $button-transition-time * 0.5;
+    transition-delay: $button-transition-time * 0.5;
 
     z-index: 1;
   }
