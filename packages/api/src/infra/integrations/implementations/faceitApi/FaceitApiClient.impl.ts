@@ -1,6 +1,5 @@
-import { HttpService } from '@nestjs/axios'
 import { Injectable } from '@nestjs/common'
-import { firstValueFrom } from 'rxjs'
+import axios, { AxiosInstance } from 'axios'
 
 import {
   GetLeaderboardParams,
@@ -14,29 +13,29 @@ import {
 
 @Injectable()
 export class OpenFaceitApiClientImpl implements OpenFaceitApiClient {
-  constructor(private readonly httpService: HttpService) {
-    this.httpService.axiosRef.defaults.baseURL =
-      'https://open.faceit.com/data/v4'
+  private readonly httpService: AxiosInstance
 
-    this.httpService.axiosRef.defaults.headers.common[
-      'Authorization'
-    ] = `Bearer ${process.env.FACEIT_API_KEY}`
+  constructor() {
+    this.httpService = axios.create({
+      baseURL: 'https://open.faceit.com/data/v4',
+      headers: {
+        Authorization: `Bearer ${process.env.FACEIT_API_KEY}`,
+      },
+    })
   }
 
   async getLeaderboard({
     limit,
     offset,
   }: GetLeaderboardParams): Promise<GetLeaderboardResponse> {
-    const leaderboard = await firstValueFrom(
-      this.httpService.get<GetLeaderboardResponse>(
-        `/leaderboards/hubs/${process.env.HUB_ID}/general`,
-        {
-          params: {
-            offset,
-            limit,
-          },
+    const leaderboard = await this.httpService.get<GetLeaderboardResponse>(
+      `/leaderboards/hubs/${process.env.HUB_ID}/general`,
+      {
+        params: {
+          offset,
+          limit,
         },
-      ),
+      },
     )
 
     return leaderboard.data
@@ -45,10 +44,8 @@ export class OpenFaceitApiClientImpl implements OpenFaceitApiClient {
   async getPlayerHubs(
     params: GetPlayerHubsParams,
   ): Promise<GetPlayerHubsResponse> {
-    const playerHubs = await firstValueFrom(
-      this.httpService.get<GetPlayerHubsResponse>(
-        `/players/${params.playerId}/hubs`,
-      ),
+    const playerHubs = await this.httpService.get<GetPlayerHubsResponse>(
+      `/players/${params.playerId}/hubs`,
     )
 
     return playerHubs.data
@@ -57,16 +54,14 @@ export class OpenFaceitApiClientImpl implements OpenFaceitApiClient {
   async getPlayerInfo(
     params: GetPlayerInfoParams,
   ): Promise<GetPlayerInfoResponse> {
-    const playerInfo = await firstValueFrom(
-      this.httpService.get<GetPlayerInfoResponse>(
-        `/players?nickname=${params.nickname}`,
-        {
-          headers: {
-            Authorization: `Bearer ${process.env.FACEIT_API_KEY}`,
-          },
-          validateStatus: (status) => status < 500,
+    const playerInfo = await this.httpService.get<GetPlayerInfoResponse>(
+      `/players?nickname=${params.nickname}`,
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.FACEIT_API_KEY}`,
         },
-      ),
+        validateStatus: (status) => status < 500,
+      },
     )
 
     return playerInfo.data
