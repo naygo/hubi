@@ -64,6 +64,7 @@ export class OpenFaceitApiClientImpl implements OpenFaceitApiClient {
           headers: {
             Authorization: `Bearer ${process.env.FACEIT_API_KEY}`,
           },
+          validateStatus: (status) => status < 500,
         },
       ),
     )
