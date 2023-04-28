@@ -14,9 +14,10 @@ async function bootstrap() {
     credentials: true, //access-control-allow-credentials:true
     optionSuccessStatus: 200,
   }
+
   app.use(cors(corsOptions))
 
-  await app.listen(3030)
+  await app.listen(process.env.PORT || 3030)
 }
 
 bootstrap()
