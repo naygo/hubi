@@ -7,7 +7,8 @@
     "packages/*"
   ],
   "scripts": {
-    "build:api": "yarn workspace @hubi/api build"
+    "build:api": "yarn workspace @hubi/api build",
+    "start:api": "yarn workspace @hubi/api start"
   },
   "devDependencies": {
     "@types/node": "^18.15.11",
