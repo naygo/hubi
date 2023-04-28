@@ -47,17 +47,26 @@ export default function Leaderboard({ leaderboard }: LeaderboardProps) {
       <div className={`${styles.rightBackground}`}></div> */}
 
       <div className="flex justify-center h-full items-center">
-        <div className="flex flex-col items-center w-full lg:max-w-5xl">
+        <div className="flex flex-col items-center w-full lg:max-w-5xl mt-16">
           <h1 className={`text-6xl sm:text-8xl`}>LEADERBOARD</h1>
 
-          <div className="flex flex-row w-full justify-center">
+          <div className="flex flex-col sm:flex-row w-full justify-center items-center">
+            <Image
+              src={seasons}
+              alt="Season atual"
+              className="block sm:hidden mt-2"
+            />
             <input
               className={`${styles.input} my-5 sm:m-10 w-10/12 sm:max-w-lg focus:outline-none`}
               name="player"
               placeholder="Pesquisar uma jogadora..."
               onChange={(event) => handleSearch(event.target.value)}
             />
-            <Image src={seasons} alt="Season atual" />
+            <Image
+              src={seasons}
+              alt="Season atual"
+              className="hidden sm:block"
+            />
           </div>
 
           <div className={`${styles.table} w-full p-3 overflow-auto`}>
