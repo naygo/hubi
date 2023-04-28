@@ -10,6 +10,27 @@
   --beige: #ece8e1;
 }
 
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--yellow) var(--blue);
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 15px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--yellow);
+  border-radius: 5px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--blue);
+  border-radius: 14px;
+  border: 3px solid var(--yellow);
+}
+
 body {
   background-color: var(--blue);
   color: var(--silver);
@@ -34,3 +55,4 @@ button span {
   font-family: 'Antonio', sans-serif;
   font-size: 1.2rem;
 }
+

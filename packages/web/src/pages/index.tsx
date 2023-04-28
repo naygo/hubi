@@ -1,10 +1,6 @@
-import { FaDiscord, FaTwitter } from 'react-icons/fa'
-import Image from 'next/image'
 import Link from 'next/link'
-
 import { Button } from '@/shared/components/Button'
 
-import logo from '../shared/assets/img/LogoDarkBackground.svg'
 // import logoNouns from '../shared/assets/img/LogoNouns.svg'
 
 import styles from './styles.module.scss'
@@ -15,17 +11,14 @@ function openLinkTree() {
 
 export default function Home() {
   return (
-    <div className="h-screen flex flex-col justify-between">
-      <div className={styles.leftBackground}></div>
-      <div className={styles.rightBackground}></div>
-
+    <div className="flex flex-col justify-between">
       <div
-        className={`flex flex-col justify-center items-center mt-28 gap-y-8`}
+        className={`flex flex-col justify-center items-center mt-16 gap-y-6 p-3`}
       >
         <h1 className={`text-8xl yellow`}>OLÁ!</h1>
 
         <div
-          className={`text-center my-8 flex flex-col gap-y-8 ${styles.presentationText}`}
+          className={`text-center my-8 flex flex-col gap-y-4 ${styles.presentationText}`}
           style={{ maxWidth: '40rem' }}
         >
           <p>
@@ -47,24 +40,13 @@ export default function Home() {
           </p>
         </div>
 
-        <Button label="Saiba mais" outline bigButton onClick={openLinkTree} />
-      </div>
-
-      <footer className="flex justify-between items-center px-10">
-        <Image src={logo} alt="HUB Inclusivo" className={styles.footerImage} />
-
-        <div className="h-full flex justify-center align-bottom gap-4">
-          <Link href="https://discord.gg/hubinclusivo">
-            <FaDiscord size={30} className={styles.icon} />
+        <div className="flex flex-col sm:flex-row gap-10 items-center">
+          <Button label="Saiba mais" outline bigButton onClick={openLinkTree} />
+          <Link href="/leaderboard">
+            <Button label="Ver Leaderboard" outline bigButton />
           </Link>
-
-          <Link href="https://twitter.com/hubinclusivo">
-            <FaTwitter size={30} className={styles.icon} />
-          </Link>
-
-          {/* <Image src={logoNouns} alt='HUB Inclusivo' className={styles.footerImage} /> */}
         </div>
-      </footer>
+      </div>
     </div>
   )
 }
