@@ -20,7 +20,7 @@ export default function Home() {
       ></div>
 
       <div
-        className={`flex flex-col justify-center items-center mt-28 gap-y-8`}
+        className={`flex flex-col justify-center items-center mt-28 gap-y-8 p-3`}
       >
         <h1 className={`text-8xl yellow`}>OLÁ!</h1>
 
