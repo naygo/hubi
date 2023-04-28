@@ -13,19 +13,12 @@ export default function Home() {
   return (
     <div className="flex flex-col justify-between">
       <div
-        className={`${styles.leftBackground} opacity-40 lg:opacity-70 xl:opacity-100 max-w-full sm:max-w-none `}
-      ></div>
-      <div
-        className={`${styles.rightBackground} hidden sm:block opacity-20 lg:opacity-70 xl:opacity-100`}
-      ></div>
-
-      <div
-        className={`flex flex-col justify-center items-center mt-28 gap-y-8 p-3`}
+        className={`flex flex-col justify-center items-center mt-16 gap-y-6 p-3`}
       >
         <h1 className={`text-8xl yellow`}>OLÁ!</h1>
 
         <div
-          className={`text-center my-8 flex flex-col gap-y-8 ${styles.presentationText}`}
+          className={`text-center my-8 flex flex-col gap-y-4 ${styles.presentationText}`}
           style={{ maxWidth: '40rem' }}
         >
           <p>

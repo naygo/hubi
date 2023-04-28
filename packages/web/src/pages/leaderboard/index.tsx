@@ -44,8 +44,6 @@ export default function Leaderboard({ leaderboard }: LeaderboardProps) {
       <Link className={`absolute ${styles.arrowBack}`} href="/">
         <BsFillArrowLeftCircleFill className="text-4xl" />
       </Link>
-      {/* <div className={`${styles.leftBackground}`}></div>
-      <div className={`${styles.rightBackground}`}></div> */}
 
       <div className="flex justify-center h-full items-center">
         <div className="flex flex-col items-center w-full lg:max-w-5xl mt-16">

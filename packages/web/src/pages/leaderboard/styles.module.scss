@@ -30,30 +30,14 @@
   position: absolute;
   top: 0;
   left: 0;
-  margin: 1rem;
+  margin: 3rem 0 0 0.8rem;
   height: 2rem;
   width: 2rem;
   cursor: pointer;
 
   color: var(--yellow);
-}
 
-
-.backgroundImages {
-  position: absolute;
-  height: 500px;
-  width: 500px;
-  z-index: -1;
-}
-
-.leftBackground {
-  @extend .backgroundImages;
-  background: url('../../shared/assets/img/background1.svg') no-repeat;
-  left: 0;
-}
-
-.rightBackground {
-  @extend .backgroundImages;
-  background: url('../../shared/assets/img/background2.svg') no-repeat;
-  right: 0;
+  :hover {
+    color: var(--yellow-dark);
+  }
 }
