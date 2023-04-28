@@ -19,7 +19,6 @@
     "paths": {
       "@/*": ["./src/*"]
     },
-    "moduleResolution": "node"
   },
   "include": ["./src/**/*", "./test/**/*"]
 }
