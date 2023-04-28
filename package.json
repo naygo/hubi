@@ -6,7 +6,9 @@
   "workspaces": [
     "packages/*"
   ],
-  "scripts": {},
+  "scripts": {
+    "build:api": "yarn workspace @hubi/api build"
+  },
   "devDependencies": {
     "@types/node": "^18.15.11",
     "sass": "^1.62.0",
