@@ -19,7 +19,7 @@
     "paths": {
       "@/*": ["./src/*"]
     },
-    "moduleResolution": "nodenext"
+    "moduleResolution": "node16"
   },
   "include": ["./src/**/*", "./test/**/*"]
 }
