@@ -32,7 +32,7 @@ export default function Leaderboard({ leaderboard }: LeaderboardProps) {
         setPlayer(playerResult)
       } catch (error) {
         setPlayer(null)
-        toast.info('Não foi encontrado um player com o nickname informado!', {
+        toast.error('Não foi encontrado um player com o nickname informado!', {
           position: 'top-right',
           autoClose: 5000,
           hideProgressBar: false,
