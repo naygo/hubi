@@ -1,14 +1,21 @@
+import { useState } from 'react'
+import { toast } from 'react-toastify'
+
+import Image from 'next/image'
+import Link from 'next/link'
 import { GetStaticProps } from 'next'
+
 import { BsFillArrowLeftCircleFill } from 'react-icons/bs'
 
 import { Leaderboard, getLeaderboard } from '@/services/leaderboard'
 import { IGetPlayerResponse, getPlayer } from '@/services/player'
-import Image from 'next/image'
-import Link from 'next/link'
-import { useState } from 'react'
-import { toast } from 'react-toastify'
+
 import seasons from '../../shared/assets/img/seasons.svg'
 import styles from './styles.module.scss'
+
+import TrophyTOP1 from '../../shared/assets/img/trophies/trophy-top1.svg'
+import TrophyTOP2 from '../../shared/assets/img/trophies/trophy-top2.svg'
+import TrophyTOP3 from '../../shared/assets/img/trophies/trophy-top3.svg'
 
 interface LeaderboardProps {
   leaderboard: Leaderboard[]
@@ -74,7 +81,7 @@ export default function Leaderboard({ leaderboard }: LeaderboardProps) {
               <p className="col-span-3 md:col-span-2 text-sm sm:text-xl">
                 CLASSIFICAÇÃO
               </p>
-              <p className="col-span-3 md:col-span-3 text-sm  sm:text-xl">
+              <p className="col-span-3 md:col-span-3 text-sm  sm:text-xl text-green-500">
                 PONTUAÇÃO
               </p>
               <p className="col-span-6 md:col-span-4 text-sm sm:text-xl"></p>
@@ -107,7 +114,39 @@ export default function Leaderboard({ leaderboard }: LeaderboardProps) {
                       : 'h-10 rounded-full'
                   } mt-3 text-center grid grid-cols-12 gap-6 items-center`}
                 >
-                  <p className="col-span-3 md:col-span-2">{index + 1}</p>
+                  <div className="col-span-3 md:col-span-2 flex gap-5 w-full justify-center">
+                    <p
+                      className={`${
+                        (index === 0 || index === 1 || index === 2) && 'pl-10'
+                      }`}
+                    >
+                      {index + 1}
+                    </p>
+                    {index == 0 ? (
+                      <Image
+                        src={TrophyTOP1}
+                        alt="TOP 1"
+                        width={30}
+                        height={30}
+                      />
+                    ) : index == 1 ? (
+                      <Image
+                        src={TrophyTOP2}
+                        alt="TOP 2"
+                        width={20}
+                        height={20}
+                      />
+                    ) : index == 2 ? (
+                      <Image
+                        src={TrophyTOP3}
+                        alt="TOP 3"
+                        width={20}
+                        height={20}
+                      />
+                    ) : (
+                      ''
+                    )}
+                  </div>
                   <p className="col-span-3 md:col-span-3">{player.points}</p>
                   <p className="col-span-6 md:col-span-4 ">{player.nickname}</p>
                   <p className="md:col-span-3 hidden md:block">
