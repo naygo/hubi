@@ -16,9 +16,10 @@ interface LeaderboardProps {
 
 export default function Leaderboard({ leaderboard }: LeaderboardProps) {
   const [player, setPlayer] = useState<IGetPlayerResponse | null>(null)
+  const [nickname, setNickname] = useState<string>('')
 
-  const handleSearch = async (nickname: string) => {
-    if (nickname && nickname.length > 3) {
+  const handleSearch = async (key: string) => {
+    if (key == 'Enter' && nickname !== '') {
       try {
         const playerResult = await getPlayer({ nickname })
         setPlayer(playerResult)
@@ -35,7 +36,7 @@ export default function Leaderboard({ leaderboard }: LeaderboardProps) {
           theme: 'colored',
         })
       }
-    } else setPlayer(null)
+    } else if (nickname === '') setPlayer(null)
   }
 
   return (
@@ -59,8 +60,9 @@ export default function Leaderboard({ leaderboard }: LeaderboardProps) {
             <input
               className={`${styles.input} my-5 sm:m-10 w-10/12 sm:max-w-lg focus:outline-none`}
               name="player"
-              placeholder="Pesquisar uma jogadora..."
-              onChange={(event) => handleSearch(event.target.value)}
+              placeholder="Digite o nick de uma jogadora e aperte enter para pesquisar..."
+              onChange={(event) => setNickname(event.target.value)}
+              onKeyDown={(event) => handleSearch(event.key)}
             />
             <Image
               src={seasons}
