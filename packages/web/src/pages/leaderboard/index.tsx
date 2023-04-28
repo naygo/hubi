@@ -25,24 +25,38 @@ interface LeaderboardProps {
 export default function Leaderboard({ leaderboard }: LeaderboardProps) {
   const [player, setPlayer] = useState<IGetPlayerResponse | null>(null)
   const [nickname, setNickname] = useState<string>('')
+  const [isSearching, setIsSearching] = useState<boolean>(false)
 
   const handleSearch = async (key: string) => {
+    if (isSearching) return
+
     if (key == 'Enter' && nickname !== '') {
       try {
-        const playerResult = await getPlayer({ nickname })
-        setPlayer(playerResult)
-      } catch (error) {
+        setIsSearching(true)
+
+        const player = await toast.promise(
+          getPlayer({ nickname }),
+          {
+            pending: 'Buscando player...',
+            error: 'Nenhuma player encontrada com este nickname!',
+          },
+          {
+            position: 'top-right',
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: 'colored',
+          },
+        )
+
+        setIsSearching(false)
+        setPlayer(player)
+      } catch (err) {
+        setIsSearching(false)
         setPlayer(null)
-        toast.error('Não foi encontrado um player com o nickname informado!', {
-          position: 'top-right',
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: 'colored',
-        })
       }
     } else if (nickname === '') setPlayer(null)
   }
