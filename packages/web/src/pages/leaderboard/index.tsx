@@ -95,7 +95,7 @@ export default function Leaderboard({ leaderboard }: LeaderboardProps) {
                 key={player.userId}
                 className={`${styles.tableContent} h-20 rounded-b-3xl ${styles.tableFirstRow} mt-3 text-center grid grid-cols-12 gap-6 items-center`}
               >
-                <p className="col-span-3 md:col-span-2"></p>
+                <p className="col-span-3 md:col-span-2">{player.position}</p>
                 <p className="col-span-3 md:col-span-3">{player.points}</p>
                 <p className="col-span-6 md:col-span-4 ">{player.nickname}</p>
                 <p className="md:col-span-3 hidden md:block">

@@ -2,6 +2,7 @@ import { api } from './api'
 
 export interface IGetPlayerResponse {
   userId: string
+  position: number
   nickname: string
   played: number
   points: number
