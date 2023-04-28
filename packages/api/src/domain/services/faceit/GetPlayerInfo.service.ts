@@ -39,6 +39,7 @@ export class GetPlayerInfoService implements Service {
 
       const formattedPlayerInfo = {
         userId: playerInfo.placement.entity_id,
+        position: playerInfo.position,
         nickname: playerInfo.placement.entity_name,
         played: playerInfo.played,
         points: playerInfo.points,
