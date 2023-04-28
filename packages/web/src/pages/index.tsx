@@ -12,8 +12,12 @@ function openLinkTree() {
 export default function Home() {
   return (
     <div className="flex flex-col justify-between">
-      <div className={styles.leftBackground}></div>
-      <div className={styles.rightBackground}></div>
+      <div
+        className={`${styles.leftBackground} opacity-40 lg:opacity-70 xl:opacity-100 max-w-full sm:max-w-none `}
+      ></div>
+      <div
+        className={`${styles.rightBackground} hidden sm:block opacity-20 lg:opacity-70 xl:opacity-100`}
+      ></div>
 
       <div
         className={`flex flex-col justify-center items-center mt-28 gap-y-8`}
@@ -43,7 +47,7 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="flex gap-10">
+        <div className="flex flex-col sm:flex-row gap-10 items-center">
           <Button label="Saiba mais" outline bigButton onClick={openLinkTree} />
           <Link href="/leaderboard">
             <Button label="Ver Leaderboard" outline bigButton />
