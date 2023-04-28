@@ -15,7 +15,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         />
       </Head>
       <ToastContainer />
-      <div style={{ height: '89vh' }}>
+      <div style={{ minHeight: '89vh' }}>
         <Component {...pageProps} />
       </div>
       <div style={{ height: '11vh' }}>
