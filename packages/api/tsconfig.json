@@ -18,7 +18,8 @@
     "noFallthroughCasesInSwitch": false,
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    "moduleResolution": "node"
   },
   "include": ["./src/**/*", "./test/**/*"]
 }
