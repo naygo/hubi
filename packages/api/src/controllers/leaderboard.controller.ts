@@ -7,14 +7,14 @@ import { LeaderboardService } from '@/domain/services/faceit/leaderboard.service
 import { PlayerService } from '@/domain/services/faceit/player.service'
 import { LeadboardPlayer, PlayerLeaderboard } from '@hubi/types/faceit'
 
-@Controller('/faceit')
+@Controller('/leaderboard')
 export class FaceitController {
   constructor(
     private readonly leaderboardService: LeaderboardService,
     private readonly playerService: PlayerService,
   ) {}
 
-  @Get('/leaderboard')
+  @Get('/')
   async getLeaderboard(
     @Query() query: GetLeaderboardDto,
   ): Promise<LeadboardPlayer[]> {
