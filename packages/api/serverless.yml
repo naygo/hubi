@@ -26,13 +26,6 @@ functions:
           method: any
           path: /{any+}
 custom:
-  webpack:
-    includeModules:
-      forceExclude:
-        - '@nestjs/microservices'
-        - '@nestjs/microservices/microservices-module'
-        - '@nestjs/websockets/socket-module'
-        - 'cache-manager'
   customDomain:
     domainName: hubi.aws.hugo.dev.br
     endpointType: regional
