@@ -19,6 +19,7 @@ export class LeaderboardService {
       userId: item.player.user_id,
       nickname: item.player.nickname,
       played: item.played,
+      position: item.position,
       points: item.points,
     }))
   }
