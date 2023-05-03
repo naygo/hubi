@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { toast } from 'react-toastify'
 
 import Image from 'next/image'
@@ -33,42 +33,51 @@ const imageProps: ImageProps[] = [
 ]
 
 export default function Leaderboard({ leaderboard }: LeaderboardProps) {
+  const toastId = useRef<any>(null)
   const [players, setPlayers] = useState<PlayerLeaderboard[]>(leaderboard || [])
   const [nickname, setNickname] = useState<string>('')
   const [isSearching, setIsSearching] = useState<boolean>(false)
 
-  const handleSearch = async (key: string) => {
+  async function handleSearch(key: string) {
     if (isSearching) return
 
     if (key == 'Enter' && nickname !== '') {
       try {
         setIsSearching(true)
 
-        const player = await toast.promise(
-          getPlayerLeaderboard({ nickname }),
-          {
-            pending: 'Buscando player...',
-            error: 'Nenhuma player encontrada com este nickname!',
-          },
-          {
-            position: 'top-right',
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: 'colored',
-          },
-        )
+        notify('Buscando player...')
+        const player = await getPlayerLeaderboard({ nickname })
 
         setIsSearching(false)
+
         setPlayers([player])
-      } catch (err) {
+        toast.dismiss(toastId.current)
+      } catch (err: any) {
+        toast.update(toastId.current, {
+          render: err.response.data.message,
+          type: 'error',
+          isLoading: false,
+          hideProgressBar: false,
+          autoClose: 3000,
+        })
         setIsSearching(false)
-        setPlayers([])
+        setPlayers(leaderboard)
       }
     } else if (nickname === '') setPlayers(leaderboard)
+  }
+
+  function notify(loadMessage: string) {
+    toastId.current = toast.loading(loadMessage, {
+      type: 'default',
+      position: 'top-right',
+      autoClose: false,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'colored',
+    })
   }
 
   function getImage(position: number) {
@@ -98,11 +107,11 @@ export default function Leaderboard({ leaderboard }: LeaderboardProps) {
             <h1 className="text-6xl sm:text-8xl">LEADERBOARD</h1>
 
             <div className="flex flex-col sm:flex-row w-full justify-center items-center">
-              <Image
+              {/* <Image
                 src={seasons}
                 alt="Season atual"
                 className="block sm:hidden mt-2"
-              />
+              /> */}
               <input
                 className={`${styles.input} my-5 sm:m-10 w-10/12 sm:max-w-lg focus:outline-none`}
                 name="player"
@@ -111,11 +120,11 @@ export default function Leaderboard({ leaderboard }: LeaderboardProps) {
                 onChange={(event) => setNickname(event.target.value)}
                 onKeyDown={(event) => handleSearch(event.key)}
               />
-              <Image
+              {/* <Image
                 src={seasons}
                 alt="Season atual"
                 className="hidden sm:block"
-              />
+              /> */}
             </div>
 
             <div className={`${styles.table} w-full p-3 overflow-auto`}>
@@ -131,7 +140,6 @@ export default function Leaderboard({ leaderboard }: LeaderboardProps) {
                   PARTIDAS
                 </p>
               </div>
-
               {players.map((player, index) => (
                 <div
                   key={player.userId}
@@ -169,6 +177,5 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: { leaderboard },
-    revalidate: 60 * 60 * 24, // 24hours
   }
 }

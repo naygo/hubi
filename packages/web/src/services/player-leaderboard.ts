@@ -7,7 +7,7 @@ export interface PlayerLeaderboardParams {
 }
 
 export async function getPlayerLeaderboard({
-  leaderboardId = '6420b7e5d1aeaa605ab3058b',
+  leaderboardId = '644d5fd23681f160a09897b8',
   nickname,
 }: PlayerLeaderboardParams): Promise<PlayerLeaderboard> {
   const response = await api.get<PlayerLeaderboard>('/leaderboard/player', {
