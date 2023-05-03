@@ -1,4 +1,4 @@
-import { Controller, Get, Query, Res } from '@nestjs/common'
+import { Controller, Get, Query } from '@nestjs/common'
 
 import { GetLeaderboardDto } from '@/dtos/faceit/get-leaderborad.dto'
 import { GetPlayerInfoDto } from '@/dtos/faceit/get-playerInfo.dto'
@@ -6,7 +6,6 @@ import { GetPlayerInfoDto } from '@/dtos/faceit/get-playerInfo.dto'
 import { LeaderboardService } from '@/domain/services/faceit/leaderboard.service'
 import { PlayerService } from '@/domain/services/faceit/player.service'
 import { LeadboardPlayer, PlayerLeaderboard } from '@hubi/types/faceit'
-import { Response } from 'express'
 
 @Controller('/leaderboard')
 export class FaceitController {
