@@ -18,13 +18,22 @@ import TrophyTOP3 from '../../shared/assets/img/trophies/trophy-top3.svg'
 import Head from 'next/head'
 import { getPlayerLeaderboard } from '@/services/player-leaderboard'
 import { PlayerLeaderboard } from '@hubi/types'
+import clsx from 'clsx'
 
 interface LeaderboardProps {
   leaderboard: PlayerLeaderboard[]
 }
 
+type ImageProps = React.ComponentProps<typeof Image>
+
+const imageProps: ImageProps[] = [
+  { src: TrophyTOP1, alt: 'TOP 1', width: 30, height: 30 },
+  { src: TrophyTOP2, alt: 'TOP 2', width: 20, height: 20 },
+  { src: TrophyTOP3, alt: 'TOP 3', width: 20, height: 20 },
+]
+
 export default function Leaderboard({ leaderboard }: LeaderboardProps) {
-  const [player, setPlayer] = useState<PlayerLeaderboard | null>(null)
+  const [players, setPlayers] = useState<PlayerLeaderboard[]>(leaderboard || [])
   const [nickname, setNickname] = useState<string>('')
   const [isSearching, setIsSearching] = useState<boolean>(false)
 
@@ -54,12 +63,24 @@ export default function Leaderboard({ leaderboard }: LeaderboardProps) {
         )
 
         setIsSearching(false)
-        setPlayer(player)
+        setPlayers([player])
       } catch (err) {
         setIsSearching(false)
-        setPlayer(null)
+        setPlayers([])
       }
-    } else if (nickname === '') setPlayer(null)
+    } else if (nickname === '') setPlayers(leaderboard)
+  }
+
+  function getImage(position: number) {
+    const props = imageProps[position - 1]
+
+    if (!props) {
+      return null
+    }
+
+    // alts are defined
+    // eslint-disable-next-line jsx-a11y/alt-text
+    return <Image {...props} />
   }
 
   return (
@@ -74,7 +95,7 @@ export default function Leaderboard({ leaderboard }: LeaderboardProps) {
 
         <div className="flex justify-center h-full items-center">
           <div className="flex flex-col items-center w-full lg:max-w-5xl mt-16">
-            <h1 className={`text-6xl sm:text-8xl`}>LEADERBOARD</h1>
+            <h1 className="text-6xl sm:text-8xl">LEADERBOARD</h1>
 
             <div className="flex flex-col sm:flex-row w-full justify-center items-center">
               <Image
@@ -86,6 +107,7 @@ export default function Leaderboard({ leaderboard }: LeaderboardProps) {
                 className={`${styles.input} my-5 sm:m-10 w-10/12 sm:max-w-lg focus:outline-none`}
                 name="player"
                 placeholder="Digite o nick de uma jogadora e aperte enter para pesquisar..."
+                value={nickname}
                 onChange={(event) => setNickname(event.target.value)}
                 onKeyDown={(event) => handleSearch(event.key)}
               />
@@ -109,76 +131,31 @@ export default function Leaderboard({ leaderboard }: LeaderboardProps) {
                   PARTIDAS
                 </p>
               </div>
-              {player ? (
+
+              {players.map((player, index) => (
                 <div
-                  w-full
                   key={player.userId}
-                  className={`${styles.tableContent} h-20 rounded-b-3xl ${styles.tableFirstRow} mt-3 text-center grid grid-cols-12 gap-6 items-center`}
+                  className={clsx(
+                    `${styles.tableContent} mt-3 text-center grid grid-cols-12 gap-6 items-center`,
+                    index === 0
+                      ? `${styles.tableFirstRow} h-20 rounded-b-3xl`
+                      : 'h-10 rounded-full',
+                  )}
                 >
-                  <p className="col-span-3 md:col-span-2">{player.position}</p>
+                  <div className="col-span-3 md:col-span-2 flex gap-5 w-full justify-center">
+                    <p className={clsx({ 'pl-10': player.position <= 3 })}>
+                      {player.position}
+                    </p>
+                    {getImage(player.position)}
+                  </div>
                   <p className="col-span-3 md:col-span-3">{player.points}</p>
                   <p className="col-span-6 md:col-span-4 ">{player.nickname}</p>
                   <p className="md:col-span-3 hidden md:block">
                     {player.played}{' '}
-                    {player.played == 1 ? 'Partida' : 'Partidas'}{' '}
+                    {player.played === 1 ? 'Partida' : 'Partidas'}
                   </p>
                 </div>
-              ) : (
-                leaderboard.length > 0 &&
-                leaderboard.map((player, index) => (
-                  <div
-                    w-full
-                    key={player.userId}
-                    className={`${styles.tableContent} ${
-                      index == 0
-                        ? `h-20 rounded-b-3xl ${styles.tableFirstRow}`
-                        : 'h-10 rounded-full'
-                    } mt-3 text-center grid grid-cols-12 gap-6 items-center`}
-                  >
-                    <div className="col-span-3 md:col-span-2 flex gap-5 w-full justify-center">
-                      <p
-                        className={`${
-                          (index === 0 || index === 1 || index === 2) && 'pl-10'
-                        }`}
-                      >
-                        {index + 1}
-                      </p>
-                      {index == 0 ? (
-                        <Image
-                          src={TrophyTOP1}
-                          alt="TOP 1"
-                          width={30}
-                          height={30}
-                        />
-                      ) : index == 1 ? (
-                        <Image
-                          src={TrophyTOP2}
-                          alt="TOP 2"
-                          width={20}
-                          height={20}
-                        />
-                      ) : index == 2 ? (
-                        <Image
-                          src={TrophyTOP3}
-                          alt="TOP 3"
-                          width={20}
-                          height={20}
-                        />
-                      ) : (
-                        ''
-                      )}
-                    </div>
-                    <p className="col-span-3 md:col-span-3">{player.points}</p>
-                    <p className="col-span-6 md:col-span-4 ">
-                      {player.nickname}
-                    </p>
-                    <p className="md:col-span-3 hidden md:block">
-                      {player.played}{' '}
-                      {player.played == 1 ? 'Partida' : 'Partidas'}{' '}
-                    </p>
-                  </div>
-                ))
-              )}
+              ))}
             </div>
           </div>
         </div>

@@ -3,6 +3,7 @@ export interface LeadboardPlayer {
   nickname: string;
   played: number;
   points: number;
+  position: number;
 }
 
 
