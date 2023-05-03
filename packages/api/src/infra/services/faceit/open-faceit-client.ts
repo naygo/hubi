@@ -30,6 +30,23 @@ export class OpenFaceitClientService {
     return leaderboard.data.items
   }
 
+  async getSeasonalLeaderboard({
+    limit,
+    offset,
+    season,
+  }: GetLeaderboardSeasonalParams) {
+    const leaderboard = await this.httpService.get<{
+      items: GetLeaderboardResponse[]
+    }>(`/leaderboards/hubs/${process.env.HUB_ID}/seasons/${season}`, {
+      params: {
+        offset,
+        limit,
+      },
+    })
+
+    return leaderboard.data.items
+  }
+
   async getPlayerHubs({
     playerId,
   }: GetPlayerHubsParams): Promise<GetPlayerHubsResponse> {
@@ -59,6 +76,12 @@ export class OpenFaceitClientService {
 interface GetLeaderboardParams {
   limit: number
   offset: number
+}
+
+interface GetLeaderboardSeasonalParams {
+  limit: number
+  offset: number
+  season: number
 }
 
 interface GetLeaderboardResponse {

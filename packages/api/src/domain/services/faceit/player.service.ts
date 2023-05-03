@@ -3,6 +3,7 @@ import { PlayerLeaderboard } from '@hubi/types/faceit'
 import { ApiFaceitClientService } from '@/infra/services/faceit/api-faceit-client'
 import { OpenFaceitClientService } from '@/infra/services/faceit/open-faceit-client'
 import { PlayerNotFound } from '@/domain/helpers/exceptions/player-not-found'
+import { PlayerNotPlay } from '@/domain/helpers/exceptions/player-not-play'
 
 @Injectable()
 export class PlayerService {
@@ -35,6 +36,10 @@ export class PlayerService {
         playerId: player_id,
         leaderboardId,
       })
+
+    if (!playerLeaderboard) {
+      throw new PlayerNotPlay(nickname)
+    }
 
     return {
       userId: playerLeaderboard.placement.entity_id,

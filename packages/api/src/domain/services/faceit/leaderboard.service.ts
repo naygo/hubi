@@ -9,11 +9,22 @@ export class LeaderboardService {
   async getLeaderboard({
     limit = 10,
     offset = 0,
-  }: Params): Promise<LeadboardPlayer[]> {
-    const leaderboard = await this.openFaceitClientService.getLeaderboard({
-      limit,
-      offset,
-    })
+    season = 0,
+  }: GetLeaderboardParams): Promise<LeadboardPlayer[]> {
+    let leaderboard = []
+
+    if (season > 0) {
+      leaderboard = await this.openFaceitClientService.getSeasonalLeaderboard({
+        limit,
+        offset,
+        season,
+      })
+    } else {
+      leaderboard = await this.openFaceitClientService.getLeaderboard({
+        limit,
+        offset,
+      })
+    }
 
     return leaderboard.map((item) => ({
       userId: item.player.user_id,
@@ -25,7 +36,8 @@ export class LeaderboardService {
   }
 }
 
-interface Params {
+interface GetLeaderboardParams {
   limit?: number
   offset?: number
+  season?: number
 }

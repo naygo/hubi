@@ -6,4 +6,7 @@ export class GetLeaderboardDto {
 
   @IsOptional()
   offset?: number
+
+  @IsOptional()
+  season?: number
 }
