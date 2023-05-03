@@ -7,8 +7,7 @@ import { GetStaticProps } from 'next'
 
 import { BsFillArrowLeftCircleFill } from 'react-icons/bs'
 
-import { Leaderboard, getLeaderboard } from '@/services/leaderboard'
-import { IGetPlayerResponse, getPlayer } from '@/services/player'
+import { getLeaderboard } from '@/services/leaderboard'
 
 import seasons from '../../shared/assets/img/seasons.svg'
 import styles from './styles.module.scss'
@@ -17,13 +16,15 @@ import TrophyTOP1 from '../../shared/assets/img/trophies/trophy-top1.svg'
 import TrophyTOP2 from '../../shared/assets/img/trophies/trophy-top2.svg'
 import TrophyTOP3 from '../../shared/assets/img/trophies/trophy-top3.svg'
 import Head from 'next/head'
+import { getPlayerLeaderboard } from '@/services/player-leaderboard'
+import { PlayerLeaderboard } from '@hubi/types'
 
 interface LeaderboardProps {
-  leaderboard: Leaderboard[]
+  leaderboard: PlayerLeaderboard[]
 }
 
 export default function Leaderboard({ leaderboard }: LeaderboardProps) {
-  const [player, setPlayer] = useState<IGetPlayerResponse | null>(null)
+  const [player, setPlayer] = useState<PlayerLeaderboard | null>(null)
   const [nickname, setNickname] = useState<string>('')
   const [isSearching, setIsSearching] = useState<boolean>(false)
 
@@ -35,7 +36,7 @@ export default function Leaderboard({ leaderboard }: LeaderboardProps) {
         setIsSearching(true)
 
         const player = await toast.promise(
-          getPlayer({ nickname }),
+          getPlayerLeaderboard({ nickname }),
           {
             pending: 'Buscando player...',
             error: 'Nenhuma player encontrada com este nickname!',
