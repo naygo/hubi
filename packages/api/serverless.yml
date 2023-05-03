@@ -15,8 +15,8 @@ provider:
   stage: ${opt:stage, 'development'}
   region: ${opt:region, 'sa-east-1'}
   environment:
-    HUB_ID:
-    FACEIT_API_KEY:
+    HUB_ID: ${env:HUB_ID}
+    FACEIT_API_KEY: ${env:FACEIT_API_KEY}
 
 functions:
   root:
