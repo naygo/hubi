@@ -1,7 +1,8 @@
+import { Injectable } from '@nestjs/common'
+import { PlayerLeaderboard } from '@hubi/types/faceit'
 import { ApiFaceitClientService } from '@/infra/services/faceit/api-faceit-client'
 import { OpenFaceitClientService } from '@/infra/services/faceit/open-faceit-client'
-import { PlayerLeaderboard } from '@hubi/types/faceit'
-import { Injectable } from '@nestjs/common'
+import { PlayerNotFound } from '@/domain/helpers/exceptions/player-not-found'
 
 @Injectable()
 export class PlayerService {
@@ -21,13 +22,12 @@ export class PlayerService {
       playerId: player_id,
     })
 
-    const playerInHubi = !!playerHubs.items.find(
+    const isPlayerInHubi = !!playerHubs.items.find(
       (item) => item.hub_id === process.env.HUB_ID,
     )
 
-    if (!playerInHubi) {
-      // return notFound(`A jogadora ${params.nickname} não está no HUBI`)
-      throw new Error(`A jogadora ${nickname} não está no HUBI`)
+    if (!isPlayerInHubi) {
+      throw new PlayerNotFound(nickname)
     }
 
     const { payload: playerLeaderboard } =
