@@ -5,8 +5,8 @@ import { ConfigModule } from '@nestjs/config'
 import { FaceitController } from './controllers/faceit.controller'
 import { LeaderboardService } from './domain/services/faceit/leaderboard.service'
 import { PlayerService } from './domain/services/faceit/player.service'
-import { ApiFaceitClientService } from './infra/services/faceit/apiFaceitClient'
-import { OpenFaceitClientService } from './infra/services/faceit/openFaceitClient'
+import { ApiFaceitClientService } from './infra/services/faceit/api-faceit-client'
+import { OpenFaceitClientService } from './infra/services/faceit/open-faceit-client'
 
 @Module({
   controllers: [FaceitController],

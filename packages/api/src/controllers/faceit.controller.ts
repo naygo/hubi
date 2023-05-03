@@ -1,7 +1,7 @@
 import { Controller, Get, Query } from '@nestjs/common'
 
-import { GetLeaderboardDto } from '@/dtos/faceit/getLeaderborad.dto'
-import { GetPlayerInfoDto } from '@/dtos/faceit/getPlayerInfo.dto'
+import { GetLeaderboardDto } from '@/dtos/faceit/get-leaderborad.dto'
+import { GetPlayerInfoDto } from '@/dtos/faceit/get-playerInfo.dto'
 
 import { LeaderboardService } from '@/domain/services/faceit/leaderboard.service'
 import { PlayerService } from '@/domain/services/faceit/player.service'
