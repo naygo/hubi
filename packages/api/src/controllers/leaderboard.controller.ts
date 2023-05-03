@@ -18,13 +18,13 @@ export class FaceitController {
   async getLeaderboard(
     @Query() query: GetLeaderboardDto,
   ): Promise<LeadboardPlayer[]> {
-    return await this.leaderboardService.getLeaderboard({ ...query })
+    return await this.leaderboardService.getLeaderboard(query)
   }
 
-  @Get('/player-leaderboard')
+  @Get('/player')
   async getPlayerLeaderboard(
     @Query() query: GetPlayerInfoDto,
   ): Promise<PlayerLeaderboard> {
-    return await this.playerService.getPlayerLeaderboard({ ...query })
+    return await this.playerService.getPlayerLeaderboard(query)
   }
 }
