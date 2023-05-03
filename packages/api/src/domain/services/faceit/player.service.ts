@@ -1,5 +1,5 @@
 import { ApiFaceitClientService } from '@/infra/services/faceit/api-faceit-client'
-import { OpenFaceitClientService } from '@/infra/services/faceit/openFaceitClient'
+import { OpenFaceitClientService } from '@/infra/services/faceit/open-faceit-client'
 import { PlayerLeaderboard } from '@hubi/types/faceit'
 import { Injectable } from '@nestjs/common'
 

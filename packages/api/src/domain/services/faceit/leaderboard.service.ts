@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { LeadboardPlayer } from '@hubi/types/faceit'
-import { OpenFaceitClientService } from '@/infra/services/faceit/openFaceitClient'
+import { OpenFaceitClientService } from '@/infra/services/faceit/open-faceit-client'
 
 @Injectable()
 export class LeaderboardService {
