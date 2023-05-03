@@ -2,48 +2,27 @@ import { HttpModule } from '@nestjs/axios'
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 
-import {
-  GetLeaderboardService,
-  GetPlayerInfoService,
-  HandleMatchEndedService,
-} from './domain/services'
-import {
-  GetLeaderboardPlayerInfoUsecase,
-  GetLeaderboardUsecase,
-  GetPlayerHubsUsecase,
-  GetPlayerInfoUsecase,
-} from './domain/usecases'
-import {
-  ApiFaceitApiClientImpl,
-  OpenFaceitApiClientImpl,
-} from './infra/integrations/implementations'
-import {
-  FaceitController,
-  WebhooksController,
-} from './presentation/controllers'
+import { FaceitController } from './controllers/leaderboard.controller'
+import { LeaderboardService } from './domain/services/faceit/leaderboard.service'
+import { PlayerService } from './domain/services/faceit/player.service'
+import { ApiFaceitClientService } from './infra/services/faceit/api-faceit-client'
+import { OpenFaceitClientService } from './infra/services/faceit/open-faceit-client'
+import { ApplicationController } from '@/controllers/application.controller'
 
 @Module({
-  controllers: [FaceitController, WebhooksController],
+  controllers: [ApplicationController, FaceitController],
   providers: [
     // --- Services --- //
     // Faceit
-    GetLeaderboardService,
-    GetPlayerInfoService,
-
-    // Webhooks
-    HandleMatchEndedService,
+    LeaderboardService,
+    PlayerService,
 
     // --- Usecases --- //
-    // Faceit
-    GetLeaderboardUsecase,
-    GetLeaderboardPlayerInfoUsecase,
-    GetPlayerHubsUsecase,
-    GetPlayerInfoUsecase,
 
-    // --- Integrations --- //
+    // --- Infra --- //
     // Faceit
-    ApiFaceitApiClientImpl,
-    OpenFaceitApiClientImpl,
+    ApiFaceitClientService,
+    OpenFaceitClientService,
   ],
   imports: [ConfigModule.forRoot(), HttpModule],
 })

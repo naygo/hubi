@@ -44,6 +44,7 @@
   "devDependencies": {
     "@hubi/eslint-config": "file:../eslint-config",
     "@hubi/prettier-config": "file:../prettier-config",
+    "@hubi/types": "file:../types",
     "@nestjs/cli": "^9.0.0",
     "@nestjs/schematics": "^9.0.0",
     "@nestjs/testing": "^9.0.0",

@@ -1,4 +1,5 @@
-.icon:hover {
-  color: var(--yellow);
-  transition: all 0.1s ease-in-out;
+.icon {
+  &:hover {
+    color: #e09600;
+  }
 }
