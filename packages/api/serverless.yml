@@ -6,7 +6,7 @@ useDotenv: true
 plugins:
   - serverless-webpack
   - serverless-offline
-#  - serverless-domain-manager
+  - serverless-domain-manager
 
 provider:
   name: aws
