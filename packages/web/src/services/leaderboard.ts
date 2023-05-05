@@ -1,4 +1,5 @@
 import { PlayerLeaderboard } from '@hubi/types'
+
 import { api } from './api'
 
 export async function getLeaderboard(): Promise<PlayerLeaderboard[]> {

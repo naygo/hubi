@@ -1,24 +1,23 @@
-import { useRef, useState } from 'react'
-import { toast, Id as ToastId } from 'react-toastify'
-
+import { PlayerLeaderboard } from '@hubi/types'
+import { isAxiosError } from 'axios'
+import clsx from 'clsx'
+import { GetStaticProps } from 'next'
+import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
-import { GetStaticProps } from 'next'
+import { useRef, useState } from 'react'
+import { toast, Id as ToastId } from 'react-toastify'
 
 import { BsFillArrowLeftCircleFill } from 'react-icons/bs'
 
 import { getLeaderboard } from '@/services/leaderboard'
+import { getPlayerLeaderboard } from '@/services/player-leaderboard'
+
+import TrophyTOP1 from '@public/img/trophies/trophy-top1.svg'
+import TrophyTOP2 from '@public/img/trophies/trophy-top2.svg'
+import TrophyTOP3 from '@public/img/trophies/trophy-top3.svg'
 
 import styles from './styles.module.scss'
-
-import TrophyTOP1 from '../../shared/assets/img/trophies/trophy-top1.svg'
-import TrophyTOP2 from '../../shared/assets/img/trophies/trophy-top2.svg'
-import TrophyTOP3 from '../../shared/assets/img/trophies/trophy-top3.svg'
-import Head from 'next/head'
-import { getPlayerLeaderboard } from '@/services/player-leaderboard'
-import { PlayerLeaderboard } from '@hubi/types'
-import clsx from 'clsx'
-import { isAxiosError } from 'axios'
 
 interface LeaderboardProps {
   leaderboard: PlayerLeaderboard[]
