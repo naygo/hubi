@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react'
-import { toast } from 'react-toastify'
+import { toast, Id as ToastId } from 'react-toastify'
 
 import Image from 'next/image'
 import Link from 'next/link'
@@ -9,7 +9,6 @@ import { BsFillArrowLeftCircleFill } from 'react-icons/bs'
 
 import { getLeaderboard } from '@/services/leaderboard'
 
-import seasons from '../../shared/assets/img/seasons.svg'
 import styles from './styles.module.scss'
 
 import TrophyTOP1 from '../../shared/assets/img/trophies/trophy-top1.svg'
@@ -19,6 +18,7 @@ import Head from 'next/head'
 import { getPlayerLeaderboard } from '@/services/player-leaderboard'
 import { PlayerLeaderboard } from '@hubi/types'
 import clsx from 'clsx'
+import { isAxiosError } from 'axios'
 
 interface LeaderboardProps {
   leaderboard: PlayerLeaderboard[]
@@ -33,7 +33,7 @@ const imageProps: ImageProps[] = [
 ]
 
 export default function Leaderboard({ leaderboard }: LeaderboardProps) {
-  const toastId = useRef<any>(null)
+  const toastId = useRef<ToastId>()
   const [players, setPlayers] = useState<PlayerLeaderboard[]>(leaderboard || [])
   const [nickname, setNickname] = useState<string>('')
   const [isSearching, setIsSearching] = useState<boolean>(false)
@@ -51,15 +51,23 @@ export default function Leaderboard({ leaderboard }: LeaderboardProps) {
         setIsSearching(false)
 
         setPlayers([player])
-        toast.dismiss(toastId.current)
-      } catch (err: any) {
-        toast.update(toastId.current, {
-          render: err.response.data.message,
-          type: 'error',
-          isLoading: false,
-          hideProgressBar: false,
-          autoClose: 3000,
-        })
+        if (toastId.current) toast.dismiss(toastId.current)
+      } catch (err) {
+        const errorMessage = isAxiosError(err)
+          ? err.response?.data.message
+          : 'Erro ao buscar player'
+
+        if (toastId.current) {
+          toast.update(toastId.current, {
+            render: errorMessage,
+            type: 'error',
+            isLoading: false,
+            hideProgressBar: false,
+            autoClose: 3000,
+            pauseOnHover: true,
+          })
+        }
+
         setIsSearching(false)
         setPlayers(leaderboard)
       }
@@ -73,9 +81,7 @@ export default function Leaderboard({ leaderboard }: LeaderboardProps) {
       autoClose: false,
       hideProgressBar: false,
       closeOnClick: true,
-      pauseOnHover: true,
       draggable: true,
-      progress: undefined,
       theme: 'colored',
     })
   }
