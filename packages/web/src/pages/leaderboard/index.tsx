@@ -60,8 +60,6 @@ export default function Leaderboard({
   const handleSelectChange = async (event) => {
     const leaderboardId = event.target.value
     setSelectedLeaderboardId(leaderboardId)
-    const leaderboard = await getLeaderboard(leaderboardId)
-    setPlayers(leaderboard)
   }
 
   async function handleSearch(key: string) {
@@ -94,6 +92,17 @@ export default function Leaderboard({
       }
     } else if (nickname === '') setPlayers(leaderboard)
   }
+
+  useEffect(() => {
+    const handlePlayer = async () => {
+      if (nickname === '') {
+        const leaderboard = await getLeaderboard(selectedLeaderboardId)
+        setPlayers(leaderboard)
+      } else handleSearch('Enter')
+    }
+
+    handlePlayer()
+  }, [selectedLeaderboardId])
 
   function notify(loadMessage: string) {
     toastId.current = toast.loading(loadMessage, {
