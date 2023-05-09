@@ -55,11 +55,11 @@ export default function Leaderboard({
   const [players, setPlayers] = useState<PlayerLeaderboard[]>(leaderboard || [])
   const [nickname, setNickname] = useState<string>('')
   const [isSearching, setIsSearching] = useState<boolean>(false)
-  const [selectedOption, setSelectedOption] = useState('')
+  const [selectedLeaderboardId, setSelectedLeaderboardId] = useState('')
 
   const handleSelectChange = async (event) => {
     const leaderboardId = event.target.value
-    setSelectedOption(leaderboardId)
+    setSelectedLeaderboardId(leaderboardId)
     const leaderboard = await getLeaderboard(leaderboardId)
     setPlayers(leaderboard)
   }
@@ -72,7 +72,10 @@ export default function Leaderboard({
         setIsSearching(true)
 
         notify('Buscando player...')
-        const player = await getPlayerLeaderboard({ nickname })
+        const player = await getPlayerLeaderboard({
+          nickname,
+          leaderboardId: selectedLeaderboardId,
+        })
 
         setIsSearching(false)
 
@@ -125,7 +128,7 @@ export default function Leaderboard({
                 <SeasonSelect
                   options={leaderboardSelect}
                   handleSelectChange={handleSelectChange}
-                  selected={selectedOption}
+                  selected={selectedLeaderboardId}
                 />
               </div>
               <input
@@ -140,7 +143,7 @@ export default function Leaderboard({
                 <SeasonSelect
                   options={leaderboardSelect}
                   handleSelectChange={handleSelectChange}
-                  selected={selectedOption}
+                  selected={selectedLeaderboardId}
                 />
               </div>
             </div>
