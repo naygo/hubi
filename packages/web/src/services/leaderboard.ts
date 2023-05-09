@@ -7,7 +7,7 @@ export async function getLeaderboard(
   const response = await api.get<PlayerLeaderboard[]>('/leaderboard', {
     params: {
       limit: 50,
-      season: leaderboardId,
+      id: leaderboardId,
     },
   })
   return response.data
