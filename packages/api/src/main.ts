@@ -10,7 +10,7 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe())
 
   const corsOptions = {
-    origin: process.env.WEB_PORT,
+    origin: process.env.ORIGIN,
     credentials: true, //access-control-allow-credentials:true
     optionSuccessStatus: 200,
   }
