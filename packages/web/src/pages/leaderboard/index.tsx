@@ -25,6 +25,7 @@ import { removeAfterHyphen } from '../../shared/utils/stringUtils'
 interface LeaderboardProps {
   leaderboard: PlayerLeaderboard[]
   leaderboardSelect: ILeaderboardSelect[]
+  defaultLeaderboardId: string
 }
 
 type ImageProps = React.ComponentProps<typeof Image>
@@ -50,14 +51,16 @@ function getImage(position: number) {
 export default function Leaderboard({
   leaderboard,
   leaderboardSelect,
+  defaultLeaderboardId,
 }: LeaderboardProps) {
   const toastId = useRef<any>(null)
   const [players, setPlayers] = useState<PlayerLeaderboard[]>(leaderboard || [])
   const [nickname, setNickname] = useState<string>('')
   const [isSearching, setIsSearching] = useState<boolean>(false)
-  const [selectedLeaderboardId, setSelectedLeaderboardId] = useState('')
+  const [selectedLeaderboardId, setSelectedLeaderboardId] =
+    useState(defaultLeaderboardId)
 
-  const handleSelectChange = async (event) => {
+  const handleSelectChange = async (event: any) => {
     const leaderboardId = event.target.value
     setSelectedLeaderboardId(leaderboardId)
   }
@@ -204,9 +207,8 @@ export default function Leaderboard({
 
 export const getStaticProps: GetStaticProps = async () => {
   const getLeaderboardsResponse = await getListLeaderboards()
-  const leaderboard = await getLeaderboard(
-    getLeaderboardsResponse[0].leaderboard_id,
-  )
+  const defaultLeaderboardId = getLeaderboardsResponse[0].leaderboard_id
+  const leaderboard = await getLeaderboard(defaultLeaderboardId)
 
   const leaderboardSelect: ILeaderboardSelect[] = getLeaderboardsResponse.map(
     (leaderboard: Leaderboard) => {
@@ -218,7 +220,7 @@ export const getStaticProps: GetStaticProps = async () => {
   )
 
   return {
-    props: { leaderboard, leaderboardSelect },
+    props: { leaderboard, leaderboardSelect, defaultLeaderboardId },
   }
 }
 
