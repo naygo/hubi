@@ -15,45 +15,25 @@ export class OpenFaceitClientService {
     })
   }
 
+  async getLeaderboad({ limit, offset, id }: GetLeaderboardParams) {
+    const leaderboard = await this.httpService.get<{
+      items: GetLeaderboardResponse[]
+    }>(`/leaderboards/${id}`, {
+      params: {
+        offset,
+        limit,
+      },
+    })
+
+    return leaderboard.data.items
+  }
+
   async getHubLeaderboards(): Promise<HubLeaderboard[]> {
     const leaderboards = await this.httpService.get<GetHubLeaderboardsResponse>(
       `/leaderboards/hubs/${process.env.HUB_ID}`,
     )
 
     return leaderboards.data.items
-  }
-
-  async getLeaderboard({
-    limit,
-    offset,
-  }: GetLeaderboardParams): Promise<GetLeaderboardResponse[]> {
-    const leaderboard = await this.httpService.get<{
-      items: GetLeaderboardResponse[]
-    }>(`/leaderboards/hubs/${process.env.HUB_ID}/general`, {
-      params: {
-        offset,
-        limit,
-      },
-    })
-
-    return leaderboard.data.items
-  }
-
-  async getSeasonalLeaderboard({
-    limit,
-    offset,
-    season,
-  }: GetLeaderboardSeasonalParams) {
-    const leaderboard = await this.httpService.get<{
-      items: GetLeaderboardResponse[]
-    }>(`/leaderboards/hubs/${process.env.HUB_ID}/seasons/${season}`, {
-      params: {
-        offset,
-        limit,
-      },
-    })
-
-    return leaderboard.data.items
   }
 
   async getPlayerHubs({
@@ -89,12 +69,7 @@ interface GetHubLeaderboardsResponse {
 interface GetLeaderboardParams {
   limit: number
   offset: number
-}
-
-interface GetLeaderboardSeasonalParams {
-  limit: number
-  offset: number
-  season: number
+  id: string
 }
 
 interface GetLeaderboardResponse {
@@ -119,7 +94,6 @@ interface GetLeaderboardResponse {
 interface GetPlayerInfoParams {
   nickname: string
 }
-
 interface GetPlayerInfoResponse {
   player_id: string
   nickname: string
