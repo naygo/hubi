@@ -1,5 +1,5 @@
 import { HubLeaderboard } from '@hubi/types/faceit'
-import { Controller, Get, Query } from '@nestjs/common'
+import { Controller, Get } from '@nestjs/common'
 
 import { LeaderboardService } from '@/domain/services/faceit/leaderboard.service'
 
