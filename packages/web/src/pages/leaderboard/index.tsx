@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { toast } from 'react-toastify'
 
 import Image from 'next/image'
@@ -7,9 +7,8 @@ import { GetStaticProps } from 'next'
 
 import { BsFillArrowLeftCircleFill } from 'react-icons/bs'
 
-import { getLeaderboard } from '@/services/leaderboard'
+import { getLeaderboard, getListLeaderboards } from '../../services/leaderboard'
 
-import seasons from '../../shared/assets/img/seasons.svg'
 import styles from './styles.module.scss'
 
 import TrophyTOP1 from '../../shared/assets/img/trophies/trophy-top1.svg'
@@ -17,11 +16,15 @@ import TrophyTOP2 from '../../shared/assets/img/trophies/trophy-top2.svg'
 import TrophyTOP3 from '../../shared/assets/img/trophies/trophy-top3.svg'
 import Head from 'next/head'
 import { getPlayerLeaderboard } from '@/services/player-leaderboard'
-import { PlayerLeaderboard } from '@hubi/types'
+import { PlayerLeaderboard, Leaderboard } from '@hubi/types'
 import clsx from 'clsx'
+import React from 'react'
+import { SeasonSelect } from '../../shared/components/SessonSelect'
+import { removeAfterHyphen } from '../../shared/utils/stringUtils'
 
 interface LeaderboardProps {
   leaderboard: PlayerLeaderboard[]
+  leaderboardSelect: ILeaderboardSelect[]
 }
 
 type ImageProps = React.ComponentProps<typeof Image>
@@ -32,11 +35,34 @@ const imageProps: ImageProps[] = [
   { src: TrophyTOP3, alt: 'TOP 3', width: 20, height: 20 },
 ]
 
-export default function Leaderboard({ leaderboard }: LeaderboardProps) {
+function getImage(position: number) {
+  const props = imageProps[position - 1]
+
+  if (!props) {
+    return null
+  }
+
+  // alts are defined0
+  // eslint-disable-next-line jsx-a11y/alt-text
+  return <Image {...props} />
+}
+
+export default function Leaderboard({
+  leaderboard,
+  leaderboardSelect,
+}: LeaderboardProps) {
   const toastId = useRef<any>(null)
   const [players, setPlayers] = useState<PlayerLeaderboard[]>(leaderboard || [])
   const [nickname, setNickname] = useState<string>('')
   const [isSearching, setIsSearching] = useState<boolean>(false)
+  const [selectedOption, setSelectedOption] = useState('')
+
+  const handleSelectChange = async (event) => {
+    const leaderboardId = event.target.value
+    setSelectedOption(leaderboardId)
+    const leaderboard = await getLeaderboard(leaderboardId)
+    setPlayers(leaderboard)
+  }
 
   async function handleSearch(key: string) {
     if (isSearching) return
@@ -80,18 +106,6 @@ export default function Leaderboard({ leaderboard }: LeaderboardProps) {
     })
   }
 
-  function getImage(position: number) {
-    const props = imageProps[position - 1]
-
-    if (!props) {
-      return null
-    }
-
-    // alts are defined
-    // eslint-disable-next-line jsx-a11y/alt-text
-    return <Image {...props} />
-  }
-
   return (
     <>
       <Head>
@@ -107,11 +121,13 @@ export default function Leaderboard({ leaderboard }: LeaderboardProps) {
             <h1 className="text-6xl sm:text-8xl">LEADERBOARD</h1>
 
             <div className="flex flex-col sm:flex-row w-full justify-center items-center">
-              {/* <Image
-                src={seasons}
-                alt="Season atual"
-                className="block sm:hidden mt-2"
-              /> */}
+              <div className="block sm:hidden mt-2">
+                <SeasonSelect
+                  options={leaderboardSelect}
+                  handleSelectChange={handleSelectChange}
+                  selected={selectedOption}
+                />
+              </div>
               <input
                 className={`${styles.input} my-5 sm:m-10 w-10/12 sm:max-w-lg focus:outline-none`}
                 name="player"
@@ -120,11 +136,13 @@ export default function Leaderboard({ leaderboard }: LeaderboardProps) {
                 onChange={(event) => setNickname(event.target.value)}
                 onKeyDown={(event) => handleSearch(event.key)}
               />
-              {/* <Image
-                src={seasons}
-                alt="Season atual"
-                className="hidden sm:block"
-              /> */}
+              <div className="hidden sm:block">
+                <SeasonSelect
+                  options={leaderboardSelect}
+                  handleSelectChange={handleSelectChange}
+                  selected={selectedOption}
+                />
+              </div>
             </div>
 
             <div className={`${styles.table} w-full p-3 overflow-auto`}>
@@ -173,9 +191,26 @@ export default function Leaderboard({ leaderboard }: LeaderboardProps) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const leaderboard = await getLeaderboard()
+  const getLeaderboardsResponse = await getListLeaderboards()
+  const leaderboard = await getLeaderboard(
+    getLeaderboardsResponse[0].leaderboard_id,
+  )
+
+  const leaderboardSelect: ILeaderboardSelect[] = getLeaderboardsResponse.map(
+    (leaderboard: Leaderboard) => {
+      return {
+        value: leaderboard.leaderboard_id,
+        label: removeAfterHyphen(leaderboard.leaderboard_name),
+      }
+    },
+  )
 
   return {
-    props: { leaderboard },
+    props: { leaderboard, leaderboardSelect },
   }
+}
+
+interface ILeaderboardSelect {
+  value: string
+  label: string
 }
