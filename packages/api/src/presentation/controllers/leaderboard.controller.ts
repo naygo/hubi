@@ -3,8 +3,8 @@ import { Controller, Get, Query } from '@nestjs/common'
 
 import { LeaderboardService } from '@/domain/services/faceit/leaderboard.service'
 import { PlayerService } from '@/domain/services/faceit/player.service'
-import { GetLeaderboardDto } from '@/dtos/faceit/get-leaderboard.dto'
-import { GetPlayerInfoDto } from '@/dtos/faceit/get-player-info.dto'
+import { GetLeaderboardDto } from '@/presentation/dtos/faceit/get-leaderboard.dto'
+import { GetPlayerInfoDto } from '@/presentation/dtos/faceit/get-player-info.dto'
 
 @Controller('/leaderboard')
 export class LeaderboardController {
