@@ -121,7 +121,7 @@ export default function Leaderboard({
             <h1 className="text-6xl sm:text-8xl">LEADERBOARD</h1>
 
             <div className="flex flex-col sm:flex-row w-full justify-center items-center">
-              <div className="block sm:hidden mt-2">
+              <div className="block sm:hidden mt-2 w-10/12">
                 <SeasonSelect
                   options={leaderboardSelect}
                   handleSelectChange={handleSelectChange}
