@@ -10,7 +10,7 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe())
 
   const corsOptions = {
-    origin: 'http://localhost:3000',
+    origin: process.env.WEB_PORT,
     credentials: true, //access-control-allow-credentials:true
     optionSuccessStatus: 200,
   }
