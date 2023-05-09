@@ -6,7 +6,7 @@ export interface LeadboardPlayer {
   position: number;
 }
 
-export interface HubLeaderboards {
+export interface HubLeaderboard {
   leaderboard_id: string;
   leaderboard_name: string;
   leaderboard_type: string;
