@@ -1,5 +1,6 @@
 import axios, { AxiosInstance } from 'axios'
 import { Injectable } from '@nestjs/common'
+import { HubLeaderboards } from '@hubi/types/faceit'
 
 @Injectable()
 export class OpenFaceitClientService {
@@ -12,6 +13,14 @@ export class OpenFaceitClientService {
         Authorization: `Bearer ${process.env.FACEIT_API_KEY}`,
       },
     })
+  }
+
+  async getHubLeaderboards(): Promise<HubLeaderboards[]> {
+    const leaderboards = await this.httpService.get<GetHubLeaderboardsResponse>(
+      `/leaderboards/hubs/${process.env.HUB_ID}`,
+    )
+
+    return leaderboards.data.items
   }
 
   async getLeaderboard({
@@ -71,6 +80,10 @@ export class OpenFaceitClientService {
 
     return playerInfo.data
   }
+}
+
+interface GetHubLeaderboardsResponse {
+  items: HubLeaderboards[]
 }
 
 interface GetLeaderboardParams {
