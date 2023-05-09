@@ -1,10 +1,9 @@
+import Head from 'next/head'
 import Link from 'next/link'
+
 import { Button } from '@/shared/components/Button'
 
-// import logoNouns from '../shared/assets/img/LogoNouns.svg'
-
 import styles from './styles.module.scss'
-import Head from 'next/head'
 
 function openLinkTree() {
   window.open('https://linktr.ee/hub.inclusivo', '_blank')

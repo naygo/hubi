@@ -1,9 +1,7 @@
-import { useEffect, useRef, useState } from 'react'
-import { toast } from 'react-toastify'
-
 import Image from 'next/image'
 import Link from 'next/link'
-import { GetStaticProps } from 'next'
+import { useEffect, useRef, useState } from 'react'
+import { toast } from 'react-toastify'
 
 import { BsFillArrowLeftCircleFill } from 'react-icons/bs'
 
@@ -11,9 +9,9 @@ import { getLeaderboard, getListLeaderboards } from '../../services/leaderboard'
 
 import styles from './styles.module.scss'
 
-import TrophyTOP1 from '../../shared/assets/img/trophies/trophy-top1.svg'
-import TrophyTOP2 from '../../shared/assets/img/trophies/trophy-top2.svg'
-import TrophyTOP3 from '../../shared/assets/img/trophies/trophy-top3.svg'
+import TrophyTOP1 from '../../../public/img/trophies/trophy-top1.svg'
+import TrophyTOP2 from '../../../public/img/trophies/trophy-top2.svg'
+import TrophyTOP3 from '../../../public/img/trophies/trophy-top3.svg'
 import Head from 'next/head'
 import { getPlayerLeaderboard } from '@/services/player-leaderboard'
 import { PlayerLeaderboard, Leaderboard } from '@hubi/types'
@@ -21,6 +19,8 @@ import clsx from 'clsx'
 import React from 'react'
 import { SeasonSelect } from '../../shared/components/SessonSelect'
 import { removeAfterHyphen } from '../../shared/utils/stringUtils'
+import { isAxiosError } from 'axios'
+import { GetStaticProps } from 'next'
 
 interface LeaderboardProps {
   leaderboard: PlayerLeaderboard[]
@@ -81,15 +81,23 @@ export default function Leaderboard({
         setIsSearching(false)
 
         setPlayers([player])
-        toast.dismiss(toastId.current)
-      } catch (err: any) {
-        toast.update(toastId.current, {
-          render: err.response.data.message,
-          type: 'error',
-          isLoading: false,
-          hideProgressBar: false,
-          autoClose: 3000,
-        })
+        if (toastId.current) toast.dismiss(toastId.current)
+      } catch (err) {
+        const errorMessage = isAxiosError(err)
+          ? err.response?.data.message
+          : 'Erro ao buscar player'
+
+        if (toastId.current) {
+          toast.update(toastId.current, {
+            render: errorMessage,
+            type: 'error',
+            isLoading: false,
+            hideProgressBar: false,
+            autoClose: 3000,
+            pauseOnHover: true,
+          })
+        }
+
         setIsSearching(false)
         setPlayers(leaderboard)
       }
@@ -114,9 +122,7 @@ export default function Leaderboard({
       autoClose: false,
       hideProgressBar: false,
       closeOnClick: true,
-      pauseOnHover: true,
       draggable: true,
-      progress: undefined,
       theme: 'colored',
     })
   }

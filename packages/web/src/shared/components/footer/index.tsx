@@ -1,9 +1,10 @@
 import Image from 'next/image'
 import Link from 'next/link'
+
 import { FaDiscord, FaTwitter } from 'react-icons/fa'
 
-import logo from '../../assets/img/LogoDarkBackground.svg'
-import logoNouns from '../../assets/img/LogoNouns.svg'
+import logo from '@public/img/LogoDarkBackground.svg'
+import logoNouns from '@public/img/LogoNouns.svg'
 
 import styles from './styles.module.scss'
 

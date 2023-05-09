@@ -1,10 +1,12 @@
-import { Footer } from '@/shared/components/footer'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
-import '../styles/globals.scss'
+
+import { Footer } from '@/shared/components/footer'
+
 import styles from './styles.module.scss'
+import '../styles/globals.scss'
+import 'react-toastify/dist/ReactToastify.css'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
