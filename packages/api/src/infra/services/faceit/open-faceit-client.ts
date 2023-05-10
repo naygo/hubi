@@ -1,5 +1,6 @@
 import axios, { AxiosInstance } from 'axios'
 import { Injectable } from '@nestjs/common'
+import { HubLeaderboard } from '@hubi/types/faceit'
 
 @Injectable()
 export class OpenFaceitClientService {
@@ -14,13 +15,10 @@ export class OpenFaceitClientService {
     })
   }
 
-  async getLeaderboard({
-    limit,
-    offset,
-  }: GetLeaderboardParams): Promise<GetLeaderboardResponse[]> {
+  async getLeaderboad({ limit, offset, id }: GetLeaderboardParams) {
     const leaderboard = await this.httpService.get<{
       items: GetLeaderboardResponse[]
-    }>(`/leaderboards/hubs/${process.env.HUB_ID}/general`, {
+    }>(`/leaderboards/${id}`, {
       params: {
         offset,
         limit,
@@ -30,21 +28,12 @@ export class OpenFaceitClientService {
     return leaderboard.data.items
   }
 
-  async getSeasonalLeaderboard({
-    limit,
-    offset,
-    season,
-  }: GetLeaderboardSeasonalParams) {
-    const leaderboard = await this.httpService.get<{
-      items: GetLeaderboardResponse[]
-    }>(`/leaderboards/hubs/${process.env.HUB_ID}/seasons/${season}`, {
-      params: {
-        offset,
-        limit,
-      },
-    })
+  async getHubLeaderboards(): Promise<HubLeaderboard[]> {
+    const leaderboards = await this.httpService.get<GetHubLeaderboardsResponse>(
+      `/leaderboards/hubs/${process.env.HUB_ID}`,
+    )
 
-    return leaderboard.data.items
+    return leaderboards.data.items
   }
 
   async getPlayerHubs({
@@ -73,15 +62,14 @@ export class OpenFaceitClientService {
   }
 }
 
+interface GetHubLeaderboardsResponse {
+  items: HubLeaderboard[]
+}
+
 interface GetLeaderboardParams {
   limit: number
   offset: number
-}
-
-interface GetLeaderboardSeasonalParams {
-  limit: number
-  offset: number
-  season: number
+  id: string
 }
 
 interface GetLeaderboardResponse {
@@ -106,7 +94,6 @@ interface GetLeaderboardResponse {
 interface GetPlayerInfoParams {
   nickname: string
 }
-
 interface GetPlayerInfoResponse {
   player_id: string
   nickname: string

@@ -8,5 +8,5 @@ export class GetLeaderboardDto {
   offset?: number
 
   @IsOptional()
-  season?: number
+  id?: string
 }

@@ -11,13 +11,13 @@
 
 .leftBackground {
   @extend .backgroundImages;
-  background: url('../shared/assets/img/background1.svg') no-repeat;
+  background: url('../../public/img/background1.svg') no-repeat;
   left: 0;
 }
 
 .rightBackground {
   @extend .backgroundImages;
-  background: url('../shared/assets/img/background2.svg') no-repeat;
+  background: url('../../public/img/background2.svg') no-repeat;
   right: 0;
 }
 

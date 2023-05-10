@@ -1,30 +1,26 @@
+import { HubLeaderboard, LeadboardPlayer } from '@hubi/types/faceit'
 import { Injectable } from '@nestjs/common'
-import { LeadboardPlayer } from '@hubi/types/faceit'
+
 import { OpenFaceitClientService } from '@/infra/services/faceit/open-faceit-client'
 
 @Injectable()
 export class LeaderboardService {
   constructor(private openFaceitClientService: OpenFaceitClientService) {}
 
+  async getHubLeaderboards(): Promise<HubLeaderboard[]> {
+    return await this.openFaceitClientService.getHubLeaderboards()
+  }
+
   async getLeaderboard({
+    id,
     limit = 10,
     offset = 0,
-    season = 0,
   }: GetLeaderboardParams): Promise<LeadboardPlayer[]> {
-    let leaderboard = []
-
-    if (season > 0) {
-      leaderboard = await this.openFaceitClientService.getSeasonalLeaderboard({
-        limit,
-        offset,
-        season,
-      })
-    } else {
-      leaderboard = await this.openFaceitClientService.getLeaderboard({
-        limit,
-        offset,
-      })
-    }
+    const leaderboard = await this.openFaceitClientService.getLeaderboad({
+      limit,
+      offset,
+      id,
+    })
 
     return leaderboard.map((item) => ({
       userId: item.player.user_id,
@@ -39,5 +35,5 @@ export class LeaderboardService {
 interface GetLeaderboardParams {
   limit?: number
   offset?: number
-  season?: number
+  id?: string
 }
