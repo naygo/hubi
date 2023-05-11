@@ -21,10 +21,14 @@ export class LeaderboardController {
     return await this.leaderboardService.getLeaderboard(id, query)
   }
 
-  @Get('/player')
+  @Get(':id/player')
   async getPlayerLeaderboard(
+    @Param('id') id: string,
     @Query() query: GetPlayerInfoDto,
   ): Promise<PlayerLeaderboard> {
-    return await this.playerService.getPlayerLeaderboard(query)
+    return await this.playerService.getPlayerLeaderboard({
+      nickname: query.nickname,
+      leaderboardId: id,
+    })
   }
 }
