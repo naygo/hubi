@@ -26,6 +26,9 @@ export class LeaderboardController {
     @Param('nickname') nickname: string,
     @Query() query: GetPlayerInfoDto,
   ): Promise<PlayerLeaderboard> {
-    return await this.playerService.getPlayerLeaderboard(nickname, query)
+    return await this.playerService.getPlayerLeaderboard({
+      nickname,
+      leaderboardId: query.leaderboardId,
+    })
   }
 }
