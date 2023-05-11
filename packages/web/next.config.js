@@ -4,7 +4,7 @@ const nextConfig = {
     appDir: true,
   },
   env: {
-    API_URL: 'http://localhost:3030',
+    API_URL: process.env.API_URL,
   },
 }
 
