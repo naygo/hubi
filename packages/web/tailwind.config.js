@@ -6,13 +6,13 @@ module.exports = {
     './src/app/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
+    fontFamily: {
+      sans: ['Poppins', 'sans-serif'],
+    },
     extend: {
       colors: {
         yellow: '#e09600',
-        'yellow-dark': '#b36f00',
-        blue: '#02111e',
-        silver: '#e5e5e5',
-        beige: '#ece8e1',
+        white: '#e5e5e5',
       },
     },
     plugins: [],
