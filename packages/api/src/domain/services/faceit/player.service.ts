@@ -12,10 +12,10 @@ export class PlayerService {
     private readonly apiFaceitClientService: ApiFaceitClientService,
   ) {}
 
-  async getPlayerLeaderboard({
-    nickname,
-    leaderboardId,
-  }: Params): Promise<PlayerLeaderboard> {
+  async getPlayerLeaderboard(
+    nickname: string,
+    { leaderboardId }: Params,
+  ): Promise<PlayerLeaderboard> {
     const { player_id } = await this.openFaceitClientService.getPlayerInfo({
       nickname,
     })
@@ -52,6 +52,5 @@ export class PlayerService {
 }
 
 interface Params {
-  nickname: string
   leaderboardId: string
 }

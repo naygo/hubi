@@ -6,7 +6,4 @@ export class GetLeaderboardDto {
 
   @IsOptional()
   offset?: number
-
-  @IsOptional()
-  id?: string
 }
