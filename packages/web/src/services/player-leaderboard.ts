@@ -11,11 +11,13 @@ export async function getPlayerLeaderboard({
   leaderboardId,
   nickname,
 }: PlayerLeaderboardParams): Promise<PlayerLeaderboard> {
-  const response = await api.get<PlayerLeaderboard>('/leaderboard/player', {
-    params: {
-      leaderboardId,
-      nickname,
+  const response = await api.get<PlayerLeaderboard>(
+    `/leaderboard/${leaderboardId}/player`,
+    {
+      params: {
+        nickname,
+      },
     },
-  })
+  )
   return response.data
 }

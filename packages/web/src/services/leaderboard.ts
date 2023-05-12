@@ -1,15 +1,18 @@
 import { Leaderboard, PlayerLeaderboard } from '@hubi/types'
+
 import { api } from './api'
 
 export async function getLeaderboard(
   leaderboardId: string,
 ): Promise<PlayerLeaderboard[]> {
-  const response = await api.get<PlayerLeaderboard[]>('/leaderboard', {
-    params: {
-      limit: 50,
-      id: leaderboardId,
+  const response = await api.get<PlayerLeaderboard[]>(
+    `/leaderboard/${leaderboardId}`,
+    {
+      params: {
+        limit: 50,
+      },
     },
-  })
+  )
   return response.data
 }
 
