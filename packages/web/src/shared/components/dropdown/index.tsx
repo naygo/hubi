@@ -1,8 +1,8 @@
 import { Listbox } from '@headlessui/react'
 import { useController, RegisterOptions, Control } from 'react-hook-form'
 
-import { IoCaretDownSharp } from 'react-icons/io5'
 import { FaExclamationCircle } from 'react-icons/fa'
+import { IoCaretDownSharp } from 'react-icons/io5'
 
 import { generateStyleButton } from './styles'
 
