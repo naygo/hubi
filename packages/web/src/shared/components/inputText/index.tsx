@@ -9,6 +9,8 @@ interface InputProps {
 }
 import { useController, RegisterOptions, Control } from 'react-hook-form'
 
+import { styleInputText } from './inputText.styles'
+
 export function InputText({ control, name, rules, placeholder }: InputProps) {
   const { field, fieldState } = useController({
     name,
@@ -19,26 +21,11 @@ export function InputText({ control, name, rules, placeholder }: InputProps) {
   return (
     <>
       <input
-        type="text"
-        className="
-          w-full 
-          bg-black-light
-          border
-          border-black-light
-          font-light
-          text-white
-          outline-none 
-          rounded-lg 
-          p-1.5
-          hover:border-yellow
-          focus:border-yellow
-          focus:ring-2
-          focus:ring-yellow
-          focus:ring-opacity-20
-        "
-        placeholder={placeholder}
         id={name}
+        placeholder={placeholder}
         {...field}
+        className={styleInputText}
+        type="text"
       />
       <span className="text-red text-sm">{fieldState.error?.message}</span>
     </>
