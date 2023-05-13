@@ -1,8 +1,9 @@
 import { Listbox } from '@headlessui/react'
 import { useController, RegisterOptions, Control } from 'react-hook-form'
 
-import { FaExclamationCircle } from 'react-icons/fa'
 import { IoCaretDownSharp } from 'react-icons/io5'
+
+import { InputAlert } from '../inputAlert'
 
 import { generateStyleButton } from './styles'
 
@@ -43,6 +44,7 @@ export function Dropdown({
           {field.value ? field.value : placeholder}
           <IoCaretDownSharp className="bg-black-light" />
         </Listbox.Button>
+
         <Listbox.Options className="bg-black-light rounded-lg py-2 mt-1">
           {options.map((option) => (
             <Listbox.Option
@@ -55,16 +57,8 @@ export function Dropdown({
           ))}
         </Listbox.Options>
       </Listbox>
-      {fieldState.error?.message && (
-        <span className="text-red-500 text-xs flex items-center mt-1">
-          <FaExclamationCircle
-            size={16}
-            className="mr-1"
-            style={{ fill: 'rgb(239, 68, 68)' }}
-          />
-          {fieldState.error?.message}
-        </span>
-      )}
+
+      {fieldState.error?.message && <InputAlert fieldState={fieldState} />}
     </>
   )
 }
