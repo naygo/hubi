@@ -35,12 +35,12 @@ export default function Home() {
       <Head>
         <title>HUBI</title>
       </Head>
-      <div className="w-screen flex flex-col items-center mt-4">
+      <div className="w-screen flex flex-col items-center mt-10">
         <div className="w-1/2 flex flex-col items-center gap-y-3">
-          <h1>HUBI</h1>
+          <h1 className="font-bold">HUBI</h1>
 
           <form
-            className="flex flex-col gap-y-5"
+            className="w-full flex flex-col gap-y-5"
             onSubmit={handleSubmit((data) => handleLogin(data))}
           >
             <div>
@@ -64,7 +64,7 @@ export default function Home() {
                 options={options}
                 control={control}
                 name="dropdown"
-                placeholder="Selecione"
+                placeholder="Placeholder"
                 rules={{
                   required: {
                     value: true,
@@ -74,7 +74,10 @@ export default function Home() {
               />
             </div>
 
-            <Button label="Enviar" />
+            <div className="flex gap-x-5">
+              <Button label="Limpar" type="secondary" />
+              <Button label="Enviar" type="primary" />
+            </div>
           </form>
         </div>
       </div>
