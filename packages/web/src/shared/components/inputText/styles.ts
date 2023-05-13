@@ -16,15 +16,7 @@ export const generateStyleInputText = (fieldState: ControllerFieldState) =>
       rounded-lg 
       px-2
       py-1
-
-      focus:ring-2
-      focus:ring-opacity-20
     `,
-    {
-      'border-red-500 focus:ring-red-500 ': fieldState.error?.type,
-    },
-    {
-      'hover:border-yellow focus:border-yellow focus:ring-yellow':
-        !fieldState.error?.type,
-    },
+    { 'border-red-500 focus:ring-red-500 ': fieldState.error?.type },
+    { 'hover:border-yellow focus:border-yellow': !fieldState.error?.type },
   )

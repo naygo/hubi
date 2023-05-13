@@ -20,18 +20,8 @@ export const generateStyleButton = (
       
       border
       border-black-light 
-
-      focus:ring-2
-      focus:ring-opacity-20
     `,
-    {
-      'border-red-500 focus:ring-red-500': fieldState.error?.type,
-    },
-    {
-      'hover:border-yellow focus:border-yellow focus:ring-yellow':
-        !fieldState.error?.type,
-    },
-    {
-      'text-gray-400': !value,
-    },
+    { 'border-red-500': fieldState.error?.type },
+    { 'hover:border-yellow focus:border-yellow ': !fieldState.error?.type },
+    { 'text-gray-400': !value },
   )
