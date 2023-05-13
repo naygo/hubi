@@ -20,7 +20,7 @@ interface DropDownProps {
   >
 }
 
-export function DropDown({
+export function Dropdown({
   name,
   control,
   rules,
