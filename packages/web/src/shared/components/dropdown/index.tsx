@@ -1,7 +1,6 @@
 import { Listbox } from '@headlessui/react'
 import { IoCaretDownSharp, IoAlertCircleOutline } from 'react-icons/io5'
 import { useController, RegisterOptions, Control } from 'react-hook-form'
-import clsx from 'clsx'
 import { generateStyleButton } from './dropdown.styles'
 
 interface DropDownProps {
