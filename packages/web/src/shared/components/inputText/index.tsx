@@ -19,6 +19,9 @@ export function InputText({ control, name, rules, placeholder }: InputProps) {
   return (
     <>
       <input
+        id={name}
+        placeholder={placeholder}
+        {...field}
         type="text"
         className="
           w-full 
@@ -27,18 +30,15 @@ export function InputText({ control, name, rules, placeholder }: InputProps) {
           border-black-light
           font-light
           text-white
-          outline-none 
           rounded-lg 
-          p-1.5
+          px-2
+          py-1
           hover:border-yellow
           focus:border-yellow
           focus:ring-2
           focus:ring-yellow
-          focus:ring-opacity-20
+          focus:ring-opacity-20 
         "
-        placeholder={placeholder}
-        id={name}
-        {...field}
       />
       <span className="text-red text-sm">{fieldState.error?.message}</span>
     </>
