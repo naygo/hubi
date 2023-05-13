@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form'
 import { Button } from '@/shared/components/button'
 import { Dropdown } from '@/shared/components/dropdown'
 import { InputText } from '@/shared/components/inputText'
+import { requiredMessage } from '@/shared/utils/validationMessages'
 
 interface FormFields {
   email: string
@@ -51,7 +52,7 @@ export default function Home() {
                 rules={{
                   required: {
                     value: true,
-                    message: 'Campo Obrigatório',
+                    message: requiredMessage,
                   },
                 }}
               />
@@ -67,7 +68,7 @@ export default function Home() {
                 rules={{
                   required: {
                     value: true,
-                    message: 'Campo Obrigatório',
+                    message: requiredMessage,
                   },
                 }}
               />
