@@ -1,4 +1,5 @@
 interface InputProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   control: Control<any>
   name: string
   placeholder: string
