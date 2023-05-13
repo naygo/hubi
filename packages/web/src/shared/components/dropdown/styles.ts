@@ -1,27 +1,37 @@
 import clsx from 'clsx'
 import { ControllerFieldState } from 'react-hook-form'
 
-export const generateStyleButton = (fieldState: ControllerFieldState) =>
+export const generateStyleButton = (
+  fieldState: ControllerFieldState,
+  value: unknown,
+) =>
   clsx(
     `
-      w-full 
-      bg-black-light
-      rounded-lg 
-      text-start 
-      px-2 py-1 
       flex items-center justify-between
+      w-full 
+      
+      bg-black
+      
+      font-light
+      text-start 
+      
+      rounded-lg 
+      px-2 py-1 
+      
       border
       border-black-light 
-      hover:border-yellow
-      focus:border-yellow
+
       focus:ring-2
-      focus:ring-yellow
-      focus:ring-opacity-20 
-      ui-open:border
-      ui-open:border-yellow
+      focus:ring-opacity-20
     `,
     {
-      'border-red-500 ring-2 ring-red-500 ring-opacity-20':
-        fieldState.error?.type,
+      'border-red-500 focus:ring-red-500': fieldState.error?.type,
+    },
+    {
+      'hover:border-yellow focus:border-yellow focus:ring-yellow':
+        !fieldState.error?.type,
+    },
+    {
+      'text-gray-400': !value,
     },
   )

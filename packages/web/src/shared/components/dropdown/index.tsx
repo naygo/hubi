@@ -1,7 +1,7 @@
 import { Listbox } from '@headlessui/react'
 import { useController, RegisterOptions, Control } from 'react-hook-form'
 
-import { IoCaretDownSharp } from 'react-icons/io5'
+import { IoCaretDownSharp, IoCloseOutline } from 'react-icons/io5'
 
 import { InputAlert } from '../inputAlert'
 
@@ -35,22 +35,27 @@ export function Dropdown({
     rules,
   })
 
-  const styleButton = generateStyleButton(fieldState)
+  const styleButton = generateStyleButton(fieldState, field.value)
 
   return (
     <>
       <Listbox as="div" {...field}>
         <Listbox.Button className={styleButton}>
           {field.value ? field.value : placeholder}
-          <IoCaretDownSharp className="bg-black-light" />
+          <div className="flex">
+            {field.value && (
+              <IoCloseOutline onClick={() => field.onChange('')} />
+            )}
+            <IoCaretDownSharp className="bg-black" />
+          </div>
         </Listbox.Button>
 
-        <Listbox.Options className="bg-black-light rounded-lg py-2 mt-1">
+        <Listbox.Options className="bg-black rounded-lg py-2 mt-1">
           {options.map((option) => (
             <Listbox.Option
               key={option.label}
               value={option.value}
-              className="hover:bg-yellow px-2 py-1 cursor-pointer bg-black-light"
+              className="hover:bg-yellow px-2 py-1 cursor-pointer bg-black"
             >
               {option.label}
             </Listbox.Option>
