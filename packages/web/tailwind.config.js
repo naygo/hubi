@@ -15,8 +15,10 @@ module.exports = {
     extend: {
       colors: {
         black: {
-          light: '#1E1C1F',
-          DEFAULT: '#0B0B0B',
+          lighter: '#3C3C3C',
+          light: '#2C2C2C',
+          DEFAULT: '#1E1C1F',
+          dark: '#1A1A1A',
         },
         white: {
           DEFAULT: '#e5e5e5',
@@ -24,6 +26,7 @@ module.exports = {
         yellow: {
           light: '#f5e6c4',
           DEFAULT: '#e09600',
+          dark: '#c17e00',
         },
       },
     },
