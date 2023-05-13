@@ -56,8 +56,12 @@ export function Dropdown({
         </Listbox.Options>
       </Listbox>
       {fieldState.error?.message && (
-        <span className="text-red-500 text-xs flex items-center">
-          <FaExclamationCircle size={16} className="mr-1" style={{ fill: 'rgb(239, 68, 68)' }} />
+        <span className="text-red-500 text-xs flex items-center mt-1">
+          <FaExclamationCircle
+            size={16}
+            className="mr-1"
+            style={{ fill: 'rgb(239, 68, 68)' }}
+          />
           {fieldState.error?.message}
         </span>
       )}
