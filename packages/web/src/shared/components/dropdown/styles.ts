@@ -4,8 +4,8 @@ import { ControllerFieldState } from 'react-hook-form'
 export const generateStyleButton = (fieldState: ControllerFieldState) =>
   clsx(
     `
-    w-full 
-    bg-black-light
+      w-full 
+      bg-black-light
       rounded-lg 
       text-start 
       px-2 py-1 
