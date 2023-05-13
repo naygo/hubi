@@ -10,6 +10,8 @@ interface InputProps {
 }
 import { useController, RegisterOptions, Control } from 'react-hook-form'
 
+import { FaExclamationCircle } from 'react-icons/fa'
+
 import { styleInputText } from './inputText.styles'
 
 export function InputText({ control, name, rules, placeholder }: InputProps) {
@@ -28,7 +30,16 @@ export function InputText({ control, name, rules, placeholder }: InputProps) {
         className={styleInputText}
         type="text"
       />
-      <span className="text-red text-sm">{fieldState.error?.message}</span>
+      {fieldState.error?.message && (
+        <span className="text-red-500 text-xs flex items-center mt-1">
+          <FaExclamationCircle
+            size={16}
+            className="mr-1"
+            style={{ fill: 'rgb(239, 68, 68)' }}
+          />
+          {fieldState.error?.message}
+        </span>
+      )}
     </>
   )
 }
