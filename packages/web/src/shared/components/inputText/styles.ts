@@ -5,22 +5,26 @@ export const generateStyleInputText = (fieldState: ControllerFieldState) =>
   clsx(
     `
       w-full 
-      bg-black-light
+      bg-black
+      
       border
       border-black-light
+      
       font-light
       text-white
+      
       rounded-lg 
       px-2
       py-1
-      hover:border-yellow
-      focus:border-yellow
+
       focus:ring-2
-      focus:ring-yellow
-      focus:ring-opacity-20 
+      focus:ring-opacity-20
     `,
     {
-      'border-red-500 ring-2 ring-red-500 ring-opacity-20':
-        fieldState.error?.type,
+      'border-red-500 focus:ring-red-500 ': fieldState.error?.type,
+    },
+    {
+      'hover:border-yellow focus:border-yellow focus:ring-yellow':
+        !fieldState.error?.type,
     },
   )
