@@ -12,7 +12,7 @@ import { useController, RegisterOptions, Control } from 'react-hook-form'
 
 import { FaExclamationCircle } from 'react-icons/fa'
 
-import { styleInputText } from './inputText.styles'
+import { styleInputText } from './styles'
 
 export function InputText({ control, name, rules, placeholder }: InputProps) {
   const { field, fieldState } = useController({

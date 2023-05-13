@@ -4,7 +4,7 @@ import { useController, RegisterOptions, Control } from 'react-hook-form'
 import { IoCaretDownSharp } from 'react-icons/io5'
 import { FaExclamationCircle } from 'react-icons/fa'
 
-import { generateStyleButton } from './dropdown.styles'
+import { generateStyleButton } from './styles'
 
 interface DropDownProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
