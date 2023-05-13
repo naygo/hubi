@@ -10,9 +10,9 @@ interface InputProps {
 }
 import { useController, RegisterOptions, Control } from 'react-hook-form'
 
-import { FaExclamationCircle } from 'react-icons/fa'
+import { InputAlert } from '../inputAlert'
 
-import { styleInputText } from './styles'
+import { generateStyleInputText } from './styles'
 
 export function InputText({ control, name, rules, placeholder }: InputProps) {
   const { field, fieldState } = useController({
@@ -20,6 +20,9 @@ export function InputText({ control, name, rules, placeholder }: InputProps) {
     control,
     rules,
   })
+
+  const styleInputText = generateStyleInputText(fieldState)
+
   // TODO: make placeholder italic - problem: placeholder:italic makes the text bold too
   return (
     <>
@@ -30,16 +33,7 @@ export function InputText({ control, name, rules, placeholder }: InputProps) {
         className={styleInputText}
         type="text"
       />
-      {fieldState.error?.message && (
-        <span className="text-red-500 text-xs flex items-center mt-1">
-          <FaExclamationCircle
-            size={16}
-            className="mr-1"
-            style={{ fill: 'rgb(239, 68, 68)' }}
-          />
-          {fieldState.error?.message}
-        </span>
-      )}
+      {fieldState.error?.message && <InputAlert fieldState={fieldState} />}
     </>
   )
 }
