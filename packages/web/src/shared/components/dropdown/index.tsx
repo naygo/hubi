@@ -1,56 +1,66 @@
 import { Listbox } from '@headlessui/react'
-import { useState } from 'react'
-import { IoCaretDownSharp } from 'react-icons/io5'
+import { IoCaretDownSharp, IoAlertCircleOutline } from 'react-icons/io5'
+import { useController, RegisterOptions, Control } from 'react-hook-form'
+import clsx from 'clsx'
+import { generateStyleButton } from './dropdown.styles'
 
-const people = [
-  { id: 1, name: 'Durward Reynolds', unavailable: false },
-  { id: 2, name: 'Kenton Towne', unavailable: false },
-  { id: 3, name: 'Therese Wunsch', unavailable: false },
-  { id: 4, name: 'Benedict Kessler', unavailable: true },
-  { id: 5, name: 'Katelyn Rohan', unavailable: false },
-]
+interface DropDownProps {
+  control: Control<any>
+  name: string
+  placeholder: string
+  options: {
+    label: any
+    value: any
+  }[]
+  rules: Omit<
+    RegisterOptions,
+    'valueAsNumber' | 'valueAsDate' | 'setValueAs' | 'disabled'
+  >
+}
 
-export function DropDown() {
-  const [selectedPerson, setSelectedPerson] = useState(people[0])
+export function DropDown({
+  name,
+  control,
+  rules,
+  options,
+  placeholder,
+}: DropDownProps) {
+  const { field, fieldState } = useController({
+    name,
+    control,
+    rules,
+  })
+
+  const styleButton = generateStyleButton(fieldState)
 
   return (
-    <div className="
-      w-full 
-      border 
-      bg-black-light 
-      border-black-light 
-      text-white font-light 
-      outline-none rounded-lg 
-      p-1.5 
-      hover:border-yellow 
-      focus:border-yellow 
-      focus:ring-2 
-      focus:ring-yellow 
-      focus:ring-opacity-20
-      ui-open:ring-2
-      ui-open:border-yellow
-      ui-open:ring-yellow
-      "
-    >
-      <Listbox value={selectedPerson} onChange={setSelectedPerson}>
-        <Listbox.Button className="w-full text-start px-2 py-1 flex items-center justify-between bg-black-light">
-          {selectedPerson.name} 
+    <>
+      <Listbox as="div" {...field}>
+        <Listbox.Button className={styleButton}>
+          {field.value ? field.value : placeholder}
           <IoCaretDownSharp className="bg-black-light" />
         </Listbox.Button>
-        <Listbox.Options className="bg-black-light" >
-          {people.map((person) => (
+        <Listbox.Options className="bg-black-light rounded-lg py-2 mt-1">
+          {options.map((option) => (
             <Listbox.Option
-              key={person.id}
-              value={person}
-              disabled={person.unavailable}
-              onChange={(e) => console.log(e)}
-              className="hover:bg-yellow px-2 py-1 rounded cursor-pointer bg-black-light"
+              key={option.value}
+              value={option.value}
+              className="hover:bg-yellow px-2 py-1 cursor-pointer bg-black-light"
             >
-              {person.name}
+              {option.label}
             </Listbox.Option>
           ))}
         </Listbox.Options>
       </Listbox>
-    </div>
+      {fieldState.error?.message && (
+        <span className="text-red-500 text-xs flex items-center">
+          <IoAlertCircleOutline
+            size={16}
+            className="mr-1"
+          />
+          {fieldState.error?.message}
+        </span>
+      )}
+    </>
   )
 }
