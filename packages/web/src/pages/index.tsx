@@ -1,8 +1,9 @@
 import Head from 'next/head'
 import { useForm } from 'react-hook-form'
 
-import { InputText } from '@/shared/components/inputText'
+import { Button } from '@/shared/components/button'
 import { Dropdown } from '@/shared/components/dropdown'
+import { InputText } from '@/shared/components/inputText'
 
 interface FormFields {
   email: string
@@ -33,28 +34,49 @@ export default function Home() {
       <Head>
         <title>HUBI</title>
       </Head>
-      <h1>HUBI</h1>
+      <div className="w-screen flex flex-col items-center mt-4">
+        <div className="w-1/2 flex flex-col items-center gap-y-3">
+          <h1>HUBI</h1>
 
-      <form onSubmit={handleSubmit((data) => handleLogin(data))}>
-        <div>
-          <Dropdown
-            options={options}
-            control={control}
-            name="email"
-            placeholder="Selecione"
-            rules={{
-              required: {
-                value: true,
-                message: 'Campo Obrigatório',
-              },
-            }}
-          />
+          <form
+            className="flex flex-col gap-y-5"
+            onSubmit={handleSubmit((data) => handleLogin(data))}
+          >
+            <div>
+              <label htmlFor="inputText">InputText:</label>
+              <InputText
+                control={control}
+                name="inputText"
+                placeholder="Placeholder"
+                rules={{
+                  required: {
+                    value: true,
+                    message: 'Campo Obrigatório',
+                  },
+                }}
+              />
+            </div>
+
+            <div>
+              <label htmlFor="dropdown">Dropdown:</label>
+              <Dropdown
+                options={options}
+                control={control}
+                name="dropdown"
+                placeholder="Selecione"
+                rules={{
+                  required: {
+                    value: true,
+                    message: 'Campo Obrigatório',
+                  },
+                }}
+              />
+            </div>
+
+            <Button label="Enviar" />
+          </form>
         </div>
-
-        <button className="bg-yellow" type="submit">
-          Submit
-        </button>
-      </form>
+      </div>
     </>
   )
 }
