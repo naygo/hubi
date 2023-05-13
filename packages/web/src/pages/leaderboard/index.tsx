@@ -1,6 +1,11 @@
+import { isAxiosError } from 'axios'
+import clsx from 'clsx'
+import { GetStaticProps } from 'next'
+import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
+import React from 'react'
 import { toast } from 'react-toastify'
 
 import { BsFillArrowLeftCircleFill } from 'react-icons/bs'
@@ -12,15 +17,11 @@ import styles from './styles.module.scss'
 import TrophyTOP1 from '../../../public/img/trophies/trophy-top1.svg'
 import TrophyTOP2 from '../../../public/img/trophies/trophy-top2.svg'
 import TrophyTOP3 from '../../../public/img/trophies/trophy-top3.svg'
-import Head from 'next/head'
+
 import { getPlayerLeaderboard } from '@/services/player-leaderboard'
 import { PlayerLeaderboard, Leaderboard } from '@hubi/types'
-import clsx from 'clsx'
-import React from 'react'
 import { SeasonSelect } from '../../shared/components/SessonSelect'
 import { removeAfterHyphen } from '../../shared/utils/stringUtils'
-import { isAxiosError } from 'axios'
-import { GetStaticProps } from 'next'
 
 interface LeaderboardProps {
   leaderboard: PlayerLeaderboard[]
