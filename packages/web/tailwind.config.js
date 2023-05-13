@@ -6,14 +6,23 @@ module.exports = {
     './src/app/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
+    colors: {
+      gray: {
+        darkest: '#1e1f1f',
+        dark: '#2e2f2f',
+      },
+      white: {
+        DEFAULT: '#e5e5e5',
+      },
+      yellow: {
+        DEFAULT: '#e09600',
+      },
+    },
+    borderColor: (theme) => ({
+      ...theme('colors'),
+    }),
     fontFamily: {
       sans: ['Poppins', 'sans-serif'],
-    },
-    extend: {
-      colors: {
-        yellow: '#e09600',
-        white: '#e5e5e5',
-      },
     },
     plugins: [],
   },
