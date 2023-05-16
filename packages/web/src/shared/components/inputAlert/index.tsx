@@ -1,12 +1,14 @@
-import { ControllerFieldState } from 'react-hook-form'
+import { FieldError } from 'react-hook-form'
 
 import { FaExclamationCircle } from 'react-icons/fa'
 
-interface InputProps {
-  fieldState: ControllerFieldState
+import { requiredMessage } from '@/shared/utils/validationMessages'
+
+interface Props {
+  error: FieldError
 }
 
-export function InputAlert({ fieldState }: InputProps) {
+export function InputAlert({ error }: Props) {
   return (
     <span className="text-red-500 text-xs flex items-center mt-1">
       <FaExclamationCircle
@@ -14,7 +16,7 @@ export function InputAlert({ fieldState }: InputProps) {
         className="mr-1"
         style={{ fill: 'rgb(239, 68, 68)' }}
       />
-      {fieldState.error?.message}
+      {error?.type === 'required' && requiredMessage}
     </span>
   )
 }
