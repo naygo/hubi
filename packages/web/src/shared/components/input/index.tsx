@@ -14,7 +14,6 @@ function InputGenerate(
   { id, name, placeholder, type, error, ...props }: Props,
   ref: React.ForwardedRef<HTMLInputElement>,
 ) {
-  // TODO: make placeholder italic - problem: placeholder:italic makes the text bold too
   return (
     <>
       <input
@@ -33,6 +32,7 @@ function InputGenerate(
             
             font-light
             text-white
+            placeholder:italic
             
             rounded-lg 
             px-2
