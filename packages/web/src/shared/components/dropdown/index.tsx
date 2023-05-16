@@ -1,47 +1,64 @@
 import { Listbox } from '@headlessui/react'
-import { useController, RegisterOptions, Control } from 'react-hook-form'
+import clsx from 'clsx'
+import { Control, RegisterOptions, useController } from 'react-hook-form'
 
 import { IoCaretDownSharp, IoCloseOutline } from 'react-icons/io5'
 
 import { InputAlert } from '../inputAlert'
 
-import { generateStyleButton } from './styles'
-
-interface DropDownProps {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  control: Control<any>
+type Props = {
   name: string
+  options: { label: string; value: unknown }[]
   placeholder: string
-  options: {
-    label: string
-    value: unknown
-  }[]
-  rules: Omit<
-    RegisterOptions,
-    'valueAsNumber' | 'valueAsDate' | 'setValueAs' | 'disabled'
-  >
+  control: Control<any>
+  rules?: RegisterOptions
 }
 
 export function Dropdown({
   name,
+  placeholder,
   control,
   rules,
   options,
-  placeholder,
-}: DropDownProps) {
+}: Props) {
   const { field, fieldState } = useController({
     name,
     control,
     rules,
   })
 
-  const styleButton = generateStyleButton(fieldState, field.value)
-
   return (
     <>
       <Listbox as="div" {...field}>
-        <Listbox.Button className={styleButton}>
-          {field.value ? field.value : placeholder}
+        <Listbox.Button
+          className={clsx(
+            `
+              flex items-center justify-between
+              w-full 
+              
+              bg-black
+              
+              font-light
+              text-start 
+              
+              rounded-lg 
+              px-2 py-1 
+              
+              border
+              border-black-light 
+            `,
+            { italic: !field.value },
+            { 'border-red-500': fieldState.error?.type === 'required' },
+            {
+              'hover:border-yellow focus:border-yellow ': !fieldState.error,
+            },
+            { 'text-gray-400': !field.value },
+          )}
+        >
+          {field.value
+            ? options.find((option) => option.value === field.value)?.label
+            : placeholder}
+
           <div className="flex">
             {field.value && (
               <IoCloseOutline onClick={() => field.onChange('')} />
@@ -63,7 +80,7 @@ export function Dropdown({
         </Listbox.Options>
       </Listbox>
 
-      {fieldState.error?.message && <InputAlert fieldState={fieldState} />}
+      {fieldState.error && <InputAlert error={fieldState.error} />}
     </>
   )
 }
