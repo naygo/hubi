@@ -2,14 +2,15 @@ import { generateButtonStyles } from './styles'
 
 interface ButtonProps {
   label: string
-  type: 'primary' | 'secondary'
+  style: 'primary' | 'secondary'
+  type?: 'button' | 'submit' | 'reset'
   onClick?: () => void
 }
 
-export function Button({ label, type, onClick }: ButtonProps) {
-  const buttonStyles = generateButtonStyles(type)
+export function Button({ label, type, style, onClick }: ButtonProps) {
+  const buttonStyles = generateButtonStyles(style)
   return (
-    <button className={buttonStyles} onClick={onClick}>
+    <button className={buttonStyles} onClick={onClick} type={type}>
       <span>{label}</span>
     </button>
   )
