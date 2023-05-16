@@ -5,7 +5,6 @@ import { useForm } from 'react-hook-form'
 import { Button } from '@/shared/components/button'
 import { Dropdown } from '@/shared/components/dropdown'
 import { Input } from '@/shared/components/input'
-import { requiredMessage } from '@/shared/utils/validationMessages'
 
 interface FormFields {
   inputText: string
@@ -13,22 +12,30 @@ interface FormFields {
 }
 
 const options = [
-  { value: 'Jamal', label: 'Jamalzinho' },
-  { value: 'Lucas', label: 'Luquinhas' },
-  { value: 'Marcio', label: 'Marcinho' },
+  { value: 1, label: 'Jamalzinho' },
+  { value: 2, label: 'Luquinhas' },
+  { value: 3, label: 'Marcinho' },
 ]
 
 export default function Home() {
-  const { control, handleSubmit, register, watch, formState } =
-    useForm<FormFields>()
+  const { control, handleSubmit, register, watch, formState, reset } =
+    useForm<FormFields>({
+      defaultValues: {
+        inputText: '',
+        dropdown: '',
+      },
+    })
 
-  const handleLogin = (data: FormFields) => {
+  function handleLogin(data: FormFields) {
     console.log(data)
+  }
+
+  function handleFormReset() {
+    reset()
   }
 
   useEffect(() => {
     console.log(watch())
-    console.log(formState.errors)
   }, [watch()])
 
   return (
@@ -47,7 +54,8 @@ export default function Home() {
             <div>
               <label htmlFor="inputText">InputText:</label>
               <Input
-                {...register('inputText', { required: requiredMessage })}
+                {...register('inputText', { required: true })}
+                placeholder="Placeholder input de texto"
                 error={formState.errors.inputText}
               />
             </div>
@@ -55,22 +63,22 @@ export default function Home() {
             <div>
               <label htmlFor="dropdown">Dropdown:</label>
               <Dropdown
-                options={options}
-                control={control}
                 name="dropdown"
-                placeholder="Placeholder"
-                rules={{
-                  required: {
-                    value: true,
-                    message: requiredMessage,
-                  },
-                }}
+                placeholder="Selecione"
+                control={control}
+                options={options}
+                rules={{ required: true }}
               />
             </div>
 
             <div className="flex gap-x-5">
-              <Button label="Limpar" type="secondary" />
-              <Button label="Enviar" type="primary" />
+              <Button label="Limpar" style="secondary" />
+              <Button
+                label="Enviar"
+                type="reset"
+                style="primary"
+                onClick={handleFormReset}
+              />
             </div>
           </form>
         </div>
