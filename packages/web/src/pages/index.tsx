@@ -1,34 +1,35 @@
 import Head from 'next/head'
+import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { Button } from '@/shared/components/button'
 import { Dropdown } from '@/shared/components/dropdown'
-import { InputText } from '@/shared/components/inputText'
+import { Input } from '@/shared/components/input'
 import { requiredMessage } from '@/shared/utils/validationMessages'
 
 interface FormFields {
-  email: string
-  password: string
+  inputText: string
+  dropdown: string
 }
 
-export default function Home() {
-  const options = [
-    { value: 'Jamal', label: 'Jamalzinho' },
-    { value: 'Lucas', label: 'Luquinhas' },
-    { value: 'Marcio', label: 'Marcinho' },
-  ]
+const options = [
+  { value: 'Jamal', label: 'Jamalzinho' },
+  { value: 'Lucas', label: 'Luquinhas' },
+  { value: 'Marcio', label: 'Marcinho' },
+]
 
-  const { control, handleSubmit, formState } = useForm({
-    defaultValues: {
-      email: '',
-      password: '',
-    },
-    mode: 'onChange',
-  })
+export default function Home() {
+  const { control, handleSubmit, register, watch, formState } =
+    useForm<FormFields>()
 
   const handleLogin = (data: FormFields) => {
     console.log(data)
   }
+
+  useEffect(() => {
+    console.log(watch())
+    console.log(formState.errors)
+  }, [watch()])
 
   return (
     <>
@@ -45,16 +46,9 @@ export default function Home() {
           >
             <div>
               <label htmlFor="inputText">InputText:</label>
-              <InputText
-                control={control}
-                name="inputText"
-                placeholder="Placeholder"
-                rules={{
-                  required: {
-                    value: true,
-                    message: requiredMessage,
-                  },
-                }}
+              <Input
+                {...register('inputText', { required: requiredMessage })}
+                error={formState.errors.inputText}
               />
             </div>
 
