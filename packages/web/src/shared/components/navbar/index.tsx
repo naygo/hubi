@@ -27,6 +27,10 @@ export function Navbar() {
           <a href="" className="hover:text-yellow">
             Leaderboard
           </a>
+
+          <a href="" className="font-bold text-white">
+            Playground
+          </a>
         </div>
       </div>
 
