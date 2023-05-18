@@ -1,0 +1,17 @@
+.socialMediaBox {
+  span {
+    @apply border border-gray p-2 rounded cursor-pointer;
+
+    &:hover {
+      @apply border-yellow bg-black-dark;
+    }
+
+    >* {
+      @apply fill-gray;
+    }
+
+    &:hover>* {
+      @apply fill-yellow;
+    }
+  }
+}
