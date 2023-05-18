@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import Image from 'next/image'
 
 import { FaDiscord, FaInstagram, FaTiktok, FaTwitter } from 'react-icons/fa'
@@ -24,7 +25,7 @@ export function Footer() {
       md:justify-between
     "
     >
-      <div className="">
+      <div className="flex flex-col justify-between h-full">
         {/* logo */}
         <Image
           src={Logo}
@@ -34,20 +35,7 @@ export function Footer() {
           className="w-full border border-yellow px-20 py-5 rounded hover:bg-black-dark"
         />
         {/* redes sociais */}
-        <div className={`hidden md:flex gap-5 mt-3 ${styles.socialMediaBox}`}>
-          <span>
-            <FaDiscord size={20} />
-          </span>
-          <span>
-            <FaInstagram size={20} />
-          </span>
-          <span>
-            <FaTiktok size={20} />
-          </span>
-          <span>
-            <FaTwitter size={20} />
-          </span>
-        </div>
+        <SocialMediaLinks />
       </div>
 
       {/* links */}
@@ -75,20 +63,31 @@ export function Footer() {
       </div>
 
       {/* in mobiles social media is show below links */}
-      <div className={`flex md:hidden gap-5 mt-3 ${styles.socialMediaBox}`}>
-        <span>
-          <FaDiscord size={20} />
-        </span>
-        <span>
-          <FaInstagram size={20} />
-        </span>
-        <span>
-          <FaTiktok size={20} />
-        </span>
-        <span>
-          <FaTwitter size={20} />
-        </span>
-      </div>
+      <SocialMediaLinks isMobile />
     </footer>
+  )
+}
+
+function SocialMediaLinks({ isMobile }: { isMobile?: boolean }) {
+  return (
+    <div
+      className={clsx(
+        `gap-5 mt-3 ${styles.socialMediaBox}`,
+        isMobile ? 'flex md:hidden' : 'hidden md:flex',
+      )}
+    >
+      <span>
+        <FaDiscord size={20} />
+      </span>
+      <span>
+        <FaInstagram size={20} />
+      </span>
+      <span>
+        <FaTiktok size={20} />
+      </span>
+      <span>
+        <FaTwitter size={20} />
+      </span>
+    </div>
   )
 }
