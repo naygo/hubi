@@ -40,7 +40,7 @@ export function Navbar() {
 
         <a className="text-gray hover:text-yellow cursor-pointer">Saiba mais</a>
 
-        <Button style="primary" label="Jogar" />
+        <Button classStyle="primary" label="Jogar" />
       </div>
     </nav>
   )
