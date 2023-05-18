@@ -6,6 +6,7 @@ import { Button } from '@/shared/components/button'
 import { Dropdown } from '@/shared/components/dropdown'
 import { Footer } from '@/shared/components/footer'
 import { Input } from '@/shared/components/input'
+import { Navbar } from '@/shared/components/navbar'
 
 interface FormFields {
   inputText: string
@@ -41,10 +42,11 @@ export default function Home() {
 
   return (
     <>
+      <Head>
+        <title>HUBI</title>
+      </Head>
       <div className="flex flex-col justify-between h-screen">
-        <Head>
-          <title>HUBI</title>
-        </Head>
+        <Navbar />
         <div className="w-screen flex flex-col items-center mt-10">
           <div className="w-1/2 flex flex-col items-center gap-y-3">
             <h1 className="font-bold">HUBI</h1>
@@ -85,7 +87,6 @@ export default function Home() {
             </form>
           </div>
         </div>
-
         <Footer />
       </div>
     </>
