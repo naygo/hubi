@@ -36,16 +36,16 @@ export function Dropdown({
               flex items-center justify-between
               w-full 
               
-              bg-black
+              bg-black-light
               
               font-light
               text-start 
               
               rounded-lg 
-              px-2 py-1 
+              p-2
               
               border
-              border-black-light 
+              border-black-lighter 
             `,
             { italic: !field.value },
             { 'border-red-500': fieldState.error?.type === 'required' },
@@ -63,16 +63,16 @@ export function Dropdown({
             {field.value && (
               <IoCloseOutline onClick={() => field.onChange('')} />
             )}
-            <IoCaretDownSharp className="bg-black" />
+            <IoCaretDownSharp className="bg-black-light" />
           </div>
         </Listbox.Button>
 
-        <Listbox.Options className="bg-black rounded-lg py-2 mt-1">
+        <Listbox.Options className="bg-black-light rounded-lg py-2 mt-1">
           {options.map((option) => (
             <Listbox.Option
               key={option.label}
               value={option.value}
-              className="hover:bg-yellow px-2 py-1 cursor-pointer bg-black"
+              className="hover:bg-yellow px-2 py-1 cursor-pointer bg-black-light"
             >
               {option.label}
             </Listbox.Option>
