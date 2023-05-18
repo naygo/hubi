@@ -72,13 +72,14 @@ export default function Home() {
             </div>
 
             <div className="flex gap-x-5">
-              <Button label="Limpar" style="secondary" />
               <Button
-                label="Enviar"
+                label="Limpar"
+                classStyle="secondary"
                 type="reset"
-                style="primary"
+                className="w-full"
                 onClick={handleFormReset}
               />
+              <Button label="Enviar" classStyle="primary" className="w-full" />
             </div>
           </form>
         </div>
