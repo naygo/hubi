@@ -30,13 +30,13 @@ export function Navbar() {
         </div>
       </div>
 
-      <div className="hidden md:flex items-center">
+      <div className="hidden md:flex items-center gap-4">
         <div className="flex gap-3">
           <LogoNouns size={30} className={noundAndDarkModeButtons} />
           <IoInvertMode size={37} className={noundAndDarkModeButtons} />
         </div>
 
-        <div className="h-8 w-0.5 bg-black-lighter mx-5"></div>
+        <div className="h-8 w-0.5 bg-black-lighter"></div>
 
         <a className="text-gray hover:text-yellow cursor-pointer">Saiba mais</a>
 
