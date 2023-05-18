@@ -25,18 +25,17 @@ function InputGenerate(
         className={clsx(
           `
             w-full 
-            bg-black
+            bg-black-light
             
             border
-            border-black-light
+            border-black-lighter
             
             font-light
             text-white
             placeholder:italic
             
             rounded-lg 
-            px-2
-            py-1
+            p-2
           `,
           { 'border-red-500 focus:ring-red-500 ': error },
           { 'hover:border-yellow focus:border-yellow': !error },
