@@ -20,7 +20,10 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <div className="h-full">
           <Component {...pageProps} />
         </div>
-        <Footer />
+
+        <div className="w-screen flex justify-center">
+          <Footer />
+        </div>
       </div>
     </>
   )
