@@ -12,7 +12,7 @@ export default function Home() {
     <main className="grow flex justify-center">
       <div className="container">
         <section
-          className="p-4 flex items-center"
+          className="p-4 flex items-center justify-center w-full"
           style={{
             height: heightFirstSection,
           }}
