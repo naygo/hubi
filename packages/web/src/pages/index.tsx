@@ -43,7 +43,7 @@ export default function Home() {
               dedicada e acolhedora.
             </p>
             <Link href="/playground">
-              <span className={`${link} font-normal text-sm md:text-lg`}>
+              <span className={`${link} text-sm md:text-lg`}>
                 Veja o que dizer as jogadoras &gt;
               </span>
             </Link>
