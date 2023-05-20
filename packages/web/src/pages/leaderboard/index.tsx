@@ -133,13 +133,18 @@ export default function Leaderboard({
     })
   }
 
+  const screenHeight = 'calc(100vh - 65px)'
+
   return (
     <>
       <Head>
         <title>HUBI - Leaderboard</title>
       </Head>
-      <div className="flex justify-center py-10">
-        <div className="container flex justify-center h-screen">
+      <div
+        className={`flex justify-center py-10`}
+        style={{ height: screenHeight }}
+      >
+        <div className="container flex justify-center">
           <div className="flex flex-col justify-between items-center">
             <h1 className="font-bold text-yellow text-5xl sm:text-8xl">
               LEADERBOARD
