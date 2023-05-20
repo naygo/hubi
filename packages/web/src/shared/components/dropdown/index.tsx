@@ -6,9 +6,14 @@ import { IoCaretDownSharp, IoCloseOutline } from 'react-icons/io5'
 
 import { InputAlert } from '../inputAlert'
 
+export type DropdownOptions = {
+  label: string
+  value: unknown
+}
+
 type Props = {
   name: string
-  options: { label: string; value: unknown }[]
+  options: DropdownOptions[]
   placeholder: string
   control: Control<any>
   rules?: RegisterOptions
