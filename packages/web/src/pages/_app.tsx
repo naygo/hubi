@@ -18,7 +18,9 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       <div className="flex flex-col justify-between h-screen">
         <Navbar />
         <Component {...pageProps} />
-        <Footer />
+        <div className="flex justify-center">
+          <Footer />
+        </div>
       </div>
     </>
   )

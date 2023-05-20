@@ -15,6 +15,7 @@ export function Footer() {
   return (
     <footer
       className="
+      container
       w-full
       flex
       flex-col
