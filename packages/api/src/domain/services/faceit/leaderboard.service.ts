@@ -11,11 +11,10 @@ export class LeaderboardService {
     return await this.openFaceitClientService.getHubLeaderboards()
   }
 
-  async getLeaderboard({
-    id,
-    limit = 10,
-    offset = 0,
-  }: GetLeaderboardParams): Promise<LeadboardPlayer[]> {
+  async getLeaderboard(
+    id: string,
+    { limit = 10, offset = 0 }: GetLeaderboardParams,
+  ): Promise<LeadboardPlayer[]> {
     const leaderboard = await this.openFaceitClientService.getLeaderboad({
       limit,
       offset,
@@ -35,5 +34,4 @@ export class LeaderboardService {
 interface GetLeaderboardParams {
   limit?: number
   offset?: number
-  id?: string
 }
