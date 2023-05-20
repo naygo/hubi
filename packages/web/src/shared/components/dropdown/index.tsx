@@ -34,7 +34,7 @@ export function Dropdown({
 
   return (
     <>
-      <Listbox as="div" {...field}>
+      <Listbox as="div" {...field} className="relative">
         <Listbox.Button
           className={clsx(
             `
@@ -52,12 +52,12 @@ export function Dropdown({
               border
               border-black-lighter 
             `,
-            { italic: !field.value },
-            { 'border-red-500': fieldState.error?.type === 'required' },
             {
+              italic: !field.value,
+              'border-red-500': fieldState.error?.type === 'required',
               'hover:border-yellow focus:border-yellow ': !fieldState.error,
+              'text-gray-400': !field.value,
             },
-            { 'text-gray-400': !field.value },
           )}
         >
           {field.value
@@ -72,12 +72,12 @@ export function Dropdown({
           </div>
         </Listbox.Button>
 
-        <Listbox.Options className="bg-black-light rounded-lg py-2 mt-1">
+        <Listbox.Options className="bg-black-lighter rounded-lg py-2 mt-1 absolute w-full">
           {options.map((option) => (
             <Listbox.Option
               key={option.label}
               value={option.value}
-              className="hover:bg-yellow px-2 py-1 cursor-pointer bg-black-light"
+              className="hover:bg-yellow px-2 py-1 cursor-pointer bg-black-lighter"
             >
               {option.label}
             </Listbox.Option>
