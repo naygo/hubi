@@ -1,0 +1,11 @@
+.table {
+  .tableFirstRow p:first-child {
+    font-size: 3rem;
+    font-weight: 800;
+  }
+
+  .tableFirstRow p {
+    font-weight: 600;
+    font-size: 1.8rem;
+  }
+}
