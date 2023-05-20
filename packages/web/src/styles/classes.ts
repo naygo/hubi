@@ -1,1 +1,3 @@
-export const link = 'text-yellow font-normal hover:underline'
+export const styles = {
+  link: 'text-yellow font-normal hover:underline',
+}

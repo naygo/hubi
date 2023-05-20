@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 import { TiArrowSortedDown } from 'react-icons/ti'
 
-import { link } from '@/styles/classes'
+import { styles } from '@/styles/classes'
 import { yellowDefault } from '@/styles/colors'
 
 export default function Home() {
@@ -43,7 +43,7 @@ export default function Home() {
               dedicada e acolhedora.
             </p>
             <Link href="/playground">
-              <span className={`${link} text-sm md:text-lg`}>
+              <span className={`${styles.link} text-sm md:text-lg`}>
                 Veja o que dizer as jogadoras &gt;
               </span>
             </Link>
