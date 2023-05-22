@@ -1,60 +1,87 @@
 import Head from 'next/head'
-import Link from 'next/link'
+import { useEffect } from 'react'
+import { useForm } from 'react-hook-form'
 
-import { Button } from '@/shared/components/Button'
+import { Button } from '@/shared/components/button'
+import { Dropdown } from '@/shared/components/dropdown'
+import { Input } from '@/shared/components/input'
 
-import styles from './styles.module.scss'
-
-function openLinkTree() {
-  window.open('https://linktr.ee/hub.inclusivo', '_blank')
+interface FormFields {
+  inputText: string
+  dropdown: string
 }
 
+const options = [
+  { value: 1, label: 'Jamalzinho' },
+  { value: 2, label: 'Luquinhas' },
+  { value: 3, label: 'Marcinho' },
+]
+
 export default function Home() {
+  const { control, handleSubmit, register, watch, formState, reset } =
+    useForm<FormFields>({
+      defaultValues: {
+        inputText: '',
+        dropdown: '',
+      },
+    })
+
+  function handleLogin(data: FormFields) {
+    console.log(data)
+  }
+
+  function handleFormReset() {
+    reset()
+  }
+
+  useEffect(() => {
+    console.log(watch())
+  }, [watch()])
+
   return (
     <>
       <Head>
         <title>HUBI</title>
       </Head>
-      <div className="flex flex-col justify-between">
-        <div
-          className={`flex flex-col justify-center items-center mt-16 gap-y-6 p-3`}
-        >
-          <h1 className={`text-8xl yellow`}>OLÁ!</h1>
+      <div className="w-screen flex flex-col items-center mt-10">
+        <div className="w-1/2 flex flex-col items-center gap-y-3">
+          <h1 className="font-bold">HUBI</h1>
 
-          <div
-            className={`text-center my-8 flex flex-col gap-y-4 ${styles.presentationText}`}
-            style={{ maxWidth: '40rem' }}
+          <form
+            className="w-full flex flex-col gap-y-5"
+            onSubmit={handleSubmit((data) => handleLogin(data))}
           >
-            <p>
-              Bem-vindo(a) a <b>HUB Inclusivo</b> de <b>VALORANT!</b>
-            </p>
-            <p>
-              Somos uma comunidade dedicada a promover a competitividade e
-              evolução das jogadoras do cenário inclusivo de VALORANT.
-            </p>
-            <p>
-              Acreditamos na importância de proporcionar um ambiente amigável
-              onde as mulheres cis, trans e pessoas não-binárias possam se
-              sentir representadas e respeitadas.
-            </p>
-            <p>
-              A missão da HUB é garantir um ambiente altamente competitivo,
-              melhorando a descoberta, o desenvolvimento e a promoção de novos
-              talentos no cenário inclusivo de VALORANT.
-            </p>
-          </div>
+            <div>
+              <label htmlFor="inputText">InputText:</label>
+              <Input
+                {...register('inputText', { required: true })}
+                placeholder="Placeholder input de texto"
+                error={formState.errors.inputText}
+              />
+            </div>
 
-          <div className="flex flex-col sm:flex-row gap-10 items-center">
-            <Button
-              label="Saiba mais"
-              outline
-              bigButton
-              onClick={openLinkTree}
-            />
-            <Link href="/leaderboard">
-              <Button label="Ver Leaderboard" outline bigButton />
-            </Link>
-          </div>
+            <div>
+              <label htmlFor="dropdown">Dropdown:</label>
+              <Dropdown
+                name="dropdown"
+                placeholder="Selecione"
+                control={control}
+                options={options}
+                rules={{ required: true }}
+              />
+            </div>
+
+            <div className="flex gap-x-5">
+              <Button
+                label="Limpar"
+                classStyle="secondary"
+                type="reset"
+                className="w-full"
+                onClick={handleFormReset}
+              />
+              <Button label="Enviar" classStyle="primary" className="w-full" />
+            </div>
+          </form>
         </div>
       </div>
     </>
