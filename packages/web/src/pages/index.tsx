@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import Link from 'next/link'
 
 import { TiArrowSortedDown } from 'react-icons/ti'
@@ -10,6 +11,9 @@ export default function Home() {
 
   return (
     <main className="grow flex justify-center">
+      <Head>
+        <title>HUBI</title>
+      </Head>
       <div className="container">
         <section
           className="p-4 flex items-center justify-center w-full"
