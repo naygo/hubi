@@ -8,10 +8,6 @@ import Logo from '../../../../public/img/logo.svg'
 import styles from './styles.module.scss'
 
 export function Footer() {
-  const linksBox = 'flex flex-col gap-3'
-  const linkTitle = 'text-gray mb-3'
-  const link = 'text-gray-light font-bold hover:text-yellow cursor-pointer'
-
   return (
     <footer
       className="
@@ -41,32 +37,48 @@ export function Footer() {
 
       {/* links */}
       <div className="flex gap-10 md:h-full">
-        <div className={linksBox}>
-          <p className={linkTitle}>HUBI</p>
-          <span className={link}>HUBI</span>
-          <span className={link}>Pessoas</span>
-          <span className={link}>Assets</span>
-        </div>
+        <LinksBox>
+          <Title title="HUBI" />
+          <Link text="HUBI" />
+          <Link text="Pessoas" />
+          <Link text="Assets" />
+        </LinksBox>
 
-        <div className={linksBox}>
-          <p className={linkTitle}>Sobre</p>
-          <span className={link}>Contato</span>
-          <span className={link}>NOUNS</span>
-          <span className={link}>Direitos Autorais</span>
-        </div>
+        <LinksBox>
+          <Title title="Sobre" />
+          <Link text="Contato" />
+          <Link text="NOUNS" />
+          <Link text="Direitos Autorais" />
+        </LinksBox>
 
-        <div className={linksBox}>
-          <p className={linkTitle}>Ferramentas</p>
-          <span className={link}>Comunidade</span>
-          <span className={link}>Ajuda e Suporte</span>
-          <span className={link}>Regras e Condutas</span>
-        </div>
+        <LinksBox>
+          <Title title="Ferramentas" />
+          <Link text="Comunidade" />
+          <Link text="Ajuda e Suporte" />
+          <Link text="Regras e Condutas" />
+        </LinksBox>
       </div>
 
       {/* in mobiles social media is show below links */}
       <SocialMediaLinks isMobile />
     </footer>
   )
+}
+
+function Title({ title }: { title: string }) {
+  return <p className="text-gray mb-3">{title}</p>
+}
+
+function Link({ text }: { text: string }) {
+  return (
+    <span className="text-gray-light font-bold hover:text-yellow cursor-pointer">
+      {text}
+    </span>
+  )
+}
+
+function LinksBox({ children }: { children: React.ReactNode }) {
+  return <div className="flex flex-col gap-3">{children}</div>
 }
 
 function SocialMediaLinks({ isMobile }: { isMobile?: boolean }) {
