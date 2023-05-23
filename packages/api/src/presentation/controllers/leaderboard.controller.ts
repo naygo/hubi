@@ -1,5 +1,5 @@
 import { LeadboardPlayer, PlayerLeaderboard } from '@hubi/types/faceit'
-import { Controller, Get, Query } from '@nestjs/common'
+import { Controller, Get, Param, Query } from '@nestjs/common'
 
 import { LeaderboardService } from '@/domain/services/faceit/leaderboard.service'
 import { PlayerService } from '@/domain/services/faceit/player.service'
@@ -13,17 +13,22 @@ export class LeaderboardController {
     private readonly playerService: PlayerService,
   ) {}
 
-  @Get('/')
+  @Get('/:id')
   async getLeaderboard(
+    @Param('id') id: string,
     @Query() query: GetLeaderboardDto,
   ): Promise<LeadboardPlayer[]> {
-    return await this.leaderboardService.getLeaderboard(query)
+    return await this.leaderboardService.getLeaderboard(id, query)
   }
 
-  @Get('/player')
+  @Get(':id/player')
   async getPlayerLeaderboard(
+    @Param('id') id: string,
     @Query() query: GetPlayerInfoDto,
   ): Promise<PlayerLeaderboard> {
-    return await this.playerService.getPlayerLeaderboard(query)
+    return await this.playerService.getPlayerLeaderboard({
+      nickname: query.nickname,
+      leaderboardId: id,
+    })
   }
 }

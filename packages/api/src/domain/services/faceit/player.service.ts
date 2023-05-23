@@ -1,9 +1,10 @@
-import { Injectable } from '@nestjs/common'
 import { PlayerLeaderboard } from '@hubi/types/faceit'
-import { ApiFaceitClientService } from '@/infra/services/faceit/api-faceit-client'
-import { OpenFaceitClientService } from '@/infra/services/faceit/open-faceit-client'
+import { Injectable } from '@nestjs/common'
+
 import { PlayerNotFound } from '@/domain/helpers/exceptions/player-not-found'
 import { PlayerNotPlay } from '@/domain/helpers/exceptions/player-not-play'
+import { ApiFaceitClientService } from '@/infra/services/faceit/api-faceit-client'
+import { OpenFaceitClientService } from '@/infra/services/faceit/open-faceit-client'
 
 @Injectable()
 export class PlayerService {
@@ -15,7 +16,7 @@ export class PlayerService {
   async getPlayerLeaderboard({
     nickname,
     leaderboardId,
-  }: Params): Promise<PlayerLeaderboard> {
+  }: GetPlayerLeaderboardParams): Promise<PlayerLeaderboard> {
     const { player_id } = await this.openFaceitClientService.getPlayerInfo({
       nickname,
     })
@@ -51,7 +52,7 @@ export class PlayerService {
   }
 }
 
-interface Params {
+interface GetPlayerLeaderboardParams {
   nickname: string
   leaderboardId: string
 }
