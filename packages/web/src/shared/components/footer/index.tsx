@@ -1,5 +1,6 @@
 import clsx from 'clsx'
 import Image from 'next/image'
+import ReactLink from 'next/link'
 
 import { FaDiscord, FaInstagram, FaTiktok, FaTwitter } from 'react-icons/fa'
 
@@ -90,10 +91,24 @@ function SocialMediaLinks({ isMobile }: { isMobile?: boolean }) {
         isMobile ? 'flex md:hidden' : 'hidden md:flex',
       )}
     >
-      <FaDiscord size={40} className={socialMediaButtonStyle} />
-      <FaInstagram size={40} className={socialMediaButtonStyle} />
-      <FaTiktok size={40} className={socialMediaButtonStyle} />
-      <FaTwitter size={40} className={socialMediaButtonStyle} />
+      <ReactLink
+        href="https://discord.com/invite/hubinclusivo"
+        target="__blank"
+      >
+        <FaDiscord size={40} className={socialMediaButtonStyle} />
+      </ReactLink>
+      <ReactLink
+        href="https://www.instagram.com/hub_inclusivo/"
+        target="__blank"
+      >
+        <FaInstagram size={40} className={socialMediaButtonStyle} />
+      </ReactLink>
+      <ReactLink href="https://www.tiktok.com/@hubinclusivo" target="__blank">
+        <FaTiktok size={40} className={socialMediaButtonStyle} />
+      </ReactLink>
+      <ReactLink href="https://twitter.com/hubinclusivo" target="__blank">
+        <FaTwitter size={40} className={socialMediaButtonStyle} />
+      </ReactLink>
     </div>
   )
 }
