@@ -58,7 +58,7 @@ export function MobileNavbar({ isNavbarOpened, routes }: Props) {
 
         <a className="text-gray hover:text-yellow cursor-pointer">Saiba mais</a>
 
-        <Button classStyle="primary" label="Jogar" />
+        <Button color="primary" label="Jogar" />
       </div>
     </nav>
   )
