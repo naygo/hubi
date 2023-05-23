@@ -15,7 +15,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
         />
       </Head>
-      <div className="flex flex-col justify-between h-screen">
+      <div className="flex flex-col justify-between min-h-screen">
         <Navbar />
         <Component {...pageProps} />
         <div className="flex justify-center">

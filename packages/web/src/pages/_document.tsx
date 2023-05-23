@@ -37,9 +37,9 @@ export default function Document() {
         />
         <link rel="manifest" href="/site.webmanifest"></link>
       </Head>
-      <body className="min-h-screen">
-        <Main />
+      <body>
         <NextScript />
+        <Main />
       </body>
     </Html>
   )
