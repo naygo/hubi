@@ -5,7 +5,8 @@ import { FaDiscord, FaInstagram, FaTiktok, FaTwitter } from 'react-icons/fa'
 
 import Logo from '@public/img/logo.svg'
 
-import styles from './styles.module.scss'
+const socialMediaButtonStyle =
+  'border fill-gray border-gray p-2 rounded cursor-pointer hover:fill-yellow hover:border-yellow hover:bg-black-dark'
 
 export function Footer() {
   return (
@@ -85,22 +86,14 @@ function SocialMediaLinks({ isMobile }: { isMobile?: boolean }) {
   return (
     <div
       className={clsx(
-        `gap-5 mt-3 ${styles.socialMediaBox}`,
+        'gap-5 mt-3',
         isMobile ? 'flex md:hidden' : 'hidden md:flex',
       )}
     >
-      <span>
-        <FaDiscord size={20} />
-      </span>
-      <span>
-        <FaInstagram size={20} />
-      </span>
-      <span>
-        <FaTiktok size={20} />
-      </span>
-      <span>
-        <FaTwitter size={20} />
-      </span>
+      <FaDiscord size={40} className={socialMediaButtonStyle} />
+      <FaInstagram size={40} className={socialMediaButtonStyle} />
+      <FaTiktok size={40} className={socialMediaButtonStyle} />
+      <FaTwitter size={40} className={socialMediaButtonStyle} />
     </div>
   )
 }
