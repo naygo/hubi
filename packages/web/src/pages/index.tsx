@@ -1,14 +1,25 @@
 import Head from 'next/head'
-import Link from 'next/link'
+import Image from 'next/image'
 
 import { TiArrowSortedDown } from 'react-icons/ti'
 
-import { styles } from '@/styles/classes'
+import { Link } from '@/shared/components/link'
 import { yellowDefault } from '@/styles/colors'
 
-export default function Home() {
-  const heightFirstSection = 'calc(100vh - 71px)'
+import NounsLogo from '@public/img/initial-page/nouns-logo.svg'
+// import TOP1 from '@public/img/initial-page/top-1.svg'
+// import TOP2 from '@public/img/initial-page/top-2.svg'
+// import TOP3 from '@public/img/initial-page/top-3.svg'
 
+const heightFirstSection = 'calc(100vh - 71px)'
+const linkStyle = 'text-sm md:text-lg'
+const titleStyle = 'text-4xl font-bold md:text-6xl'
+const paragraphStyle =
+  'mb-5 w-96 font-light text-gray-light md:text-3xl md:w-full'
+const sectionStyle =
+  'min-h-screen flex flex-col justify-center items-center text-center gap-10 md:flex-row md:justify-between'
+
+export default function Home() {
   return (
     <main className="grow flex justify-center">
       <Head>
@@ -36,46 +47,93 @@ export default function Home() {
           </div>
         </section>
 
-        {/* section 2 */}
-        <section className="min-h-screen flex flex-col md:flex-row justify-center md:justify-between items-center p-4 md:px-10">
-          <div className="flex flex-col items-center md:items-start gap-5 mb-10 text-center md:text-left">
-            <h1 className="text-4xl md:text-7xl font-bold md:w-96">
-              Local de aprendizado
-            </h1>
-            <p className="text-base w-96 md:text-2xl md:w-7/12 text-gray-light">
-              Aprenda, evolua e melhore o seu potencial dentro de uma comunidade
-              dedicada e acolhedora.
-            </p>
-            <Link href="/playground">
-              <span className={`${styles.link} text-sm md:text-lg`}>
-                Veja o que dizer as jogadoras &gt;
-              </span>
-            </Link>
+        <section className={`${sectionStyle} md:text-left`}>
+          <div className="md:w-3/4">
+            <h1 className={titleStyle}>Local de aprendizado</h1>
+            <div className="mt-10">
+              <p className={`${paragraphStyle}`}>
+                Aprenda, evolua e melhore o seu potencial dentro de uma
+                comunidade dedicada e acolhedora.
+              </p>
+              <Link
+                text="Veja o que dizer as jogadoras &gt;"
+                link="/playground"
+                className="text-sm md:text-lg"
+              />
+            </div>
           </div>
 
-          <div>
-            <p>imagem</p>
+          <div className="w-full">
+            <Image
+              src={'https://picsum.photos/800/400?random=1'}
+              alt="Random Image"
+              width={800}
+              height={300}
+            />
           </div>
         </section>
 
-        {/* section 3 */}
+        <section
+          className={`${sectionStyle} md:flex-row-reverse md:text-right`}
+        >
+          <div className="">
+            <div className="flex items-end justify-end">
+              <Image src={NounsLogo} alt="NOUNS Logo" width={500} />
+            </div>
+            <div className="flex flex-col items-center mt-10 md:items-end">
+              <p className={paragraphStyle}>
+                Temos parceria com uma das maiores organizações autônomas
+                descentralizadas (DAO). Saiba mais sobre a NOUNS e coloca seu
+                óclin!
+              </p>
+              <Link
+                text="Seja mais NOUNS &gt;"
+                link="/"
+                className={linkStyle}
+              />
+            </div>
+          </div>
+
+          <div className="w-full">
+            <Image
+              src={'https://picsum.photos/800/400?random=2'}
+              alt="Random Image"
+              width={800}
+              height={300}
+            />
+          </div>
+        </section>
+
+        <section className={`${sectionStyle} md:text-left`}>
+          <div className="md:w-3/4">
+            <h1 className={titleStyle}>Tabela de Prêmios</h1>
+            <div className="mt-10">
+              <p className={paragraphStyle}>
+                Nada melhor do que aprender e ainda{' '}
+                <strong className="font-bold">ganhar recompensas</strong> com o
+                seu esforço, certo?
+              </p>
+              <Link
+                text="Confira toda a tabela de premiação &gt;"
+                link="/"
+                className={linkStyle}
+              />
+            </div>
+          </div>
+
+          <div className="w-full">
+            <Image
+              src={'https://picsum.photos/800/400?random=3'}
+              alt="Random Image"
+              width={800}
+              height={300}
+            />
+          </div>
+        </section>
+
         <section className="min-h-screen ">
           <div className="flex flex-col">
-            <h1 className="text-4xl font-bold">Premiações</h1>
-            <p></p>
-          </div>
-        </section>
-
-        <section>
-          <div className="flex flex-col">
-            <h1 className="text-4xl font-bold">HUBI x NOUNS</h1>
-            <p></p>
-          </div>
-        </section>
-
-        <section className="min-h-screen ">
-          <div className="flex flex-col">
-            <h1 className="text-4xl font-bold">Equipe</h1>
+            <h1 className={titleStyle}>Equipe</h1>
             <p></p>
           </div>
         </section>
