@@ -7,9 +7,7 @@ import { Link } from '@/shared/components/link'
 import { yellowDefault } from '@/styles/colors'
 
 import NounsLogo from '@public/img/initial-page/nouns-logo.svg'
-// import TOP1 from '@public/img/initial-page/top-1.svg'
-// import TOP2 from '@public/img/initial-page/top-2.svg'
-// import TOP3 from '@public/img/initial-page/top-3.svg'
+import Prizes from '@public/img/initial-page/prizes.png'
 
 const heightFirstSection = 'calc(100vh - 71px)'
 const linkStyle = 'text-sm md:text-lg'
@@ -121,13 +119,8 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="w-full">
-            <Image
-              src={'https://picsum.photos/800/400?random=3'}
-              alt="Random Image"
-              width={800}
-              height={300}
-            />
+          <div className="w-full flex justify-center">
+            <Image src={Prizes} alt="Prizes Image" />
           </div>
         </section>
 
