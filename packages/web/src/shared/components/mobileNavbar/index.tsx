@@ -18,8 +18,7 @@ interface Route {
   route: string
 }
 
-const noundAndDarkModeButtons =
-  'bg-black-lighter hover:bg-black-light cursor-pointer rounded p-1'
+const noundAndDarkModeButtons = 'bg-black-lighter hover:bg-black-light cursor-pointer rounded p-1'
 
 export function MobileNavbar({ isNavbarOpened, routes }: Props) {
   const pathname = usePathname()

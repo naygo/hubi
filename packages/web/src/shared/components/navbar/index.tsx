@@ -15,8 +15,8 @@ import { MobileNavbar } from '../mobileNavbar'
 
 import Logo from '@public/img/logo.svg'
 
-const noundAndDarkModeButtons =
-  'bg-black-lighter hover:bg-black-light cursor-pointer rounded p-1'
+const noundAndDarkModeButtons = 'bg-black-lighter hover:bg-black-light cursor-pointer rounded p-1'
+const mobileBreakpointInPx = 950
 
 const arrayRoutes = [
   { name: 'Página Inicial', route: routes.home },
@@ -37,7 +37,7 @@ export function Navbar() {
   }
 
   useEffect(() => {
-    if (windowSize.width && windowSize.width > 950) {
+    if (windowSize.width && windowSize.width > mobileBreakpointInPx) {
       setIsNavbarOpened(false)
     }
   }, [windowSize])
@@ -50,7 +50,7 @@ export function Navbar() {
         <div className="h-8 w-0.5 bg-black-lighter mx-5"></div>
 
         {/* links */}
-        <nav className="hidden min-[950px]:flex gap-4 text-gray">
+        <nav className={`hidden min-[${mobileBreakpointInPx}px]:flex gap-4 text-gray`}>
           {arrayRoutes.map((routes) => (
             <div
               key={routes.route}
@@ -71,7 +71,7 @@ export function Navbar() {
         </nav>
       </div>
 
-      <div className="hidden min-[950px]:flex items-center gap-4">
+      <div className={`hidden min-[${mobileBreakpointInPx}px]:flex items-center gap-4`}>
         <div className="flex gap-3">
           <LogoNouns size={30} className={noundAndDarkModeButtons} />
           <IoInvertMode size={37} className={noundAndDarkModeButtons} />
@@ -85,7 +85,7 @@ export function Navbar() {
       </div>
 
       {/* burger menu  */}
-      <div className="min-[950px]:hidden">
+      <div className={`min-[${mobileBreakpointInPx}px]:hidden`}>
         <button className="relative group" onClick={() => toggleNavbar()}>
           <div className="relative flex overflow-hidden items-center justify-center rounded w-[50px] h-[50px] transform transition-all bg-black-lighter ring-0 ring-gray-300 group-focus:ring-4 ring-opacity-30 duration-200 shadow-md">
             <div className="flex flex-col justify-between w-[20px] h-[20px] transform overflow-hidden">
@@ -97,9 +97,7 @@ export function Navbar() {
         </button>
       </div>
 
-      {isNavbarOpened && (
-        <MobileNavbar isNavbarOpened={isNavbarOpened} routes={arrayRoutes} />
-      )}
+      {isNavbarOpened && <MobileNavbar isNavbarOpened={isNavbarOpened} routes={arrayRoutes} />}
     </header>
   )
 }
