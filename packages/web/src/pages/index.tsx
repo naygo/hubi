@@ -1,6 +1,17 @@
 import Head from 'next/head'
 import Image from 'next/image'
 
+import { IconType } from 'react-icons'
+import {
+  FaDiscord,
+  FaTwitch,
+  FaGithub,
+  FaLinkedin,
+  FaInstagram,
+  FaTwitter,
+  FaYoutube,
+  FaEnvelope,
+} from 'react-icons/fa'
 import { TiArrowSortedDown } from 'react-icons/ti'
 
 import { Link } from '@/shared/components/link'
@@ -9,13 +20,83 @@ import { yellowDefault } from '@/styles/colors'
 import NounsLogo from '@public/img/initial-page/nouns-logo.svg'
 import Prizes from '@public/img/initial-page/prizes.png'
 
+interface Team {
+  name: string
+  photo: string
+  links?: {
+    name: Links
+    url: string
+  }[]
+}
+
+const LinksIcons = {
+  ['github']: FaGithub,
+  ['twitter']: FaTwitter,
+  ['linkedin']: FaLinkedin,
+  ['instagram']: FaInstagram,
+  ['youtube']: FaYoutube,
+  ['twitch']: FaTwitch,
+  ['discord']: FaDiscord,
+  ['email']: FaEnvelope,
+}
+type Links = keyof typeof LinksIcons
+
 const heightFirstSection = 'calc(100vh - 71px)'
 const linkStyle = 'text-sm md:text-lg'
 const titleStyle = 'text-4xl font-bold md:text-6xl'
 const paragraphStyle =
   'mb-5 w-96 font-light text-gray-light md:text-3xl md:w-full'
 const sectionStyle =
-  'min-h-screen flex flex-col justify-center items-center text-center gap-10 md:flex-row md:justify-between'
+  'min-h-screen flex flex-col justify-center items-center text-center gap-10 p-4 md:flex-row md:justify-between'
+
+const team: Team[] = [
+  {
+    name: 'Hugo Geleia',
+    photo: 'https://picsum.photos/200?random=8',
+    links: [
+      {
+        name: 'github',
+        url: 'https://github.com/HugoJF',
+      },
+    ],
+  },
+  {
+    name: 'Ivete Piriguete',
+    photo: 'https://picsum.photos/200?random=7',
+    links: [
+      {
+        name: 'github',
+        url: 'https://github.com/mwives',
+      },
+    ],
+  },
+  {
+    name: 'Jenniffer Aysha',
+    photo: 'https://picsum.photos/200?random=9',
+  },
+  {
+    name: 'Madu',
+    photo: 'https://picsum.photos/200?random=7',
+  },
+  {
+    name: 'Nayla Gomes',
+    photo: 'https://picsum.photos/200?random=7',
+    links: [
+      {
+        name: 'github',
+        url: 'https://github.com/naygo',
+      },
+    ],
+  },
+  {
+    name: 'Rubão',
+    photo: 'https://picsum.photos/200?random=10',
+  },
+  {
+    name: 'Thiago Berenguer',
+    photo: 'https://picsum.photos/200?random=6',
+  },
+]
 
 export default function Home() {
   return (
@@ -124,13 +205,61 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="min-h-screen ">
-          <div className="flex flex-col">
-            <h1 className={titleStyle}>Equipe</h1>
-            <p></p>
+        <section className="min-h-screen text-center p-4">
+          <h1 className={titleStyle}>Equipe</h1>
+          <p className="font-light text-gray-light md:text-3xl mt-4 md:mt-14">
+            Conheça o time dedicado por trás do HUB Inclusivo!
+          </p>
+
+          {YellowDivider()}
+
+          <div className="grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-5">
+            {team.map((member) => TeamMemberInfo(member))}
           </div>
+
+          {YellowDivider()}
         </section>
       </div>
     </main>
   )
+}
+
+function TeamMemberInfo({ photo, name, links }: Team) {
+  return (
+    <div
+      key={name}
+      className="flex flex-col items-center p-5 rounded bg-black-lighter"
+    >
+      <Image
+        src={photo}
+        alt="Random Image"
+        width={200}
+        height={200}
+        className="rounded-full"
+      />
+      <p className="text-xl my-4 font-bold h-full flex items-center">{name}</p>
+      {
+        <div className="flex justify-center gap-2">
+          {links?.map((link) => {
+            const Icon = LinksIcons[link.name] as IconType
+
+            return (
+              <a
+                key={link.name}
+                href={link.url}
+                target="_blank"
+                className="bg-black p-2 rounded hover:bg-black-light"
+              >
+                <Icon size={20} />
+              </a>
+            )
+          })}
+        </div>
+      }
+    </div>
+  )
+}
+
+function YellowDivider() {
+  return <div className="w-1/4 h-1 bg-yellow rounded-full mx-auto my-10"></div>
 }
