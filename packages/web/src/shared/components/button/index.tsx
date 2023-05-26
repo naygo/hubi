@@ -7,13 +7,13 @@ type NativeProps = DetailedHTMLProps<
 >
 
 type ExtraProps = {
-  classStyle: 'primary' | 'secondary'
+  color: 'primary' | 'secondary'
   label: string
 }
 type Props = NativeProps & ExtraProps
 
 function ButtonGenerate(
-  { id, name, placeholder, type, classStyle, label, ...props }: Props,
+  { id, name, placeholder, type, color, label, ...props }: Props,
   ref: React.ForwardedRef<HTMLButtonElement>,
 ) {
   return (
@@ -34,8 +34,8 @@ function ButtonGenerate(
           py-2
         `,
         {
-          'bg-yellow hover:bg-yellow-dark': classStyle === 'primary',
-          'bg-black-lighter hover:bg-black-light': classStyle === 'secondary',
+          'bg-yellow hover:bg-yellow-dark': color === 'primary',
+          'bg-black-lighter hover:bg-black-light': color === 'secondary',
         },
         props.className,
       )}
