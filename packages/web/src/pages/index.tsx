@@ -45,7 +45,7 @@ const heightFirstSection = 'calc(100vh - 71px)'
 const linkStyle = 'text-sm md:text-lg'
 const titleStyle = 'text-4xl font-bold md:text-6xl'
 const paragraphStyle =
-  'mb-5 w-96 font-light text-gray-light md:text-3xl md:w-full'
+  'text-xl mb-5 font-light text-gray-light md:text-3xl md:w-full'
 const sectionStyle =
   'min-h-screen flex flex-col justify-center items-center text-center gap-10 p-4 md:flex-row md:justify-between'
 
@@ -116,7 +116,7 @@ export default function Home() {
           }}
         >
           <div className="flex flex-col items-center justify-between h-64 md:h-1/2">
-            <h1 className="text-5xl md:text-8xl md:w-2/4 font-bold text-center">
+            <h1 className="text-5xl w-full md:text-8xl md:w-2/4 font-bold text-center">
               Mais do que ranqueadas
             </h1>
 
@@ -159,8 +159,8 @@ export default function Home() {
         <section
           className={`${sectionStyle} md:flex-row-reverse md:text-right`}
         >
-          <div className="">
-            <div className="flex items-end justify-end">
+          <div>
+            <div className="flex items-end justify-center md:justify-end">
               <Image src={NounsLogo} alt="NOUNS Logo" width={500} />
             </div>
             <div className="flex flex-col items-center mt-10 md:items-end">
@@ -211,7 +211,7 @@ export default function Home() {
 
         <section className="min-h-screen text-center p-4">
           <h1 className={titleStyle}>Equipe</h1>
-          <p className="font-light text-gray-light md:text-3xl mt-4 md:mt-14">
+          <p className="text-xl font-light text-gray-light md:text-3xl mt-4 md:mt-14">
             Conheça o time dedicado por trás do HUB Inclusivo!
           </p>
 
