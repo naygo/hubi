@@ -86,6 +86,10 @@ const team: Team[] = [
         name: 'github',
         url: 'https://github.com/naygo',
       },
+      {
+        name: 'email',
+        url: '',
+      },
     ],
   },
   {
@@ -233,8 +237,8 @@ function TeamMemberInfo({ photo, name, links }: Team) {
       <Image
         src={photo}
         alt="Random Image"
-        width={200}
-        height={200}
+        width={150}
+        height={150}
         className="rounded-full"
       />
       <p className="text-xl my-4 font-bold h-full flex items-center">{name}</p>
@@ -248,9 +252,9 @@ function TeamMemberInfo({ photo, name, links }: Team) {
                 key={link.name}
                 href={link.url}
                 target="_blank"
-                className="bg-black p-2 rounded hover:bg-black-light"
+                className="bg-black p-2 rounded hover:bg-yellow"
               >
-                <Icon size={20} />
+                <Icon size={15} />
               </a>
             )
           })}
