@@ -1,4 +1,3 @@
-import clsx from 'clsx'
 import Image from 'next/image'
 import ReactLink from 'next/link'
 
@@ -34,7 +33,9 @@ export function Footer() {
           className="w-full border border-yellow px-20 py-5 rounded hover:bg-black-dark"
         />
         {/* redes sociais */}
-        <SocialMediaLinks />
+        <div className="hidden md:block">
+          <SocialMediaLinks />
+        </div>
       </div>
 
       {/* links */}
@@ -62,7 +63,9 @@ export function Footer() {
       </div>
 
       {/* in mobiles social media is show below links */}
-      <SocialMediaLinks isMobile />
+      <div className="md:hidden">
+        <SocialMediaLinks />
+      </div>
     </footer>
   )
 }
@@ -83,14 +86,9 @@ function LinksBox({ children }: { children: React.ReactNode }) {
   return <div className="flex flex-col gap-3">{children}</div>
 }
 
-function SocialMediaLinks({ isMobile }: { isMobile?: boolean }) {
+function SocialMediaLinks() {
   return (
-    <div
-      className={clsx(
-        'gap-5 mt-3',
-        isMobile ? 'flex md:hidden' : 'hidden md:flex',
-      )}
-    >
+    <div className="flex gap-5 mt-3">
       <ReactLink
         href="https://discord.com/invite/hubinclusivo"
         target="__blank"
