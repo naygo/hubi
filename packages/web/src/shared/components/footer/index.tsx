@@ -1,7 +1,6 @@
 import Image from 'next/image'
 import ReactLink from 'next/link'
 
-import { IconType } from 'react-icons'
 import { FaDiscord, FaInstagram, FaTiktok, FaTwitter } from 'react-icons/fa'
 
 import Logo from '@public/img/logo.svg'
@@ -88,20 +87,31 @@ function LinksBox({ children }: { children: React.ReactNode }) {
 }
 
 function SocialMediaLinks() {
+  const links = [
+    {
+      url: 'https://discord.com/invite/hubinclusivo',
+      Icon: FaDiscord,
+    },
+    {
+      url: 'https://www.instagram.com/hub_inclusivo/',
+      Icon: FaInstagram,
+    },
+    {
+      url: 'https://www.tiktok.com/@hubinclusivo',
+      Icon: FaTiktok,
+    },
+    {
+      url: 'https://twitter.com/hubinclusivo',
+      Icon: FaTwitter,
+    },
+  ]
   return (
     <div className="flex gap-5 mt-3">
-      <Link url="https://discord.com/invite/hubinclusivo" Icon={FaDiscord} />
-      <Link url="https://www.instagram.com/hub_inclusivo/" Icon={FaInstagram} />
-      <Link url="https://www.tiktok.com/@hubinclusivo" Icon={FaTiktok} />
-      <Link url="https://twitter.com/hubinclusivo" Icon={FaTwitter} />
+      {links.map(({ url, Icon }) => (
+        <ReactLink key={url} href={url} target="__blank">
+          <Icon size={40} className={socialMediaButtonStyle} />
+        </ReactLink>
+      ))}
     </div>
   )
-
-  function Link({ url, Icon }: { url: string; Icon: IconType }) {
-    return (
-      <ReactLink href={url} target="__blank">
-        <Icon size={40} className={socialMediaButtonStyle} />
-      </ReactLink>
-    )
-  }
 }
