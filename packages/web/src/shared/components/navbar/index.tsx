@@ -45,7 +45,7 @@ export function Navbar() {
 
   return (
     <>
-      <header className="w-full flex gap-4 justify-between items-center p-4 border-b border-black-lighter font-normal text-sm">
+      <header className="relative w-full flex gap-4 justify-between items-center p-4 border-b border-black-lighter font-normal text-sm">
         <div className="flex items-center">
           <Image src={Logo} width={100} height={100} alt="HUBI Logo" />
           {/* vertical line */}
@@ -100,11 +100,11 @@ export function Navbar() {
             </div>
           </button>
         </div>
-      </header>
 
-      {isNavbarOpened && (
-        <MobileNavbar isNavbarOpened={isNavbarOpened} routes={arrayRoutes} />
-      )}
+        {isNavbarOpened && (
+          <MobileNavbar isNavbarOpened={isNavbarOpened} routes={arrayRoutes} />
+        )}
+      </header>
     </>
   )
 }

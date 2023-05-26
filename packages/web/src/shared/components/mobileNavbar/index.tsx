@@ -27,7 +27,7 @@ export function MobileNavbar({ isNavbarOpened, routes }: Props) {
   if (!isNavbarOpened) return null
 
   return (
-    <nav className="relative min-h-[calc(100vh-83px)] w-screen z-50 bg-black p-4 flex flex-col gap-4 overflow-auto">
+    <nav className="absolute h-[calc(100vh-83px)] top-full left-0 w-screen z-50 bg-black p-4 flex flex-col gap-4">
       <div className="flex flex-col gap-8 mt-2 text-gray text-lg">
         {routes.map((routes) => (
           <div
