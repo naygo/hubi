@@ -54,12 +54,7 @@ export function Navbar() {
           {/* links */}
           <nav className="hidden lg:flex gap-4 text-gray">
             {arrayRoutes.map((routes) => (
-              <div
-                key={routes.route}
-                className={clsx({
-                  'pointer-events-none': pathname === routes.route,
-                })}
-              >
+              <div key={routes.route}>
                 <Link
                   href={routes.route}
                   className={clsx('hover:text-yellow', {

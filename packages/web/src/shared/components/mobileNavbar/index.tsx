@@ -28,14 +28,9 @@ export function MobileNavbar({ isNavbarOpened, routes }: Props) {
 
   return (
     <nav className="absolute h-[calc(100vh-83px)] top-full left-0 w-screen z-50 bg-black p-4 flex flex-col gap-4">
-      <div className="flex flex-col gap-8 mt-2 text-gray text-lg">
+      <ul className="flex flex-col gap-8 mt-2 text-gray text-lg">
         {routes.map((routes) => (
-          <div
-            key={routes.route}
-            className={clsx({
-              'pointer-events-none': pathname === routes.route,
-            })}
-          >
+          <li key={routes.route}>
             <Link
               href={routes.route}
               className={clsx('hover:text-yellow', {
@@ -44,9 +39,9 @@ export function MobileNavbar({ isNavbarOpened, routes }: Props) {
             >
               {routes.name}
             </Link>
-          </div>
+          </li>
         ))}
-      </div>
+      </ul>
 
       <div className="flex items-center gap-4">
         <div className="flex gap-3">
