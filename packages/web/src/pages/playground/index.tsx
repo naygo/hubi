@@ -2,9 +2,9 @@ import Head from 'next/head'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
-import { Button } from '@/shared/components/button'
-import { Dropdown } from '@/shared/components/dropdown'
-import { Input } from '@/shared/components/input'
+import { Dropdown } from '@/shared/components/form/dropdown'
+import { Input } from '@/shared/components/form/input'
+import { Button } from '@/shared/components/ui/button'
 
 interface FormFields {
   inputText: string
@@ -36,7 +36,7 @@ export default function Playground() {
 
   useEffect(() => {
     console.log(watch())
-  }, [watch()])
+  }, [watch])
 
   return (
     <>

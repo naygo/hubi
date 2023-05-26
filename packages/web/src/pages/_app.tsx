@@ -1,10 +1,11 @@
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 
+import { Footer } from '@/shared/components/ui/footer'
+import { Navbar } from '@/shared/components/ui/navbar'
+
 import '../styles/globals.scss'
 import 'react-toastify/dist/ReactToastify.css'
-import { Footer } from '@/shared/components/footer'
-import { Navbar } from '@/shared/components/navbar'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
