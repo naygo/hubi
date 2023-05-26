@@ -232,7 +232,7 @@ function TeamMemberInfo({ photo, name, links }: Team) {
   return (
     <div
       key={name}
-      className="flex flex-col items-center p-5 rounded bg-black-lighter"
+      className="flex flex-col gap-2 justify-between items-center p-5 rounded bg-black-light"
     >
       <Image
         src={photo}
@@ -241,25 +241,25 @@ function TeamMemberInfo({ photo, name, links }: Team) {
         height={150}
         className="rounded-full"
       />
-      <p className="text-xl my-4 font-bold h-full flex items-center">{name}</p>
-      {
-        <div className="flex justify-center gap-2">
-          {links?.map((link) => {
-            const Icon = LinksIcons[link.name] as IconType
 
-            return (
-              <a
-                key={link.name}
-                href={link.url}
-                target="_blank"
-                className="bg-black p-2 rounded hover:bg-yellow"
-              >
-                <Icon size={15} />
-              </a>
-            )
-          })}
-        </div>
-      }
+      <div className="flex justify-center gap-2">
+        {links?.map((link) => {
+          const Icon = LinksIcons[link.name] as IconType
+
+          return (
+            <a
+              key={link.name}
+              href={link.url}
+              target="_blank"
+              className="bg-black-lighter p-2 rounded hover:bg-yellow"
+            >
+              <Icon size={15} />
+            </a>
+          )
+        })}
+      </div>
+
+      <p className="text-base font-bold flex items-center md:text-lg">{name}</p>
     </div>
   )
 }
