@@ -96,9 +96,7 @@ export function Navbar() {
           </button>
         </div>
 
-        {isNavbarOpened && (
-          <MobileNavbar isNavbarOpened={isNavbarOpened} routes={arrayRoutes} />
-        )}
+        <MobileNavbar isNavbarOpened={isNavbarOpened} routes={arrayRoutes} />
       </header>
     </>
   )
