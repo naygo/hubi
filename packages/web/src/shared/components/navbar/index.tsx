@@ -15,7 +15,8 @@ import { MobileNavbar } from '../mobileNavbar'
 
 import Logo from '@public/img/logo.svg'
 
-const noundAndDarkModeButtons = 'bg-black-lighter hover:bg-black-light cursor-pointer rounded p-1'
+const noundAndDarkModeButtons =
+  'bg-black-lighter hover:bg-black-light cursor-pointer rounded p-1'
 const tailwindLgBreakpointInPx = 1024 // From TailwindCSS default config
 
 const arrayRoutes = [
@@ -80,7 +81,9 @@ export function Navbar() {
 
           <div className="h-8 w-0.5 bg-black-lighter"></div>
 
-          <a className="text-gray hover:text-yellow cursor-pointer">Saiba mais</a>
+          <a className="text-gray hover:text-yellow cursor-pointer">
+            Saiba mais
+          </a>
 
           <Button color="primary" label="Jogar" />
         </div>
@@ -99,7 +102,9 @@ export function Navbar() {
         </div>
       </header>
 
-      {isNavbarOpened && <MobileNavbar isNavbarOpened={isNavbarOpened} routes={arrayRoutes} />}
+      {isNavbarOpened && (
+        <MobileNavbar isNavbarOpened={isNavbarOpened} routes={arrayRoutes} />
+      )}
     </>
   )
 }
