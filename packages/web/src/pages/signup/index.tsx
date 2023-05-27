@@ -1,6 +1,6 @@
 // icone de triangulo para a direita
 import { AiFillCaretRight } from 'react-icons/ai'
-export default function Singup() {
+export default function SignUp() {
   return (
     <main className="flex flex-col h-screen w-screen">
       <div className="flex items-center gap-5">
