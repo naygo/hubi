@@ -57,7 +57,7 @@ export function Dropdown({
               border-black-lighter 
             `,
             {
-              'justify-between': !!placeholder,
+              'justify-between': field.value,
               'justify-end': !placeholder,
               italic: !field.value,
               'border-red-500': fieldState.error?.type === 'required',
