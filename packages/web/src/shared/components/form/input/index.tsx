@@ -14,16 +14,16 @@ type ExtraProps = {
 type Props = NativeProps & ExtraProps
 
 function InputGenerate(
-  { id, name, label, placeholder, type, error, ...props }: Props,
+  { className, name, label, placeholder, type, error, ...props }: Props,
   ref: React.ForwardedRef<HTMLInputElement>,
 ) {
   return (
-    <>
-      {label && <label htmlFor={id}>{label}</label>}
+    <div className={className}>
+      {label && <label htmlFor={name}>{label}</label>}
 
       <input
         ref={ref}
-        id={id}
+        id={name}
         name={name}
         placeholder={placeholder}
         type={type}
@@ -48,7 +48,7 @@ function InputGenerate(
         {...props}
       />
       {error && <InputAlert error={error} />}
-    </>
+    </div>
   )
 }
 
