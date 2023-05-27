@@ -31,14 +31,14 @@ export function StepTwo({ form, nonBinaryForm }: Props) {
       <div className="sm:flex gap-4 align-middle">
         <Input
           className="w-full"
-          label="Twitter"
+          label="Twitter:"
           error={errors.twitter}
           {...register('twitter', { required: true })}
         />
 
         <Input
           className="w-full"
-          label="Instagram"
+          label="Instagram:"
           error={errors.instagram}
           {...register('instagram', { required: true })}
         />
@@ -47,7 +47,7 @@ export function StepTwo({ form, nonBinaryForm }: Props) {
       <div className="sm:flex gap-4 align-middle">
         {nonBinaryForm && (
           <Input
-            label="GamersClub"
+            label="GamersClub:"
             error={errors.gamersclub}
             className="w-full"
             {...register('gamersclub', { required: true })}
@@ -56,7 +56,7 @@ export function StepTwo({ form, nonBinaryForm }: Props) {
 
         {/* TODO: add mask */}
         <Input
-          label="Discord"
+          label="Discord:"
           placeholder="Ex.: Jenniffer#0102"
           className="w-full"
           error={errors.discord}
@@ -65,7 +65,7 @@ export function StepTwo({ form, nonBinaryForm }: Props) {
       </div>
 
       <Input
-        label="Outras redes sociais"
+        label="Outras redes sociais:"
         error={errors.otherSocialMedia}
         {...register('otherSocialMedia')}
       />
@@ -86,7 +86,7 @@ export function StepTwo({ form, nonBinaryForm }: Props) {
 
       {nonBinaryForm && (
         <Input
-          label="Tempo na comunidade LGBTQIAP+"
+          label="Tempo na comunidade LGBTQIAP+:"
           error={errors.timeInCommunity}
           {...register('timeInCommunity', { required: true })}
         />
@@ -94,7 +94,7 @@ export function StepTwo({ form, nonBinaryForm }: Props) {
 
       <Dropdown
         name="pronouns"
-        label="Pronomes"
+        label="Pronomes:"
         placeholder="Selecione os seus pronomes"
         control={control}
         options={[

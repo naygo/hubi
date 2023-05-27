@@ -23,20 +23,20 @@ export function StepThree({ form }: Props) {
   return (
     <form className="flex flex-col gap-2">
       <Input
-        label="Nick"
+        label="Nick:"
         error={errors.nickname}
         {...register('nickname', { required: true })}
       />
 
       <Input
-        label="Riot ID"
+        label="Riot ID:"
         placeholder="Ex.: Jenniffer#csz"
         error={errors.riotId}
         {...register('riotId', { required: true })}
       />
 
       <Dropdown
-        label="Elo atual"
+        label="Elo atual:"
         name="ingameRank"
         control={control}
         options={[
