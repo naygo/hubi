@@ -86,7 +86,7 @@ export function StepOne() {
             value: 'homem-trans',
           },
           {
-            label: 'Não-binárie',
+            label: 'Não-binário',
             value: 'nao-binario',
           },
           {
