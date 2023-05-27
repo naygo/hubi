@@ -29,9 +29,9 @@ export default function SignUp() {
       <section className="w-full bg-black-lighter rounded-3xl p-8">
         <div className="flex gap-2">
           <h1 className="font-bold text-2xl align-bottom">Crie sua conta na</h1>
-          <Image src={Logo} alt="HUBI" width={100} />
+          <Image src={Logo} alt="HUBI" width={70} />
         </div>
-        <p className="text-gray text-xs mt-2 mb-10">
+        <p className="text-gray text-sm mt-2 mb-10 text-justify">
           O seu cadastro irá passar por um processo de verificação e pode
           demorar alguns instantes para ser aprovado.
         </p>
