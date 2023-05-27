@@ -88,7 +88,7 @@ export default function SignUp() {
               privadas.
             </div>
 
-            <div className="text-center text-xs mt-5">
+            <div className="text-center text-xs md:text-sm mt-5">
               Já possui uma conta?{' '}
               <Link text="Entre aqui &gt;" link="" className="font-medium" />
             </div>
