@@ -22,13 +22,17 @@ export function StepThree({ form }: Props) {
 
   return (
     <form className="flex flex-col gap-2">
-      <Input label="Nick" error={errors.nickname} {...register('nickname')} />
+      <Input
+        label="Nick"
+        error={errors.nickname}
+        {...register('nickname', { required: true })}
+      />
 
       <Input
         label="Riot ID"
         placeholder="Ex.: Jenniffer#csz"
         error={errors.riotId}
-        {...register('riotId')}
+        {...register('riotId', { required: true })}
       />
 
       <Dropdown
@@ -62,9 +66,7 @@ export function StepThree({ form }: Props) {
           { label: 'Ferro 2', value: 'iron2' },
           { label: 'Ferro 1', value: 'iron1' },
         ]}
-        rules={{
-          required: true,
-        }}
+        rules={{ required: true }}
       />
     </form>
   )

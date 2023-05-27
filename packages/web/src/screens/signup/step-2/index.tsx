@@ -33,18 +33,14 @@ export function StepTwo({ form, nonBinaryForm }: Props) {
           className="w-full"
           label="Twitter"
           error={errors.twitter}
-          {...register('twitter', {
-            required: true,
-          })}
+          {...register('twitter', { required: true })}
         />
 
         <Input
           className="w-full"
           label="Instagram"
           error={errors.instagram}
-          {...register('instagram', {
-            required: true,
-          })}
+          {...register('instagram', { required: true })}
         />
       </div>
 
@@ -54,9 +50,7 @@ export function StepTwo({ form, nonBinaryForm }: Props) {
             label="GamersClub"
             error={errors.gamersclub}
             className="w-full"
-            {...register('gamersclub', {
-              required: true,
-            })}
+            {...register('gamersclub', { required: true })}
           />
         )}
 
@@ -66,9 +60,7 @@ export function StepTwo({ form, nonBinaryForm }: Props) {
           placeholder="Ex.: Jenniffer#0102"
           className="w-full"
           error={errors.discord}
-          {...register('discord', {
-            required: true,
-          })}
+          {...register('discord', { required: true })}
         />
       </div>
 
@@ -89,18 +81,14 @@ export function StepTwo({ form, nonBinaryForm }: Props) {
             value: 'socialMedia',
           },
         ]}
-        rules={{
-          required: true,
-        }}
+        rules={{ required: true }}
       />
 
       {nonBinaryForm && (
         <Input
           label="Tempo na comunidade LGBTQIAP+"
           error={errors.timeInCommunity}
-          {...register('timeInCommunity', {
-            required: true,
-          })}
+          {...register('timeInCommunity', { required: true })}
         />
       )}
 
@@ -123,9 +111,7 @@ export function StepTwo({ form, nonBinaryForm }: Props) {
             value: 'any',
           },
         ]}
-        rules={{
-          required: true,
-        }}
+        rules={{ required: true }}
       />
     </form>
   )

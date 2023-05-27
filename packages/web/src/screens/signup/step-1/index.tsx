@@ -28,34 +28,28 @@ export function StepOne({ form }: Props) {
       <Input
         label="Nome completo"
         error={errors.fullName}
-        {...register('fullName')}
+        {...register('fullName', { required: true })}
       />
 
       <Input
         label="E-mail"
         type="email"
         error={errors.email}
-        {...register('email', {
-          required: true,
-        })}
+        {...register('email', { required: true })}
       />
 
       <Input
         label="Senha"
         type="password"
         error={errors.password}
-        {...register('password', {
-          required: true,
-        })}
+        {...register('password', { required: true })}
       />
 
       <Input
         label="Confirme sua senha"
         type="password"
         error={errors.passwordConfirmation}
-        {...register('passwordConfirmation', {
-          required: true,
-        })}
+        {...register('passwordConfirmation', { required: true })}
       />
 
       {/* TODO: Date mask */}
@@ -63,9 +57,7 @@ export function StepOne({ form }: Props) {
         label="Data de nascimento"
         placeholder="Ex.: 04/05/2001"
         error={errors.birthDate}
-        {...register('birthDate', {
-          required: true,
-        })}
+        {...register('birthDate', { required: true })}
       />
 
       <Dropdown
@@ -98,9 +90,7 @@ export function StepOne({ form }: Props) {
             value: 'outros',
           },
         ]}
-        rules={{
-          required: true,
-        }}
+        rules={{ required: true }}
       />
     </form>
   )
