@@ -44,7 +44,7 @@ function InputGenerate(
   const inputClassName = clsx(
     `
     w-full 
-    bg-black-light
+    bg-black
     
     border
     border-black-lighter
@@ -54,7 +54,7 @@ function InputGenerate(
     placeholder:italic
     
     rounded-lg 
-    p1- md:p-2
+    p-1 md:p-2
   `,
     { 'border-red-500 focus:ring-red-500 ': error },
     { 'hover:border-yellow focus:border-yellow': !error },

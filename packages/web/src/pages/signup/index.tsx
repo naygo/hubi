@@ -35,11 +35,18 @@ export default function SignUp() {
             src={Logo}
             alt="Picture of the author"
             width={200}
-            className={`${styles.logoBox} w-80`}
+            className={`${styles.logoBox} w-64`}
           />
-          <div className="text-xs md:text-sm text-center mt-2 mb-10">
+          <div className="text-xs md:text-sm text-center mt-2 md:w-96">
             Somos uma plataforma e comunidade de players do cenário inclusivo de
             VALORANT.
+          </div>
+          <div className="text-xs mt-2 mb-10">
+            <Link
+              text="Voltar ao início &gt;"
+              link=""
+              className="font-medium"
+            />
           </div>
         </section>
 
@@ -66,7 +73,7 @@ export default function SignUp() {
               {currentStep === 3 && <StepThree form={form} />}
             </div>
 
-            <div className="text-gray text-xs italic mt-4">
+            <div className="font-light text-gray text-xs italic mt-2">
               Campos com <span className="text-yellow">*</span> são
               obrigatórios.
             </div>
@@ -81,8 +88,9 @@ export default function SignUp() {
               privadas.
             </div>
 
-            <div className="text-center text-xs  mt-5">
-              Já possui uma conta? <Link text="Entre aqui &gt;" link="" />
+            <div className="text-center text-xs md:text-sm mt-5">
+              Já possui uma conta?{' '}
+              <Link text="Entre aqui &gt;" link="" className="font-medium" />
             </div>
           </div>
         </section>
@@ -93,8 +101,7 @@ export default function SignUp() {
               <Image
                 src={Logo}
                 alt="HUBI"
-                width={200}
-                className={`${styles.logoBox} w-80`}
+                className={`${styles.logoBox} w-72 lg:w-80`}
               />
               <div className="lg:w-96 lg:mt-2">
                 Somos uma plataforma e comunidade de players do cenário
@@ -102,6 +109,13 @@ export default function SignUp() {
               </div>
             </div>
             <SocialMediaLinks />
+            <div className="hidden lg:block mt-4">
+              <Link
+                text="Voltar ao início &gt;"
+                link="/"
+                className="font-medium"
+              />
+            </div>
           </div>
         </section>
       </div>

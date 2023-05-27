@@ -9,9 +9,7 @@ interface Props {
 export function Link({ text, link, className }: Props) {
   return (
     <ReactLink href={link}>
-      <span className={`text-yellow font-normal hover:underline ${className}`}>
-        {text}
-      </span>
+      <span className={`text-yellow hover:underline ${className}`}>{text}</span>
     </ReactLink>
   )
 }
