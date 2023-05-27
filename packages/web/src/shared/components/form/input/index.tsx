@@ -54,7 +54,7 @@ export function Input({
     `,
     {
       italic: !field.value,
-      'border-red-500': fieldState.error?.type === 'required',
+      'border-red-500': fieldState.error,
       'hover:border-yellow focus:border-yellow ': !fieldState.error,
       'text-gray-400': !field.value,
     },
@@ -88,7 +88,7 @@ export function Input({
         />
       )}
 
-      {fieldState.error && <InputAlert error={fieldState.error} />}
+      {fieldState.error?.message && <InputAlert error={fieldState.error} />}
     </div>
   )
 }

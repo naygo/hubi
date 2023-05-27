@@ -2,8 +2,6 @@ import { FieldError } from 'react-hook-form'
 
 import { FaExclamationCircle } from 'react-icons/fa'
 
-import { requiredMessage } from '@/shared/utils/validationMessages'
-
 interface Props {
   error: FieldError
 }
@@ -16,7 +14,7 @@ export function InputAlert({ error }: Props) {
         className="mr-1"
         style={{ fill: 'rgb(239, 68, 68)' }}
       />
-      {error?.type === 'required' && requiredMessage}
+      {error.message}
     </span>
   )
 }
