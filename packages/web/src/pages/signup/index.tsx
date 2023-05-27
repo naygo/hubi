@@ -78,7 +78,11 @@ export default function SignUp() {
               obrigatórios.
             </div>
 
-            <div className="text-gray text-xs italic mt-2">
+            <div
+              className={clsx('text-gray text-xs italic mt-2', {
+                hidden: currentStep !== 2,
+              })}
+            >
               As redes sociais <span className="text-yellow">Twitter</span> e{' '}
               <span className="text-yellow">Instagram</span> não podem estar
               privadas.

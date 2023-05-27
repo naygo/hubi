@@ -56,6 +56,8 @@ export function StepOne({ form }: Props) {
       <Input
         label="Data de nascimento:"
         placeholder="Ex.: 04/05/2001"
+        mask="99/99/9999"
+        control={control}
         error={errors.birthDate}
         {...register('birthDate', { required: true })}
       />
