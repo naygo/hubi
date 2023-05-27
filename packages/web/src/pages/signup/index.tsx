@@ -11,7 +11,7 @@ import styles from '@/styles/classes'
 
 export default function SignUp() {
   return (
-    <main className="flex flex-col h-screen w-screen p-5">
+    <main className="flex flex-col p-5">
       <div className="flex items-center gap-5 ml-5 mb-5">
         <Link href={''}>
           <p>Etapa 1</p>
