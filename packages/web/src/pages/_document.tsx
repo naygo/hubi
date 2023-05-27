@@ -38,8 +38,8 @@ export default function Document() {
         <link rel="manifest" href="/site.webmanifest"></link>
       </Head>
       <body>
-        <Main />
         <NextScript />
+        <Main />
       </body>
     </Html>
   )
