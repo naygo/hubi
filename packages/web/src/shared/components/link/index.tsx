@@ -6,7 +6,7 @@ interface Props {
   className?: string
 }
 
-export function Link({ text, link, className }: Props) {
+export default function Link({ text, link, className }: Props) {
   return (
     <ReactLink href={link}>
       <span className={`text-yellow font-normal hover:underline ${className}`}>
