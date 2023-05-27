@@ -39,7 +39,7 @@ export function Footer() {
       </div>
 
       {/* links */}
-      <div className="flex gap-10 md:h-full">
+      <div className="grid grid-cols-2 grid-rows-2 gap-5 md:h-full">
         <LinksBox>
           <Title title="HUBI" />
           <Link text="HUBI" />
@@ -54,7 +54,7 @@ export function Footer() {
           <Link text="Direitos Autorais" />
         </LinksBox>
 
-        <LinksBox>
+        <LinksBox className="col-span-2">
           <Title title="Ferramentas" />
           <Link text="Comunidade" />
           <Link text="Ajuda e Suporte" />
@@ -71,19 +71,25 @@ export function Footer() {
 }
 
 function Title({ title }: { title: string }) {
-  return <p className="text-gray mb-3">{title}</p>
+  return <p className="text-gray text-xs">{title}</p>
 }
 
 function Link({ text }: { text: string }) {
   return (
-    <span className="text-gray-light font-bold hover:text-yellow cursor-pointer">
+    <span className="text-gray-light text-xs font-bold hover:text-yellow cursor-pointer">
       {text}
     </span>
   )
 }
 
-function LinksBox({ children }: { children: React.ReactNode }) {
-  return <div className="flex flex-col gap-3">{children}</div>
+function LinksBox({
+  className,
+  children,
+}: {
+  children: React.ReactNode
+  className?: string
+}) {
+  return <div className={`flex flex-col gap-3 ${className}`}>{children}</div>
 }
 
 function SocialMediaLinks() {
