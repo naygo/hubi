@@ -1,5 +1,6 @@
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 
 import { Footer } from '@/shared/components/ui/footer'
 import { Navbar } from '@/shared/components/ui/navbar'
@@ -8,6 +9,9 @@ import '../styles/globals.scss'
 import 'react-toastify/dist/ReactToastify.css'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
+  const router = useRouter()
+  const hideNavFooter = ['/signup']
+  const shouldHideNavFooter = hideNavFooter.includes(router.pathname)
   return (
     <>
       <Head>
@@ -17,11 +21,13 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         />
       </Head>
       <div className="flex flex-col justify-between min-h-screen">
-        <Navbar />
+        {!shouldHideNavFooter && <Navbar />}
         <Component {...pageProps} />
-        <div className="flex justify-center">
-          <Footer />
-        </div>
+        {!shouldHideNavFooter && (
+          <div className="flex justify-center">
+            <Footer />
+          </div>
+        )}
       </div>
     </>
   )
