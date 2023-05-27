@@ -2,72 +2,63 @@ import { UseFormReturn } from 'react-hook-form'
 
 import { Dropdown } from '@/shared/components/form/dropdown'
 import { Input } from '@/shared/components/form/input'
-
-interface FormFields {
-  twitter: string
-  instagram: string
-  gamersclub: string
-  discord: string
-  otherSocialMedia?: string
-  howDidYouKnowHubi: string
-  timeInCommunity: string
-  pronouns: string
-}
+import { SignUpFormFields } from '@/shared/types/signup-forms'
 
 interface Props {
-  nonBinaryForm: boolean
-  form: UseFormReturn<FormFields>
+  form: UseFormReturn<SignUpFormFields>
 }
 
-export function StepTwo({ form, nonBinaryForm }: Props) {
-  const {
-    control,
-    formState: { errors },
-    register,
-  } = form
+export function StepTwo({ form }: Props) {
+  const { control, getValues } = form
+
+  const nonBinaryForm = getValues('gender') === 'nao-binario'
 
   return (
     <form className="flex flex-col gap-2">
       <div className="sm:flex gap-4 align-middle">
         <Input
           className="w-full"
+          name="twitter"
           label="Twitter:"
-          error={errors.twitter}
-          {...register('twitter', { required: true })}
+          rules={{ required: true }}
+          control={control}
         />
 
         <Input
           className="w-full"
+          name="instagram"
           label="Instagram:"
-          error={errors.instagram}
-          {...register('instagram', { required: true })}
+          rules={{ required: true }}
+          control={control}
         />
       </div>
 
       <div className="sm:flex gap-4 align-middle">
         {nonBinaryForm && (
           <Input
-            label="GamersClub:"
-            error={errors.gamersclub}
             className="w-full"
-            {...register('gamersclub', { required: true })}
+            name="gamersclub"
+            label="GamersClub:"
+            rules={{ required: true }}
+            control={control}
           />
         )}
 
         {/* TODO: add mask */}
         <Input
+          className="w-full"
+          name="discord"
           label="Discord:"
           placeholder="Ex.: Jenniffer#0102"
-          className="w-full"
-          error={errors.discord}
-          {...register('discord', { required: true })}
+          rules={{ required: true }}
+          control={control}
         />
       </div>
 
       <Input
+        name="otherSocialMedia"
         label="Outras redes sociais:"
-        error={errors.otherSocialMedia}
-        {...register('otherSocialMedia')}
+        control={control}
       />
 
       {/* TODO: add values */}
@@ -86,9 +77,10 @@ export function StepTwo({ form, nonBinaryForm }: Props) {
 
       {nonBinaryForm && (
         <Input
+          name="timeInCommunity"
           label="Tempo na comunidade LGBTQIAP+:"
-          error={errors.timeInCommunity}
-          {...register('timeInCommunity', { required: true })}
+          rules={{ required: true }}
+          control={control}
         />
       )}
 

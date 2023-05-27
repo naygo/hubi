@@ -1,6 +1,10 @@
 import clsx from 'clsx'
-import { forwardRef } from 'react'
-import { Control, Controller, FieldError } from 'react-hook-form'
+import {
+  Control,
+  FieldError,
+  RegisterOptions,
+  useController,
+} from 'react-hook-form'
 import InputMask from 'react-input-mask'
 
 import { NativeProps } from '@/shared/types/native-props'
@@ -8,96 +12,83 @@ import { NativeProps } from '@/shared/types/native-props'
 import { InputAlert } from '../inputAlert'
 import { Label } from '../label'
 
-type InputProps = NativeProps & {
+type Props = NativeProps & {
   name: string
-  label?: string
-  error?: FieldError
-}
-
-type PropsWithMask = InputProps & {
-  mask: string
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   control: Control<any>
+  label?: string
+  error?: FieldError
+  rules?: RegisterOptions
+  mask?: string
 }
 
-type PropsWithoutMask = InputProps & {
-  mask?: never
-  control?: never
-}
-
-function InputGenerate(
-  {
-    className,
+export function Input({
+  className,
+  control,
+  defaultValue,
+  label,
+  mask,
+  name,
+  placeholder,
+  rules,
+  type,
+  ...props
+}: Props) {
+  const { field, fieldState } = useController({
+    name,
     control,
     defaultValue,
-    error,
-    label,
-    mask,
-    name,
-    placeholder,
-    required = false,
-    type,
-    ...props
-  }: PropsWithMask | PropsWithoutMask,
-  ref: React.ForwardedRef<HTMLInputElement>,
-) {
+    rules,
+  })
+
   const inputClassName = clsx(
     `
-    w-full 
-    bg-black
-    
-    border
-    border-black-lighter
-    
-    font-light
-    text-white text-sm
-    placeholder:italic
-    
-    rounded-lg 
-    p-1 md:p-2
-  `,
-    { 'border-red-500 focus:ring-red-500 ': error },
-    { 'hover:border-yellow focus:border-yellow': !error },
+      w-full rounded-lg 
+      p-1 md:p-2
+      bg-black 
+      
+      border border-black-lighter
+      
+      font-light text-white text-sm
+      placeholder:italic
+    `,
+    {
+      italic: !field.value,
+      'border-red-500': fieldState.error?.type === 'required',
+      'hover:border-yellow focus:border-yellow ': !fieldState.error,
+      'text-gray-400': !field.value,
+    },
   )
+
+  const required = !!rules?.required
 
   return (
     <div className={className}>
       {label && <Label label={label} name={name} required={required} />}
 
       {mask && (
-        <Controller
-          render={({ field }) => (
-            <InputMask
-              {...field}
-              mask={mask}
-              placeholder={placeholder}
-              className={inputClassName}
-            />
-          )}
-          name={name}
-          control={control}
-          defaultValue={defaultValue || ''}
+        <InputMask
+          mask={mask}
+          placeholder={placeholder}
+          className={inputClassName}
+          {...props}
+          {...field}
         />
       )}
 
       {!mask && (
         <input
-          ref={ref}
           id={name}
-          name={name}
           placeholder={placeholder}
           type={type}
           className={inputClassName}
+          required={required}
           {...props}
+          {...field}
         />
       )}
 
-      {error && <InputAlert error={error} />}
+      {fieldState.error && <InputAlert error={fieldState.error} />}
     </div>
   )
 }
-
-export const Input = forwardRef<
-  HTMLInputElement,
-  PropsWithMask | PropsWithoutMask
->(InputGenerate)

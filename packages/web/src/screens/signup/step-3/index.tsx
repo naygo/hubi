@@ -2,37 +2,30 @@ import { UseFormReturn } from 'react-hook-form'
 
 import { Dropdown } from '@/shared/components/form/dropdown'
 import { Input } from '@/shared/components/form/input'
-
-interface FormFields {
-  nickname: string
-  riotId: string
-  ingameRank: string
-}
+import { SignUpFormFields } from '@/shared/types/signup-forms'
 
 interface Props {
-  form: UseFormReturn<FormFields>
+  form: UseFormReturn<SignUpFormFields>
 }
 
 export function StepThree({ form }: Props) {
-  const {
-    control,
-    formState: { errors },
-    register,
-  } = form
+  const { control } = form
 
   return (
     <form className="flex flex-col gap-2">
       <Input
+        name="nickname"
         label="Nick:"
-        error={errors.nickname}
-        {...register('nickname', { required: true })}
+        control={control}
+        rules={{ required: true }}
       />
 
       <Input
+        name="riotId"
         label="Riot ID:"
         placeholder="Ex.: Jenniffer#csz"
-        error={errors.riotId}
-        {...register('riotId', { required: true })}
+        control={control}
+        rules={{ required: true }}
       />
 
       <Dropdown
