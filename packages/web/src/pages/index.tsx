@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import Head from 'next/head'
 import Image from 'next/image'
 import ReactLink from 'next/link'
@@ -19,6 +20,7 @@ export default function Home() {
       <Head>
         <title>HUBI</title>
       </Head>
+
       <section
         className="flex items-center justify-center"
         style={{
@@ -34,90 +36,84 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-black-dark py-20 px-10 flex justify-center">
-        <div className="container lg:flex lg:p-20 lg:items-center lg:justify-center">
-          <div className="w-full">
-            <Title text="Local de aprendizado" />
-            <div className="mt-10">
-              <Description>
-                Aprenda, evolua e melhore o seu{' '}
-                <span className="text-yellow font-medium">potencial</span>{' '}
-                dentro de uma <strong>comunidade</strong> dedicada e acolhedora.
-              </Description>
+      <Section>
+        <div className="w-full">
+          <Title text="Local de aprendizado" />
+          <div className="mt-10">
+            <Description>
+              Aprenda, evolua e melhore o seu{' '}
+              <span className="text-yellow font-medium">potencial</span> dentro
+              de uma <strong>comunidade</strong> dedicada e acolhedora.
+            </Description>
 
-              <Link
-                text="Veja o que dizem as jogadoras &gt;"
-                link="/playground"
-                className="font-medium text-xs md:text-sm lg:text-lg"
-              />
-            </div>
-          </div>
-
-          <div className="w-full mt-20 lg:m-0 flex justify-center items-center">
-            <Image
-              src={'https://picsum.photos/800/400?random=1'}
-              alt="Random Image"
-              width={800}
-              height={300}
+            <Link
+              text="Veja o que dizem as jogadoras &gt;"
+              link="/playground"
+              className="font-medium text-xs md:text-sm lg:text-lg"
             />
           </div>
         </div>
-      </section>
 
-      <section className="py-20 px-10 flex justify-center">
-        <div className="container lg:p-20 lg:flex lg:flex-row-reverse lg:items-center lg:justify-center">
-          <div className="w-full lg:ml-10">
-            <Image src={NounsLogo} alt="NOUNS Logo" width={500} />
-            <div className="mt-10">
-              <Description>
-                Temos parceria com uma das maiores organizações autônomas
-                descentralizadas{' '}
-                <span className="text-yellow font-medium">(DAO)</span>. Saiba
-                mais sobre a <strong>NOUNS</strong> e coloca seu óclin!
-              </Description>
+        <div className="w-full mt-20 lg:m-0 flex justify-center items-center">
+          <Image
+            src={'https://picsum.photos/800/400?random=1'}
+            alt="Random Image"
+            width={800}
+            height={300}
+          />
+        </div>
+      </Section>
 
-              <Link
-                text="Seja mais NOUNS &gt;"
-                link="/"
-                className="font-medium text-xs md:text-sm lg:text-lg"
-              />
-            </div>
-          </div>
+      <Section inverse>
+        <div className="w-full lg:ml-10">
+          <Image src={NounsLogo} alt="NOUNS Logo" width={500} />
+          <div className="mt-10">
+            <Description>
+              Temos parceria com uma das maiores organizações autônomas
+              descentralizadas{' '}
+              <span className="text-yellow font-medium">(DAO)</span>. Saiba mais
+              sobre a <strong>NOUNS</strong> e coloca seu óclin!
+            </Description>
 
-          <div className="w-full mt-20 lg:m-0 flex justify-center items-center">
-            <Image
-              src={'https://picsum.photos/800/400?random=2'}
-              alt="Random Image"
-              width={800}
-              height={300}
+            <Link
+              text="Seja mais NOUNS &gt;"
+              link="/"
+              className="font-medium text-xs md:text-sm lg:text-lg"
             />
           </div>
         </div>
-      </section>
 
-      <section className="bg-black-dark py-20 px-10 flex justify-center">
-        <div className="container lg:flex lg:p-20 lg:items-center lg:justify-center">
-          <div className="w-full">
-            <Title text="Tabela de Prêmios" />
-            <div className="mt-10">
-              <Description>
-                Nada melhor do que aprender e ainda{' '}
-                <strong className="font-bold">ganhar recompensas</strong> com o
-                seu esforço, certo?
-              </Description>
-              <Link
-                text="Confira toda a tabela de premiação &gt;"
-                link="/"
-                className="font-medium text-xs md:text-sm lg:text-lg"
-              />
-            </div>
-          </div>
+        <div className="w-full mt-20 lg:m-0 flex justify-center items-center">
+          <Image
+            src={'https://picsum.photos/800/400?random=2'}
+            alt="Random Image"
+            width={800}
+            height={300}
+          />
+        </div>
+      </Section>
 
-          <div className="w-full mt-20 lg:m-0 flex justify-center items-center">
-            <Image src={Prizes} width={400} alt="Prizes Image" />
+      <Section>
+        <div className="w-full">
+          <Title text="Tabela de Prêmios" />
+          <div className="mt-10">
+            <Description>
+              Nada melhor do que aprender e ainda{' '}
+              <strong className="font-bold">ganhar recompensas</strong> com o
+              seu esforço, certo?
+            </Description>
+            <Link
+              text="Confira toda a tabela de premiação &gt;"
+              link="/"
+              className="font-medium text-xs md:text-sm lg:text-lg"
+            />
           </div>
         </div>
-      </section>
+
+        <div className="w-full mt-20 lg:m-0 flex justify-center items-center">
+          <Image src={Prizes} width={400} alt="Prizes Image" />
+        </div>
+      </Section>
 
       <section className="py-20 px-10 flex justify-center">
         <div className="container">
@@ -140,9 +136,36 @@ export default function Home() {
   )
 }
 
+function Section({
+  children,
+  inverse,
+}: {
+  children: React.ReactNode
+  inverse?: boolean
+}) {
+  return (
+    <section
+      className={clsx(
+        'py-20 px-10 flex justify-center',
+        inverse ? 'bg-black' : 'bg-black-dark',
+      )}
+    >
+      <div
+        className={clsx(
+          'container lg:flex lg:p-20 lg:items-center lg:justify-center',
+          { 'flex-row-reverse': inverse },
+        )}
+      >
+        {children}
+      </div>
+    </section>
+  )
+}
+
 function Title({ text }: { text: string }) {
   return <h1 className="text-4xl font-bold">{text}</h1>
 }
+
 function Description({ children }: { children: React.ReactNode }) {
   return (
     <p className="text-lg mb-5 text-gray-light md:text-1xl lg:text-2xl">
