@@ -31,14 +31,14 @@ export function Dropdown({
   })
 
   return (
-    <>
+    <div>
       {label && <label htmlFor={name}>{label}</label>}
 
       <Listbox as="div" {...field} className="relative">
         <Listbox.Button
           className={clsx(
             `
-              flex items-center justify-between
+              flex items-center
               w-full 
               
               bg-black-light
@@ -53,6 +53,8 @@ export function Dropdown({
               border-black-lighter 
             `,
             {
+              'justify-between': !!placeholder,
+              'justify-end': !placeholder,
               italic: !field.value,
               'border-red-500': fieldState.error?.type === 'required',
               'hover:border-yellow focus:border-yellow ': !fieldState.error,
@@ -72,7 +74,7 @@ export function Dropdown({
           </div>
         </Listbox.Button>
 
-        <Listbox.Options className="bg-black-lighter rounded-lg py-2 mt-1 absolute w-full">
+        <Listbox.Options className="bg-black-lighter rounded-lg py-2 absolute w-full z-10">
           {options.map((option) => (
             <Listbox.Option
               key={option.label}
@@ -86,6 +88,6 @@ export function Dropdown({
       </Listbox>
 
       {fieldState.error && <InputAlert error={fieldState.error} />}
-    </>
+    </div>
   )
 }

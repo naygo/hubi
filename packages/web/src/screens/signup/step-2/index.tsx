@@ -1,11 +1,7 @@
-import { useForm } from 'react-hook-form'
+import { UseFormReturn } from 'react-hook-form'
 
 import { Dropdown } from '@/shared/components/form/dropdown'
 import { Input } from '@/shared/components/form/input'
-
-interface Props {
-  nonBinaryForm: boolean
-}
 
 interface FormFields {
   twitter: string
@@ -18,12 +14,17 @@ interface FormFields {
   pronouns: string
 }
 
-export function StepTwo({ nonBinaryForm }: Props) {
+interface Props {
+  nonBinaryForm: boolean
+  form: UseFormReturn<FormFields>
+}
+
+export function StepTwo({ form, nonBinaryForm }: Props) {
   const {
     control,
     formState: { errors },
     register,
-  } = useForm<FormFields>()
+  } = form
 
   return (
     <form className="flex flex-col gap-2">
@@ -32,18 +33,14 @@ export function StepTwo({ nonBinaryForm }: Props) {
           className="w-full"
           label="Twitter"
           error={errors.twitter}
-          {...register('twitter', {
-            required: true,
-          })}
+          {...register('twitter', { required: true })}
         />
 
         <Input
           className="w-full"
           label="Instagram"
           error={errors.instagram}
-          {...register('instagram', {
-            required: true,
-          })}
+          {...register('instagram', { required: true })}
         />
       </div>
 
@@ -53,9 +50,7 @@ export function StepTwo({ nonBinaryForm }: Props) {
             label="GamersClub"
             error={errors.gamersclub}
             className="w-full"
-            {...register('gamersclub', {
-              required: true,
-            })}
+            {...register('gamersclub', { required: true })}
           />
         )}
 
@@ -65,9 +60,7 @@ export function StepTwo({ nonBinaryForm }: Props) {
           placeholder="Ex.: Jenniffer#0102"
           className="w-full"
           error={errors.discord}
-          {...register('discord', {
-            required: true,
-          })}
+          {...register('discord', { required: true })}
         />
       </div>
 
@@ -88,18 +81,14 @@ export function StepTwo({ nonBinaryForm }: Props) {
             value: 'socialMedia',
           },
         ]}
-        rules={{
-          required: true,
-        }}
+        rules={{ required: true }}
       />
 
       {nonBinaryForm && (
         <Input
           label="Tempo na comunidade LGBTQIAP+"
           error={errors.timeInCommunity}
-          {...register('timeInCommunity', {
-            required: true,
-          })}
+          {...register('timeInCommunity', { required: true })}
         />
       )}
 
@@ -122,9 +111,7 @@ export function StepTwo({ nonBinaryForm }: Props) {
             value: 'any',
           },
         ]}
-        rules={{
-          required: true,
-        }}
+        rules={{ required: true }}
       />
     </form>
   )
