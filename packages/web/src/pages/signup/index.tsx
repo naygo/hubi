@@ -4,7 +4,10 @@ import { useEffect } from 'react'
 
 import { AiFillCaretRight } from 'react-icons/ai'
 
+import colors from '@/styles/colors'
+
 import Logo from '@public/img/logo.svg'
+import styles from '@/styles/classes'
 
 export default function SignUp() {
   return (
@@ -14,18 +17,17 @@ export default function SignUp() {
           <p>Etapa 1</p>
           <div className="bg-yellow h-1 mt-1 rounded"></div>
         </Link>
-        <AiFillCaretRight size={10} fill="gray" />
+        <AiFillCaretRight size={10} fill={colors.grayDarker} />
         <Link href={''}>
           <p>Etapa 2</p>
           <div className="bg-gray-darker h-1 mt-1 rounded"></div>
         </Link>
-        <AiFillCaretRight size={10} fill="gray" />
+        <AiFillCaretRight size={10} fill={colors.grayDarker} />
         <Link href={''}>
           <p>Etapa 3</p>
           <div className="bg-gray-darker h-1 mt-1 rounded"></div>
         </Link>
       </div>
-
       <section className="w-full bg-black-lighter rounded-3xl p-8">
         <div className="flex gap-2">
           <h1 className="font-bold text-2xl align-bottom">Crie sua conta na</h1>
@@ -38,6 +40,11 @@ export default function SignUp() {
 
         <div>
           <p>campos etapas</p>
+        </div>
+
+        <div className="text-center text-sm mt-5">
+          Já possui uma conta?{' '}
+          <span className={styles.link}>Entre agora &gt;</span>
         </div>
       </section>
       <section className="hidden md:block w-full">logo</section>
