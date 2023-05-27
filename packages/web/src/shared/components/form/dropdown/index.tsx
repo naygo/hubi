@@ -19,7 +19,7 @@ type Props = {
 export function Dropdown({
   name,
   label,
-  placeholder,
+  placeholder = 'Selecione',
   control,
   rules,
   options,
@@ -42,23 +42,16 @@ export function Dropdown({
         <Listbox.Button
           className={clsx(
             `
-              flex items-center
-              w-full 
-              
+              flex items-center justify-between
+
+              w-full p-2 rounded-lg
               bg-black-light
               
-              font-light
-              text-start 
-              
-              rounded-lg 
-              p-2
-              
-              border
-              border-black-lighter 
+              font-light text-start 
+
+              border border-black-lighter 
             `,
             {
-              'justify-between': field.value,
-              'justify-end': !placeholder,
               italic: !field.value,
               'border-red-500': fieldState.error?.type === 'required',
               'hover:border-yellow focus:border-yellow ': !fieldState.error,
