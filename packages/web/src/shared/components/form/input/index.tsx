@@ -6,6 +6,7 @@ import InputMask from 'react-input-mask'
 import { NativeProps } from '@/shared/types/native-props'
 
 import { InputAlert } from '../inputAlert'
+import { Label } from '../label'
 
 type InputProps = NativeProps & {
   name: string
@@ -34,6 +35,7 @@ function InputGenerate(
     mask,
     name,
     placeholder,
+    required = false,
     type,
     ...props
   }: PropsWithMask | PropsWithoutMask,
@@ -60,11 +62,7 @@ function InputGenerate(
 
   return (
     <div className={className}>
-      {label && (
-        <label className="text-gray" htmlFor={name}>
-          {label}
-        </label>
-      )}
+      {label && <Label label={label} name={name} required={required} />}
 
       {mask && (
         <Controller
