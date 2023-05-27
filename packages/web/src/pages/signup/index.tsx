@@ -9,6 +9,7 @@ import { AiFillCaretRight } from 'react-icons/ai'
 import { StepOne } from '@/screens/signup/step-1'
 import { StepTwo } from '@/screens/signup/step-2'
 import { StepThree } from '@/screens/signup/step-3'
+import { Button } from '@/shared/components/ui/button'
 import { Link } from '@/shared/components/ui/link'
 import SocialMediaLinks from '@/shared/components/ui/social-media-links'
 import styles from '@/styles/classes'
@@ -21,7 +22,7 @@ export default function SignUp() {
 
   const [currentStep, setCurrentStep] = useState(1)
 
-  const handleNextStep = (step: number) => {
+  const handleStep = (step: number) => {
     setCurrentStep(step)
   }
   return (
@@ -51,7 +52,7 @@ export default function SignUp() {
         </section>
 
         <section className="md:w-full lg:w-10/12">
-          <Steps currentStep={currentStep} handleNextStep={handleNextStep} />
+          <Steps currentStep={currentStep} handleNextStep={handleStep} />
 
           <div className="w-full bg-black-light rounded-3xl p-8">
             <div className="flex gap-1 md:gap-1.5">
@@ -88,7 +89,24 @@ export default function SignUp() {
               privadas.
             </div>
 
-            <div className="text-center text-xs md:text-sm mt-5">
+            <div className="flex gap-5">
+              {currentStep !== 1 && (
+                <Button
+                  color="secondary"
+                  label="Voltar"
+                  className="w-full my-5"
+                  onClick={() => handleStep(currentStep - 1)}
+                />
+              )}
+              <Button
+                color="primary"
+                label="Continuar"
+                className="w-full my-5"
+                onClick={() => handleStep(currentStep + 1)}
+              />
+            </div>
+
+            <div className="text-center text-xs md:text-sm">
               Já possui uma conta?{' '}
               <Link text="Entre aqui &gt;" link="" className="font-medium" />
             </div>
