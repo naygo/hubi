@@ -2,6 +2,7 @@ import clsx from 'clsx'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
 import { IoInvertMode } from 'react-icons/io5'
@@ -30,8 +31,8 @@ const arrayRoutes = [
 export function Navbar() {
   const [isNavbarOpened, setIsNavbarOpened] = useState(false)
   const windowSize = useWindowSize()
-
   const pathname = usePathname()
+  const router = useRouter()
 
   function toggleNavbar() {
     setIsNavbarOpened(!isNavbarOpened)
@@ -80,7 +81,11 @@ export function Navbar() {
             Saiba mais
           </a>
 
-          <Button color="primary" label="Jogar" />
+          <Button
+            color="primary"
+            label="Jogar"
+            onClick={() => router.push('/signup')}
+          />
         </div>
 
         {/* burger menu  */}
