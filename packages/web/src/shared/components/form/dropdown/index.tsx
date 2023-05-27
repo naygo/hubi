@@ -5,6 +5,7 @@ import { Control, RegisterOptions, useController } from 'react-hook-form'
 import { IoCaretDownSharp, IoCloseOutline } from 'react-icons/io5'
 
 import { InputAlert } from '../inputAlert'
+import { Label } from '../label'
 
 export type DropdownOptions = {
   label: string
@@ -37,11 +38,7 @@ export function Dropdown({
 
   return (
     <div>
-      {label && (
-        <label className="text-gray text-sm md:text-base" htmlFor={name}>
-          {label}
-        </label>
-      )}
+      {label && <Label label={label} name={name} />}
 
       <Listbox as="div" {...field} className="relative">
         <Listbox.Button
