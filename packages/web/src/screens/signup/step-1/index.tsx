@@ -19,13 +19,23 @@ export function StepOne({ form, hidden }: Props) {
         hidden: hidden,
       })}
     >
-      <Input
-        name="fullName"
-        label="Nome completo:"
-        control={control}
-        error={form.formState.errors.fullName}
-        rules={{ required: true }}
-      />
+      <div className="sm:flex gap-4 align-middle">
+        <Input
+          name="firstName"
+          label="Nome:"
+          control={control}
+          error={form.formState.errors.firstName}
+          rules={{ required: true }}
+        />
+
+        <Input
+          name="lastName"
+          label="Sobrenome:"
+          control={control}
+          error={form.formState.errors.firstName}
+          rules={{ required: true }}
+        />
+      </div>
 
       <Input
         name="email"
