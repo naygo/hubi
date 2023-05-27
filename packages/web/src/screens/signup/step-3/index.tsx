@@ -14,25 +14,23 @@ interface Props {
 }
 
 export function StepThree({ form }: Props) {
-  const {
-    control,
-    formState: { errors },
-    register,
-  } = form
+  const { control } = form
 
   return (
     <form className="flex flex-col gap-2">
       <Input
+        name="nickname"
         label="Nick:"
-        error={errors.nickname}
-        {...register('nickname', { required: true })}
+        control={control}
+        rules={{ required: true }}
       />
 
       <Input
+        name="riotId"
         label="Riot ID:"
         placeholder="Ex.: Jenniffer#csz"
-        error={errors.riotId}
-        {...register('riotId', { required: true })}
+        control={control}
+        rules={{ required: true }}
       />
 
       <Dropdown

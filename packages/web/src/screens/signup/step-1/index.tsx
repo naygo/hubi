@@ -17,49 +17,56 @@ interface Props {
 }
 
 export function StepOne({ form }: Props) {
-  const {
-    control,
-    formState: { errors },
-    register,
-  } = form
+  const { control, handleSubmit } = form
 
   return (
-    <form className="flex flex-col gap-2">
+    <form
+      className="flex flex-col gap-2"
+      onSubmit={handleSubmit((data) => {
+        console.log(data)
+      })}
+      noValidate
+    >
       <Input
+        name="fullName"
         label="Nome completo:"
-        error={errors.fullName}
-        {...register('fullName', { required: true })}
+        control={control}
+        error={form.formState.errors.fullName}
+        rules={{ required: true }}
       />
 
       <Input
+        name="email"
         label="E-mail:"
         type="email"
-        error={errors.email}
-        {...register('email', { required: true })}
+        control={control}
+        rules={{ required: true }}
       />
 
       <Input
+        name="password"
         label="Senha:"
         type="password"
-        error={errors.password}
-        {...register('password', { required: true })}
+        control={control}
+        rules={{ required: true }}
       />
 
       <Input
+        name="passwordConfirmation"
         label="Confirme sua senha:"
         type="password"
-        error={errors.passwordConfirmation}
-        {...register('passwordConfirmation', { required: true })}
+        control={control}
+        rules={{ required: true }}
       />
 
       {/* TODO: Date mask */}
       <Input
+        name="birthDate"
         label="Data de nascimento:"
         placeholder="Ex.: 04/05/2001"
         mask="99/99/9999"
         control={control}
-        error={errors.birthDate}
-        {...register('birthDate', { required: true })}
+        rules={{ required: true }}
       />
 
       <Dropdown
@@ -94,6 +101,8 @@ export function StepOne({ form }: Props) {
         ]}
         rules={{ required: true }}
       />
+
+      <button>enviar</button>
     </form>
   )
 }

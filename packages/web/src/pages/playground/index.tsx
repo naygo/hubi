@@ -18,13 +18,12 @@ const options = [
 ]
 
 export default function Playground() {
-  const { control, handleSubmit, register, watch, formState, reset } =
-    useForm<FormFields>({
-      defaultValues: {
-        inputText: '',
-        dropdown: '',
-      },
-    })
+  const { control, handleSubmit, watch, reset } = useForm<FormFields>({
+    defaultValues: {
+      inputText: '',
+      dropdown: '',
+    },
+  })
 
   function handleLogin(data: FormFields) {
     console.log(data)
@@ -50,13 +49,15 @@ export default function Playground() {
           <form
             className="w-full flex flex-col gap-y-5"
             onSubmit={handleSubmit((data) => handleLogin(data))}
+            noValidate
           >
             <div>
               <Input
-                {...register('inputText', { required: true })}
-                label="InputText"
+                name="inputText"
+                label="InputText:"
                 placeholder="Placeholder input de texto"
-                error={formState.errors.inputText}
+                control={control}
+                rules={{ required: true }}
               />
             </div>
 
