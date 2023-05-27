@@ -160,8 +160,9 @@ export default function Leaderboard({
                 />
               </div>
               <Input
+                name="season"
                 placeholder="Busque uma jogadora..."
-                {...register('player')}
+                control={control}
               />
               {/* <input
                 className={`${styles.input} my-5 sm:m-10 w-10/12 sm:max-w-lg focus:outline-none`}

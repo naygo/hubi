@@ -25,7 +25,7 @@ export function Footer() {
         {/* logo */}
         <Image
           src={Logo}
-          alt="Picture of the author"
+          alt="HUBI"
           height={400}
           width={400}
           className={styles.logoBox}
