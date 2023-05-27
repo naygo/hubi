@@ -1,4 +1,4 @@
-import { useForm } from 'react-hook-form'
+import { UseFormReturn } from 'react-hook-form'
 
 import { Dropdown } from '@/shared/components/form/dropdown'
 import { Input } from '@/shared/components/form/input'
@@ -9,12 +9,16 @@ interface FormFields {
   ingameRank: string
 }
 
-export function StepThree() {
+interface Props {
+  form: UseFormReturn<FormFields>
+}
+
+export function StepThree({ form }: Props) {
   const {
     control,
     formState: { errors },
     register,
-  } = useForm<FormFields>()
+  } = form
 
   return (
     <form className="flex flex-col gap-2">
