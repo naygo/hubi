@@ -13,7 +13,7 @@ export default function SignUp() {
     <main className="h-screen flex justify-center items-center">
       <div className="container flex flex-col p-5 md:flex-row">
         <section className="w-full">
-          <div className="flex items-center gap-5 ml-5 mb-5">
+          <div className="flex items-center justify-center gap-5 md:ml-5 md:justify-start mb-5">
             <ReactLink href={''}>
               <p className="text-sm md:text-base">Etapa 1</p>
               <div className="bg-yellow h-1 mt-1 rounded"></div>
