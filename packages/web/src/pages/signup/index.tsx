@@ -20,12 +20,18 @@ import Logo from '@public/img/logo.svg'
 
 export default function SignUp() {
   const form = useForm<SignUpFormFields>()
+  const { handleSubmit } = form
 
   const [currentStep, setCurrentStep] = useState(1)
 
   const handleStep = (step: number) => {
     setCurrentStep(step)
   }
+
+  const handleSendForm = (data: SignUpFormFields) => {
+    console.log(data)
+  }
+
   return (
     <main className="flex justify-center items-center">
       <Head>
@@ -67,43 +73,57 @@ export default function SignUp() {
               demorar para ser analisado.
             </p>
 
-            <div>
-              {currentStep === 1 && <StepOne form={form} />}
-              {currentStep === 2 && <StepTwo form={form} />}
-              {currentStep === 3 && <StepThree form={form} />}
-            </div>
+            <form onSubmit={handleSubmit(handleSendForm)} noValidate>
+              <div>
+                <StepOne form={form} hidden={currentStep !== 1} />
+                <StepTwo form={form} hidden={currentStep !== 2} />
+                <StepThree form={form} hidden={currentStep !== 3} />
+              </div>
 
-            <div className="font-light text-gray text-xs italic mt-2">
-              Campos com <span className="text-yellow">*</span> são
-              obrigatórios.
-            </div>
+              <div className="font-light text-gray text-xs italic mt-2">
+                Campos com <span className="text-yellow">*</span> são
+                obrigatórios.
+              </div>
 
-            <div
-              className={clsx('text-gray text-xs italic mt-2', {
-                hidden: currentStep !== 2,
-              })}
-            >
-              As redes sociais <span className="text-yellow">Twitter</span> e{' '}
-              <span className="text-yellow">Instagram</span> não podem estar
-              privadas.
-            </div>
+              <div
+                className={clsx('text-gray text-xs italic mt-2', {
+                  hidden: currentStep !== 2,
+                })}
+              >
+                As redes sociais <span className="text-yellow">Twitter</span> e{' '}
+                <span className="text-yellow">Instagram</span> não podem estar
+                privadas.
+              </div>
 
-            <div className="flex gap-5">
-              {currentStep !== 1 && (
-                <Button
-                  color="secondary"
-                  label="Voltar"
-                  className="w-full my-5"
-                  onClick={() => handleStep(currentStep - 1)}
-                />
-              )}
-              <Button
-                color="primary"
-                label="Continuar"
-                className="w-full my-5"
-                onClick={() => handleStep(currentStep + 1)}
-              />
-            </div>
+              <div className="flex gap-5">
+                {currentStep !== 1 && (
+                  <Button
+                    color="secondary"
+                    label="Voltar"
+                    className="w-full my-5"
+                    type="button"
+                    onClick={() => handleStep(currentStep - 1)}
+                  />
+                )}
+                {currentStep !== 3 && (
+                  <Button
+                    color="primary"
+                    label="Continuar"
+                    className="w-full my-5"
+                    type="button"
+                    onClick={() => handleStep(currentStep + 1)}
+                  />
+                )}
+                {currentStep == 3 && (
+                  <Button
+                    color="primary"
+                    label="Salvar"
+                    className="w-full my-5"
+                    type="submit"
+                  />
+                )}
+              </div>
+            </form>
 
             <div className="text-center text-xs md:text-sm">
               Já possui uma conta?{' '}

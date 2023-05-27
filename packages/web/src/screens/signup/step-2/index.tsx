@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import { UseFormReturn } from 'react-hook-form'
 
 import { Dropdown } from '@/shared/components/form/dropdown'
@@ -6,15 +7,20 @@ import { SignUpFormFields } from '@/shared/types/signup-forms'
 
 interface Props {
   form: UseFormReturn<SignUpFormFields>
+  hidden: boolean
 }
 
-export function StepTwo({ form }: Props) {
+export function StepTwo({ form, hidden }: Props) {
   const { control, getValues } = form
 
   const nonBinaryForm = getValues('gender') === 'nao-binario'
 
   return (
-    <form className="flex flex-col gap-2">
+    <div
+      className={clsx('flex flex-col gap-2', {
+        hidden: hidden,
+      })}
+    >
       <div className="sm:flex gap-4 align-middle">
         <Input
           className="w-full"
@@ -104,6 +110,6 @@ export function StepTwo({ form }: Props) {
         ]}
         rules={{ required: true }}
       />
-    </form>
+    </div>
   )
 }

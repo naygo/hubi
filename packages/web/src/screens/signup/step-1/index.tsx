@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import { UseFormReturn } from 'react-hook-form'
 
 import { Dropdown } from '@/shared/components/form/dropdown'
@@ -6,18 +7,17 @@ import { SignUpFormFields } from '@/shared/types/signup-forms'
 
 interface Props {
   form: UseFormReturn<SignUpFormFields>
+  hidden: boolean
 }
 
-export function StepOne({ form }: Props) {
-  const { control, handleSubmit } = form
+export function StepOne({ form, hidden }: Props) {
+  const { control } = form
 
   return (
-    <form
-      className="flex flex-col gap-2"
-      onSubmit={handleSubmit((data) => {
-        console.log(data)
+    <div
+      className={clsx('flex flex-col gap-2', {
+        hidden: hidden,
       })}
-      noValidate
     >
       <Input
         name="fullName"
@@ -93,6 +93,6 @@ export function StepOne({ form }: Props) {
         ]}
         rules={{ required: true }}
       />
-    </form>
+    </div>
   )
 }
