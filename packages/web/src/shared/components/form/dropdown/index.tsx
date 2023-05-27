@@ -32,7 +32,11 @@ export function Dropdown({
 
   return (
     <div>
-      {label && <label htmlFor={name}>{label}</label>}
+      {label && (
+        <label className="text-gray" htmlFor={name}>
+          {label}
+        </label>
+      )}
 
       <Listbox as="div" {...field} className="relative">
         <Listbox.Button

@@ -19,7 +19,11 @@ function InputGenerate(
 ) {
   return (
     <div className={className}>
-      {label && <label htmlFor={name}>{label}</label>}
+      {label && (
+        <label className="text-gray" htmlFor={name}>
+          {label}
+        </label>
+      )}
 
       <input
         ref={ref}
