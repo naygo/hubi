@@ -7,19 +7,23 @@ import { NativeProps } from '@/shared/types/native-props'
 import { InputAlert } from '../inputAlert'
 
 type ExtraProps = {
+  label?: string
   error?: FieldError
 }
+
 type Props = NativeProps & ExtraProps
 
 function InputGenerate(
-  { id, name, placeholder, type, error, ...props }: Props,
+  { className, name, label, placeholder, type, error, ...props }: Props,
   ref: React.ForwardedRef<HTMLInputElement>,
 ) {
   return (
-    <>
+    <div className={className}>
+      {label && <label htmlFor={name}>{label}</label>}
+
       <input
         ref={ref}
-        id={id}
+        id={name}
         name={name}
         placeholder={placeholder}
         type={type}
@@ -44,7 +48,7 @@ function InputGenerate(
         {...props}
       />
       {error && <InputAlert error={error} />}
-    </>
+    </div>
   )
 }
 

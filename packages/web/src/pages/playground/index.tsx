@@ -52,18 +52,18 @@ export default function Playground() {
             onSubmit={handleSubmit((data) => handleLogin(data))}
           >
             <div>
-              <label htmlFor="inputText">InputText:</label>
               <Input
                 {...register('inputText', { required: true })}
+                label="InputText"
                 placeholder="Placeholder input de texto"
                 error={formState.errors.inputText}
               />
             </div>
 
             <div>
-              <label htmlFor="dropdown">Dropdown:</label>
               <Dropdown
                 name="dropdown"
+                label="Dropdown"
                 placeholder="Selecione"
                 control={control}
                 options={options}

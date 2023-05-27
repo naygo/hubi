@@ -4,7 +4,8 @@ import ReactLink from 'next/link'
 
 import { AiFillCaretRight } from 'react-icons/ai'
 
-import Link from '@/shared/components/link'
+import { StepOne } from '@/screens/signup/step-1'
+import { Link } from '@/shared/components/ui/link'
 import colors from '@/styles/colors'
 
 import Logo from '@public/img/logo.svg'
@@ -47,7 +48,7 @@ export default function SignUp() {
             </p>
 
             <div>
-              <p>campos etapas</p>
+              <StepOne />
             </div>
 
             <div className="text-gray text-xs italic">

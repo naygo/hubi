@@ -14,7 +14,7 @@ import {
 } from 'react-icons/fa'
 import { TiArrowSortedDown } from 'react-icons/ti'
 
-import { Link } from '@/shared/components/link'
+import { Link } from '@/shared/components/ui/link'
 import colors from '@/styles/colors'
 
 import NounsLogo from '@public/img/initial-page/nouns-logo.svg'
