@@ -1,16 +1,27 @@
+import clsx from 'clsx'
 import Head from 'next/head'
 import Image from 'next/image'
-import ReactLink from 'next/link'
+import { useState } from 'react'
+import { useForm } from 'react-hook-form'
 
 import { AiFillCaretRight } from 'react-icons/ai'
 
 import { StepOne } from '@/screens/signup/step-1'
+import { StepTwo } from '@/screens/signup/step-2'
+import { StepThree } from '@/screens/signup/step-3'
 import { Link } from '@/shared/components/ui/link'
 import colors from '@/styles/colors'
 
 import Logo from '@public/img/logo.svg'
 
 export default function SignUp() {
+  const form = useForm<any>()
+
+  const [currentStep, setCurrentStep] = useState(1)
+
+  const handleNextStep = (step: number) => {
+    setCurrentStep(step)
+  }
   return (
     <main className="h-screen flex justify-center items-center">
       <Head>
@@ -18,22 +29,7 @@ export default function SignUp() {
       </Head>
       <div className="container flex flex-col p-5 md:flex-row">
         <section className="max-w-7xl">
-          <div className="flex items-center justify-center gap-5 md:ml-5 md:justify-start mb-5">
-            <ReactLink href={''}>
-              <p className="text-sm md:text-base">Etapa 1</p>
-              <div className="bg-yellow h-1 mt-1 rounded"></div>
-            </ReactLink>
-            <AiFillCaretRight size={10} fill={colors.grayDarker} />
-            <ReactLink href={''}>
-              <p className="text-sm md:text-base">Etapa 2</p>
-              <div className="bg-gray-darker h-1 mt-1 rounded"></div>
-            </ReactLink>
-            <AiFillCaretRight size={10} fill={colors.grayDarker} />
-            <ReactLink href={''}>
-              <p className="text-sm md:text-base">Etapa 3</p>
-              <div className="bg-gray-darker h-1 mt-1 rounded"></div>
-            </ReactLink>
-          </div>
+          <Steps currentStep={currentStep} handleNextStep={handleNextStep} />
 
           <div className="w-full bg-black-light rounded-3xl p-8">
             <div className="flex gap-1 md:gap-1.5">
@@ -48,7 +44,11 @@ export default function SignUp() {
             </p>
 
             <div>
-              <StepOne />
+              {currentStep === 1 && <StepOne form={form} />}
+              {currentStep === 2 && (
+                <StepTwo form={form} nonBinaryForm={false} />
+              )}
+              {currentStep === 3 && <StepThree form={form} />}
             </div>
 
             <div className="text-gray text-xs italic mt-2">
@@ -72,5 +72,38 @@ export default function SignUp() {
         </section>
       </div>
     </main>
+  )
+}
+
+interface StepsProps {
+  currentStep: number
+  handleNextStep: (step: number) => void
+}
+
+const steps = ['Etapa 1', 'Etapa 2', 'Etapa 3']
+
+function Steps({ currentStep, handleNextStep }: StepsProps) {
+  return (
+    <div className="flex items-center justify-center gap-5 md:ml-5 md:justify-start mb-5">
+      {steps.map((step, index) => (
+        <>
+          <div
+            key={index}
+            className="cursor-pointer"
+            onClick={() => handleNextStep(index + 1)}
+          >
+            <p className="text-sm md:text-base">{step}</p>
+            <div
+              className={clsx('bg-gray-darker h-1 mt-1 rounded', {
+                'bg-yellow': currentStep === index + 1,
+              })}
+            ></div>
+          </div>
+          {index !== steps.length - 1 && (
+            <AiFillCaretRight size={10} fill={colors.grayDarker} />
+          )}
+        </>
+      ))}
+    </div>
   )
 }
