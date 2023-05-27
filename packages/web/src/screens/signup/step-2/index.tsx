@@ -27,7 +27,7 @@ export function StepTwo({ nonBinaryForm }: Props) {
 
   return (
     <form className="flex flex-col gap-2">
-      <div className="flex gap-4 align-middle">
+      <div className="sm:flex gap-4 align-middle">
         <Input
           className="w-full"
           label="Twitter"
@@ -47,7 +47,7 @@ export function StepTwo({ nonBinaryForm }: Props) {
         />
       </div>
 
-      <div className="flex gap-4 align-middle">
+      <div className="sm:flex gap-4 align-middle">
         {nonBinaryForm && (
           <Input
             label="GamersClub"
