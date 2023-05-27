@@ -30,7 +30,7 @@ export default function SignUp() {
             </ReactLink>
           </div>
 
-          <div className="w-full bg-black-lighter rounded-3xl p-8">
+          <div className="w-full bg-black-light rounded-3xl p-8">
             <div className="flex gap-1 md:gap-1.5">
               <h1 className="font-bold text-lg sm:text-2xl lg:text-3xl align-bottom">
                 Crie sua conta na
