@@ -9,8 +9,8 @@ import { InputAlert } from '../inputAlert'
 type Props = {
   name: string
   options: { label: string; value: unknown }[]
-  label: string
-  placeholder: string
+  label?: string
+  placeholder?: string
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   control: Control<any>
   rules?: RegisterOptions
@@ -32,7 +32,7 @@ export function Dropdown({
 
   return (
     <>
-      <label htmlFor={name}>{label}</label>
+      {label && <label htmlFor={name}>{label}</label>}
 
       <Listbox as="div" {...field} className="relative">
         <Listbox.Button
