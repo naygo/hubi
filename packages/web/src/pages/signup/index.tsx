@@ -30,7 +30,7 @@ export default function SignUp() {
         <title>Cadastro | HUBI</title>
       </Head>
       <div className="container flex flex-col p-5 lg:flex-row">
-        <div className="flex flex-col items-center lg:hidden">
+        <section className="flex flex-col items-center lg:hidden">
           <Image
             src={Logo}
             alt="Picture of the author"
@@ -41,7 +41,7 @@ export default function SignUp() {
             Somos uma plataforma e comunidade de players do cenário inclusivo de
             VALORANT.
           </div>
-        </div>
+        </section>
 
         <section className="md:w-full lg:w-10/12">
           <Steps currentStep={currentStep} handleNextStep={handleNextStep} />
