@@ -110,15 +110,13 @@ interface StepsProps {
   handleNextStep: (step: number) => void
 }
 
-const steps = ['Etapa 1', 'Etapa 2', 'Etapa 3']
-
 function Steps({ currentStep, handleNextStep }: StepsProps) {
+  const steps = ['Etapa 1', 'Etapa 2', 'Etapa 3']
   return (
-    <div className="flex items-center justify-center gap-5 md:ml-5 md:justify-start mb-5">
+    <div className="flex gap-5 justify-center mb-4 lg:justify-start lg:ml-8">
       {steps.map((step, index) => (
-        <>
+        <div key={step} className="flex gap-5">
           <div
-            key={index}
             className="cursor-pointer"
             onClick={() => handleNextStep(index + 1)}
           >
@@ -132,7 +130,7 @@ function Steps({ currentStep, handleNextStep }: StepsProps) {
           {index !== steps.length - 1 && (
             <AiFillCaretRight size={10} fill={colors.grayDarker} />
           )}
-        </>
+        </div>
       ))}
     </div>
   )
