@@ -35,6 +35,7 @@ function InputGenerate(
     mask,
     name,
     placeholder,
+    required = false,
     type,
     ...props
   }: PropsWithMask | PropsWithoutMask,
@@ -61,7 +62,7 @@ function InputGenerate(
 
   return (
     <div className={className}>
-      {label && <Label label={label} name={name} />}
+      {label && <Label label={label} name={name} required={required} />}
 
       {mask && (
         <Controller

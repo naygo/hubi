@@ -38,7 +38,9 @@ export function Dropdown({
 
   return (
     <div>
-      {label && <Label label={label} name={name} />}
+      {label && (
+        <Label label={label} name={name} required={!!rules?.required} />
+      )}
 
       <Listbox as="div" {...field} className="relative">
         <Listbox.Button
