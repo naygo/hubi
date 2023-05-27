@@ -95,7 +95,6 @@ export function StepTwo({ form, nonBinaryForm }: Props) {
       <Dropdown
         name="pronouns"
         label="Pronomes:"
-        placeholder="Selecione os seus pronomes"
         control={control}
         options={[
           {
