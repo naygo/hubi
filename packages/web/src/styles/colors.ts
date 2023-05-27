@@ -1,1 +1,6 @@
-export const yellowDefault = '#e09600'
+const colors = {
+  yellowDefault: '#e09600',
+  grayDarker: '',
+}
+
+export default colors
