@@ -40,7 +40,7 @@ export default function SignUp() {
             </div>
             <p className="text-gray text-xs lg:text-sm mt-2 mb-10 text-justify">
               O seu cadastro irá passar por um processo de verificação e pode
-              demorar alguns instantes para ser analisado.
+              demorar para ser analisado.
             </p>
 
             <div>
