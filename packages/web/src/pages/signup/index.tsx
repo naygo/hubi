@@ -37,7 +37,7 @@ export default function SignUp() {
             width={200}
             className={`${styles.logoBox} w-72`}
           />
-          <div className="font-light text-xs md:text-sm text-center mt-2 md:w-96">
+          <div className="text-xs md:text-sm text-center mt-2 md:w-96">
             Somos uma plataforma e comunidade de players do cenário inclusivo de
             VALORANT.
           </div>
@@ -103,7 +103,7 @@ export default function SignUp() {
                 alt="HUBI"
                 className={`${styles.logoBox} w-72 lg:w-80`}
               />
-              <div className="lg:w-96 lg:mt-2 font-light">
+              <div className="lg:w-96 lg:mt-2">
                 Somos uma plataforma e comunidade de players do cenário
                 inclusivo de VALORANT.
               </div>
