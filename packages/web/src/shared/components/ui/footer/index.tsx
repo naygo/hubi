@@ -1,12 +1,10 @@
 import Image from 'next/image'
-import ReactLink from 'next/link'
 
-import { FaDiscord, FaInstagram, FaTiktok, FaTwitter } from 'react-icons/fa'
+import styles from '@/styles/classes'
+
+import SocialMediaLinks from '../social-media-links'
 
 import Logo from '@public/img/logo.svg'
-
-const socialMediaButtonStyle =
-  'border fill-gray border-gray p-2 rounded cursor-pointer hover:fill-yellow hover:border-yellow hover:bg-black-dark'
 
 export function Footer() {
   return (
@@ -30,7 +28,7 @@ export function Footer() {
           alt="Picture of the author"
           height={400}
           width={400}
-          className="w-full border border-yellow px-20 py-5 rounded hover:bg-black-dark"
+          className={styles.logoBox}
         />
         {/* redes sociais */}
         <div className="hidden md:block">
@@ -90,34 +88,4 @@ function LinksBox({
   className?: string
 }) {
   return <div className={`flex flex-col gap-3 ${className}`}>{children}</div>
-}
-
-function SocialMediaLinks() {
-  const links = [
-    {
-      url: 'https://discord.com/invite/hubinclusivo',
-      Icon: FaDiscord,
-    },
-    {
-      url: 'https://www.instagram.com/hub_inclusivo/',
-      Icon: FaInstagram,
-    },
-    {
-      url: 'https://www.tiktok.com/@hubinclusivo',
-      Icon: FaTiktok,
-    },
-    {
-      url: 'https://twitter.com/hubinclusivo',
-      Icon: FaTwitter,
-    },
-  ]
-  return (
-    <div className="flex gap-5 mt-3">
-      {links.map(({ url, Icon }) => (
-        <ReactLink key={url} href={url} target="__blank">
-          <Icon size={40} className={socialMediaButtonStyle} />
-        </ReactLink>
-      ))}
-    </div>
-  )
 }
