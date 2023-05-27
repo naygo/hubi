@@ -15,7 +15,7 @@ import {
 import { TiArrowSortedDown } from 'react-icons/ti'
 
 import { Link } from '@/shared/components/link'
-import { yellowDefault } from '@/styles/colors'
+import colors from '@/styles/colors'
 
 import NounsLogo from '@public/img/initial-page/nouns-logo.svg'
 import Prizes from '@public/img/initial-page/prizes.png'
@@ -123,7 +123,7 @@ export default function Home() {
             <div>
               <TiArrowSortedDown
                 className="text-2xl animate-bounce"
-                fill={yellowDefault}
+                fill={colors.yellowDefault}
                 size={80}
               />
             </div>
