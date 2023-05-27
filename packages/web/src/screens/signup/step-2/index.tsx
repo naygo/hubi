@@ -1,14 +1,28 @@
 import clsx from 'clsx'
-import { UseFormReturn } from 'react-hook-form'
+import { FieldPath, UseFormReturn } from 'react-hook-form'
 
 import { Dropdown } from '@/shared/components/form/dropdown'
 import { Input } from '@/shared/components/form/input'
-import { SignUpFormFields } from '@/shared/types/signup-forms'
+import {
+  SignUpFormFields,
+  StepTwoFormFields,
+} from '@/shared/types/signup-forms'
 
 interface Props {
   form: UseFormReturn<SignUpFormFields>
   hidden: boolean
 }
+
+export const stepTwoFields: FieldPath<StepTwoFormFields>[] = [
+  'twitter',
+  'instagram',
+  'gamersclub',
+  'discord',
+  'otherSocialMedia',
+  'howDidYouKnowHubi',
+  'timeInCommunity',
+  'pronouns',
+]
 
 export function StepTwo({ form, hidden }: Props) {
   const { control, getValues } = form

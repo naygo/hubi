@@ -6,26 +6,35 @@ import { useForm } from 'react-hook-form'
 
 import { AiFillCaretRight } from 'react-icons/ai'
 
-import { StepOne } from '@/screens/signup/step-1'
-import { StepTwo } from '@/screens/signup/step-2'
-import { StepThree } from '@/screens/signup/step-3'
+import { StepOne, stepOneFields } from '@/screens/signup/step-1'
+import { StepTwo, stepTwoFields } from '@/screens/signup/step-2'
+import { StepThree, stepThreeFields } from '@/screens/signup/step-3'
 import { Button } from '@/shared/components/ui/button'
 import { Link } from '@/shared/components/ui/link'
 import SocialMediaLinks from '@/shared/components/ui/social-media-links'
+import { useYupValidationResolver } from '@/shared/hooks/useYupValidationResolver'
 import { SignUpFormFields } from '@/shared/types/signup-forms'
 import styles from '@/styles/classes'
 import colors from '@/styles/colors'
 
+import { validationSchema } from './validators'
+
 import Logo from '@public/img/logo.svg'
 
 export default function SignUp() {
-  const form = useForm<SignUpFormFields>()
+  const resolver = useYupValidationResolver(validationSchema)
+  const form = useForm<SignUpFormFields>({ resolver, mode: 'onChange' })
   const { handleSubmit } = form
 
-  const [currentStep, setCurrentStep] = useState(1)
+  const [currentStep, setCurrentStep] = useState(0)
 
-  const handleStep = (step: number) => {
-    setCurrentStep(step)
+  const handleStep = async (step: number) => {
+    const steps = [stepOneFields, stepTwoFields, stepThreeFields]
+    const validStep = await form.trigger(steps[step])
+
+    if (validStep) {
+      setCurrentStep(step + 1)
+    }
   }
 
   const handleSendForm = (data: SignUpFormFields) => {
@@ -59,7 +68,7 @@ export default function SignUp() {
         </section>
 
         <section className="md:w-full lg:w-10/12">
-          <Steps currentStep={currentStep} handleNextStep={handleStep} />
+          <Steps currentStep={currentStep} />
 
           <div className="w-full bg-black-light rounded-3xl p-8">
             <div className="flex gap-1 md:gap-1.5">
@@ -75,9 +84,9 @@ export default function SignUp() {
 
             <form onSubmit={handleSubmit(handleSendForm)} noValidate>
               <div>
-                <StepOne form={form} hidden={currentStep !== 1} />
-                <StepTwo form={form} hidden={currentStep !== 2} />
-                <StepThree form={form} hidden={currentStep !== 3} />
+                <StepOne form={form} hidden={currentStep !== 0} />
+                <StepTwo form={form} hidden={currentStep !== 1} />
+                <StepThree form={form} hidden={currentStep !== 2} />
               </div>
 
               <div className="font-light text-gray text-xs italic mt-2">
@@ -96,25 +105,25 @@ export default function SignUp() {
               </div>
 
               <div className="flex gap-5">
-                {currentStep !== 1 && (
+                {currentStep !== 0 && (
                   <Button
                     color="secondary"
                     label="Voltar"
                     className="w-full my-5"
                     type="button"
-                    onClick={() => handleStep(currentStep - 1)}
+                    onClick={() => setCurrentStep(currentStep - 1)}
                   />
                 )}
-                {currentStep !== 3 && (
+                {currentStep !== 2 && (
                   <Button
                     color="primary"
                     label="Continuar"
                     className="w-full my-5"
                     type="button"
-                    onClick={() => handleStep(currentStep + 1)}
+                    onClick={() => handleStep(currentStep)}
                   />
                 )}
-                {currentStep == 3 && (
+                {currentStep === 2 && (
                   <Button
                     color="primary"
                     label="Salvar"
@@ -162,23 +171,19 @@ export default function SignUp() {
 
 interface StepsProps {
   currentStep: number
-  handleNextStep: (step: number) => void
 }
 
-function Steps({ currentStep, handleNextStep }: StepsProps) {
+function Steps({ currentStep }: StepsProps) {
   const steps = ['Etapa 1', 'Etapa 2', 'Etapa 3']
   return (
     <div className="flex gap-5 justify-center mb-4 lg:justify-start lg:ml-8">
       {steps.map((step, index) => (
         <div key={step} className="flex gap-5">
-          <div
-            className="cursor-pointer"
-            onClick={() => handleNextStep(index + 1)}
-          >
+          <div>
             <p className="text-xs md:text-sm">{step}</p>
             <div
               className={clsx('bg-gray-darker h-1 mt-1 rounded', {
-                'bg-yellow': currentStep === index + 1,
+                'bg-yellow': currentStep === index,
               })}
             ></div>
           </div>

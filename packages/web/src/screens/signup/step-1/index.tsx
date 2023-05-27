@@ -1,14 +1,27 @@
 import clsx from 'clsx'
-import { UseFormReturn } from 'react-hook-form'
+import { FieldPath, UseFormReturn } from 'react-hook-form'
 
 import { Dropdown } from '@/shared/components/form/dropdown'
 import { Input } from '@/shared/components/form/input'
-import { SignUpFormFields } from '@/shared/types/signup-forms'
+import {
+  SignUpFormFields,
+  StepOneFormFields,
+} from '@/shared/types/signup-forms'
 
 interface Props {
   form: UseFormReturn<SignUpFormFields>
   hidden: boolean
 }
+
+export const stepOneFields: FieldPath<StepOneFormFields>[] = [
+  'firstName',
+  'lastName',
+  'email',
+  'password',
+  'passwordConfirmation',
+  'birthDate',
+  'gender',
+]
 
 export function StepOne({ form, hidden }: Props) {
   const { control } = form
@@ -61,7 +74,6 @@ export function StepOne({ form, hidden }: Props) {
         rules={{ required: true }}
       />
 
-      {/* TODO: Date mask */}
       <Input
         name="birthDate"
         label="Data de nascimento:"
