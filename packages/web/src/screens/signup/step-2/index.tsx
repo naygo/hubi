@@ -59,6 +59,7 @@ export function StepTwo({ nonBinaryForm }: Props) {
           />
         )}
 
+        {/* TODO: add mask */}
         <Input
           label="Discord"
           placeholder="Ex.: Jenniffer#0102"
@@ -76,14 +77,15 @@ export function StepTwo({ nonBinaryForm }: Props) {
         {...register('otherSocialMedia')}
       />
 
+      {/* TODO: add values */}
       <Dropdown
         name="howDidYouKnowHubi"
         label="Como você conheceu a HUBI?"
         control={control}
         options={[
           {
-            label: 'Instagram',
-            value: 'instagram',
+            label: 'Redes sociais',
+            value: 'socialMedia',
           },
         ]}
         rules={{
@@ -108,8 +110,16 @@ export function StepTwo({ nonBinaryForm }: Props) {
         control={control}
         options={[
           {
-            label: 'Instagram',
-            value: 'instagram',
+            label: 'Ela/Dela',
+            value: 'she/her',
+          },
+          {
+            label: 'Ele/Dele',
+            value: 'he/him',
+          },
+          {
+            label: 'Qualquer pronome',
+            value: 'any',
           },
         ]}
         rules={{
