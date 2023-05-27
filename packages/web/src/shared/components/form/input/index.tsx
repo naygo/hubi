@@ -1,22 +1,63 @@
 import clsx from 'clsx'
 import { forwardRef } from 'react'
-import { FieldError } from 'react-hook-form'
+import { Control, Controller, FieldError } from 'react-hook-form'
+import InputMask from 'react-input-mask'
 
 import { NativeProps } from '@/shared/types/native-props'
 
 import { InputAlert } from '../inputAlert'
 
-type ExtraProps = {
+type InputProps = NativeProps & {
+  name: string
   label?: string
   error?: FieldError
 }
 
-type Props = NativeProps & ExtraProps
+type PropsWithMask = InputProps & {
+  mask: string
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  control: Control<any>
+}
+
+type PropsWithoutMask = InputProps & {
+  mask?: never
+  control?: never
+}
 
 function InputGenerate(
-  { className, name, label, placeholder, type, error, ...props }: Props,
+  {
+    className,
+    control,
+    defaultValue,
+    error,
+    label,
+    mask,
+    name,
+    placeholder,
+    type,
+    ...props
+  }: PropsWithMask | PropsWithoutMask,
   ref: React.ForwardedRef<HTMLInputElement>,
 ) {
+  const inputClassName = clsx(
+    `
+    w-full 
+    bg-black-light
+    
+    border
+    border-black-lighter
+    
+    font-light
+    text-white
+    placeholder:italic
+    
+    rounded-lg 
+    p-2
+  `,
+    { 'border-red-500 focus:ring-red-500 ': error },
+    { 'hover:border-yellow focus:border-yellow': !error },
+  )
+
   return (
     <div className={className}>
       {label && (
@@ -25,35 +66,40 @@ function InputGenerate(
         </label>
       )}
 
-      <input
-        ref={ref}
-        id={name}
-        name={name}
-        placeholder={placeholder}
-        type={type}
-        className={clsx(
-          `
-            w-full 
-            bg-black-light
-            
-            border
-            border-black-lighter
-            
-            font-light
-            text-white
-            placeholder:italic
-            
-            rounded-lg 
-            p-2
-          `,
-          { 'border-red-500 focus:ring-red-500 ': error },
-          { 'hover:border-yellow focus:border-yellow': !error },
-        )}
-        {...props}
-      />
+      {mask && (
+        <Controller
+          render={({ field }) => (
+            <InputMask
+              {...field}
+              mask={mask}
+              placeholder={placeholder}
+              className={inputClassName}
+            />
+          )}
+          name={name}
+          control={control}
+          defaultValue={defaultValue || ''}
+        />
+      )}
+
+      {!mask && (
+        <input
+          ref={ref}
+          id={name}
+          name={name}
+          placeholder={placeholder}
+          type={type}
+          className={inputClassName}
+          {...props}
+        />
+      )}
+
       {error && <InputAlert error={error} />}
     </div>
   )
 }
 
-export const Input = forwardRef<HTMLInputElement, Props>(InputGenerate)
+export const Input = forwardRef<
+  HTMLInputElement,
+  PropsWithMask | PropsWithoutMask
+>(InputGenerate)
