@@ -93,8 +93,6 @@ export function StepOne({ form }: Props) {
         ]}
         rules={{ required: true }}
       />
-
-      <button>enviar</button>
     </form>
   )
 }

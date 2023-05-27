@@ -5,12 +5,13 @@ import { Input } from '@/shared/components/form/input'
 import { SignUpFormFields } from '@/shared/types/signup-forms'
 
 interface Props {
-  nonBinaryForm: boolean
   form: UseFormReturn<SignUpFormFields>
 }
 
-export function StepTwo({ form, nonBinaryForm }: Props) {
-  const { control } = form
+export function StepTwo({ form }: Props) {
+  const { control, getValues } = form
+
+  const nonBinaryForm = getValues('gender') === 'nao-binario'
 
   return (
     <form className="flex flex-col gap-2">

@@ -69,9 +69,7 @@ export default function SignUp() {
 
             <div>
               {currentStep === 1 && <StepOne form={form} />}
-              {currentStep === 2 && (
-                <StepTwo form={form} nonBinaryForm={false} />
-              )}
+              {currentStep === 2 && <StepTwo form={form} />}
               {currentStep === 3 && <StepThree form={form} />}
             </div>
 
