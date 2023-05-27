@@ -51,7 +51,7 @@ export function Dropdown({
 
               w-full rounded-lg
               p-1 md:p-2
-              bg-black-light
+              bg-black
               
               font-light text-start text-sm md:text-base
 

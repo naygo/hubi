@@ -42,7 +42,7 @@ function InputGenerate(
   const inputClassName = clsx(
     `
     w-full 
-    bg-black-light
+    bg-black
     
     border
     border-black-lighter
