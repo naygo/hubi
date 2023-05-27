@@ -2,18 +2,10 @@ import { UseFormReturn } from 'react-hook-form'
 
 import { Dropdown } from '@/shared/components/form/dropdown'
 import { Input } from '@/shared/components/form/input'
-
-interface FormFields {
-  fullName: string
-  email: string
-  password: string
-  passwordConfirmation: string
-  birthDate: string
-  gender: string
-}
+import { SignUpFormFields } from '@/shared/types/signup-forms'
 
 interface Props {
-  form: UseFormReturn<FormFields>
+  form: UseFormReturn<SignUpFormFields>
 }
 
 export function StepOne({ form }: Props) {

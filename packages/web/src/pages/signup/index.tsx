@@ -12,13 +12,14 @@ import { StepThree } from '@/screens/signup/step-3'
 import { Button } from '@/shared/components/ui/button'
 import { Link } from '@/shared/components/ui/link'
 import SocialMediaLinks from '@/shared/components/ui/social-media-links'
+import { SignUpFormFields } from '@/shared/types/signup-forms'
 import styles from '@/styles/classes'
 import colors from '@/styles/colors'
 
 import Logo from '@public/img/logo.svg'
 
 export default function SignUp() {
-  const form = useForm<any>()
+  const form = useForm<SignUpFormFields>()
 
   const [currentStep, setCurrentStep] = useState(1)
 

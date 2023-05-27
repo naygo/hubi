@@ -2,21 +2,11 @@ import { UseFormReturn } from 'react-hook-form'
 
 import { Dropdown } from '@/shared/components/form/dropdown'
 import { Input } from '@/shared/components/form/input'
-
-interface FormFields {
-  twitter: string
-  instagram: string
-  gamersclub: string
-  discord: string
-  otherSocialMedia?: string
-  howDidYouKnowHubi: string
-  timeInCommunity: string
-  pronouns: string
-}
+import { SignUpFormFields } from '@/shared/types/signup-forms'
 
 interface Props {
   nonBinaryForm: boolean
-  form: UseFormReturn<FormFields>
+  form: UseFormReturn<SignUpFormFields>
 }
 
 export function StepTwo({ form, nonBinaryForm }: Props) {

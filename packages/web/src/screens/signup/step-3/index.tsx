@@ -2,15 +2,10 @@ import { UseFormReturn } from 'react-hook-form'
 
 import { Dropdown } from '@/shared/components/form/dropdown'
 import { Input } from '@/shared/components/form/input'
-
-interface FormFields {
-  nickname: string
-  riotId: string
-  ingameRank: string
-}
+import { SignUpFormFields } from '@/shared/types/signup-forms'
 
 interface Props {
-  form: UseFormReturn<FormFields>
+  form: UseFormReturn<SignUpFormFields>
 }
 
 export function StepThree({ form }: Props) {
