@@ -51,7 +51,7 @@ export default function SignUp() {
               <StepOne />
             </div>
 
-            <div className="text-gray text-xs italic">
+            <div className="text-gray text-xs italic mt-2">
               Campos com <span className="text-yellow">*</span> são
               obrigatórios.
             </div>
@@ -63,7 +63,7 @@ export default function SignUp() {
             </div>
 
             <div className="text-center text-xs  mt-5">
-              Já possui uma conta? <Link text="Entre agora &gt;" link="" />
+              Já possui uma conta? <Link text="Entre aqui &gt;" link="" />
             </div>
           </div>
         </section>
