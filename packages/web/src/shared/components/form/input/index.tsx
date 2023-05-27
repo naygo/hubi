@@ -20,7 +20,7 @@ function InputGenerate(
   return (
     <div className={className}>
       {label && (
-        <label className="text-gray" htmlFor={name}>
+        <label className="text-gray text-sm md:text-base" htmlFor={name}>
           {label}
         </label>
       )}
@@ -40,11 +40,11 @@ function InputGenerate(
             border-black-lighter
             
             font-light
-            text-white
+            text-white text-sm
             placeholder:italic
             
             rounded-lg 
-            p-2
+            p-1 md:p-2
           `,
           { 'border-red-500 focus:ring-red-500 ': error },
           { 'hover:border-yellow focus:border-yellow': !error },

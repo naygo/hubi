@@ -33,7 +33,7 @@ export function Dropdown({
   return (
     <div>
       {label && (
-        <label className="text-gray" htmlFor={name}>
+        <label className="text-gray text-sm md:text-base" htmlFor={name}>
           {label}
         </label>
       )}
@@ -44,10 +44,11 @@ export function Dropdown({
             `
               flex items-center justify-between
 
-              w-full p-2 rounded-lg
+              w-full rounded-lg
+              p-1 md:p-2
               bg-black-light
               
-              font-light text-start 
+              font-light text-start text-sm md:text-base
 
               border border-black-lighter 
             `,
@@ -71,12 +72,12 @@ export function Dropdown({
           </div>
         </Listbox.Button>
 
-        <Listbox.Options className="bg-black-lighter rounded-lg py-2 absolute w-full z-10">
+        <Listbox.Options className="bg-black-lighter rounded-lg py-1 md:py-2 mt-1 absolute w-full z-10">
           {options.map((option) => (
             <Listbox.Option
               key={option.label}
               value={option.value}
-              className="hover:bg-yellow px-2 py-1 cursor-pointer bg-black-lighter"
+              className="hover:bg-yellow px-1 py-1 cursor-pointer bg-black-lighter text-sm md:text-base"
             >
               {option.label}
             </Listbox.Option>
