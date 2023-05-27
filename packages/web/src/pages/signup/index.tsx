@@ -23,12 +23,12 @@ export default function SignUp() {
     setCurrentStep(step)
   }
   return (
-    <main className="h-screen flex justify-center items-center">
+    <main className="flex justify-center items-center">
       <Head>
         <title>Cadastro | HUBI</title>
       </Head>
       <div className="container flex flex-col p-5 md:flex-row">
-        <section className="max-w-7xl">
+        <section className="w-8/12">
           <Steps currentStep={currentStep} handleNextStep={handleNextStep} />
 
           <div className="w-full bg-black-light rounded-3xl p-8">
