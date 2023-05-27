@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
@@ -20,7 +21,12 @@ export default function MyApp({ Component, pageProps }: AppProps) {
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
         />
       </Head>
-      <div className="flex flex-col justify-between min-h-screen">
+      <div
+        className={clsx('flex flex-col min-h-screen', {
+          'justify-between': !shouldHideNavFooter,
+          'justify-center': shouldHideNavFooter,
+        })}
+      >
         {!shouldHideNavFooter && <Navbar />}
         <Component {...pageProps} />
         {!shouldHideNavFooter && (
