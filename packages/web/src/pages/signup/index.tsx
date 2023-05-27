@@ -28,15 +28,15 @@ export default function SignUp() {
         <title>Cadastro | HUBI</title>
       </Head>
       <div className="container flex flex-col p-5 md:flex-row">
-        <section className="w-8/12">
+        <section className="md:w-full lg:w-8/12">
           <Steps currentStep={currentStep} handleNextStep={handleNextStep} />
 
           <div className="w-full bg-black-light rounded-3xl p-8">
             <div className="flex gap-1 md:gap-1.5">
-              <h1 className="font-bold text-lg sm:text-2xl lg:text-3xl align-bottom">
+              <h1 className="font-bold text-lg sm:text-2xl align-bottom">
                 Crie sua conta na
               </h1>
-              <Image src={Logo} alt="HUBI" className="w-12 sm:w-16 lg:w-20" />
+              <Image src={Logo} alt="HUBI" className="w-12 sm:w-16" />
             </div>
             <p className="text-gray text-xs lg:text-sm mt-2 mb-10 text-justify">
               O seu cadastro irá passar por um processo de verificação e pode
@@ -92,7 +92,7 @@ function Steps({ currentStep, handleNextStep }: StepsProps) {
             className="cursor-pointer"
             onClick={() => handleNextStep(index + 1)}
           >
-            <p className="text-sm md:text-base">{step}</p>
+            <p className="text-xs md:text-sm">{step}</p>
             <div
               className={clsx('bg-gray-darker h-1 mt-1 rounded', {
                 'bg-yellow': currentStep === index + 1,
