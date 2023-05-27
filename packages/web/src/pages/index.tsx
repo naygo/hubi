@@ -116,7 +116,7 @@ export default function Home() {
       </Section>
 
       <section className="py-20 px-10 flex justify-center">
-        <div className="container">
+        <div className="container lg:p-20">
           <Title text="Equipe" />
           <div className="mt-10">
             <Description>
