@@ -4,10 +4,10 @@ import { useEffect } from 'react'
 
 import { AiFillCaretRight } from 'react-icons/ai'
 
+import styles from '@/styles/classes'
 import colors from '@/styles/colors'
 
 import Logo from '@public/img/logo.svg'
-import styles from '@/styles/classes'
 
 export default function SignUp() {
   return (
