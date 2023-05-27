@@ -15,3 +15,21 @@
     background: #1a1a1a;
   }
 }
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #e09600;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #e09600;
+}
