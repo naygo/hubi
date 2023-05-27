@@ -35,7 +35,8 @@ function ButtonGenerate(
         `,
         {
           'bg-yellow hover:bg-yellow-dark': color === 'primary',
-          'bg-black-lighter hover:bg-black-light': color === 'secondary',
+          'border border-transparent bg-black-lighter hover:bg-black-light hover:border-yellow':
+            color === 'secondary',
         },
         props.className,
       )}
