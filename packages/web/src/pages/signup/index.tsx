@@ -66,7 +66,7 @@ export default function SignUp() {
               {currentStep === 3 && <StepThree form={form} />}
             </div>
 
-            <div className="text-gray text-xs italic mt-2">
+            <div className="text-gray text-xs italic mt-4">
               Campos com <span className="text-yellow">*</span> são
               obrigatórios.
             </div>
