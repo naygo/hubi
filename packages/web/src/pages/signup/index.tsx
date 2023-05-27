@@ -15,17 +15,17 @@ export default function SignUp() {
         <section className="w-full">
           <div className="flex items-center gap-5 ml-5 mb-5">
             <ReactLink href={''}>
-              <p>Etapa 1</p>
+              <p className="text-sm">Etapa 1</p>
               <div className="bg-yellow h-1 mt-1 rounded"></div>
             </ReactLink>
             <AiFillCaretRight size={10} fill={colors.grayDarker} />
             <ReactLink href={''}>
-              <p>Etapa 2</p>
+              <p className="text-sm">Etapa 2</p>
               <div className="bg-gray-darker h-1 mt-1 rounded"></div>
             </ReactLink>
             <AiFillCaretRight size={10} fill={colors.grayDarker} />
             <ReactLink href={''}>
-              <p>Etapa 3</p>
+              <p className="text-sm">Etapa 3</p>
               <div className="bg-gray-darker h-1 mt-1 rounded"></div>
             </ReactLink>
           </div>
