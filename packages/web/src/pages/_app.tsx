@@ -5,13 +5,13 @@ import { useRouter } from 'next/router'
 
 import { Footer } from '@/shared/components/ui/footer'
 import { Navbar } from '@/shared/components/ui/navbar'
-
-import '../styles/globals.scss'
+import { routes } from '@/shared/utils/routes'
 import 'react-toastify/dist/ReactToastify.css'
+import '../styles/globals.scss'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter()
-  const hideNavFooter = ['/signup']
+  const hideNavFooter = [routes.signup, routes.login]
   const shouldHideNavFooter = hideNavFooter.includes(router.pathname)
   return (
     <>

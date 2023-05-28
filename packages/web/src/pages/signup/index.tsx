@@ -14,6 +14,7 @@ import { Link } from '@/shared/components/ui/link'
 import SocialMediaLinks from '@/shared/components/ui/social-media-links'
 import { useYupValidationResolver } from '@/shared/hooks/useYupValidationResolver'
 import { SignUpFormFields } from '@/shared/types/signup-forms'
+import { routes } from '@/shared/utils/routes'
 import styles from '@/styles/classes'
 import colors from '@/styles/colors'
 
@@ -136,7 +137,11 @@ export default function SignUp() {
 
             <div className="text-center text-xs md:text-sm">
               Já possui uma conta?{' '}
-              <Link text="Entre aqui &gt;" link="" className="font-medium" />
+              <Link
+                text="Entre aqui &gt;"
+                link={routes.login}
+                className="font-medium"
+              />
             </div>
           </div>
         </section>
