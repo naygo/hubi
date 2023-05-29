@@ -2,6 +2,9 @@ import * as yup from 'yup'
 
 // TODO ADD VALIDATION MESSAGES HELPER
 
+const discordRegex = /^(.{2,32}#\d{4})$/
+const riotIdRegex = /^(.{3,16}#.{3,5})$/
+
 export const validationSchema = yup.object({
   firstName: yup.string().required('Campo obrigatório'),
   lastName: yup.string().required('Campo obrigatório'),
@@ -29,7 +32,10 @@ export const validationSchema = yup.object({
     then: (schema) => schema.required('Campo obrigatório'),
     otherwise: (schema) => schema.notRequired(),
   }),
-  discord: yup.string().required('Campo obrigatório'),
+  discord: yup
+    .string()
+    .matches(discordRegex, 'Nick do Discord inválido')
+    .required('Campo obrigatório'),
   otherSocialMedia: yup.string(),
   howDidYouKnowHubi: yup.string().required('Campo obrigatório'),
   timeInCommunity: yup.string().when('gender', {
@@ -39,6 +45,9 @@ export const validationSchema = yup.object({
   }),
   pronouns: yup.string().required('Campo obrigatório'),
   nickname: yup.string().required('Campo obrigatório'),
-  riotId: yup.string().required('Campo obrigatório'),
+  riotId: yup
+    .string()
+    .matches(riotIdRegex, 'Riot ID inválido')
+    .required('Campo obrigatório'),
   ingameRank: yup.string().required('Campo obrigatório'),
 })
