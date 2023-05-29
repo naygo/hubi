@@ -1,53 +1,60 @@
 import * as yup from 'yup'
 
-// TODO ADD VALIDATION MESSAGES HELPER
+import {
+  invalidDiscordMessage,
+  invalidEmailMessage,
+  invalidRiotIdMessage,
+  minLengthMessage,
+  passwordsDontMatchMessage,
+  requiredFieldMessage,
+} from '@/shared/utils/validationMessages'
 
 const discordRegex = /^(.{2,32}#\d{4})$/
 const riotIdRegex = /^(.{3,16}#.{3,5})$/
 
 export const validationSchema = yup.object({
-  firstName: yup.string().required('Campo obrigatório'),
-  lastName: yup.string().required('Campo obrigatório'),
-  email: yup.string().email('Email inválido').required('Campo obrigatório'),
+  firstName: yup.string().required(requiredFieldMessage),
+  lastName: yup.string().required(requiredFieldMessage),
+  email: yup.string().email(invalidEmailMessage).required(requiredFieldMessage),
   password: yup
     .string()
-    .min(8, 'Senha deve ter no mínimo 8 caracteres')
-    .required('Campo obrigatório'),
+    .min(8, minLengthMessage(8, 'Senha'))
+    .required(requiredFieldMessage),
   passwordConfirmation: yup
     .string()
-    .oneOf([yup.ref('password'), undefined], 'Senhas não coincidem')
-    .required('Campo obrigatório'),
+    .oneOf([yup.ref('password'), undefined], passwordsDontMatchMessage)
+    .required(requiredFieldMessage),
   birthDate: yup
     .string()
     .matches(
       /^(0[1-9]|1[0-9]|2[0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/,
       'Data inválida',
     )
-    .required('Campo obrigatório'),
-  gender: yup.string().required('Campo obrigatório'),
-  twitter: yup.string().required('Campo obrigatório'),
-  instagram: yup.string().required('Campo obrigatório'),
+    .required(requiredFieldMessage),
+  gender: yup.string().required(requiredFieldMessage),
+  twitter: yup.string().required(requiredFieldMessage),
+  instagram: yup.string().required(requiredFieldMessage),
   gamersclub: yup.string().when('gender', {
     is: (gender: string) => gender === 'nao-binario',
-    then: (schema) => schema.required('Campo obrigatório'),
+    then: (schema) => schema.required(requiredFieldMessage),
     otherwise: (schema) => schema.notRequired(),
   }),
   discord: yup
     .string()
-    .matches(discordRegex, 'Nick do Discord inválido')
-    .required('Campo obrigatório'),
+    .matches(discordRegex, invalidDiscordMessage)
+    .required(requiredFieldMessage),
   otherSocialMedia: yup.string(),
-  howDidYouKnowHubi: yup.string().required('Campo obrigatório'),
+  howDidYouKnowHubi: yup.string().required(requiredFieldMessage),
   timeInCommunity: yup.string().when('gender', {
     is: (gender: string) => gender === 'nao-binario',
-    then: (schema) => schema.required('Campo obrigatório'),
+    then: (schema) => schema.required(requiredFieldMessage),
     otherwise: (schema) => schema.notRequired(),
   }),
-  pronouns: yup.string().required('Campo obrigatório'),
-  nickname: yup.string().required('Campo obrigatório'),
+  pronouns: yup.string().required(requiredFieldMessage),
+  nickname: yup.string().required(requiredFieldMessage),
   riotId: yup
     .string()
-    .matches(riotIdRegex, 'Riot ID inválido')
-    .required('Campo obrigatório'),
-  ingameRank: yup.string().required('Campo obrigatório'),
+    .matches(riotIdRegex, invalidRiotIdMessage)
+    .required(requiredFieldMessage),
+  ingameRank: yup.string().required(requiredFieldMessage),
 })
