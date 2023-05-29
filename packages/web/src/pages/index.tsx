@@ -115,7 +115,7 @@ export default function Home() {
         </div>
       </Section>
 
-      <section className="py-20 px-10 flex justify-center">
+      <section className="py-20 px-10 lg:py-10 flex justify-center">
         <div className="container lg:p-20">
           <Title text="Equipe" />
           <div className="mt-10">
@@ -146,7 +146,7 @@ function Section({
   return (
     <section
       className={clsx(
-        'py-20 px-10 flex justify-center',
+        'py-20 px-10 lg:py-10 flex justify-center',
         inverse ? 'bg-black' : 'bg-black-dark',
       )}
     >
