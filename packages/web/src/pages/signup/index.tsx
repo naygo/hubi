@@ -4,18 +4,16 @@ import Image from 'next/image'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
-import { AiFillCaretRight } from 'react-icons/ai'
-
 import { StepOne, stepOneFields } from '@/screens/signup/step-1'
 import { StepTwo, stepTwoFields } from '@/screens/signup/step-2'
 import { StepThree, stepThreeFields } from '@/screens/signup/step-3'
+import { Steps } from '@/screens/signup/steps'
 import { Button } from '@/shared/components/ui/button'
 import { Link } from '@/shared/components/ui/link'
 import SocialMediaLinks from '@/shared/components/ui/social-media-links'
 import { useYupValidationResolver } from '@/shared/hooks/useYupValidationResolver'
 import { SignUpFormFields } from '@/shared/types/signup-forms'
 import styles from '@/styles/classes'
-import colors from '@/styles/colors'
 
 import { validationSchema } from './validators'
 
@@ -26,7 +24,7 @@ export default function SignUp() {
   const form = useForm<SignUpFormFields>({ resolver, mode: 'onChange' })
   const { handleSubmit } = form
 
-  const [currentStep, setCurrentStep] = useState(0)
+  const [currentStep, setCurrentStep] = useState(2)
 
   const handleStep = async (step: number) => {
     const steps = [stepOneFields, stepTwoFields, stepThreeFields]
@@ -166,32 +164,5 @@ export default function SignUp() {
         </section>
       </div>
     </main>
-  )
-}
-
-interface StepsProps {
-  currentStep: number
-}
-
-function Steps({ currentStep }: StepsProps) {
-  const steps = ['Etapa 1', 'Etapa 2', 'Etapa 3']
-  return (
-    <div className="flex gap-5 justify-center mb-4 lg:justify-start lg:ml-8">
-      {steps.map((step, index) => (
-        <div key={step} className="flex gap-5">
-          <div>
-            <p className="text-xs md:text-sm">{step}</p>
-            <div
-              className={clsx('bg-gray-darker h-1 mt-1 rounded', {
-                'bg-yellow': currentStep === index,
-              })}
-            ></div>
-          </div>
-          {index !== steps.length - 1 && (
-            <AiFillCaretRight size={10} fill={colors.grayDarker} />
-          )}
-        </div>
-      ))}
-    </div>
   )
 }
