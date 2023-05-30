@@ -1,17 +1,14 @@
-import clsx from 'clsx'
 import Image from 'next/image'
+import ReactLink from 'next/link'
 
 import { FaDiscord, FaInstagram, FaTiktok, FaTwitter } from 'react-icons/fa'
 
 import Logo from '@public/img/logo.svg'
 
-import styles from './styles.module.scss'
+const socialMediaButtonStyle =
+  'border fill-gray border-gray p-2 rounded cursor-pointer hover:fill-yellow hover:border-yellow hover:bg-black-dark'
 
 export function Footer() {
-  const linksBox = 'flex flex-col gap-3'
-  const linkTitle = 'text-gray mb-3'
-  const link = 'text-gray-light font-bold hover:text-yellow cursor-pointer'
-
   return (
     <footer
       className="
@@ -36,59 +33,85 @@ export function Footer() {
           className="w-full border border-yellow px-20 py-5 rounded hover:bg-black-dark"
         />
         {/* redes sociais */}
-        <SocialMediaLinks />
+        <div className="hidden md:block">
+          <SocialMediaLinks />
+        </div>
       </div>
 
       {/* links */}
       <div className="flex gap-10 md:h-full">
-        <div className={linksBox}>
-          <p className={linkTitle}>HUBI</p>
-          <span className={link}>HUBI</span>
-          <span className={link}>Pessoas</span>
-          <span className={link}>Assets</span>
-        </div>
+        <LinksBox>
+          <Title title="HUBI" />
+          <Link text="HUBI" />
+          <Link text="Pessoas" />
+          <Link text="Assets" />
+        </LinksBox>
 
-        <div className={linksBox}>
-          <p className={linkTitle}>Sobre</p>
-          <span className={link}>Contato</span>
-          <span className={link}>NOUNS</span>
-          <span className={link}>Direitos Autorais</span>
-        </div>
+        <LinksBox>
+          <Title title="Sobre" />
+          <Link text="Contato" />
+          <Link text="NOUNS" />
+          <Link text="Direitos Autorais" />
+        </LinksBox>
 
-        <div className={linksBox}>
-          <p className={linkTitle}>Ferramentas</p>
-          <span className={link}>Comunidade</span>
-          <span className={link}>Ajuda e Suporte</span>
-          <span className={link}>Regras e Condutas</span>
-        </div>
+        <LinksBox>
+          <Title title="Ferramentas" />
+          <Link text="Comunidade" />
+          <Link text="Ajuda e Suporte" />
+          <Link text="Regras e Condutas" />
+        </LinksBox>
       </div>
 
       {/* in mobiles social media is show below links */}
-      <SocialMediaLinks isMobile />
+      <div className="md:hidden">
+        <SocialMediaLinks />
+      </div>
     </footer>
   )
 }
 
-function SocialMediaLinks({ isMobile }: { isMobile?: boolean }) {
+function Title({ title }: { title: string }) {
+  return <p className="text-gray mb-3">{title}</p>
+}
+
+function Link({ text }: { text: string }) {
   return (
-    <div
-      className={clsx(
-        `gap-5 mt-3 ${styles.socialMediaBox}`,
-        isMobile ? 'flex md:hidden' : 'hidden md:flex',
-      )}
-    >
-      <span>
-        <FaDiscord size={20} />
-      </span>
-      <span>
-        <FaInstagram size={20} />
-      </span>
-      <span>
-        <FaTiktok size={20} />
-      </span>
-      <span>
-        <FaTwitter size={20} />
-      </span>
+    <span className="text-gray-light font-bold hover:text-yellow cursor-pointer">
+      {text}
+    </span>
+  )
+}
+
+function LinksBox({ children }: { children: React.ReactNode }) {
+  return <div className="flex flex-col gap-3">{children}</div>
+}
+
+function SocialMediaLinks() {
+  const links = [
+    {
+      url: 'https://discord.com/invite/hubinclusivo',
+      Icon: FaDiscord,
+    },
+    {
+      url: 'https://www.instagram.com/hub_inclusivo/',
+      Icon: FaInstagram,
+    },
+    {
+      url: 'https://www.tiktok.com/@hubinclusivo',
+      Icon: FaTiktok,
+    },
+    {
+      url: 'https://twitter.com/hubinclusivo',
+      Icon: FaTwitter,
+    },
+  ]
+  return (
+    <div className="flex gap-5 mt-3">
+      {links.map(({ url, Icon }) => (
+        <ReactLink key={url} href={url} target="__blank">
+          <Icon size={40} className={socialMediaButtonStyle} />
+        </ReactLink>
+      ))}
     </div>
   )
 }

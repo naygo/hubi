@@ -1,5 +1,7 @@
 export const routes = {
   home: '/',
   leaderboard: '/leaderboard',
-  playground: '/playground',
+  agenda: '/agenda',
+  faq: '/faq',
+  contato: '/contato',
 }

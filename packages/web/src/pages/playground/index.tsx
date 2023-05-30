@@ -74,12 +74,12 @@ export default function Playground() {
             <div className="flex gap-x-5">
               <Button
                 label="Limpar"
-                classStyle="secondary"
+                color="secondary"
                 type="reset"
                 className="w-full"
                 onClick={handleFormReset}
               />
-              <Button label="Enviar" classStyle="primary" className="w-full" />
+              <Button label="Enviar" color="primary" className="w-full" />
             </div>
           </form>
         </div>
