@@ -5,6 +5,6 @@ export const invalidEmailMessage = 'Email inválido'
 export const invalidDateMessage = 'Data inválida'
 export const invalidDiscordMessage = 'Nick do Discord inválido'
 export const invalidRiotIdMessage = 'Riot ID inválido'
-export const invalidUrlMessage = (field = 'Campo') =>
-  `${field} deve ser uma URL`
+export const invalidUrlMessage = (field = 'campo') =>
+  `URL para ${field} inválida`
 export const passwordsDontMatchMessage = 'Senhas não coincidem'
