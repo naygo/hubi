@@ -2,7 +2,7 @@ import clsx from 'clsx'
 import { forwardRef } from 'react'
 import { FieldError } from 'react-hook-form'
 
-import { InputAlert } from '@/shared/components/inputAlert'
+import { InputAlert } from '@/shared/components/form/inputAlert'
 import { NativeProps } from '@/shared/types/native-props'
 
 type ExtraProps = {

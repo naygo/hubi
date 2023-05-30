@@ -1,269 +1,221 @@
+import clsx from 'clsx'
 import Head from 'next/head'
 import Image from 'next/image'
+import ReactLink from 'next/link'
 
-import { IconType } from 'react-icons'
-import {
-  FaDiscord,
-  FaTwitch,
-  FaGithub,
-  FaLinkedin,
-  FaInstagram,
-  FaTwitter,
-  FaYoutube,
-  FaEnvelope,
-} from 'react-icons/fa'
 import { TiArrowSortedDown } from 'react-icons/ti'
 
-import { Link } from '@/shared/components/link'
-import { yellowDefault } from '@/styles/colors'
+import { Link } from '@/shared/components/ui/link'
+import linksIcons from '@/shared/utils/icons'
+import team, { Team } from '@/shared/utils/team'
 
 import NounsLogo from '@public/img/initial-page/nouns-logo.svg'
 import Prizes from '@public/img/initial-page/prizes.png'
 
-interface Team {
-  name: string
-  photo: string
-  links?: {
-    name: Links
-    url: string
-  }[]
-}
-
-const LinksIcons = {
-  ['github']: FaGithub,
-  ['twitter']: FaTwitter,
-  ['linkedin']: FaLinkedin,
-  ['instagram']: FaInstagram,
-  ['youtube']: FaYoutube,
-  ['twitch']: FaTwitch,
-  ['discord']: FaDiscord,
-  ['email']: FaEnvelope,
-}
-type Links = keyof typeof LinksIcons
-
 const heightFirstSection = 'calc(100vh - 71px)'
-const linkStyle = 'text-sm md:text-lg'
-const titleStyle = 'text-4xl font-bold md:text-6xl'
-const paragraphStyle =
-  'text-xl mb-5 font-light text-gray-light md:text-3xl md:w-full'
-const sectionStyle =
-  'min-h-screen flex flex-col justify-center items-center text-center gap-10 p-4 md:flex-row md:justify-between'
-
-const team: Team[] = [
-  {
-    name: 'Hugo Geleia',
-    photo: 'https://picsum.photos/200?random=8',
-    links: [
-      {
-        name: 'github',
-        url: 'https://github.com/HugoJF',
-      },
-    ],
-  },
-  {
-    name: 'Ivete Piriguete',
-    photo: 'https://picsum.photos/200?random=7',
-    links: [
-      {
-        name: 'github',
-        url: 'https://github.com/mwives',
-      },
-    ],
-  },
-  {
-    name: 'Jenniffer Aysha',
-    photo: 'https://picsum.photos/200?random=9',
-  },
-  {
-    name: 'Madu',
-    photo: 'https://picsum.photos/200?random=7',
-  },
-  {
-    name: 'Nayla Gomes',
-    photo: 'https://picsum.photos/200?random=7',
-    links: [
-      {
-        name: 'github',
-        url: 'https://github.com/naygo',
-      },
-      {
-        name: 'email',
-        url: '',
-      },
-    ],
-  },
-  {
-    name: 'Rubão',
-    photo: 'https://picsum.photos/200?random=10',
-  },
-  {
-    name: 'Thiago Berenguer',
-    photo: 'https://picsum.photos/200?random=6',
-  },
-]
 
 export default function Home() {
   return (
-    <main className="grow flex justify-center">
+    <main>
       <Head>
         <title>HUBI</title>
       </Head>
-      <div className="container">
-        <section
-          className="p-4 flex items-center justify-center w-full"
-          style={{
-            height: heightFirstSection,
-          }}
-        >
-          <div className="flex flex-col items-center justify-between h-64 md:h-1/2">
-            <h1 className="text-5xl w-full md:text-8xl md:w-2/4 font-bold text-center">
-              Mais do que ranqueadas
-            </h1>
 
-            <div>
-              <TiArrowSortedDown
-                className="text-2xl animate-bounce"
-                fill={yellowDefault}
-                size={80}
-              />
-            </div>
-          </div>
-        </section>
+      <section
+        className="flex items-center justify-center"
+        style={{
+          height: heightFirstSection,
+        }}
+      >
+        <div className="w-52 flex flex-col items-center justify-between gap-20">
+          <h1 className="text-4xl text-center font-bold md:text-6xl lg:text-8xl">
+            Mais do que ranqueadas
+          </h1>
 
-        <section className={`${sectionStyle} md:text-left`}>
-          <div className="md:w-3/4">
-            <h1 className={titleStyle}>Local de aprendizado</h1>
-            <div className="mt-10">
-              <p className={`${paragraphStyle}`}>
-                Aprenda, evolua e melhore o seu potencial dentro de uma
-                comunidade dedicada e acolhedora.
-              </p>
-              <Link
-                text="Veja o que dizer as jogadoras &gt;"
-                link="/playground"
-                className="text-sm md:text-lg"
-              />
-            </div>
-          </div>
+          <TiArrowSortedDown className="animate-bounce fill-yellow" size={60} />
+        </div>
+      </section>
 
-          <div className="w-full">
-            <Image
-              src={'https://picsum.photos/800/400?random=1'}
-              alt="Random Image"
-              width={800}
-              height={300}
+      <Section>
+        <div className="w-full">
+          <Title text="Local de aprendizado" />
+          <div className="mt-10">
+            <Description>
+              Aprenda, evolua e melhore o seu{' '}
+              <span className="text-yellow font-medium">potencial</span> dentro
+              de uma <strong>comunidade</strong> dedicada e acolhedora.
+            </Description>
+
+            <Link
+              text="Veja o que dizem as jogadoras &gt;"
+              link="/playground"
+              className="font-medium text-xs md:text-sm lg:text-lg"
             />
           </div>
-        </section>
+        </div>
 
-        <section
-          className={`${sectionStyle} md:flex-row-reverse md:text-right`}
-        >
-          <div>
-            <div className="flex items-end justify-center md:justify-end">
-              <Image src={NounsLogo} alt="NOUNS Logo" width={500} />
-            </div>
-            <div className="flex flex-col items-center mt-10 md:items-end">
-              <p className={paragraphStyle}>
-                Temos parceria com uma das maiores organizações autônomas
-                descentralizadas (DAO). Saiba mais sobre a NOUNS e coloca seu
-                óclin!
-              </p>
-              <Link
-                text="Seja mais NOUNS &gt;"
-                link="/"
-                className={linkStyle}
-              />
-            </div>
-          </div>
+        <div className="w-full mt-20 lg:m-0 flex justify-center items-center">
+          <Image
+            src={'https://picsum.photos/800/400?random=1'}
+            alt="Random Image"
+            width={800}
+            height={300}
+          />
+        </div>
+      </Section>
 
-          <div className="w-full">
-            <Image
-              src={'https://picsum.photos/800/400?random=2'}
-              alt="Random Image"
-              width={800}
-              height={300}
+      <Section inverse>
+        <div className="w-full lg:ml-10">
+          <Image src={NounsLogo} alt="NOUNS Logo" width={500} />
+          <div className="mt-10">
+            <Description>
+              Temos parceria com uma das maiores organizações autônomas
+              descentralizadas{' '}
+              <span className="text-yellow font-medium">(DAO)</span>. Saiba mais
+              sobre a <strong>NOUNS</strong> e coloca seu óclin!
+            </Description>
+
+            <Link
+              text="Seja mais NOUNS &gt;"
+              link="/"
+              className="font-medium text-xs md:text-sm lg:text-lg"
             />
           </div>
-        </section>
+        </div>
 
-        <section className={`${sectionStyle} md:text-left`}>
-          <div className="md:w-3/4">
-            <h1 className={titleStyle}>Tabela de Prêmios</h1>
-            <div className="mt-10">
-              <p className={paragraphStyle}>
-                Nada melhor do que aprender e ainda{' '}
-                <strong className="font-bold">ganhar recompensas</strong> com o
-                seu esforço, certo?
-              </p>
-              <Link
-                text="Confira toda a tabela de premiação &gt;"
-                link="/"
-                className={linkStyle}
-              />
+        <div className="w-full mt-20 lg:m-0 flex justify-center items-center">
+          <Image
+            src={'https://picsum.photos/800/400?random=2'}
+            alt="Random Image"
+            width={800}
+            height={300}
+          />
+        </div>
+      </Section>
+
+      <Section>
+        <div className="w-full">
+          <Title text="Tabela de Prêmios" />
+          <div className="mt-10">
+            <Description>
+              Nada melhor do que aprender e ainda{' '}
+              <strong className="font-bold">ganhar recompensas</strong> com o
+              seu esforço, certo?
+            </Description>
+            <Link
+              text="Confira toda a tabela de premiação &gt;"
+              link="/"
+              className="font-medium text-xs md:text-sm lg:text-lg"
+            />
+          </div>
+        </div>
+
+        <div className="w-full mt-20 lg:m-0 flex justify-center items-center">
+          <Image src={Prizes} width={400} alt="Prizes Image" />
+        </div>
+      </Section>
+
+      <section className="py-20 px-10 lg:py-10 flex justify-center">
+        <div className="container lg:p-20">
+          <Title text="Equipe" />
+          <div className="mt-10">
+            <Description>
+              Conheça o time dedicado por trás do{' '}
+              <strong className="text-yellow">HUB Inclusivo</strong>!
+            </Description>
+          </div>
+
+          <div className="overflow-x-auto max-w-full">
+            <div className="flex flex-row gap-5">
+              {team.map((member) => TeamMemberInfo(member))}
             </div>
           </div>
-
-          <div className="w-full flex justify-center">
-            <Image src={Prizes} alt="Prizes Image" />
-          </div>
-        </section>
-
-        <section className="min-h-screen text-center p-4">
-          <h1 className={titleStyle}>Equipe</h1>
-          <p className="text-xl font-light text-gray-light md:text-3xl mt-4 md:mt-14">
-            Conheça o time dedicado por trás do HUB Inclusivo!
-          </p>
-
-          {YellowDivider()}
-
-          <div className="grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-5">
-            {team.map((member) => TeamMemberInfo(member))}
-          </div>
-
-          {YellowDivider()}
-        </section>
-      </div>
+        </div>
+      </section>
     </main>
   )
 }
 
-function TeamMemberInfo({ photo, name, links }: Team) {
+function Section({
+  children,
+  inverse,
+}: {
+  children: React.ReactNode
+  inverse?: boolean
+}) {
   return (
-    <div
-      key={name}
-      className="flex flex-col gap-2 justify-between items-center p-5 rounded bg-black-light"
+    <section
+      className={clsx(
+        'py-20 px-10 lg:py-10 flex justify-center',
+        inverse ? 'bg-black' : 'bg-black-light',
+      )}
     >
-      <Image
-        src={photo}
-        alt="Random Image"
-        width={150}
-        height={150}
-        className="rounded-full"
-      />
-
-      <div className="flex justify-center gap-2">
-        {links?.map((link) => {
-          const Icon = LinksIcons[link.name] as IconType
-
-          return (
-            <a
-              key={link.name}
-              href={link.url}
-              target="_blank"
-              className="bg-black-lighter p-2 rounded hover:bg-yellow"
-            >
-              <Icon size={15} />
-            </a>
-          )
-        })}
+      <div
+        className={clsx(
+          'container lg:flex lg:p-20 lg:items-center lg:justify-center',
+          { 'flex-row-reverse': inverse },
+        )}
+      >
+        {children}
       </div>
-
-      <p className="text-base font-bold flex items-center md:text-lg">{name}</p>
-    </div>
+    </section>
   )
 }
 
-function YellowDivider() {
-  return <div className="w-1/4 h-1 bg-yellow rounded-full mx-auto my-10"></div>
+function Title({ text }: { text: string }) {
+  return <h1 className="text-4xl font-bold">{text}</h1>
+}
+
+function Description({ children }: { children: React.ReactNode }) {
+  return (
+    <p className="text-lg mb-5 text-gray-light md:text-1xl lg:text-2xl">
+      {children}
+    </p>
+  )
+}
+
+function TeamMemberInfo({ photo, name, nick, links, roles }: Team) {
+  return (
+    <div className="bg-black-dark rounded mb-4">
+      <Image
+        src={photo}
+        alt="Random Image"
+        className="w-full h-36 rounded-t"
+        width={150}
+        height={150}
+      />
+
+      <div className="flex w-44 flex-col justify-between items-center p-2 mt-4">
+        <p className="font-medium text-center">{name}</p>
+        <span className="text-yellow text-xs">({nick})</span>
+        <div className="mt-2">
+          {roles?.map((role) => (
+            <div
+              key={role}
+              className="font-light text-gray text-xs text-center"
+            >
+              {role}
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-4 mb-2 flex gap-3 justify-center">
+          {links?.map((link) => {
+            const Icon = linksIcons[link.name]
+
+            return (
+              <ReactLink
+                key={link.name}
+                href={link.url}
+                target="_blank"
+                className="bg-black p-1.5 rounded hover:bg-black-lighter"
+              >
+                <Icon size={16} className="fill-yellow" />
+              </ReactLink>
+            )
+          })}
+        </div>
+      </div>
+    </div>
+  )
 }

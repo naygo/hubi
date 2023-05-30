@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 import { FaDiscord, FaInstagram, FaTiktok, FaTwitter } from 'react-icons/fa'
 
-import Logo from '../../../../public/img/logo.svg'
+import Logo from '@public/img/logo.svg'
 
 import styles from './styles.module.scss'
 

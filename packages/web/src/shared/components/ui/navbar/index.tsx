@@ -5,11 +5,11 @@ import { usePathname } from 'next/navigation'
 
 import { IoInvertMode } from 'react-icons/io5'
 
+import { Button } from '@/shared/components/ui/button'
 import { LogoNouns } from '@/shared/icons/LogoNouns'
 import { routes } from '@/shared/utils/routes'
 
-import Logo from '../../../../public/img/logo.svg'
-import { Button } from '../button'
+import Logo from '@public/img/logo.svg'
 
 const noundAndDarkModeButtons =
   'bg-black-lighter hover:bg-black-light cursor-pointer rounded p-1'
