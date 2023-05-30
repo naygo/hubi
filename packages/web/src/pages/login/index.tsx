@@ -1,31 +1,15 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { useForm } from 'react-hook-form'
 
-import { Input } from '@/shared/components/form/input'
-import { Button } from '@/shared/components/ui/button'
+import { LoginForm } from '@/screens/login/form'
 import { Link } from '@/shared/components/ui/link'
 import SocialMediaLinks from '@/shared/components/ui/social-media-links'
-import { useYupValidationResolver } from '@/shared/hooks/useYupValidationResolver'
-import { LoginFormFields } from '@/shared/types/login-forms'
 import { routes } from '@/shared/utils/routes'
 import styles from '@/styles/classes'
-
-import { validationSchema } from './validators'
 
 import Logo from '@public/img/logo.svg'
 
 export default function Login() {
-  const resolver = useYupValidationResolver(validationSchema)
-  const { control, handleSubmit } = useForm<LoginFormFields>({
-    resolver,
-    mode: 'onChange',
-  })
-
-  const handleSendForm = (data: LoginFormFields) => {
-    console.log(data)
-  }
-
   return (
     <main className="flex justify-center items-center">
       <Head>
@@ -61,34 +45,7 @@ export default function Login() {
               <Image src={Logo} alt="HUBI" className="w-12 sm:w-16 lg:w-20" />
             </div>
 
-            <form onSubmit={handleSubmit(handleSendForm)} noValidate>
-              <div className="flex flex-col gap-2">
-                <Input
-                  name="email"
-                  label="E-mail:"
-                  type="email"
-                  control={control}
-                  rules={{ required: true }}
-                />
-
-                <Input
-                  name="password"
-                  label="Senha:"
-                  type="password"
-                  control={control}
-                  rules={{ required: true }}
-                />
-              </div>
-
-              <div className="flex gap-5">
-                <Button
-                  color="primary"
-                  label="Entrar"
-                  className="w-full my-5"
-                  type="submit"
-                />
-              </div>
-            </form>
+            <LoginForm />
 
             <div className="text-center text-xs md:text-sm">
               Ainda não possui uma conta?{'  '}
