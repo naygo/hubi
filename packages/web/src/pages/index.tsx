@@ -176,7 +176,7 @@ function Description({ children }: { children: React.ReactNode }) {
 
 function TeamMemberInfo({ photo, name, nick, links, roles }: Team) {
   return (
-    <div className="bg-black-dark rounded mb-4">
+    <div key={nick} className="bg-black-dark rounded mb-4">
       <Image
         src={photo}
         alt="Random Image"
