@@ -147,7 +147,7 @@ function Section({
     <section
       className={clsx(
         'py-20 px-10 lg:py-10 flex justify-center',
-        inverse ? 'bg-black' : 'bg-black-dark',
+        inverse ? 'bg-black' : 'bg-black-light',
       )}
     >
       <div
