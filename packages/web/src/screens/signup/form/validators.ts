@@ -4,6 +4,7 @@ import {
   invalidDiscordMessage,
   invalidEmailMessage,
   invalidRiotIdMessage,
+  invalidUrlMessage,
   minLengthMessage,
   passwordsDontMatchMessage,
   requiredFieldMessage,
@@ -32,13 +33,22 @@ export const validationSchema = yup.object({
     )
     .required(requiredFieldMessage),
   gender: yup.string().required(requiredFieldMessage),
-  twitter: yup.string().required(requiredFieldMessage),
-  instagram: yup.string().required(requiredFieldMessage),
-  gamersclub: yup.string().when('gender', {
-    is: (gender: string) => gender === 'nao-binario',
-    then: (schema) => schema.required(requiredFieldMessage),
-    otherwise: (schema) => schema.notRequired(),
-  }),
+  twitter: yup
+    .string()
+    .url(invalidUrlMessage('Twitter'))
+    .required(requiredFieldMessage),
+  instagram: yup
+    .string()
+    .url(invalidUrlMessage('Instagram'))
+    .required(requiredFieldMessage),
+  gamersclub: yup
+    .string()
+    .url(invalidUrlMessage('GamersClub'))
+    .when('gender', {
+      is: (gender: string) => gender === 'nao-binario',
+      then: (schema) => schema.required(requiredFieldMessage),
+      otherwise: (schema) => schema.notRequired(),
+    }),
   discord: yup
     .string()
     .matches(discordRegex, invalidDiscordMessage)
