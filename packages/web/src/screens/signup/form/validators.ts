@@ -12,6 +12,11 @@ import {
 
 const discordRegex = /^(.{2,32}#\d{4})$/
 const riotIdRegex = /^(.{3,16}#.{3,5})$/
+const twitterRegex = /^(https?:\/\/)?twitter\.com\/(#!\/)?[a-zA-Z0-9_]+\/?$/
+const instagramRegex =
+  /^(https?:\/\/)?(www\.)?instagram\.com\/(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}\/?$/i
+const gamersclubRegex =
+  /^(https?:\/\/)?gamersclub\.gg\/profile\/[a-zA-Z0-9_]+$/i
 
 export const validationSchema = yup.object({
   firstName: yup.string().required(requiredFieldMessage),
@@ -35,15 +40,15 @@ export const validationSchema = yup.object({
   gender: yup.string().required(requiredFieldMessage),
   twitter: yup
     .string()
-    .url(invalidUrlMessage('Twitter'))
+    .matches(twitterRegex, invalidUrlMessage('Twitter'))
     .required(requiredFieldMessage),
   instagram: yup
     .string()
-    .url(invalidUrlMessage('Instagram'))
+    .matches(instagramRegex, invalidUrlMessage('Instagram'))
     .required(requiredFieldMessage),
   gamersclub: yup
     .string()
-    .url(invalidUrlMessage('GamersClub'))
+    .matches(gamersclubRegex, invalidUrlMessage('Gamers Club'))
     .when('gender', {
       is: (gender: string) => gender === 'nao-binario',
       then: (schema) => schema.required(requiredFieldMessage),
