@@ -4,6 +4,7 @@ import {
   invalidDiscordMessage,
   invalidEmailMessage,
   invalidRiotIdMessage,
+  invalidUrlMessage,
   minLengthMessage,
   passwordsDontMatchMessage,
   requiredFieldMessage,
@@ -11,6 +12,11 @@ import {
 
 const discordRegex = /^(.{2,32}#\d{4})$/
 const riotIdRegex = /^(.{3,16}#.{3,5})$/
+const twitterRegex = /^(https?:\/\/)?twitter\.com\/(#!\/)?[a-zA-Z0-9_]+\/?$/
+const instagramRegex =
+  /^(https?:\/\/)?(www\.)?instagram\.com\/(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}\/?$/i
+const gamersclubRegex =
+  /^(https?:\/\/)?gamersclub\.gg\/profile\/[a-zA-Z0-9_]+$/i
 
 export const validationSchema = yup.object({
   firstName: yup.string().required(requiredFieldMessage),
@@ -32,13 +38,22 @@ export const validationSchema = yup.object({
     )
     .required(requiredFieldMessage),
   gender: yup.string().required(requiredFieldMessage),
-  twitter: yup.string().required(requiredFieldMessage),
-  instagram: yup.string().required(requiredFieldMessage),
-  gamersclub: yup.string().when('gender', {
-    is: (gender: string) => gender === 'nao-binario',
-    then: (schema) => schema.required(requiredFieldMessage),
-    otherwise: (schema) => schema.notRequired(),
-  }),
+  twitter: yup
+    .string()
+    .matches(twitterRegex, invalidUrlMessage('Twitter'))
+    .required(requiredFieldMessage),
+  instagram: yup
+    .string()
+    .matches(instagramRegex, invalidUrlMessage('Instagram'))
+    .required(requiredFieldMessage),
+  gamersclub: yup
+    .string()
+    .matches(gamersclubRegex, invalidUrlMessage('Gamers Club'))
+    .when('gender', {
+      is: (gender: string) => gender === 'nao-binario',
+      then: (schema) => schema.required(requiredFieldMessage),
+      otherwise: (schema) => schema.notRequired(),
+    }),
   discord: yup
     .string()
     .matches(discordRegex, invalidDiscordMessage)

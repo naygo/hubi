@@ -76,7 +76,7 @@ export function Dropdown({
           </div>
         </Listbox.Button>
 
-        <Listbox.Options className="bg-black-lighter rounded-lg py-1 md:py-2 mt-1 absolute w-full z-10">
+        <Listbox.Options className="bg-black-lighter rounded-lg py-1 md:py-2 mt-1 absolute w-full z-10 max-h-44 overflow-y-auto">
           {options.map((option) => (
             <Listbox.Option
               key={option.label}

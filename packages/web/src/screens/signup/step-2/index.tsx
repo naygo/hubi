@@ -64,7 +64,6 @@ export function StepTwo({ form, hidden }: Props) {
           />
         )}
 
-        {/* TODO: add mask */}
         <Input
           className="w-full"
           name="discord"
