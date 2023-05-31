@@ -1,0 +1,13 @@
+import { Socials, Users } from "..\schema"
+
+model UsersSocials {
+    id       Int    @id @default(autoincrement())
+    userId   Int
+    socialId Int
+    url      String
+
+    user   Users   @relation(fields: [userId], references: [id])
+    social Socials @relation(fields: [socialId], references: [id])
+
+    @@map("usersSocials")
+}
