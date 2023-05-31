@@ -2,11 +2,14 @@ import Image from 'next/image'
 
 import { FaCog } from 'react-icons/fa'
 
+import { Button } from '../button'
+
 import ProfilePhoto from '@public/img/bruce.png'
 
 export function UserNavbar() {
   return (
-    <div className="hidden lg:flex flex items-center gap-4">
+    <div className="hidden lg:flex items-center gap-4">
+      <Button label="DAR FILA" color="primary" disabled />
       <div className="h-8 w-0.5 bg-black-lighter mx-5"></div>
 
       <div className="relative border-2 border-yellow rounded-sm">
@@ -25,7 +28,7 @@ export function UserNavbar() {
       </div>
 
       {/* config button */}
-      <div className="bg-black-lighter p-2 rounded">
+      <div className="bg-black-lighter p-2 rounded hover:bg-yellow cursor-pointer">
         <FaCog className="text-2xl" />
       </div>
     </div>
