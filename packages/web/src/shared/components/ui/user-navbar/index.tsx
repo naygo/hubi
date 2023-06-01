@@ -1,6 +1,8 @@
+import { Popover, Transition } from '@headlessui/react'
 import Image from 'next/image'
+import { Fragment } from 'react'
 
-import { FaCog } from 'react-icons/fa'
+import { FaCog, FaUserAlt, FaSignOutAlt } from 'react-icons/fa'
 
 import { Button } from '../button'
 
@@ -27,10 +29,45 @@ export function UserNavbar() {
         <span className="text-gray">12345 pontos</span>
       </div>
 
-      {/* config button */}
-      <div className="bg-black-lighter p-2 rounded hover:bg-yellow cursor-pointer">
-        <FaCog className="text-2xl" />
-      </div>
+      <ConfigButton />
     </div>
+  )
+}
+
+function ConfigButton() {
+  return (
+    <Popover className="relative">
+      {({ open }) => (
+        <>
+          <Popover.Button
+            className={`bg-black-lighter p-2 rounded hover:bg-yellow cursor-pointer ${
+              open && 'bg-yellow'
+            }`}
+          >
+            <FaCog className="text-2xl" />
+          </Popover.Button>
+          <Transition
+            as={Fragment}
+            enter="transition ease-out duration-200"
+            enterFrom="opacity-0 translate-y-1"
+            enterTo="opacity-100 translate-y-0"
+            leave="transition ease-in duration-150"
+            leaveFrom="opacity-100 translate-y-0"
+            leaveTo="opacity-0 translate-y-1"
+          >
+            <Popover.Panel className="absolute right-0 z-10 mt-2">
+              <div className="bg-black-lighter py-2 rounded flex flex-col">
+                <div className="hover:bg-yellow font-medium py-2 px-12 text-left flex items-center gap-4 cursor-pointer">
+                  <FaUserAlt /> Perfil
+                </div>
+                <div className="hover:bg-yellow w-full font-medium py-2 px-12 text-left flex items-center gap-4 cursor-pointer">
+                  <FaSignOutAlt /> Sair
+                </div>
+              </div>
+            </Popover.Panel>
+          </Transition>
+        </>
+      )}
+    </Popover>
   )
 }
