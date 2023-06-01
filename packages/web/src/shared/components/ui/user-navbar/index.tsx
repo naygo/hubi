@@ -55,7 +55,7 @@ function ConfigButton() {
             leaveFrom="opacity-100 translate-y-0"
             leaveTo="opacity-0 translate-y-1"
           >
-            <Popover.Panel className="absolute right-0 z-10 mt-2">
+            <Popover.Panel className="absolute z-10 mt-2">
               <div className="bg-black-lighter py-2 rounded flex flex-col">
                 <div className="hover:bg-yellow font-medium py-2 px-12 text-left flex items-center gap-4 cursor-pointer">
                   <FaUserAlt /> Perfil
