@@ -1,3 +1,5 @@
+import { signIn } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 
 import { Input } from '@/shared/components/form/input'
@@ -8,14 +10,31 @@ import { LoginFormFields } from '@/shared/types/login-form'
 import { validationSchema } from './validators'
 
 export function LoginForm() {
+  const router = useRouter()
   const resolver = useYupValidationResolver(validationSchema)
   const { control, handleSubmit } = useForm<LoginFormFields>({
     resolver,
     mode: 'onChange',
   })
 
-  const handleSendForm = (data: LoginFormFields) => {
-    console.log(data)
+  const handleSendForm = async (data: LoginFormFields) => {
+    const res = await signIn('credentials', {
+      email: data.email,
+      password: data.password,
+      redirect: false,
+    })
+    console.log(res)
+
+    if (!res) {
+      console.log('res is null')
+      return
+    }
+
+    if (!res.ok) {
+      console.log(res.error)
+    } else {
+      router.push('/')
+    }
   }
 
   return (
