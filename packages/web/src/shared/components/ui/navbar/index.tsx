@@ -33,14 +33,13 @@ const arrayRoutes = [
 
 export function Navbar() {
   const { data: session, status } = useSession()
-  console.log(session, status)
+  const userLogged = status === 'authenticated'
+  console.log({ session }, { status })
 
   const [isNavbarOpened, setIsNavbarOpened] = useState(false)
   const windowSize = useWindowSize()
   const pathname = usePathname()
   const router = useRouter()
-
-  const userLogged = true
 
   function toggleNavbar() {
     setIsNavbarOpened(!isNavbarOpened)
