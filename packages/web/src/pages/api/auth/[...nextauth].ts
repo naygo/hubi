@@ -20,13 +20,13 @@ export default NextAuth({
         // const user = await res.json()
         const user = {
           id: '12345',
-          name: 'Nayla',
-          email: 'aaaa@email',
+          name: 'Admin',
+          email: 'admin@email',
           password: '123',
         }
 
         if (
-          credentials?.email === 'nayla@email' &&
+          credentials?.email === 'admin@email' &&
           credentials?.password === '123'
         ) {
           return Promise.resolve(user)
