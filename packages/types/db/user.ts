@@ -1,4 +1,4 @@
-import { Gender, Pronoun, Rank, UserSocial } from "@hubi/types/db";
+import { Gender, Pronoun, Rank, UserSocial, UserStatusEnum } from "@hubi/types";
 
 export interface User {
   id: number;
@@ -16,6 +16,7 @@ export interface User {
   riotId: string;
   rankId: number;
   isAdmin: boolean;
+  status: UserStatusEnum;
 
   gender: Gender;
   pronoun: Pronoun;
