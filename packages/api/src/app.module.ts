@@ -9,9 +9,17 @@ import { OpenFaceitClientService } from './infra/services/faceit/open-faceit-cli
 import { ApplicationController } from './presentation/controllers/application.controller'
 import { HubController } from './presentation/controllers/hub.controller'
 import { LeaderboardController } from './presentation/controllers/leaderboard.controller'
+import { CreateUser } from './domain/usecases/db/users/create-user'
+import { UsersRepository } from './infra/db/prisma/repositories/users.repository'
+import { UserController } from './presentation/controllers/users.controller'
 
 @Module({
-  controllers: [ApplicationController, LeaderboardController, HubController],
+  controllers: [
+    ApplicationController,
+    LeaderboardController,
+    HubController,
+    UserController,
+  ],
   providers: [
     // --- Services --- //
     // Faceit
@@ -19,11 +27,15 @@ import { LeaderboardController } from './presentation/controllers/leaderboard.co
     PlayerService,
 
     // --- Usecases --- //
+    CreateUser,
 
     // --- Infra --- //
     // Faceit
     ApiFaceitClientService,
     OpenFaceitClientService,
+
+    // Repositories
+    UsersRepository,
   ],
   imports: [ConfigModule.forRoot(), HttpModule],
 })
