@@ -1,4 +1,5 @@
 import { Popover, Transition } from '@headlessui/react'
+import { signOut } from 'next-auth/react'
 import Image from 'next/image'
 import { Fragment } from 'react'
 
@@ -60,7 +61,10 @@ function ConfigButton() {
                 <div className="hover:bg-yellow font-medium py-2 px-12 text-left flex items-center gap-4 cursor-pointer">
                   <FaUserAlt /> Perfil
                 </div>
-                <div className="hover:bg-yellow w-full font-medium py-2 px-12 text-left flex items-center gap-4 cursor-pointer">
+                <div
+                  onClick={() => signOut()}
+                  className="hover:bg-yellow w-full font-medium py-2 px-12 text-left flex items-center gap-4 cursor-pointer"
+                >
                   <FaSignOutAlt /> Sair
                 </div>
               </div>
