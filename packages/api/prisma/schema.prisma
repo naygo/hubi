@@ -92,15 +92,15 @@ model UsersSocials {
 //
 
 model Users {
-  id              Int      @id @default(autoincrement())
+  id              Int       @id @default(autoincrement())
   firstName       String
   lastName        String
-  email           String
+  email           String    @unique
   password        String
   dateBirth       DateTime
   genderId        Int
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime
+  createdAt       DateTime
+  updatedAt       DateTime?
   howDidKnowHubi  String
   timeInCommunity String
   pronounId       Int
