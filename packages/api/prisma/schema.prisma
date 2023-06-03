@@ -76,10 +76,12 @@ model Socials {
 //
 
 model UsersSocials {
-  id       Int    @id @default(autoincrement())
-  userId   Int
-  socialId Int
-  url      String
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  socialId  Int
+  url       String
+  createdAt DateTime
+  status    Int
 
   user   Users   @relation(fields: [userId], references: [id])
   social Socials @relation(fields: [socialId], references: [id])
@@ -107,6 +109,7 @@ model Users {
   riotId          String
   rankId          Int
   isAdmin         Boolean
+  status          Int
 
   gender  Genders        @relation(fields: [genderId], references: [id])
   pronoun Pronouns       @relation(fields: [pronounId], references: [id])
