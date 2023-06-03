@@ -1,4 +1,6 @@
 import clsx from 'clsx'
+import { GetServerSidePropsContext } from 'next'
+import { getSession } from 'next-auth/react'
 import Head from 'next/head'
 import Image from 'next/image'
 import ReactLink from 'next/link'
@@ -218,4 +220,22 @@ function TeamMemberInfo({ photo, name, nick, links, roles }: Team) {
       </div>
     </div>
   )
+}
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const session = await getSession(context)
+  console.log('------------------------------')
+  console.log(session)
+  console.log('------------------------------')
+  if (session) {
+    return {
+      redirect: {
+        destination: '/lobby',
+        permanent: false,
+      },
+    }
+  }
+  return {
+    props: {},
+  }
 }
