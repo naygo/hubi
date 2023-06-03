@@ -1,6 +1,6 @@
 export const routes = {
   home: '/',
-  lobby: '/',
+  lobby: '/lobby',
   leaderboard: '/leaderboard',
   agenda: '/agenda',
   faq: '/faq',
