@@ -8,17 +8,17 @@ export class UserController {
 
   @Post('/signup')
   async signup(@Body() body, @Res() response: Response) {
-    const valid = await this.createUser.execute(body)
-    const result = {
+    const result = await this.createUser.execute(body)
+
+    const responseResult = {
       statusCode: 204,
-      message: 'User created was successfuly',
+      message: result.message,
     }
 
-    if (!valid) {
-      result.statusCode = 400
-      result.message = 'Cannot create user'
+    if (!result.valid) {
+      responseResult.statusCode = 401
     }
 
-    response.status(result.statusCode).json(result)
+    response.status(responseResult.statusCode).json(responseResult)
   }
 }
