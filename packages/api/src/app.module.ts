@@ -10,8 +10,12 @@ import { ApplicationController } from './presentation/controllers/application.co
 import { HubController } from './presentation/controllers/hub.controller'
 import { LeaderboardController } from './presentation/controllers/leaderboard.controller'
 import { CreateUser } from './domain/usecases/db/users/create-user'
-import { UsersRepository } from './infra/db/prisma/repositories/users.repository'
+import {
+  UsersRepository,
+  UserSocialsRepository,
+} from '@/infra/db/prisma/repositories'
 import { UserController } from './presentation/controllers/users.controller'
+import { Hasher } from '@/infra/cryptography'
 
 @Module({
   controllers: [
@@ -34,8 +38,11 @@ import { UserController } from './presentation/controllers/users.controller'
     ApiFaceitClientService,
     OpenFaceitClientService,
 
+    Hasher,
+
     // Repositories
     UsersRepository,
+    UserSocialsRepository,
   ],
   imports: [ConfigModule.forRoot(), HttpModule],
 })
