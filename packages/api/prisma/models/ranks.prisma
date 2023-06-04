@@ -3,7 +3,7 @@ import { Users } from "users"
 model Ranks {
     id     Int    @id @default(autoincrement())
     name   String
-    status String
+    status Int
 
     Users Users[]
 

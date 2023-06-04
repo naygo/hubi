@@ -1,7 +1,7 @@
 model Socials {
     id     Int    @id @default(autoincrement())
     name   String
-    status String
+    status Int
 
     @@map("socials")
 }

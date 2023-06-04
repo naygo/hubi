@@ -23,7 +23,7 @@ datasource db {
 model Genders {
   id     Int    @id @default(autoincrement())
   name   String
-  status String
+  status Int
 
   Users Users[]
 
@@ -37,7 +37,7 @@ model Genders {
 model Pronouns {
   id     Int    @id @default(autoincrement())
   name   String
-  status String
+  status Int
 
   Users Users[]
 
@@ -51,7 +51,7 @@ model Pronouns {
 model Ranks {
   id     Int    @id @default(autoincrement())
   name   String
-  status String
+  status Int
 
   Users Users[]
 
@@ -65,7 +65,7 @@ model Ranks {
 model Socials {
   id           Int            @id @default(autoincrement())
   name         String
-  status       String
+  status       Int
   UsersSocials UsersSocials[]
 
   @@map("socials")
