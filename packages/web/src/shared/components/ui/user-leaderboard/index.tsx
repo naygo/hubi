@@ -63,33 +63,59 @@ interface UserCardProps {
 
 function UserCard({ player, className }: UserCardProps) {
   return (
-    <div
-      className={`${className} w-72 p-2 px-3 rounded flex items-center justify-start gap-2`}
-    >
-      <div className="opacity-90 rounded relative">
-        <Image src={User.src} width={56} height={56} alt="user" className="" />
-        <div>
-          <div
-            className={clsx(
-              'absolute top-11 left-1/2 transform -translate-x-1/2 rounded border-2  bg-black w-8 h-4 text-xs text-center leading-[14px]',
-              {
-                'border-[#E5C97D]': player.position === 1,
-                'border-[#828282]': player.position === 2,
-                'border-[#C4947D]': player.position === 3,
-                'border-[#BBBCBD]': player.position > 3,
-                'border-[#E09600]': playerMatches(player, CURRENT_USER_MOCK_ID),
-              },
-            )}
-          >
-            {player.position}
+    <div className="relative">
+      <div
+        className={clsx(
+          `${className}
+          w-72 p-2 px-3
+          rounded
+          flex items-center justify-start gap-2
+          
+          before:content=['']
+          before:absolute before:top-0 before:left-0
+          before:w-1 before:h-2/4
+          before:bg-red-500
+          before:transform before:translate-y-1/2 before:-translate-x-1/2
+        `,
+          {
+            'before:bg-[#E5C97D]': player.position === 1,
+            'before:bg-[#828282]': player.position === 2,
+            'before:bg-[#C4947D]': player.position === 3,
+            'before:bg-black':
+              !playerMatches(player, CURRENT_USER_MOCK_ID) &&
+              player.position > 3,
+            'before:bg-[#E09600]': playerMatches(player, CURRENT_USER_MOCK_ID),
+          },
+        )}
+      >
+        <div className="opacity-90 rounded relative before">
+          <Image src={User.src} width={56} height={56} alt="user" />
+          <div>
+            <div
+              className={clsx(
+                'absolute top-11 left-1/2 transform -translate-x-1/2 rounded border-2  bg-black w-8 h-4 text-xs text-center leading-[14px]',
+                {
+                  'border-[#E5C97D]': player.position === 1,
+                  'border-[#828282]': player.position === 2,
+                  'border-[#C4947D]': player.position === 3,
+                  'border-[#BBBCBD]': player.position > 3,
+                  'border-[#E09600]': playerMatches(
+                    player,
+                    CURRENT_USER_MOCK_ID,
+                  ),
+                },
+              )}
+            >
+              {player.position}
+            </div>
           </div>
         </div>
-      </div>
-      <div className="text-sm">
-        <div>
-          <span className="font-bold">{player.nickname}</span>#HASH
+        <div className="text-sm">
+          <div>
+            <span className="font-bold">{player.nickname}</span>#HASH
+          </div>
+          <div className="text-gray-400">{player.points} pontos</div>
         </div>
-        <div className="text-gray-400">{player.points} pontos</div>
       </div>
     </div>
   )
