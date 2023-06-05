@@ -113,7 +113,9 @@ export default function Leaderboard({
   useEffect(() => {
     const handlePlayer = async () => {
       if (nickname === '') {
-        const leaderboard = await getLeaderboard(selectedLeaderboardId)
+        const leaderboard = await getLeaderboard({
+          leaderboardId: selectedLeaderboardId,
+        })
         setPlayers(leaderboard)
       } else handleSearch('Enter')
     }
@@ -230,7 +232,9 @@ export default function Leaderboard({
 export const getStaticProps: GetStaticProps = async () => {
   const getLeaderboardsResponse = await getListLeaderboards()
   const defaultLeaderboardId = getLeaderboardsResponse[0].leaderboard_id
-  const leaderboard = await getLeaderboard(defaultLeaderboardId)
+  const leaderboard = await getLeaderboard({
+    leaderboardId: defaultLeaderboardId,
+  })
 
   const leaderboardSelect: ILeaderboardSelect[] = getLeaderboardsResponse.map(
     (leaderboard: Leaderboard) => {
