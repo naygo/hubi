@@ -26,3 +26,8 @@ export async function getListLeaderboards(): Promise<Leaderboard[]> {
   const response = await api.get<Leaderboard[]>('/hub/leaderboards')
   return response.data
 }
+
+export async function getCurrentLeaderboard(): Promise<Leaderboard> {
+  const response = await api.get<Leaderboard[]>('/hub/leaderboards')
+  return response.data[0]
+}
