@@ -1,15 +1,22 @@
 import { Popover, Transition } from '@headlessui/react'
+import { Session } from 'next-auth'
 import { signOut } from 'next-auth/react'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 import { Fragment } from 'react'
 
 import { FaCog, FaUserAlt, FaSignOutAlt } from 'react-icons/fa'
+import { FaShieldAlt } from 'react-icons/fa'
 
 import { Button } from '../button'
 
 import ProfilePhoto from '@public/img/bruce.png'
 
-export function UserNavbar() {
+interface Props {
+  session: Session
+}
+
+export function UserNavbar({ session }: Props) {
   return (
     <div className="hidden lg:flex items-center gap-4">
       <Button label="DAR FILA" color="primary" disabled />
@@ -31,6 +38,20 @@ export function UserNavbar() {
       </div>
 
       <ConfigButton />
+      <AdminButton />
+    </div>
+  )
+}
+
+function AdminButton() {
+  const router = useRouter()
+
+  return (
+    <div
+      onClick={() => router.push('/admin')}
+      className="p-2 cursor-pointer bg-red-700 rounded hover:bg-red-900"
+    >
+      <FaShieldAlt className="text-lg" />
     </div>
   )
 }

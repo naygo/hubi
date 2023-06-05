@@ -32,14 +32,19 @@ const arrayRoutes = [
 ]
 
 export function Navbar() {
-  const { data: session, status } = useSession()
-  const userLogged = status === 'authenticated'
-  console.log({ session }, { status })
-
   const [isNavbarOpened, setIsNavbarOpened] = useState(false)
   const windowSize = useWindowSize()
   const pathname = usePathname()
   const router = useRouter()
+
+  const { data: session, status } = useSession({
+    required: true,
+    onUnauthenticated() {
+      router.push(routes.home)
+    },
+  })
+  const userLogged = status === 'authenticated'
+  console.log({ session }, { status })
 
   function toggleNavbar() {
     setIsNavbarOpened(!isNavbarOpened)
@@ -85,7 +90,7 @@ export function Navbar() {
           </nav>
         </div>
 
-        {userLogged && <UserNavbar />}
+        {userLogged && session && <UserNavbar session={session} />}
 
         {!userLogged && (
           <div className="hidden lg:flex items-center gap-4">
