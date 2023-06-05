@@ -1,0 +1,29 @@
+import { Ranks } from "ranks"
+import { Pronouns } from "pronouns"
+import { Genders } from "genders"
+import { UsersSocials } from "users-socials"
+
+model Users {
+    id              Int      @id @default(autoincrement())
+    firstName       String
+    lastName        String
+    email           String
+    password        String
+    dateBirth       DateTime
+    genderId        Int
+    createdAt       DateTime @default(now())
+    updatedAt       DateTime
+    howDidKnowHubi  String
+    timeInCommunity String
+    pronounId       Int
+    riotId          String
+    rankId          Int
+    isAdmin         Boolean
+
+    gender  Genders        @relation(fields: [genderId], references: [id])
+    pronoun Pronouns       @relation(fields: [pronounId], references: [id])
+    rank    Ranks          @relation(fields: [rankId], references: [id])
+    socials UsersSocials[]
+
+    @@map("users")
+}
