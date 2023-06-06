@@ -12,6 +12,6 @@
   color: #e5e5e5;
 
   body {
-    background-image: linear-gradient(to top, #0D0D0D,#1F1F1F);
+    @apply bg-black;
   }
 }
