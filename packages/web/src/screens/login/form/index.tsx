@@ -38,7 +38,7 @@ export function LoginForm() {
     if (!res.ok) {
       console.log(res.error)
     } else {
-      router.push('/')
+      router.push('/lobby')
     }
   }
 
