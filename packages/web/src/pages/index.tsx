@@ -179,7 +179,7 @@ function TeamMemberInfo() {
         <div key={name} className="bg-black-dark rounded mb-4">
           <Image
             src={photo}
-            alt="Random Image"
+            alt={name}
             className="w-full h-36 rounded-t"
             width={150}
             height={150}
