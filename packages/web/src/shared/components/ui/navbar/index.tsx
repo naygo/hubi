@@ -1,4 +1,5 @@
 import clsx from 'clsx'
+import { useSession } from 'next-auth/react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -13,6 +14,7 @@ import { routes } from '@/shared/utils/routes'
 
 import { Button } from '../button'
 import { MobileNavbar } from '../mobileNavbar'
+import { UserNavbar } from '../user-navbar'
 
 import Logo from '@public/img/logo.svg'
 
@@ -21,11 +23,12 @@ const noundAndDarkModeButtons =
 const tailwindLgBreakpointInPx = 1024 // From TailwindCSS default config
 
 const arrayRoutes = [
-  { name: 'Página Inicial', route: routes.home },
-  { name: 'Leaderboard', route: routes.leaderboard },
-  { name: 'Agenda', route: routes.agenda },
-  { name: 'FAQ', route: routes.faq },
-  { name: 'Contato', route: routes.contato },
+  { name: 'Lobby', route: routes.lobby, permission: 'user' },
+  { name: 'Página Inicial', route: routes.home, permission: 'guest' },
+  { name: 'Leaderboard', route: routes.leaderboard, permission: 'guest' },
+  { name: 'Agenda', route: routes.agenda, permission: 'all', disabled: true },
+  { name: 'FAQ', route: routes.faq, permission: 'all', disabled: true },
+  { name: 'Contato', route: routes.contato, permission: 'all', disabled: true },
 ]
 
 export function Navbar() {
@@ -34,8 +37,26 @@ export function Navbar() {
   const pathname = usePathname()
   const router = useRouter()
 
+  const { data: session, status } = useSession({
+    required: true,
+    onUnauthenticated() {
+      router.push(routes.home)
+    },
+  })
+  const userLogged = status === 'authenticated'
+  console.log({ session }, { status })
+
   function toggleNavbar() {
     setIsNavbarOpened(!isNavbarOpened)
+  }
+
+  function filterRoutesByPermission() {
+    return arrayRoutes.filter((route) => {
+      if (route.permission === 'all') return true
+      if (route.permission === 'guest' && !userLogged) return true
+      if (route.permission === 'user' && userLogged) return true
+      return false
+    })
   }
 
   useEffect(() => {
@@ -49,17 +70,17 @@ export function Navbar() {
       <header className="relative w-full flex gap-4 justify-between items-center p-4 border-b border-black-lighter font-normal text-sm">
         <div className="flex items-center">
           <Image src={Logo} width={100} height={100} alt="HUBI Logo" />
-          {/* vertical line */}
           <div className="h-8 w-0.5 bg-black-lighter mx-5"></div>
 
           {/* links */}
           <nav className="hidden lg:flex gap-4 text-gray">
-            {arrayRoutes.map((routes) => (
+            {filterRoutesByPermission().map((routes) => (
               <div key={routes.route}>
                 <Link
                   href={routes.route}
                   className={clsx('hover:text-yellow', {
                     'font-bold text-white': pathname === routes.route,
+                    'pointer-events-none': routes.disabled,
                   })}
                 >
                   {routes.name}
@@ -69,24 +90,28 @@ export function Navbar() {
           </nav>
         </div>
 
-        <div className="hidden lg:flex items-center gap-4">
-          <div className="flex gap-3">
-            <LogoNouns size={30} className={noundAndDarkModeButtons} />
-            <IoInvertMode size={37} className={noundAndDarkModeButtons} />
+        {userLogged && session && <UserNavbar session={session} />}
+
+        {!userLogged && (
+          <div className="hidden lg:flex items-center gap-4">
+            <div className="flex gap-3">
+              <LogoNouns size={30} className={noundAndDarkModeButtons} />
+              <IoInvertMode size={37} className={noundAndDarkModeButtons} />
+            </div>
+
+            <div className="h-8 w-0.5 bg-black-lighter"></div>
+
+            <a className="text-gray hover:text-yellow cursor-pointer">
+              Saiba mais
+            </a>
+
+            <Button
+              color="primary"
+              label="Jogar"
+              onClick={() => router.push('/signup')}
+            />
           </div>
-
-          <div className="h-8 w-0.5 bg-black-lighter"></div>
-
-          <a className="text-gray hover:text-yellow cursor-pointer">
-            Saiba mais
-          </a>
-
-          <Button
-            color="primary"
-            label="Jogar"
-            onClick={() => router.push('/signup')}
-          />
-        </div>
+        )}
 
         {/* burger menu  */}
         <div className="lg:hidden">
@@ -101,7 +126,10 @@ export function Navbar() {
           </button>
         </div>
 
-        <MobileNavbar isNavbarOpened={isNavbarOpened} routes={arrayRoutes} />
+        <MobileNavbar
+          isNavbarOpened={isNavbarOpened}
+          routes={filterRoutesByPermission()}
+        />
       </header>
     </>
   )

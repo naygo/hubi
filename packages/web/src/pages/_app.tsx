@@ -1,4 +1,5 @@
 import clsx from 'clsx'
+import { SessionProvider } from 'next-auth/react'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
@@ -21,20 +22,22 @@ export default function MyApp({ Component, pageProps }: AppProps) {
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
         />
       </Head>
-      <div
-        className={clsx('flex flex-col min-h-screen', {
-          'justify-between': !shouldHideNavFooter,
-          'justify-center': shouldHideNavFooter,
-        })}
-      >
-        {!shouldHideNavFooter && <Navbar />}
-        <Component {...pageProps} />
-        {!shouldHideNavFooter && (
-          <div className="flex justify-center">
-            <Footer />
-          </div>
-        )}
-      </div>
+      <SessionProvider>
+        <div
+          className={clsx('flex flex-col min-h-screen', {
+            'justify-between': !shouldHideNavFooter,
+            'justify-center': shouldHideNavFooter,
+          })}
+        >
+          {!shouldHideNavFooter && <Navbar />}
+          <Component {...pageProps} />
+          {!shouldHideNavFooter && (
+            <div className="flex justify-center">
+              <Footer />
+            </div>
+          )}
+        </div>
+      </SessionProvider>
     </>
   )
 }
