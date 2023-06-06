@@ -14,8 +14,6 @@ import team, { Team } from '@/shared/utils/team'
 import NounsLogo from '@public/img/initial-page/nouns-logo.svg'
 import Prizes from '@public/img/initial-page/prizes.png'
 
-const heightFirstSection = 'calc(100vh - 71px)'
-
 export default function Home() {
   return (
     <main>
@@ -26,7 +24,7 @@ export default function Home() {
       <section
         className="flex items-center justify-center"
         style={{
-          height: heightFirstSection,
+          height: 'calc(100vh - 71px)',
         }}
       >
         <div className="w-52 flex flex-col items-center justify-between gap-20">
