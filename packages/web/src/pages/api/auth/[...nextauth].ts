@@ -2,6 +2,9 @@ import NextAuth from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 
 export default NextAuth({
+  session: {
+    strategy: 'jwt',
+  },
   providers: [
     CredentialsProvider({
       name: 'Credentials',
@@ -23,21 +26,30 @@ export default NextAuth({
           name: 'Admin',
           email: 'admin@email',
           password: '123',
+          isAdmin: true,
         }
 
         if (
           credentials?.email === 'admin@email' &&
           credentials?.password === '123'
         ) {
-          return Promise.resolve(user)
+          return user
         } else {
-          return Promise.resolve(null)
+          return null
         }
       },
     }),
   ],
   callbacks: {
-    async session({ session, user, token }) {
+    async jwt({ token, user }) {
+      if (user) {
+        token.user = user
+      }
+
+      return token
+    },
+    async session({ session, token }) {
+      session.user = token.user as any // TODO TIPAR ISSO
       return session
     },
   },
