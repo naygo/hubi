@@ -74,7 +74,6 @@ function UserCard({ player, className }: UserCardProps) {
           before:content=['']
           before:absolute before:top-0 before:left-0
           before:w-1 before:h-2/4
-          before:bg-red-500
           before:transform before:translate-y-1/2 before:-translate-x-1/2
         `,
           {
