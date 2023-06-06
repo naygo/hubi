@@ -1,4 +1,5 @@
 import clsx from 'clsx'
+import { useSession } from 'next-auth/react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -29,6 +30,9 @@ const arrayRoutes = [
 ]
 
 export function Navbar() {
+  const { data: session, status } = useSession()
+  console.log(session, status)
+
   const [isNavbarOpened, setIsNavbarOpened] = useState(false)
   const windowSize = useWindowSize()
   const pathname = usePathname()

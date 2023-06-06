@@ -20,7 +20,6 @@ export function AuthCard({ children }: Props) {
           <Image
             src={Logo}
             alt="Picture of the author"
-            width={200}
             className={`${styles.logoBox} w-64`}
           />
           <div className="text-xs md:text-sm text-center mt-2 md:w-96">
