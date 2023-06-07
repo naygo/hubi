@@ -20,6 +20,7 @@ import { getLeaderboard, getListLeaderboards } from '../../services/leaderboard'
 import { removeAfterHyphen } from '../../shared/utils/string'
 
 import styles from './styles.module.scss'
+import { NavbarFooterLayout } from '@/shared/components/layout/navbar-footer'
 
 interface LeaderboardProps {
   leaderboard: PlayerLeaderboard[]
@@ -138,7 +139,7 @@ export default function Leaderboard({
   const screenHeight = 'calc(100vh - 65px)'
 
   return (
-    <>
+    <NavbarFooterLayout>
       <Head>
         <title>HUBI - Leaderboard</title>
       </Head>
@@ -232,7 +233,7 @@ export default function Leaderboard({
           </div>
         </div>
       </div>
-    </>
+    </NavbarFooterLayout>
   )
 }
 
