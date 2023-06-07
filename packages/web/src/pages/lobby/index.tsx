@@ -1,8 +1,14 @@
 import { GetServerSidePropsContext } from 'next'
 import { getSession } from 'next-auth/react'
 
+import { NavbarFooterLayout } from '@/shared/components/layout/navbar-footer'
+
 export default function Lobby() {
-  return <h1>Lobby</h1>
+  return (
+    <NavbarFooterLayout>
+      <h1>Lobby</h1>
+    </NavbarFooterLayout>
+  )
 }
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
