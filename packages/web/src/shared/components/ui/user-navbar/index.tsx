@@ -37,8 +37,8 @@ export function UserNavbar({ session }: Props) {
         <span className="text-gray">12345 pontos</span>
       </div>
 
+      {session.user.isAdmin && <AdminButton />}
       <ConfigButton />
-      <AdminButton />
     </div>
   )
 }
