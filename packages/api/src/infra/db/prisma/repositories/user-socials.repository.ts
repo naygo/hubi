@@ -1,6 +1,7 @@
 import { Prisma, PrismaClient } from '@prisma/client'
 import { UserSocial } from '@hubi/types'
-import { Injectable } from '@nestjs/common'
+import { Inject, Injectable } from '@nestjs/common'
+import { PRISMA_PROVIDER } from '@/infra/db/prisma/provider'
 
 @Injectable()
 export class UserSocialsRepository {
@@ -8,9 +9,8 @@ export class UserSocialsRepository {
     Prisma.RejectOnNotFound | Prisma.RejectPerOperation
   >
 
-  constructor() {
-    const prisma = new PrismaClient()
-    this.userSocialsRepository = prisma.usersSocials
+  constructor(@Inject(PRISMA_PROVIDER) private readonly prisma: PrismaClient) {
+    this.userSocialsRepository = this.prisma.usersSocials
   }
 
   async create(
