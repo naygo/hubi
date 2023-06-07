@@ -142,17 +142,24 @@ export default function Leaderboard({
       <Head>
         <title>HUBI - Leaderboard</title>
       </Head>
+      <div className="border-b bg-black-light border-black-lighter py-10 px-5">
+        <div className="container m-auto">
+          <h1 className="font-bold text-yellow text-3xl md:text-5xl mb-2">
+            LEADERBOARD
+          </h1>
+          <span className="text-gray text-xs md:text-base">
+            Aqui mostramos as melhores jogadoras que se destacam. Junte-se a nós
+            e deixe a sua marca nessa emocionante competição!
+          </span>
+        </div>
+      </div>
       <div
-        className={`flex justify-center py-10`}
+        className={`flex justify-center mt-5`}
         style={{ height: screenHeight }}
       >
         <div className="container flex justify-center">
-          <div className="flex flex-col justify-between items-center">
-            <h1 className="font-bold text-yellow text-5xl sm:text-8xl">
-              LEADERBOARD
-            </h1>
-
-            <div className="w-full flex flex-col md:flex-row gap-4 justify-between items-center p-10">
+          <div className="flex flex-col gap-5 lg:gap-10 justify-between items-center w-full">
+            <div className="w-full flex flex-col md:flex-row gap-4 justify-between items-center">
               <div className="block sm:hidden w-full">
                 <Dropdown
                   name="season"
@@ -184,7 +191,7 @@ export default function Leaderboard({
               </div>
             </div>
 
-            <div className={`${styles.table} w-full p-3 overflow-auto`}>
+            <div className={`${styles.table} w-full p-4 lg:p-0 overflow-auto`}>
               <div className="grid grid-cols-12 text-center">
                 <p className="col-span-3 md:col-span-2 text-sm sm:text-xl">
                   CLASSIFICAÇÃO
