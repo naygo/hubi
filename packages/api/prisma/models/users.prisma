@@ -19,7 +19,7 @@ model Users {
     riotId          String
     rankId          Int
     isAdmin         Boolean
-    status          Int
+    status          String
 
     gender  Genders        @relation(fields: [genderId], references: [id])
     pronoun Pronouns       @relation(fields: [pronounId], references: [id])

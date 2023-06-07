@@ -6,7 +6,7 @@ model UsersSocials {
     socialId  Int
     url       String
     createdAt DateTime
-    status    Int
+    status    String
 
     user   Users   @relation(fields: [userId], references: [id])
     social Socials @relation(fields: [socialId], references: [id])

@@ -3,7 +3,7 @@ import { Users } from "users"
 model Genders {
     id     Int    @id @default(autoincrement())
     name   String
-    status Int
+    status String
 
     Users Users[]
 
