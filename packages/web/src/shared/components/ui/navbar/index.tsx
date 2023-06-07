@@ -88,7 +88,7 @@ export function Navbar() {
           <Button
             color="primary"
             label="Jogar"
-            onClick={() => router.push('/signup')}
+            onClick={() => router.push('/login')}
           />
         </div>
 
