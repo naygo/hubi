@@ -1,6 +1,8 @@
 import NextAuth from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 
+import type { UserData } from './next-auth'
+
 export default NextAuth({
   session: {
     strategy: 'jwt',
@@ -25,7 +27,6 @@ export default NextAuth({
           id: '12345',
           name: 'Admin',
           email: 'admin@email',
-          password: '123',
           isAdmin: true,
         }
 
@@ -43,13 +44,13 @@ export default NextAuth({
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token.user = user
+        token.user = user as UserData
       }
 
       return token
     },
     async session({ session, token }) {
-      session.user = token.user as any // TODO TIPAR ISSO
+      session.user = token.user
       return session
     },
   },
