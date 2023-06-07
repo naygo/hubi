@@ -1,6 +1,7 @@
 import { Prisma, PrismaClient } from '@prisma/client'
 import { User } from '@hubi/types'
-import { Injectable } from '@nestjs/common'
+import { Inject, Injectable } from '@nestjs/common'
+import { PRISMA_PROVIDER } from '@/infra/db/prisma/provider'
 
 @Injectable()
 export class UsersRepository {
@@ -8,9 +9,8 @@ export class UsersRepository {
     Prisma.RejectOnNotFound | Prisma.RejectPerOperation
   >
 
-  constructor() {
-    const prisma = new PrismaClient()
-    this.userRepository = prisma.users
+  constructor(@Inject(PRISMA_PROVIDER) private readonly prisma: PrismaClient) {
+    this.userRepository = this.prisma.users
   }
 
   async create(
@@ -29,36 +29,22 @@ export class UsersRepository {
   ): Promise<UsersRepository.LoadByEmailResult> {
     const user = await this.userRepository.findFirst({
       where: { email: parameters.email },
-      select: {
-        id: true,
-        firstName: true,
-        lastName: true,
-        email: true,
-        dateBirth: true,
-        genderId: true,
-        createdAt: true,
-        updatedAt: true,
-        howDidKnowHubi: true,
-        timeInCommunity: true,
-        pronounId: true,
-        riotId: true,
-        rankId: true,
-        isAdmin: true,
+      include: {
         gender: true,
         pronoun: true,
-        rank: true,
         socials: true,
+        rank: true,
       },
     })
 
-    return user as unknown as UsersRepository.LoadByEmailResult
+    return user
   }
 }
 
 export namespace UsersRepository {
   export type CreateUserParameters = Omit<
     User,
-    'id' | 'gender' | 'pronoun' | 'rank' | 'socials'
+    'id' | 'updatedAt' | 'gender' | 'pronoun' | 'rank' | 'socials'
   >
   export type CreateUserResult = Omit<
     User,
@@ -68,5 +54,5 @@ export namespace UsersRepository {
   export type LoadByEmailParameters = {
     email: string
   }
-  export type LoadByEmailResult = Omit<User, 'password'>
+  export type LoadByEmailResult = User
 }
