@@ -1,10 +1,13 @@
 import clsx from 'clsx'
+import Head from 'next/head'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { Input } from '@/shared/components/form/input'
 import { NavbarFooterLayout } from '@/shared/components/layout/navbar-footer'
 import { HeaderTitlePage } from '@/shared/components/ui/header-title-page'
+
+const filterBadges: BadgeType[] = ['Aprovada', 'Pendente', 'Recusada']
 
 export default function Admin() {
   const [statusFilter, setStatusFilter] = useState('')
@@ -13,6 +16,9 @@ export default function Admin() {
   })
   return (
     <NavbarFooterLayout>
+      <Head>
+        <title>Administração | HUBI</title>
+      </Head>
       <HeaderTitlePage
         title="Administração"
         description="Gerenciamento de membros e de cadastros em andamento."
@@ -28,27 +34,11 @@ export default function Admin() {
             />
 
             <div className="flex gap-2">
-              <button onClick={() => setStatusFilter('Aprovada')}>
-                <Badge
-                  type="Aprovada"
-                  filter
-                  active={statusFilter === 'Aprovada'}
-                />
-              </button>
-              <button onClick={() => setStatusFilter('Pendente')}>
-                <Badge
-                  type="Pendente"
-                  filter
-                  active={statusFilter === 'Pendente'}
-                />
-              </button>
-              <button onClick={() => setStatusFilter('Recusada')}>
-                <Badge
-                  type="Recusada"
-                  filter
-                  active={statusFilter === 'Recusada'}
-                />
-              </button>
+              {filterBadges.map((badge) => (
+                <button key={badge} onClick={() => setStatusFilter(badge)}>
+                  <Badge type={badge} filter active={statusFilter === badge} />
+                </button>
+              ))}
             </div>
           </div>
           <div className="overflow-auto w-full rounded">
@@ -64,41 +54,9 @@ export default function Admin() {
                 </tr>
               </thead>
               <tbody className="text-sm lg:text-lg">
-                <tr className="bg-white border-b hover:bg-gray-light hover:cursor-pointer">
-                  <th
-                    scope="row"
-                    className="px-6 py-4 font-medium text-black whitespace-nowrap"
-                  >
-                    Mulher linda
-                  </th>
-                  <td className="px-6 py-4 text-center">
-                    <Badge type="Aprovada" />
-                  </td>
-                </tr>
-
-                <tr className="bg-white border-b hover:bg-gray-light hover:cursor-pointer">
-                  <th
-                    scope="row"
-                    className="px-6 py-4 font-medium text-black whitespace-nowrap"
-                  >
-                    Mulher feia
-                  </th>
-                  <td className="px-6 py-4 text-center">
-                    <Badge type="Pendente" />
-                  </td>
-                </tr>
-
-                <tr className="bg-white border-b hover:bg-gray-light hover:cursor-pointer">
-                  <th
-                    scope="row"
-                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
-                  >
-                    Macho feio
-                  </th>
-                  <td className="px-6 py-4 text-center">
-                    <Badge type="Recusada" />
-                  </td>
-                </tr>
+                <TableRow name="Mulher bonita" status="Aprovada" />
+                <TableRow name="Mulher bonita" status="Pendente" />
+                <TableRow name="Mulher bonita" status="Recusada" />
               </tbody>
             </table>
           </div>
@@ -108,8 +66,10 @@ export default function Admin() {
   )
 }
 
+type BadgeType = 'Aprovada' | 'Recusada' | 'Pendente'
+
 interface BadgeProps {
-  type: 'Aprovada' | 'Recusada' | 'Pendente'
+  type: BadgeType
   filter?: boolean
   active?: boolean
 }
@@ -134,5 +94,26 @@ function Badge({ type, filter, active }: BadgeProps) {
     >
       {type}
     </span>
+  )
+}
+
+interface TableRowProps {
+  name: string
+  status: BadgeType
+}
+
+function TableRow({ name, status }: TableRowProps) {
+  return (
+    <tr className="bg-white border-b hover:bg-gray-light hover:cursor-pointer">
+      <th
+        scope="row"
+        className="px-6 py-4 font-medium text-black whitespace-nowrap"
+      >
+        {name}
+      </th>
+      <td className="px-6 py-4 text-center">
+        <Badge type={status} />
+      </td>
+    </tr>
   )
 }
