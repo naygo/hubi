@@ -1,10 +1,16 @@
+import { Dialog, Transition } from '@headlessui/react'
 import clsx from 'clsx'
 import Head from 'next/head'
-import { useState } from 'react'
+import Link from 'next/link'
+import { Fragment, useState } from 'react'
 import { useForm } from 'react-hook-form'
+
+import { IconType } from 'react-icons'
+import { FaDiscord, FaInstagram, FaTwitter } from 'react-icons/fa'
 
 import { Input } from '@/shared/components/form/input'
 import { NavbarFooterLayout } from '@/shared/components/layout/navbar-footer'
+import { Button } from '@/shared/components/ui/button'
 import { HeaderTitlePage } from '@/shared/components/ui/header-title-page'
 
 interface Records {
@@ -34,6 +40,8 @@ const records: Records[] = [
 
 export default function Admin() {
   const [statusFilter, setStatusFilter] = useState('')
+  const [isOpen, setIsOpen] = useState(true)
+
   const { control } = useForm<any>({
     mode: 'onChange',
   })
@@ -86,6 +94,9 @@ export default function Admin() {
                     name={record.name}
                     status={record.status}
                     date={record.date}
+                    onClick={() => {
+                      setIsOpen(true)
+                    }}
                   />
                 ))}
               </tbody>
@@ -93,6 +104,8 @@ export default function Admin() {
           </div>
         </div>
       </main>
+
+      <RecordDialog isOpen={isOpen} setIsOpen={setIsOpen} />
     </NavbarFooterLayout>
   )
 }
@@ -132,23 +145,123 @@ interface TableRowProps {
   name: string
   status: BadgeType
   date: string
+  onClick: () => void
 }
 
-function TableRow({ name, status, date }: TableRowProps) {
+function TableRow({ name, status, date, onClick }: TableRowProps) {
   return (
-    <tr className="bg-white border-b hover:bg-gray-light hover:cursor-pointer">
-      <th
-        scope="row"
-        className="px-6 py-4 font-medium text-black whitespace-nowrap"
-      >
+    <tr
+      onClick={() => onClick()}
+      className="border-b last:border-b-0 border-black-lighter hover:bg-black-lighter hover:cursor-pointer"
+    >
+      <th scope="row" className="px-6 py-4 font-medium whitespace-nowrap">
         {name}
       </th>
       <td className="text-center">
-        <span className="text-black">{date}</span>
+        <span className="">{date}</span>
       </td>
       <td className="text-center">
         <Badge type={status} />
       </td>
     </tr>
+  )
+}
+
+interface DialogProps {
+  isOpen: boolean
+  setIsOpen: (value: boolean) => void
+  onClose?: () => void
+}
+
+function RecordDialog({ isOpen, setIsOpen }: DialogProps) {
+  return (
+    <>
+      <Transition appear show={isOpen} as={Fragment}>
+        <Dialog
+          as="div"
+          className="relative z-10"
+          onClose={() => setIsOpen(false)}
+        >
+          <Transition.Child
+            as={Fragment}
+            enter="ease-out duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <div className="fixed inset-0 bg-black-dark bg-opacity-70" />
+          </Transition.Child>
+
+          <div className="fixed inset-0 overflow-y-auto">
+            <div className="flex min-h-full items-center justify-center p-4 text-center">
+              <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0 scale-95"
+                enterTo="opacity-100 scale-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100 scale-100"
+                leaveTo="opacity-0 scale-95"
+              >
+                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-black-light text-left align-middle shadow-xl transition-all">
+                  <Dialog.Title
+                    as="h3"
+                    className="text-lg font-bold bg-black border-b border-black-lighter text-white p-4"
+                  >
+                    Naylinha Gomes
+                  </Dialog.Title>
+                  <div className="px-6 py-4">
+                    <div className="flex gap-5">
+                      <SocialMediaButton icon={FaTwitter} />
+                      <SocialMediaButton icon={FaInstagram} />
+                      <SocialMediaButton icon={FaDiscord} />
+                    </div>
+
+                    <div className="mt-4">
+                      <label className="text-gray">Outras redes sociais:</label>
+                      <Link href={'/'} className="">
+                        <p className="text-yellow underline">@naylinha</p>
+                      </Link>
+                    </div>
+                  </div>
+
+                  <div className="bg-black p-4 border-t border-black-lighter flex gap-5">
+                    <Button
+                      onClick={() => setIsOpen(false)}
+                      label="Voltar"
+                      color="link"
+                      className="w-full"
+                    />
+                    <Button
+                      onClick={() => setIsOpen(false)}
+                      label="Recusar"
+                      color="danger-outline"
+                      className="w-full  ml-10"
+                    />
+                    <Button
+                      onClick={() => setIsOpen(false)}
+                      label="Aprovar"
+                      color="secondary"
+                      className="w-full"
+                    />
+                  </div>
+                </Dialog.Panel>
+              </Transition.Child>
+            </div>
+          </div>
+        </Dialog>
+      </Transition>
+    </>
+  )
+}
+
+function SocialMediaButton({ icon: Icon }: { icon: IconType }) {
+  return (
+    <Icon
+      className="rounded bg-black-lighter p-2 hover:bg-yellow cursor-pointer"
+      size={50}
+    />
   )
 }
