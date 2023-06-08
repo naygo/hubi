@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Res } from '@nestjs/common'
+import { Body, Controller, HttpStatus, Post, Res } from '@nestjs/common'
 import { CreateUser } from '@/domain/usecases/db/users/create-user'
 import { Response } from 'express'
 import { SignupDTO } from '@/presentation/dtos/user'
@@ -10,6 +10,6 @@ export class UserController {
   @Post('/signup')
   async signup(@Body() body: SignupDTO, @Res() response: Response) {
     await this.createUser.execute(body)
-    response.status(201).end()
+    response.status(HttpStatus.CREATED).end()
   }
 }
