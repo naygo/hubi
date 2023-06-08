@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form'
 
 import { Input } from '@/shared/components/form/input'
 import { NavbarFooterLayout } from '@/shared/components/layout/navbar-footer'
+import { HeaderTitlePage } from '@/shared/components/ui/header-title-page'
 
 export default function Admin() {
   const [statusFilter, setStatusFilter] = useState('')
@@ -12,11 +13,10 @@ export default function Admin() {
   })
   return (
     <NavbarFooterLayout>
-      <header className="border-b bg-black-light border-black-lighter py-10 px-5">
-        <h1 className="text-2xl lg:text-5xl font-bold text-yellow text-center">
-          GERENCIAR MEMBROS
-        </h1>
-      </header>
+      <HeaderTitlePage
+        title="Administração"
+        description="Gerenciamento de membros e de cadastros em andamento."
+      />
 
       <main className="flex justify-center items-start">
         <div className="container flex flex-col justify-center items-center gap-5 lg:gap-10 py-6 px-4">

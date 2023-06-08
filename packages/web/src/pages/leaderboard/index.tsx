@@ -21,6 +21,7 @@ import { removeAfterHyphen } from '../../shared/utils/string'
 
 import styles from './styles.module.scss'
 import { NavbarFooterLayout } from '@/shared/components/layout/navbar-footer'
+import { HeaderTitlePage } from '@/shared/components/ui/header-title-page'
 
 interface LeaderboardProps {
   leaderboard: PlayerLeaderboard[]
@@ -143,17 +144,11 @@ export default function Leaderboard({
       <Head>
         <title>HUBI - Leaderboard</title>
       </Head>
-      <div className="border-b bg-black-light border-black-lighter py-10 px-5">
-        <div className="container m-auto">
-          <h1 className="font-bold text-yellow text-3xl md:text-5xl mb-2">
-            LEADERBOARD
-          </h1>
-          <span className="text-gray text-xs md:text-base">
-            Aqui mostramos as melhores jogadoras que se destacam. Junte-se a nós
-            e deixe a sua marca nessa emocionante competição!
-          </span>
-        </div>
-      </div>
+      <HeaderTitlePage
+        title="Leaderboard"
+        description="Aqui mostramos as melhores jogadoras que se destacam. Junte-se a nós
+        e deixe a sua marca nessa emocionante competição!"
+      />
       <div
         className={`flex justify-center mt-5`}
         style={{ height: screenHeight }}
