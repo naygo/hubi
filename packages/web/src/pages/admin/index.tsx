@@ -7,7 +7,30 @@ import { Input } from '@/shared/components/form/input'
 import { NavbarFooterLayout } from '@/shared/components/layout/navbar-footer'
 import { HeaderTitlePage } from '@/shared/components/ui/header-title-page'
 
+interface Records {
+  name: string
+  status: BadgeType
+  date: string
+}
+
 const filterBadges: BadgeType[] = ['Aprovada', 'Pendente', 'Recusada']
+const records: Records[] = [
+  {
+    name: 'Mulher bonita',
+    status: 'Aprovada',
+    date: '01/01/2001',
+  },
+  {
+    name: 'Mulher bonita',
+    status: 'Pendente',
+    date: '01/01/2001',
+  },
+  {
+    name: 'Mulher bonita',
+    status: 'Recusada',
+    date: '01/01/2001',
+  },
+]
 
 export default function Admin() {
   const [statusFilter, setStatusFilter] = useState('')
@@ -21,7 +44,7 @@ export default function Admin() {
       </Head>
       <HeaderTitlePage
         title="Administração"
-        description="Gerenciamento de membros e de cadastros em andamento."
+        description="Gerenciamento de cadastros."
       />
 
       <main className="flex justify-center items-start">
@@ -49,14 +72,22 @@ export default function Admin() {
                     Nome
                   </th>
                   <th scope="col" className="px-6 py-3 text-center">
+                    Data de envio
+                  </th>
+                  <th scope="col" className="px-6 py-3 text-center">
                     Status
                   </th>
                 </tr>
               </thead>
               <tbody className="text-sm lg:text-lg">
-                <TableRow name="Mulher bonita" status="Aprovada" />
-                <TableRow name="Mulher bonita" status="Pendente" />
-                <TableRow name="Mulher bonita" status="Recusada" />
+                {records.map((record) => (
+                  <TableRow
+                    key={record.name}
+                    name={record.name}
+                    status={record.status}
+                    date={record.date}
+                  />
+                ))}
               </tbody>
             </table>
           </div>
@@ -100,9 +131,10 @@ function Badge({ type, filter, active }: BadgeProps) {
 interface TableRowProps {
   name: string
   status: BadgeType
+  date: string
 }
 
-function TableRow({ name, status }: TableRowProps) {
+function TableRow({ name, status, date }: TableRowProps) {
   return (
     <tr className="bg-white border-b hover:bg-gray-light hover:cursor-pointer">
       <th
@@ -111,7 +143,10 @@ function TableRow({ name, status }: TableRowProps) {
       >
         {name}
       </th>
-      <td className="px-6 py-4 text-center">
+      <td className="text-center">
+        <span className="text-black">{date}</span>
+      </td>
+      <td className="text-center">
         <Badge type={status} />
       </td>
     </tr>
