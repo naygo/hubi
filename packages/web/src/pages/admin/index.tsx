@@ -67,7 +67,7 @@ export default function Admin() {
             <div className="flex gap-2">
               {filterBadges.map((badge) => (
                 <button key={badge} onClick={() => setStatusFilter(badge)}>
-                  <Badge type={badge} filter active={statusFilter === badge} />
+                  <Badge type={badge} active={statusFilter === badge} />
                 </button>
               ))}
             </div>
@@ -114,29 +114,47 @@ type BadgeType = 'Aprovada' | 'Recusada' | 'Pendente'
 
 interface BadgeProps {
   type: BadgeType
-  filter?: boolean
   active?: boolean
 }
 
-function Badge({ type, filter, active }: BadgeProps) {
-  const colors: { [key: string]: string } = {
-    aprovada: 'bg-green-500',
-    recusada: 'bg-red-500',
-    pendente: 'bg-yellow-500',
-  }
-
+function Badge({ type, active }: BadgeProps) {
   return (
     <span
       className={clsx(
-        'inline-flex items-center gap-1.5 py-1.5 px-3 rounded-full text-xs lg:text-sm font-medium',
+        'inline-flex items-center gap-1.5 py-1.5 px-3 rounded-full text-xs lg:text-sm font-medium border border-yellow',
         {
-          [`${colors[type.toLowerCase()]} text-black`]: !filter,
-          'text-white border border-yellow': filter && !active,
-          'border border-transparent bg-yellow text-black': filter && active,
+          'text-white': !active,
+          'bg-yellow text-black': active,
         },
       )}
     >
       {type}
+    </span>
+  )
+}
+
+function StatusDot({ type }: { type: BadgeType }) {
+  const colors = {
+    Aprovada: 'bg-green-700',
+    Recusada: 'bg-red-700',
+    Pendente: 'bg-yellow',
+  }
+  return (
+    <span className="px-1">
+      <div
+        className={clsx(
+          'relative inline-block h-2.5 w-2.5 rounded-full',
+          colors[type],
+        )}
+      >
+        {type === 'Pendente' && (
+          <span
+            className={clsx(
+              'absolute left-0 h-2.5 w-2.5 rounded-full bg-yellow animate-ping',
+            )}
+          ></span>
+        )}
+      </div>
     </span>
   )
 }
@@ -161,7 +179,7 @@ function TableRow({ name, status, date, onClick }: TableRowProps) {
         <span className="">{date}</span>
       </td>
       <td className="text-center">
-        <Badge type={status} />
+        <StatusDot type={status} /> {status}
       </td>
     </tr>
   )
