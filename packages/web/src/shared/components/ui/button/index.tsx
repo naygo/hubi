@@ -7,7 +7,7 @@ type NativeProps = DetailedHTMLProps<
 >
 
 type ExtraProps = {
-  color: 'primary' | 'secondary'
+  color: 'primary' | 'secondary' | 'danger-outline' | 'link' | 'success'
   label: string
 }
 type Props = NativeProps & ExtraProps
@@ -35,8 +35,11 @@ function ButtonGenerate(
         `,
         {
           'bg-yellow hover:bg-yellow-dark': color === 'primary',
-          'border border-transparent bg-black-lighter hover:bg-black-light hover:border-yellow':
+          'border border-transparent bg-black-lighter hover:bg-black-light':
             color === 'secondary',
+          'border border-red-600 hover:bg-red-600': color === 'danger-outline',
+          'text-gray hover:text-yellow': color === 'link',
+          'bg-green-700 hover:bg-green-800': color === 'success',
         },
         props.className,
       )}
