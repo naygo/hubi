@@ -18,10 +18,26 @@ export class UsersRepository {
   ): Promise<UsersRepository.CreateUserResult> {
     const createdUser = await this.userRepository.create({
       data: parameters,
+      select: {
+        id: true,
+        firstName: true,
+        lastName: true,
+        email: true,
+        createdAt: true,
+        dateBirth: true,
+        genderId: true,
+        howDidKnowHubi: true,
+        isAdmin: true,
+        updatedAt: true,
+        pronounId: true,
+        rankId: true,
+        riotId: true,
+        status: true,
+        timeInCommunity: true,
+      },
     })
 
-    const { password, ...user } = createdUser
-    return user
+    return createdUser
   }
 
   async loadByEmail(
