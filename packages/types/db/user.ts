@@ -16,7 +16,7 @@ export interface User {
   riotId: string;
   rankId: number;
   isAdmin: boolean;
-  status: UserStatusEnum;
+  status: string;
 
   gender: Gender;
   pronoun: Pronoun;

@@ -6,5 +6,5 @@ export interface UserSocial {
   userId: number;
   url: string;
   createdAt: Date;
-  status: StatusEnum;
+  status: string;
 }
