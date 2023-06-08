@@ -9,7 +9,7 @@ import { IconType } from 'react-icons'
 import { FaDiscord, FaInstagram, FaTwitter } from 'react-icons/fa'
 
 import { Input } from '@/shared/components/form/input'
-import { NavbarFooterLayout } from '@/shared/components/layout/navbar-footer'
+import { NavbarLayout } from '@/shared/components/layout/navbar'
 import { Button } from '@/shared/components/ui/button'
 import { HeaderTitlePage } from '@/shared/components/ui/header-title-page'
 
@@ -46,7 +46,7 @@ export default function Admin() {
     mode: 'onChange',
   })
   return (
-    <NavbarFooterLayout>
+    <NavbarLayout>
       <Head>
         <title>Administração | HUBI</title>
       </Head>
@@ -106,7 +106,7 @@ export default function Admin() {
       </main>
 
       <RecordDialog isOpen={isOpen} setIsOpen={setIsOpen} />
-    </NavbarFooterLayout>
+    </NavbarLayout>
   )
 }
 
