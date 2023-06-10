@@ -20,6 +20,8 @@ import { getLeaderboard, getListLeaderboards } from '../../services/leaderboard'
 import { removeAfterHyphen } from '../../shared/utils/string'
 
 import styles from './styles.module.scss'
+import { NavbarFooterLayout } from '@/shared/components/layout/navbar-footer'
+import { HeaderTitlePage } from '@/shared/components/ui/header-title-page'
 
 interface LeaderboardProps {
   leaderboard: PlayerLeaderboard[]
@@ -138,21 +140,22 @@ export default function Leaderboard({
   const screenHeight = 'calc(100vh - 65px)'
 
   return (
-    <>
+    <NavbarFooterLayout>
       <Head>
         <title>HUBI - Leaderboard</title>
       </Head>
+      <HeaderTitlePage
+        title="Leaderboard"
+        description="Aqui mostramos as melhores jogadoras que se destacam. Junte-se a nós
+        e deixe a sua marca nessa emocionante competição!"
+      />
       <div
-        className={`flex justify-center py-10`}
+        className={`flex justify-center mt-5`}
         style={{ height: screenHeight }}
       >
         <div className="container flex justify-center">
-          <div className="flex flex-col justify-between items-center">
-            <h1 className="font-bold text-yellow text-5xl sm:text-8xl">
-              LEADERBOARD
-            </h1>
-
-            <div className="w-full flex flex-col md:flex-row gap-4 justify-between items-center p-10">
+          <div className="flex flex-col gap-5 lg:gap-10 justify-between items-center w-full">
+            <div className="w-full flex flex-col md:flex-row gap-4 justify-between items-center">
               <div className="block sm:hidden w-full">
                 <Dropdown
                   name="season"
@@ -184,7 +187,7 @@ export default function Leaderboard({
               </div>
             </div>
 
-            <div className={`${styles.table} w-full p-3 overflow-auto`}>
+            <div className={`${styles.table} w-full p-4 lg:p-0 overflow-auto`}>
               <div className="grid grid-cols-12 text-center">
                 <p className="col-span-3 md:col-span-2 text-sm sm:text-xl">
                   CLASSIFICAÇÃO
@@ -225,7 +228,7 @@ export default function Leaderboard({
           </div>
         </div>
       </div>
-    </>
+    </NavbarFooterLayout>
   )
 }
 

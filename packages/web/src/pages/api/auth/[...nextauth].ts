@@ -1,8 +1,12 @@
 import NextAuth from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 
+import type { UserData } from './next-auth'
+
 export default NextAuth({
-  secret: process.env.NEXTAUTH_SECRET,
+  session: {
+    strategy: 'jwt',
+  },
   providers: [
     CredentialsProvider({
       name: 'Credentials',
@@ -23,22 +27,30 @@ export default NextAuth({
           id: '12345',
           name: 'Admin',
           email: 'admin@email',
-          password: '123',
+          isAdmin: true,
         }
 
         if (
           credentials?.email === 'admin@email' &&
           credentials?.password === '123'
         ) {
-          return Promise.resolve(user)
+          return user
         } else {
-          return Promise.resolve(null)
+          return null
         }
       },
     }),
   ],
   callbacks: {
-    async session({ session, user, token }) {
+    async jwt({ token, user }) {
+      if (user) {
+        token.user = user as UserData
+      }
+
+      return token
+    },
+    async session({ session, token }) {
+      session.user = token.user
       return session
     },
   },

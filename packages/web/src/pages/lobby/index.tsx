@@ -3,6 +3,8 @@ import { GetServerSidePropsContext } from 'next'
 import { getSession } from 'next-auth/react'
 import { useState } from 'react'
 
+import { NavbarFooterLayout } from '@/shared/components/layout/navbar-footer'
+
 export default function Lobby() {
   const [isOngoing, setIsOngoing] = useState(true)
 

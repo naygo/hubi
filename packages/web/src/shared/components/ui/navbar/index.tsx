@@ -37,12 +37,7 @@ export function Navbar() {
   const pathname = usePathname()
   const router = useRouter()
 
-  const { data: session, status } = useSession({
-    required: true,
-    onUnauthenticated() {
-      router.push(routes.home)
-    },
-  })
+  const { data: session, status } = useSession()
   const userLogged = status === 'authenticated'
   console.log({ session }, { status })
 
@@ -108,7 +103,7 @@ export function Navbar() {
             <Button
               color="primary"
               label="Jogar"
-              onClick={() => router.push('/signup')}
+              onClick={() => router.push('/login')}
             />
           </div>
         )}
