@@ -9,34 +9,36 @@ export default function Lobby() {
   const [isOngoing, setIsOngoing] = useState(true)
 
   return (
-    <main className="flex justify-center">
-      <div className="bg-black-dark flex gap-2 p-1 w-fit rounded">
-        <div
-          onClick={() => setIsOngoing(true)}
-          className={clsx(
-            'font-medium bg-black-lighter p-2 rounded cursor-pointer transition-all duration-200',
-            {
-              'bg-black-lighter text-white': isOngoing,
-              'bg-transparent text-gray': !isOngoing,
-            },
-          )}
-        >
-          Em andamento
+    <NavbarFooterLayout>
+      <main className="flex justify-center">
+        <div className="bg-black-dark flex gap-2 p-1 w-fit rounded">
+          <div
+            onClick={() => setIsOngoing(true)}
+            className={clsx(
+              'font-medium bg-black-lighter p-2 rounded cursor-pointer transition-all duration-200',
+              {
+                'bg-black-lighter text-white': isOngoing,
+                'bg-transparent text-gray': !isOngoing,
+              },
+            )}
+          >
+            Em andamento
+          </div>
+          <div
+            onClick={() => setIsOngoing(false)}
+            className={clsx(
+              'font-medium bg-black-lighter p-2 rounded cursor-pointer',
+              {
+                'bg-black-lighter text-white': !isOngoing,
+                'bg-transparent text-gray': isOngoing,
+              },
+            )}
+          >
+            Finalizadas
+          </div>
         </div>
-        <div
-          onClick={() => setIsOngoing(false)}
-          className={clsx(
-            'font-medium bg-black-lighter p-2 rounded cursor-pointer',
-            {
-              'bg-black-lighter text-white': !isOngoing,
-              'bg-transparent text-gray': isOngoing,
-            },
-          )}
-        >
-          Finalizadas
-        </div>
-      </div>
-    </main>
+      </main>
+    </NavbarFooterLayout>
   )
 }
 
