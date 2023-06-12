@@ -22,17 +22,17 @@ interface Records {
 const filterBadges: BadgeType[] = ['Aprovada', 'Pendente', 'Recusada']
 const records: Records[] = [
   {
-    name: 'Mulher bonita',
+    name: 'Cadstro 1',
     status: 'Aprovada',
     date: '01/01/2001',
   },
   {
-    name: 'Mulher bonita',
+    name: 'Cadastro 2',
     status: 'Pendente',
     date: '01/01/2001',
   },
   {
-    name: 'Mulher bonita',
+    name: 'Cadastro 3',
     status: 'Recusada',
     date: '01/01/2001',
   },
