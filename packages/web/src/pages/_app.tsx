@@ -3,8 +3,8 @@ import Head from 'next/head'
 
 import '../styles/globals.scss'
 import 'react-toastify/dist/ReactToastify.css'
-import { Footer } from '@/shared/components/footer'
-import { Navbar } from '@/shared/components/navbar'
+import { Footer } from '@/shared/components/ui/footer'
+import { Navbar } from '@/shared/components/ui/navbar'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (

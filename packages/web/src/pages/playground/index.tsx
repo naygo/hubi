@@ -2,9 +2,9 @@ import Head from 'next/head'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
-import { Button } from '@/shared/components/button'
+import { Button } from '@/shared/components/ui/button'
 import { Dropdown } from '@/shared/components/dropdown'
-import { Input } from '@/shared/components/input'
+import { Input } from '@/shared/components/form/input'
 
 interface FormFields {
   inputText: string

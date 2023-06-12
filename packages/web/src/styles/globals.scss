@@ -3,15 +3,9 @@
 @tailwind utilities;
 
 * {
-  margin: 0;
-  padding: 0;
-  outline: none;
-  box-sizing: border-box;
-  scroll-behavior: smooth;
-
-  color: #e5e5e5;
+  @apply text-white m-0 p-0 outline-none box-border scroll-smooth;
 
   body {
-    background-color: #1A1A1A;
+    @apply bg-black-light;
   }
 }
