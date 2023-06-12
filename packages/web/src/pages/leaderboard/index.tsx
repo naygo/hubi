@@ -4,24 +4,22 @@ import clsx from 'clsx'
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
 
+import { getLeaderboard, getListLeaderboards } from '@/services/leaderboard'
 import { getPlayerLeaderboard } from '@/services/player'
 import { Dropdown } from '@/shared/components/form/dropdown'
 import { Input } from '@/shared/components/form/input'
-
-import TrophyTOP1 from '../../../public/img/trophies/trophy-top1.svg'
-import TrophyTOP2 from '../../../public/img/trophies/trophy-top2.svg'
-import TrophyTOP3 from '../../../public/img/trophies/trophy-top3.svg'
-import { getLeaderboard, getListLeaderboards } from '../../services/leaderboard'
-import { removeAfterHyphen } from '../../shared/utils/string'
-
-import styles from './styles.module.scss'
 import { NavbarFooterLayout } from '@/shared/components/layout/navbar-footer'
 import { HeaderTitlePage } from '@/shared/components/ui/header-title-page'
+import { removeAfterHyphen } from '@/shared/utils/string'
+
+import TrophyTOP1 from '@public/img/trophies/trophy-top1.svg'
+import TrophyTOP2 from '@public/img/trophies/trophy-top2.svg'
+import TrophyTOP3 from '@public/img/trophies/trophy-top3.svg'
 
 interface LeaderboardProps {
   leaderboard: PlayerLeaderboard[]
@@ -112,19 +110,6 @@ export default function Leaderboard({
     } else if (nickname === '') setPlayers(leaderboard)
   }
 
-  useEffect(() => {
-    const handlePlayer = async () => {
-      if (nickname === '') {
-        const leaderboard = await getLeaderboard({
-          leaderboardId: selectedLeaderboardId,
-        })
-        setPlayers(leaderboard)
-      } else handleSearch('Enter')
-    }
-
-    handlePlayer()
-  }, [selectedLeaderboardId])
-
   function notify(loadMessage: string) {
     toastId.current = toast.loading(loadMessage, {
       type: 'default',
@@ -150,7 +135,7 @@ export default function Leaderboard({
         e deixe a sua marca nessa emocionante competição!"
       />
       <div
-        className={`flex justify-center mt-5`}
+        className="flex justify-center mt-5"
         style={{ height: screenHeight }}
       >
         <div className="container flex justify-center">
@@ -187,7 +172,7 @@ export default function Leaderboard({
               </div>
             </div>
 
-            <div className={`${styles.table} w-full p-4 lg:p-0 overflow-auto`}>
+            <div className="w-full p-5 lg:p-0 overflow-auto">
               <div className="grid grid-cols-12 text-center">
                 <p className="col-span-3 md:col-span-2 text-sm sm:text-xl">
                   CLASSIFICAÇÃO
@@ -205,13 +190,19 @@ export default function Leaderboard({
                   key={player.userId}
                   className={clsx(
                     'bg-black-lighter mt-3 text-center grid grid-cols-12 gap-6 items-center',
-                    index === 0
-                      ? `${styles.tableFirstRow} first:font-bold h-20 rounded-b-3xl`
-                      : 'h-10 rounded-full',
+                    {
+                      'text-3xl font-semibold h-20 rounded-b-3xl': index === 0,
+                      'h-10 rounded-full': index > 0,
+                    },
                   )}
                 >
                   <div className="col-span-3 md:col-span-2 flex gap-5 w-full justify-center">
-                    <p className={clsx({ 'pl-10': player.position <= 3 })}>
+                    <p
+                      className={clsx({
+                        'text-5xl font-bold': player.position === 1,
+                        'pl-10': player.position <= 3,
+                      })}
+                    >
                       {player.position}
                     </p>
                     {getImage(player.position)}
