@@ -31,8 +31,8 @@ export function UserNavbar({ session }: Props) {
 
       <div className="flex flex-col items-start justify-center">
         <div>
-          <span className="font-bold">Alisa meu pelo</span>
-          <span className="text-gray">#vai</span>
+          <span className="font-bold">teste</span>
+          <span className="text-gray">#teste</span>
         </div>
         <span className="text-gray">12345 pontos</span>
       </div>
