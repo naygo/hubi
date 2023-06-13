@@ -12,6 +12,7 @@ import { getPlayerLeaderboard } from '@/services/player'
 import { Dropdown } from '@/shared/components/form/dropdown'
 import { Input } from '@/shared/components/form/input'
 import { NavbarFooterLayout } from '@/shared/components/layout/navbar-footer'
+import { Button } from '@/shared/components/ui/button'
 import { HeaderTitlePage } from '@/shared/components/ui/header-title-page'
 import { removeAfterHyphen } from '@/shared/utils/string'
 
@@ -144,6 +145,8 @@ export default function Leaderboard({
                   options={leaderboardSelect}
                 />
               </div>
+
+              <Button color="primary" label="Buscar" />
             </form>
 
             <div className="w-full p-5 lg:p-0 overflow-auto">
