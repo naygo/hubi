@@ -1,5 +1,5 @@
 import { Leaderboard } from '@hubi/types'
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 import clsx from 'clsx'
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
@@ -8,6 +8,7 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 
 import { getLeaderboard, getListLeaderboards } from '@/services/leaderboard'
+import { getPlayerLeaderboard } from '@/services/player'
 import { Dropdown } from '@/shared/components/form/dropdown'
 import { Input } from '@/shared/components/form/input'
 import { NavbarFooterLayout } from '@/shared/components/layout/navbar-footer'
@@ -57,7 +58,7 @@ export default function Leaderboard({
   leaderboardSelect,
   defaultLeaderboardId,
 }: LeaderboardProps) {
-  const { control, getValues } = useForm<FormValues>({
+  const { control, getValues, handleSubmit } = useForm<FormValues>({
     defaultValues: {
       season: defaultLeaderboardId,
     },
@@ -70,12 +71,27 @@ export default function Leaderboard({
   } = useQuery(['leaderboard'], async () => {
     const leaderboardId = getValues('season')
 
-    const response = await getLeaderboard({
+    return getLeaderboard({
       leaderboardId,
     })
-
-    return response
   })
+
+  const queryClient = useQueryClient()
+
+  async function handleSearch({ season, player }: FormValues) {
+    if (player) {
+      const response = [
+        await getPlayerLeaderboard({
+          leaderboardId: season,
+          nickname: player,
+        }),
+      ]
+
+      queryClient.setQueryData(['leaderboard'], response)
+    } else {
+      queryClient.invalidateQueries(['leaderboard'])
+    }
+  }
 
   const screenHeight = 'calc(100vh - 65px)'
 
@@ -94,8 +110,11 @@ export default function Leaderboard({
         style={{ height: screenHeight }}
       >
         <div className="container flex justify-center">
-          <div className="flex flex-col gap-5 lg:gap-10 justify-between items-center w-full">
-            <form className="w-full flex flex-col md:flex-row gap-4 justify-between items-center">
+          <div className="flex flex-col gap-5 lg:gap-10 items-center w-full">
+            <form
+              className="w-full flex flex-col md:flex-row gap-4 justify-between items-center"
+              onSubmit={handleSubmit(handleSearch)}
+            >
               <div className="block sm:hidden w-full">
                 <Dropdown
                   name="season"
