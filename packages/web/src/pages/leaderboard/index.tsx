@@ -68,13 +68,19 @@ export default function Leaderboard({
     data: players,
     isLoading,
     isFetching,
-  } = useQuery(['leaderboard'], async () => {
-    const leaderboardId = getValues('season')
+  } = useQuery(
+    ['leaderboard'],
+    async () => {
+      const leaderboardId = getValues('season')
 
-    return getLeaderboard({
-      leaderboardId,
-    })
-  })
+      return getLeaderboard({
+        leaderboardId,
+      })
+    },
+    {
+      staleTime: Infinity,
+    },
+  )
 
   const queryClient = useQueryClient()
 
