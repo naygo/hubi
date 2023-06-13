@@ -1,4 +1,8 @@
 import {
+  InternalServerError,
+  UserAlreadyExists,
+} from '@/domain/helpers/exceptions'
+import {
   StatusEnum,
   User,
   UserSocial,
@@ -23,13 +27,7 @@ export class CreateUser {
     })
 
     if (userInDb) {
-      throw new HttpException(
-        {
-          status: HttpStatus.BAD_REQUEST,
-          error: 'Já existe um usuário com esse email.',
-        },
-        HttpStatus.BAD_REQUEST,
-      )
+      throw new UserAlreadyExists()
     }
 
     const { socials, ...user } = parameters
@@ -55,13 +53,7 @@ export class CreateUser {
     const createdUser = await this.usersRepository.create(userToCreate)
 
     if (!createdUser) {
-      throw new HttpException(
-        {
-          status: HttpStatus.BAD_REQUEST,
-          error: 'Não foi possível criar esse usuário',
-        },
-        HttpStatus.BAD_REQUEST,
-      )
+      throw new InternalServerError()
     }
 
     const socialsToCreate: UserSocialsRepository.CreateUserParameters =
