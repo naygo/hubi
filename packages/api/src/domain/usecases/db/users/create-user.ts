@@ -11,7 +11,7 @@ import {
 import { Hasher } from '@/infra/cryptography'
 import { UserSocialsRepository } from '@/infra/db/prisma/repositories/user-socials.repository'
 import { UsersRepository } from '@/infra/db/prisma/repositories/users.repository'
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common'
+import { Injectable } from '@nestjs/common'
 
 @Injectable()
 export class CreateUser {
