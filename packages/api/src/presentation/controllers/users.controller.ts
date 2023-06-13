@@ -1,6 +1,5 @@
-import { Body, Controller, HttpStatus, Post, Res } from '@nestjs/common'
+import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common'
 import { CreateUser } from '@/domain/usecases/db/users/create-user'
-import { Response } from 'express'
 import { SignupDTO } from '@/presentation/dtos/user'
 
 @Controller('/user')
@@ -8,8 +7,8 @@ export class UserController {
   constructor(private readonly createUser: CreateUser) {}
 
   @Post('/signup')
-  async signup(@Body() body: SignupDTO, @Res() response: Response) {
+  @HttpCode(HttpStatus.CREATED)
+  async signup(@Body() body: SignupDTO) {
     await this.createUser.execute(body)
-    response.status(HttpStatus.CREATED).end()
   }
 }
