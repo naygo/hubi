@@ -18,7 +18,7 @@ interface Props {
 
 export function UserNavbar({ session }: Props) {
   return (
-    <div className="hidden lg:flex items-center gap-4">
+    <div className="hidden lg:flex items-center gap-[1.2rem]">
       <Button label="DAR FILA" color="primary" disabled />
       <div className="h-8 w-0.5 bg-black-lighter mx-5"></div>
 

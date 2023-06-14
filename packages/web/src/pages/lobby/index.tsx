@@ -11,40 +11,41 @@ export default function Lobby() {
 
   return (
     <NavbarFooterLayout>
-      <main className="flex justify-between">
-        <section>
-          <div className="bg-black-dark flex gap-2 p-1 w-fit rounded">
-            <div
-              onClick={() => setIsOngoing(true)}
-              className={clsx(
-                'font-medium bg-black-lighter p-2 rounded cursor-pointer transition-all duration-200',
-                {
-                  'bg-black-lighter text-white': isOngoing,
-                  'bg-transparent text-gray': !isOngoing,
-                },
-              )}
-            >
-              Em andamento
+      <div className="flex justify-between">
+        <div className="w-full flex justify-center">
+          <section className="container">
+            <div className="bg-black-dark flex gap-2 p-1 w-fit rounded">
+              <div
+                onClick={() => setIsOngoing(true)}
+                className={clsx(
+                  'font-medium bg-black-lighter p-2 rounded cursor-pointer transition-all duration-200',
+                  {
+                    'bg-black-lighter text-white': isOngoing,
+                    'bg-transparent text-gray': !isOngoing,
+                  },
+                )}
+              >
+                Em andamento
+              </div>
+              <div
+                onClick={() => setIsOngoing(false)}
+                className={clsx(
+                  'font-medium bg-black-lighter p-2 rounded cursor-pointer',
+                  {
+                    'bg-black-lighter text-white': !isOngoing,
+                    'bg-transparent text-gray': isOngoing,
+                  },
+                )}
+              >
+                Finalizadas
+              </div>
             </div>
-            <div
-              onClick={() => setIsOngoing(false)}
-              className={clsx(
-                'font-medium bg-black-lighter p-2 rounded cursor-pointer',
-                {
-                  'bg-black-lighter text-white': !isOngoing,
-                  'bg-transparent text-gray': isOngoing,
-                },
-              )}
-            >
-              Finalizadas
-            </div>
-          </div>
-        </section>
-
-        <section className="p-4">
+          </section>
+        </div>
+        <section className="mt-4">
           <UserLeaderboard />
         </section>
-      </main>
+      </div>
     </NavbarFooterLayout>
   )
 }
