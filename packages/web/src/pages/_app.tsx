@@ -4,6 +4,7 @@ import { SessionProvider } from 'next-auth/react'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { SkeletonTheme } from 'react-loading-skeleton'
+import { ToastContainer } from 'react-toastify'
 
 import 'react-loading-skeleton/dist/skeleton.css'
 import 'react-toastify/dist/ReactToastify.css'
@@ -24,6 +25,8 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <SessionProvider>
           <SkeletonTheme baseColor="#202020" highlightColor="#444">
             <Component {...pageProps} />
+
+            <ToastContainer />
             <ReactQueryDevtools initialIsOpen={false} />
           </SkeletonTheme>
         </SessionProvider>
