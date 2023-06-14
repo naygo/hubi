@@ -6,6 +6,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import React from 'react'
 import { useForm } from 'react-hook-form'
+import Skeleton from 'react-loading-skeleton'
 
 import { getLeaderboard, getListLeaderboards } from '@/services/leaderboard'
 import { getPlayerLeaderboard } from '@/services/player'
@@ -162,6 +163,10 @@ export default function Leaderboard({
                   PARTIDAS
                 </p>
               </div>
+
+              {(isLoading || isFetching) && (
+                <Skeleton count={10} height={40} className="first:mt-0 mt-3" />
+              )}
 
               {!(isLoading || isFetching) &&
                 players?.map((player, index) => (

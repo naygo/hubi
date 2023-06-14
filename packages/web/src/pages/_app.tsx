@@ -3,7 +3,9 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { SessionProvider } from 'next-auth/react'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
+import { SkeletonTheme } from 'react-loading-skeleton'
 
+import 'react-loading-skeleton/dist/skeleton.css'
 import 'react-toastify/dist/ReactToastify.css'
 import '../styles/globals.scss'
 
@@ -20,8 +22,10 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <QueryClientProvider client={queryClient}>
         <SessionProvider>
-          <Component {...pageProps} />
-          <ReactQueryDevtools initialIsOpen={false} />
+          <SkeletonTheme baseColor="#202020" highlightColor="#444">
+            <Component {...pageProps} />
+            <ReactQueryDevtools initialIsOpen={false} />
+          </SkeletonTheme>
         </SessionProvider>
       </QueryClientProvider>
     </>
