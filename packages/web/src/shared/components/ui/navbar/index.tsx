@@ -75,7 +75,7 @@ export function Navbar() {
                   href={routes.route}
                   className={clsx('hover:text-yellow', {
                     'font-bold text-white': pathname === routes.route,
-                    'pointer-events-none': routes.disabled,
+                    'pointer-events-none text-gray-darker': routes.disabled,
                   })}
                 >
                   {routes.name}
