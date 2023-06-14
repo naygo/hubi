@@ -42,6 +42,7 @@ export function UserNavbar({ session }: Props) {
       </div>
 
       {session.user?.isAdmin && <AdminButton />}
+      {!session.user?.isAdmin && <div className="w-8"></div>}
       <ConfigButton />
     </div>
   )
