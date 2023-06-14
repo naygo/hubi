@@ -1,5 +1,5 @@
 import { Leaderboard } from '@hubi/types'
-import { useQuery, useQueryClient } from '@tanstack/react-query'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import clsx from 'clsx'
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
@@ -86,6 +86,15 @@ export default function Leaderboard({
 
   const queryClient = useQueryClient()
 
+  const { mutate: searchPlayers, isLoading: isSearching } = useMutation(
+    handleSearch,
+    {
+      onSuccess: (response) => {
+        queryClient.setQueryData(['leaderboard'], response)
+      },
+    },
+  )
+
   async function handleSearch({ season, player }: FormValues) {
     if (player) {
       const response = [
@@ -95,9 +104,11 @@ export default function Leaderboard({
         }),
       ]
 
-      queryClient.setQueryData(['leaderboard'], response)
+      return response
     } else {
-      queryClient.invalidateQueries(['leaderboard'])
+      return getLeaderboard({
+        leaderboardId: season,
+      })
     }
   }
 
@@ -121,7 +132,7 @@ export default function Leaderboard({
           <div className="flex flex-col gap-5 lg:gap-10 items-center w-full">
             <form
               className="w-full flex flex-col md:flex-row gap-4 justify-between items-center"
-              onSubmit={handleSubmit(handleSearch)}
+              onSubmit={handleSubmit((data) => searchPlayers(data))}
             >
               <div className="block sm:hidden w-full">
                 <Dropdown
@@ -164,11 +175,11 @@ export default function Leaderboard({
                 </p>
               </div>
 
-              {(isLoading || isFetching) && (
+              {(isLoading || isFetching || isSearching) && (
                 <Skeleton count={10} height={40} className="first:mt-0 mt-3" />
               )}
 
-              {!(isLoading || isFetching) &&
+              {!(isLoading || isFetching || isSearching) &&
                 players?.map((player, index) => (
                   <div
                     key={player.userId}
