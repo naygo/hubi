@@ -1,5 +1,6 @@
 import { Leaderboard } from '@hubi/types'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { isAxiosError } from 'axios'
 import clsx from 'clsx'
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
@@ -7,6 +8,7 @@ import Image from 'next/image'
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import Skeleton from 'react-loading-skeleton'
+import { toast } from 'react-toastify'
 
 import { getLeaderboard, getListLeaderboards } from '@/services/leaderboard'
 import { getPlayerLeaderboard } from '@/services/player'
@@ -96,19 +98,27 @@ export default function Leaderboard({
   )
 
   async function handleSearch({ season, player }: FormValues) {
-    if (player) {
-      const response = [
-        await getPlayerLeaderboard({
-          leaderboardId: season,
-          nickname: player,
-        }),
-      ]
+    try {
+      if (player) {
+        const response = [
+          await getPlayerLeaderboard({
+            leaderboardId: season,
+            nickname: player,
+          }),
+        ]
 
-      return response
-    } else {
-      return getLeaderboard({
-        leaderboardId: season,
-      })
+        return response
+      } else {
+        return getLeaderboard({
+          leaderboardId: season,
+        })
+      }
+    } catch (err) {
+      if (isAxiosError(err)) {
+        toast.error(err.response?.data.message, {
+          theme: 'colored',
+        })
+      }
     }
   }
 
