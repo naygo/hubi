@@ -10,7 +10,7 @@ import { IoInvertMode } from 'react-icons/io5'
 
 import { useWindowSize } from '@/shared/hooks/useWindowSize'
 import { LogoNouns } from '@/shared/icons/LogoNouns'
-import { routes } from '@/shared/utils/routes'
+import { filterRoutesByPermission } from '@/shared/utils/routes'
 
 import { Button } from '../button'
 import { MobileNavbar } from '../mobileNavbar'
@@ -21,15 +21,6 @@ import Logo from '@public/img/logo.svg'
 const noundAndDarkModeButtons =
   'bg-black-lighter hover:bg-black-light cursor-pointer rounded p-1'
 const tailwindLgBreakpointInPx = 1024 // From TailwindCSS default config
-
-const arrayRoutes = [
-  { name: 'Lobby', route: routes.lobby, permission: 'user' },
-  { name: 'Página Inicial', route: routes.home, permission: 'guest' },
-  { name: 'Leaderboard', route: routes.leaderboard, permission: 'guest' },
-  { name: 'Agenda', route: routes.agenda, permission: 'all', disabled: true },
-  { name: 'FAQ', route: routes.faq, permission: 'all', disabled: true },
-  { name: 'Contato', route: routes.contato, permission: 'all', disabled: true },
-]
 
 export function Navbar() {
   const [isNavbarOpened, setIsNavbarOpened] = useState(false)
@@ -43,15 +34,6 @@ export function Navbar() {
 
   function toggleNavbar() {
     setIsNavbarOpened(!isNavbarOpened)
-  }
-
-  function filterRoutesByPermission() {
-    return arrayRoutes.filter((route) => {
-      if (route.permission === 'all') return true
-      if (route.permission === 'guest' && !userLogged) return true
-      if (route.permission === 'user' && userLogged) return true
-      return false
-    })
   }
 
   useEffect(() => {
@@ -69,7 +51,7 @@ export function Navbar() {
 
           {/* links */}
           <nav className="hidden lg:flex gap-4 text-gray">
-            {filterRoutesByPermission().map((routes) => (
+            {filterRoutesByPermission(userLogged).map((routes) => (
               <div key={routes.route}>
                 <Link
                   href={routes.route}
@@ -123,7 +105,8 @@ export function Navbar() {
 
         <MobileNavbar
           isNavbarOpened={isNavbarOpened}
-          routes={filterRoutesByPermission()}
+          routes={filterRoutesByPermission(userLogged)}
+          session={session}
         />
       </header>
     </>
