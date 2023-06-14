@@ -4,7 +4,7 @@ import { getSession } from 'next-auth/react'
 import Image from 'next/image'
 import { useState } from 'react'
 
-import { NavbarFooterLayout } from '@/shared/components/layout/navbar-footer'
+import { NavbarLayout } from '@/shared/components/layout/navbar'
 import { UserLeaderboard } from '@/shared/components/ui/user-leaderboard'
 
 import Header from '@public/img/header.png'
@@ -13,7 +13,7 @@ export default function Lobby() {
   const [isOngoing, setIsOngoing] = useState(true)
 
   return (
-    <NavbarFooterLayout>
+    <NavbarLayout>
       <div className="flex justify-between mt-4">
         <div className="w-full flex justify-center">
           <section className="container">
@@ -32,7 +32,7 @@ export default function Lobby() {
           <UserLeaderboard />
         </section>
       </div>
-    </NavbarFooterLayout>
+    </NavbarLayout>
   )
 }
 
