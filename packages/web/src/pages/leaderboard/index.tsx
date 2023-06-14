@@ -114,6 +114,8 @@ export default function Leaderboard({
         })
       }
     } catch (err) {
+      queryClient.invalidateQueries(['leaderboard'])
+
       if (isAxiosError(err)) {
         toast.error(err.response?.data.message, {
           theme: 'colored',
