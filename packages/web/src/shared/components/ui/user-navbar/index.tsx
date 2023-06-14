@@ -17,6 +17,10 @@ interface Props {
 }
 
 export function UserNavbar({ session }: Props) {
+  const riotId = session.user.riotId
+  const nick = riotId.split('#')[0]
+  const tag = riotId.split('#')[1]
+
   return (
     <div className="hidden lg:flex items-center gap-4">
       <Button label="DAR FILA" color="primary" disabled />
@@ -31,8 +35,8 @@ export function UserNavbar({ session }: Props) {
 
       <div className="flex flex-col items-start justify-center">
         <div>
-          <span className="font-bold">teste</span>
-          <span className="text-gray">#teste</span>
+          <span className="font-bold">{nick}</span>
+          <span className="text-gray">#{tag}</span>
         </div>
         <span className="text-gray">12345 pontos</span>
       </div>
