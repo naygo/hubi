@@ -1,10 +1,12 @@
 import { Socials, Users } from "..\schema"
 
 model UsersSocials {
-    id       Int    @id @default(autoincrement())
-    userId   Int
-    socialId Int
-    url      String
+    id        Int      @id @default(autoincrement())
+    userId    Int
+    socialId  Int
+    url       String
+    createdAt DateTime
+    status    String
 
     user   Users   @relation(fields: [userId], references: [id])
     social Socials @relation(fields: [socialId], references: [id])
