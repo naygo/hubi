@@ -14,8 +14,8 @@ export default function Lobby() {
 
   return (
     <NavbarLayout>
-      <div className="flex justify-between mt-4">
-        <div className="w-full flex justify-center">
+      <div className="flex justify-between mt-3">
+        <div className="w-full flex justify-center px-4">
           <section className="container">
             <div className="mb-4">
               <Image src={Header} alt="Header" className="w-full" />
@@ -28,7 +28,7 @@ export default function Lobby() {
             </div>
           </section>
         </div>
-        <section className="">
+        <section className="hidden lg:block">
           <UserLeaderboard />
         </section>
       </div>
