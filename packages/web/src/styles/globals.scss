@@ -17,14 +17,13 @@
 
 /* Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
+  @apply w-1 h-1;
 }
 
 *::-webkit-scrollbar-track {
-  background: transparent;
+  @apply bg-transparent;
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: #e09600;
+  @apply bg-yellow;
 }
