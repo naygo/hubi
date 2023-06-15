@@ -15,7 +15,6 @@ import { getPlayerLeaderboard } from '@/services/player'
 import { Dropdown } from '@/shared/components/form/dropdown'
 import { Input } from '@/shared/components/form/input'
 import { NavbarFooterLayout } from '@/shared/components/layout/navbar-footer'
-import { Button } from '@/shared/components/ui/button'
 import { HeaderTitlePage } from '@/shared/components/ui/header-title-page'
 import { removeAfterHyphen } from '@/shared/utils/string'
 
@@ -137,11 +136,11 @@ export default function Leaderboard({
         e deixe a sua marca nessa emocionante competição!"
       />
       <div
-        className="flex justify-center mt-5"
+        className="flex justify-center mt-5 p-3"
         style={{ height: screenHeight }}
       >
         <div className="container flex justify-center">
-          <div className="flex flex-col gap-5 lg:gap-10 items-center w-full">
+          <div className="flex flex-col lg:gap-5 items-center w-full">
             <form
               className="w-full flex flex-col md:flex-row gap-4 justify-between items-center"
               onSubmit={handleSubmit((data) => searchPlayers(data))}
@@ -159,9 +158,10 @@ export default function Leaderboard({
                 name="player"
                 placeholder="Busque uma jogadora..."
                 control={control}
+                className="w-full sm:w-1/2"
               />
 
-              <div className="hidden sm:block w-full">
+              <div className="hidden sm:block w-1/2">
                 <Dropdown
                   name="season"
                   placeholder="Selecione uma season..."
@@ -169,62 +169,58 @@ export default function Leaderboard({
                   options={leaderboardSelect}
                 />
               </div>
-
-              <Button color="primary" label="Buscar" />
             </form>
 
-            <div className="w-full p-5 lg:p-0 overflow-auto">
-              <div className="grid grid-cols-12 text-center">
-                <p className="col-span-3 md:col-span-2 text-sm sm:text-xl">
-                  CLASSIFICAÇÃO
-                </p>
-                <p className="col-span-3 md:col-span-3 text-sm  sm:text-xl text-green-500">
-                  PONTUAÇÃO
-                </p>
-                <p className="col-span-6 md:col-span-4 text-sm sm:text-xl"></p>
-                <p className="md:col-span-3 text-xs hidden md:block sm:text-xl">
-                  PARTIDAS
-                </p>
-              </div>
-
-              {(isLoading || isFetching || isSearching) && (
-                <Skeleton count={10} height={40} className="first:mt-0 mt-3" />
-              )}
-
-              {!(isLoading || isFetching || isSearching) &&
-                players?.map((player, index) => (
-                  <div
-                    key={player.userId}
-                    className={clsx(
-                      'bg-black-lighter mt-3 text-center grid grid-cols-12 gap-6 items-center',
-                      {
-                        'text-3xl font-semibold h-20 rounded-b-3xl':
-                          index === 0,
-                        'h-10 rounded-full': index > 0,
-                      },
-                    )}
-                  >
-                    <div className="col-span-3 md:col-span-2 flex gap-5 w-full justify-center">
-                      <p
-                        className={clsx({
-                          'text-5xl font-bold': player.position === 1,
-                          'pl-10': player.position <= 3,
-                        })}
-                      >
-                        {player.position}
+            <div className="mt-5 w-full overflow-x-auto">
+              <div className="min-w-[700px]">
+                <div className="grid grid-cols-12 text-center">
+                  <p className="col-span-2 text-sm sm:text-xl"></p>
+                  <p className="col-span-4 text-sm sm:text-xl"></p>
+                  <p className="col-span-2 text-sm sm:text-xl text-green-500">
+                    PONTUAÇÃO
+                  </p>
+                  <p className="col-span-4 text-sm  sm:text-xl">PARTIDAS</p>
+                </div>
+                {(isLoading || isFetching || isSearching) && (
+                  <Skeleton
+                    count={10}
+                    height={40}
+                    className="first:mt-0 mt-3"
+                  />
+                )}
+                {!(isLoading || isFetching || isSearching) &&
+                  players?.map((player, index) => (
+                    <div
+                      key={player.userId}
+                      className={clsx(
+                        'bg-black-lighter mt-3 text-center items-center grid grid-cols-12',
+                        {
+                          'text-3xl font-semibold h-20 rounded-b-3xl':
+                            index === 0,
+                          'h-10 rounded-full': index > 0,
+                        },
+                      )}
+                    >
+                      <div className="col-span-2 flex gap-5 justify-center">
+                        <p
+                          className={clsx({
+                            'text-5xl font-bold': player.position === 1,
+                            'pl-10': player.position <= 3,
+                          })}
+                        >
+                          {player.position}
+                        </p>
+                        {getImage(player.position)}
+                      </div>
+                      <p className="col-span-4">{player.nickname}</p>
+                      <p className="col-span-2">{player.points}</p>
+                      <p className="col-span-4 pr-4">
+                        {player.played}{' '}
+                        {player.played === 1 ? 'Partida' : 'Partidas'}
                       </p>
-                      {getImage(player.position)}
                     </div>
-                    <p className="col-span-3 md:col-span-3">{player.points}</p>
-                    <p className="col-span-6 md:col-span-4 ">
-                      {player.nickname}
-                    </p>
-                    <p className="md:col-span-3 hidden md:block">
-                      {player.played}{' '}
-                      {player.played === 1 ? 'Partida' : 'Partidas'}
-                    </p>
-                  </div>
-                ))}
+                  ))}
+              </div>
             </div>
           </div>
         </div>
