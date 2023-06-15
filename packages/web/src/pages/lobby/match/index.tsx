@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import Image, { StaticImageData } from 'next/image'
 
-import { FaCopy } from 'react-icons/fa'
+import { FaCogs, FaCopy } from 'react-icons/fa'
 
 import { NavbarLayout } from '@/shared/components/layout/navbar'
 import { Button } from '@/shared/components/ui/button'
@@ -42,6 +42,8 @@ export default function Match() {
                     color="primary"
                     className="mt-3"
                   />
+
+                  <FaCogs size={30} className="fill-gray-dark mt-5" />
                 </div>
 
                 <section className="my-5 flex justify-between gap-5 lg:gap-10">
@@ -60,6 +62,12 @@ export default function Match() {
                       color="primary"
                       className="mt-5"
                     />
+                    {/* <div className="flex justify-center">
+                      <FaCogs
+                        size={40}
+                        className="fill-white mt-5 bg-red-700 p-2 rounded-full cursor-pointer hover:bg-red-900"
+                      />
+                    </div> */}
                   </div>
 
                   <div className="flex flex-col gap-2 w-full">
