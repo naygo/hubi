@@ -105,7 +105,7 @@ export function SignUpForm() {
 
         <div className="text-center text-xs md:text-sm">
           Já possui uma conta?{' '}
-          <Link text="Entre aqui &gt;" link="" className="font-medium" />
+          <Link text="Entre aqui &gt;" href="" className="font-medium" />
         </div>
       </div>
     </section>

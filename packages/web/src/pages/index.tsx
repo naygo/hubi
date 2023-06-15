@@ -48,7 +48,7 @@ export default function Home() {
 
             <Link
               text="Veja o que dizem as jogadoras &gt;"
-              link="/playground"
+              href="/playground"
               className="font-medium text-xs md:text-sm lg:text-lg"
             />
           </div>
@@ -77,7 +77,7 @@ export default function Home() {
 
             <Link
               text="Seja mais NOUNS &gt;"
-              link="/"
+              href="/"
               className="font-medium text-xs md:text-sm lg:text-lg"
             />
           </div>
@@ -104,7 +104,7 @@ export default function Home() {
             </Description>
             <Link
               text="Confira toda a tabela de premiação &gt;"
-              link="/"
+              href="/"
               className="font-medium text-xs md:text-sm lg:text-lg"
             />
           </div>

@@ -30,7 +30,7 @@ export function AuthCard({ children }: Props) {
           <div className="text-xs mt-2 mb-10">
             <Link
               text="Voltar ao início &gt;"
-              link=""
+              href=""
               className="font-medium"
             />
           </div>
@@ -55,7 +55,7 @@ export function AuthCard({ children }: Props) {
             <div className="hidden lg:block mt-4">
               <Link
                 text="Voltar ao início &gt;"
-                link="/"
+                href="/"
                 className="font-medium"
               />
             </div>
