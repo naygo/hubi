@@ -28,6 +28,7 @@ export default NextAuth({
           name: 'Admin',
           email: 'admin@email',
           isAdmin: true,
+          riotId: 'Admin#1234',
         }
 
         if (
