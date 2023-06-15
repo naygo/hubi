@@ -2,8 +2,6 @@ import clsx from 'clsx'
 
 import { AiFillCaretRight } from 'react-icons/ai'
 
-import colors from '@/styles/colors'
-
 interface Props {
   currentStep: number
 }
@@ -23,7 +21,7 @@ export function Steps({ currentStep }: Props) {
             ></div>
           </div>
           {index !== steps.length - 1 && (
-            <AiFillCaretRight size={10} fill={colors.grayDarker} />
+            <AiFillCaretRight size={10} className="fill-gray-darker" />
           )}
         </div>
       ))}

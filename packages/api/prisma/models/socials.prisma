@@ -1,0 +1,7 @@
+model Socials {
+    id     Int    @id @default(autoincrement())
+    name   String
+    status String
+
+    @@map("socials")
+}

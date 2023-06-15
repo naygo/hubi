@@ -7,12 +7,10 @@ import { TiArrowSortedDown } from 'react-icons/ti'
 
 import { Link } from '@/shared/components/ui/link'
 import linksIcons from '@/shared/utils/icons'
-import team, { Team } from '@/shared/utils/team'
+import team from '@/shared/utils/team'
 
 import NounsLogo from '@public/img/initial-page/nouns-logo.svg'
 import Prizes from '@public/img/initial-page/prizes.png'
-
-const heightFirstSection = 'calc(100vh - 71px)'
 
 export default function Home() {
   return (
@@ -24,7 +22,7 @@ export default function Home() {
       <section
         className="flex items-center justify-center"
         style={{
-          height: heightFirstSection,
+          height: 'calc(100vh - 71px)',
         }}
       >
         <div className="w-52 flex flex-col items-center justify-between gap-20">
@@ -127,7 +125,7 @@ export default function Home() {
 
           <div className="overflow-x-auto max-w-full">
             <div className="flex flex-row gap-5">
-              {team.map((member) => TeamMemberInfo(member))}
+              <TeamMemberInfo />
             </div>
           </div>
         </div>
@@ -147,7 +145,7 @@ function Section({
     <section
       className={clsx(
         'py-20 px-10 lg:py-10 flex justify-center',
-        inverse ? 'bg-black' : 'bg-black-light',
+        inverse ? 'bg-black-light' : 'bg-black',
       )}
     >
       <div
@@ -174,48 +172,52 @@ function Description({ children }: { children: React.ReactNode }) {
   )
 }
 
-function TeamMemberInfo({ photo, name, nick, links, roles }: Team) {
+function TeamMemberInfo() {
   return (
-    <div key={nick} className="bg-black-dark rounded mb-4">
-      <Image
-        src={photo}
-        alt="Random Image"
-        className="w-full h-36 rounded-t"
-        width={150}
-        height={150}
-      />
+    <>
+      {team.map(({ name, roles, nick, photo, links }) => (
+        <div key={name} className="bg-black-dark rounded mb-4">
+          <Image
+            src={photo}
+            alt={name}
+            className="w-full h-36 rounded-t"
+            width={150}
+            height={150}
+          />
 
-      <div className="flex w-44 flex-col justify-between items-center p-2 mt-4">
-        <p className="font-medium text-center">{name}</p>
-        <span className="text-yellow text-xs">({nick})</span>
-        <div className="mt-2">
-          {roles?.map((role) => (
-            <div
-              key={role}
-              className="font-light text-gray text-xs text-center"
-            >
-              {role}
+          <div className="flex w-44 flex-col justify-between items-center p-2 mt-4">
+            <p className="font-medium text-center">{name}</p>
+            <span className="text-yellow text-xs">({nick})</span>
+            <div className="mt-2">
+              {roles?.map((role) => (
+                <div
+                  key={role}
+                  className="font-light text-gray text-xs text-center"
+                >
+                  {role}
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
 
-        <div className="mt-4 mb-2 flex gap-3 justify-center">
-          {links?.map((link) => {
-            const Icon = linksIcons[link.name]
+            <div className="mt-4 mb-2 flex gap-3 justify-center">
+              {links?.map((link) => {
+                const Icon = linksIcons[link.name]
 
-            return (
-              <ReactLink
-                key={link.name}
-                href={link.url}
-                target="_blank"
-                className="bg-black p-1.5 rounded hover:bg-black-lighter"
-              >
-                <Icon size={16} className="fill-yellow" />
-              </ReactLink>
-            )
-          })}
+                return (
+                  <ReactLink
+                    key={link.name}
+                    href={link.url}
+                    target="_blank"
+                    className="bg-black p-1.5 rounded hover:bg-black-lighter"
+                  >
+                    <Icon size={16} className="fill-yellow" />
+                  </ReactLink>
+                )
+              })}
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      ))}
+    </>
   )
 }
