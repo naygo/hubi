@@ -20,17 +20,16 @@ export const useYupValidationResolver = (
         if (errors instanceof ValidationError)
           return {
             values: {},
-            errors: errors.inner.reduce(
-              (allErrors, currentError) => ({
+            errors: errors.inner.reduce((allErrors, currentError) => {
+              return {
                 ...allErrors,
                 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
                 [currentError.path!]: {
                   type: currentError.type ?? 'validation',
                   message: currentError.message,
                 },
-              }),
-              {},
-            ),
+              }
+            }, {}),
           }
 
         throw new Error('Error trying to validate form schema')
