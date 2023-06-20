@@ -1,17 +1,13 @@
+import { StatusEnum, User, UserSocial, UserStatusEnum } from '@hubi/types'
+import { Injectable } from '@nestjs/common'
+
 import {
   InternalServerError,
   UserAlreadyExists,
 } from '@/domain/helpers/exceptions'
-import {
-  StatusEnum,
-  User,
-  UserSocial,
-  UserStatusEnum,
-} from '../../../../../../types/'
 import { Hasher } from '@/infra/cryptography'
 import { UserSocialsRepository } from '@/infra/db/prisma/repositories/user-socials.repository'
 import { UsersRepository } from '@/infra/db/prisma/repositories/users.repository'
-import { Injectable } from '@nestjs/common'
 
 @Injectable()
 export class CreateUser {
