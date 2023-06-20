@@ -16,13 +16,13 @@ export class Encrypter {
   }
 
   async decrypt(token: string): Promise<InfoToken> {
-    const decoded = new Promise<InfoToken>(async (resolve) => {
+    const decoded = new Promise<InfoToken>(async (resolve, reject) => {
       await verify(
         token,
         this.secret,
         async (error, encoded: { info: InfoToken }) => {
           if (error) {
-            resolve(null)
+            reject(error)
           }
 
           resolve(encoded.info)
