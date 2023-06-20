@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus } from '@nestjs/common'
 
-export class InvalidField extends HttpException {
+export class InvalidFieldException extends HttpException {
   constructor(message: string) {
     super(
       {
