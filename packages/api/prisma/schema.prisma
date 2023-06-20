@@ -51,6 +51,7 @@ model Pronouns {
 model Ranks {
   id     Int    @id @default(autoincrement())
   name   String
+  order  Int
   status String
 
   Users Users[]
