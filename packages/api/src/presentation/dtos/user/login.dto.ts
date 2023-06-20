@@ -1,5 +1,6 @@
-import { MessageValidator } from '@/presentation/utils'
 import { IsEmail, IsNotEmpty, IsString } from 'class-validator'
+
+import { MessageValidator } from '@/presentation/utils'
 
 export class LoginDTO {
   @IsString({ message: MessageValidator.string('email') })

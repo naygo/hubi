@@ -1,7 +1,8 @@
+import { Injectable } from '@nestjs/common'
+
 import { InvalidField, UserNotFound } from '@/domain/helpers/exceptions'
 import { Encrypter, Hasher } from '@/infra/cryptography'
 import { UsersRepository } from '@/infra/db/prisma/repositories'
-import { Injectable } from '@nestjs/common'
 
 @Injectable()
 export class Login {

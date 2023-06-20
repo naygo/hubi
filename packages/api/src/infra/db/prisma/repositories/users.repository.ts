@@ -1,6 +1,7 @@
-import { Prisma, PrismaClient } from '@prisma/client'
 import { User } from '@hubi/types'
 import { Inject, Injectable } from '@nestjs/common'
+import { Prisma, PrismaClient } from '@prisma/client'
+
 import { PRISMA_PROVIDER } from '@/infra/db/prisma/provider'
 
 @Injectable()
