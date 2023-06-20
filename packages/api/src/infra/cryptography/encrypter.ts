@@ -11,8 +11,7 @@ export class Encrypter {
   private readonly secret = process.env.JWT_SECRET
 
   async encrypt(value: InfoToken): Promise<string> {
-    const accessToken = await sign({ info: value }, this.secret)
-    return accessToken
+    return await sign({ info: value }, this.secret)
   }
 
   async decrypt(token: string): Promise<InfoToken> {
