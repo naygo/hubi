@@ -1,4 +1,4 @@
-import { Socials, Users } from "..\schema"
+import { Socials, Users } from "../schema"
 
 model UsersSocials {
     id        Int      @id @default(autoincrement())
