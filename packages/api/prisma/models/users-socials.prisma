@@ -2,15 +2,14 @@ import { Socials } from "socials"
 import { Users } from "users"
 
 model UsersSocials {
-    id        Int      @id @default(autoincrement())
     userId    Int
     socialId  Int
     url       String
     createdAt DateTime
-    status    String
 
     user   Users   @relation(fields: [userId], references: [id])
     social Socials @relation(fields: [socialId], references: [id])
 
+    @@id([userId, socialId])
     @@map("usersSocials")
 }
