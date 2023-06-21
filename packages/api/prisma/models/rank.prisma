@@ -1,12 +1,12 @@
-import { Users } from "users"
+import { User } from "user"
 
-model Ranks {
+model Rank {
     id     Int    @id @default(autoincrement())
     name   String
     order  Int
     status String
 
-    Users Users[]
+    User User[]
 
     @@map("ranks")
 }

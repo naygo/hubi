@@ -17,84 +17,84 @@ datasource db {
 }
 
 //
-// genders.prisma
+// gender.prisma
 //
 
-model Genders {
+model Gender {
   id     Int    @id @default(autoincrement())
   name   String
   status String
 
-  Users Users[]
+  User User[]
 
   @@map("genders")
 }
 
 //
-// pronouns.prisma
+// pronoun.prisma
 //
 
-model Pronouns {
+model Pronoun {
   id     Int    @id @default(autoincrement())
   name   String
   status String
 
-  Users Users[]
+  User User[]
 
   @@map("pronouns")
 }
 
 //
-// ranks.prisma
+// rank.prisma
 //
 
-model Ranks {
+model Rank {
   id     Int    @id @default(autoincrement())
   name   String
   order  Int
   status String
 
-  Users Users[]
+  User User[]
 
   @@map("ranks")
 }
 
 //
-// socials.prisma
+// social.prisma
 //
 
-model Socials {
+model Social {
   id     Int    @id @default(autoincrement())
   name   String
   status String
 
-  UsersSocials UsersSocials[]
+  UserSocial UserSocial[]
 
   @@map("socials")
 }
 
 //
-// users-socials.prisma
+// user-social.prisma
 //
 
-model UsersSocials {
+model UserSocial {
   userId    Int
   socialId  Int
   url       String
   createdAt DateTime
 
-  user   Users   @relation(fields: [userId], references: [id])
-  social Socials @relation(fields: [socialId], references: [id])
+  user   User   @relation(fields: [userId], references: [id])
+  social Social @relation(fields: [socialId], references: [id])
 
   @@id([userId, socialId])
-  @@map("usersSocials")
+  @@map("UserSocials")
 }
 
 //
-// users.prisma
+// user.prisma
 //
 
-model Users {
+model User {
   id              Int       @id @default(autoincrement())
   firstName       String
   lastName        String
@@ -112,10 +112,10 @@ model Users {
   isAdmin         Boolean
   status          String
 
-  gender  Genders        @relation(fields: [genderId], references: [id])
-  pronoun Pronouns       @relation(fields: [pronounId], references: [id])
-  rank    Ranks          @relation(fields: [rankId], references: [id])
-  socials UsersSocials[]
+  gender  Gender       @relation(fields: [genderId], references: [id])
+  pronoun Pronoun      @relation(fields: [pronounId], references: [id])
+  rank    Rank         @relation(fields: [rankId], references: [id])
+  socials UserSocial[]
 
-  @@map("users")
+  @@map("User")
 }
