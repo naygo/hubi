@@ -20,11 +20,9 @@ const PRONOUNS: Pronoun[] = [
 ]
 
 export async function seedPronouns(prisma: PrismaClient) {
-  return Promise.all(
-    await insert({
-      data: PRONOUNS,
-      name: 'pronouns',
-      prisma,
-    }),
-  )
+  await insert({
+    data: PRONOUNS,
+    name: 'pronouns',
+    prisma,
+  })
 }

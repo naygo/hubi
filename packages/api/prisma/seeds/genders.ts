@@ -32,11 +32,9 @@ const GENDERS: Gender[] = [
 ]
 
 export async function seedGenders(prisma: PrismaClient) {
-  return Promise.all(
-    await insert({
-      data: GENDERS,
-      name: 'genders',
-      prisma,
-    }),
-  )
+  await insert({
+    data: GENDERS,
+    name: 'genders',
+    prisma,
+  })
 }

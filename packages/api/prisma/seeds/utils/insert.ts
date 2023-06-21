@@ -14,11 +14,7 @@ export async function insert<T>({ data, name, prisma }: Args) {
     name,
   })
 
-  return Promise.all(
-    nonExistentData.map((data) =>
-      prisma[name].create({
-        data,
-      }),
-    ),
-  )
+  return prisma[name].createMany({
+    data: nonExistentData,
+  })
 }
