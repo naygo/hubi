@@ -1,12 +1,10 @@
 import Image from 'next/image'
-import ReactLink from 'next/link'
 
-import { FaDiscord, FaInstagram, FaTiktok, FaTwitter } from 'react-icons/fa'
+import styles from '@/styles/classes'
+
+import SocialMediaLinks from '../social-media-links'
 
 import Logo from '@public/img/logo.svg'
-
-const socialMediaButtonStyle =
-  'border fill-gray border-gray p-2 rounded cursor-pointer hover:fill-yellow hover:border-yellow hover:bg-black-dark'
 
 export function Footer() {
   return (
@@ -27,10 +25,10 @@ export function Footer() {
         {/* logo */}
         <Image
           src={Logo}
-          alt="Picture of the author"
+          alt="HUBI"
           height={400}
           width={400}
-          className="w-full border border-yellow px-20 py-5 rounded hover:bg-black-dark"
+          className={styles.logoBox}
         />
         {/* redes sociais */}
         <div className="hidden md:block">
@@ -39,7 +37,7 @@ export function Footer() {
       </div>
 
       {/* links */}
-      <div className="flex gap-10 md:h-full">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-5 md:h-full">
         <LinksBox>
           <Title title="HUBI" />
           <Link text="HUBI" />
@@ -54,7 +52,7 @@ export function Footer() {
           <Link text="Direitos Autorais" />
         </LinksBox>
 
-        <LinksBox>
+        <LinksBox className="col-span-2 md:col-span-1">
           <Title title="Ferramentas" />
           <Link text="Comunidade" />
           <Link text="Ajuda e Suporte" />
@@ -71,47 +69,23 @@ export function Footer() {
 }
 
 function Title({ title }: { title: string }) {
-  return <p className="text-gray mb-3">{title}</p>
+  return <p className="text-gray text-xs md:text-sm">{title}</p>
 }
 
 function Link({ text }: { text: string }) {
   return (
-    <span className="text-gray-light font-bold hover:text-yellow cursor-pointer">
+    <span className="text-gray-light text-xs md:text-sm font-bold hover:text-yellow cursor-pointer">
       {text}
     </span>
   )
 }
 
-function LinksBox({ children }: { children: React.ReactNode }) {
-  return <div className="flex flex-col gap-3">{children}</div>
-}
-
-function SocialMediaLinks() {
-  const links = [
-    {
-      url: 'https://discord.com/invite/hubinclusivo',
-      Icon: FaDiscord,
-    },
-    {
-      url: 'https://www.instagram.com/hub_inclusivo/',
-      Icon: FaInstagram,
-    },
-    {
-      url: 'https://www.tiktok.com/@hubinclusivo',
-      Icon: FaTiktok,
-    },
-    {
-      url: 'https://twitter.com/hubinclusivo',
-      Icon: FaTwitter,
-    },
-  ]
-  return (
-    <div className="flex gap-5 mt-3">
-      {links.map(({ url, Icon }) => (
-        <ReactLink key={url} href={url} target="__blank">
-          <Icon size={40} className={socialMediaButtonStyle} />
-        </ReactLink>
-      ))}
-    </div>
-  )
+function LinksBox({
+  className,
+  children,
+}: {
+  children: React.ReactNode
+  className?: string
+}) {
+  return <div className={`flex flex-col gap-3 ${className}`}>{children}</div>
 }

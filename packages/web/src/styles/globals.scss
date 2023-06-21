@@ -9,3 +9,21 @@
     @apply bg-black-light;
   }
 }
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #e09600;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  @apply w-1 h-1;
+}
+
+*::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  @apply bg-yellow;
+}

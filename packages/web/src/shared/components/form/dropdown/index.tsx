@@ -5,18 +5,27 @@ import { Control, RegisterOptions, useController } from 'react-hook-form'
 import { IoCaretDownSharp, IoCloseOutline } from 'react-icons/io5'
 
 import { InputAlert } from '../inputAlert'
+import { Label } from '../label'
+
+export type DropdownOptions = {
+  label: string
+  value: unknown
+}
 
 type Props = {
   name: string
   options: { label: string; value: unknown }[]
-  placeholder: string
+  label?: string
+  placeholder?: string
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   control: Control<any>
   rules?: RegisterOptions
 }
 
 export function Dropdown({
   name,
-  placeholder,
+  label,
+  placeholder = 'Selecione',
   control,
   rules,
   options,
@@ -28,28 +37,28 @@ export function Dropdown({
   })
 
   return (
-    <>
+    <div>
+      {label && (
+        <Label label={label} name={name} required={!!rules?.required} />
+      )}
+
       <Listbox as="div" {...field} className="relative">
         <Listbox.Button
           className={clsx(
             `
               flex items-center justify-between
-              w-full 
+
+              w-full rounded-lg
+              p-1 md:p-2
+              bg-black
               
-              bg-black-light
-              
-              font-light
-              text-start 
-              
-              rounded-lg 
-              p-2
-              
-              border
-              border-black-lighter 
+              font-light text-start text-sm md:text-base
+
+              border border-black-lighter 
             `,
             {
               italic: !field.value,
-              'border-red-500': fieldState.error?.type === 'required',
+              'border-red-500': fieldState.error,
               'hover:border-yellow focus:border-yellow ': !fieldState.error,
               'text-gray-400': !field.value,
             },
@@ -67,12 +76,12 @@ export function Dropdown({
           </div>
         </Listbox.Button>
 
-        <Listbox.Options className="bg-black-lighter rounded-lg py-2 mt-1 absolute w-full">
+        <Listbox.Options className="bg-black-lighter rounded-lg py-1 md:py-2 mt-1 absolute w-full z-10 max-h-44 overflow-y-auto">
           {options.map((option) => (
             <Listbox.Option
               key={option.label}
               value={option.value}
-              className="hover:bg-yellow px-2 py-1 cursor-pointer bg-black-lighter"
+              className="hover:bg-yellow px-1 py-1 cursor-pointer bg-black-lighter text-sm md:text-base"
             >
               {option.label}
             </Listbox.Option>
@@ -81,6 +90,6 @@ export function Dropdown({
       </Listbox>
 
       {fieldState.error && <InputAlert error={fieldState.error} />}
-    </>
+    </div>
   )
 }

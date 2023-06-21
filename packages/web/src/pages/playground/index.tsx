@@ -2,9 +2,9 @@ import Head from 'next/head'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
-import { Button } from '@/shared/components/ui/button'
-import { Dropdown } from '@/shared/components/dropdown'
+import { Dropdown } from '@/shared/components/form/dropdown'
 import { Input } from '@/shared/components/form/input'
+import { Button } from '@/shared/components/ui/button'
 
 interface FormFields {
   inputText: string
@@ -18,13 +18,12 @@ const options = [
 ]
 
 export default function Playground() {
-  const { control, handleSubmit, register, watch, formState, reset } =
-    useForm<FormFields>({
-      defaultValues: {
-        inputText: '',
-        dropdown: '',
-      },
-    })
+  const { control, handleSubmit, watch, reset } = useForm<FormFields>({
+    defaultValues: {
+      inputText: '',
+      dropdown: '',
+    },
+  })
 
   function handleLogin(data: FormFields) {
     console.log(data)
@@ -36,7 +35,7 @@ export default function Playground() {
 
   useEffect(() => {
     console.log(watch())
-  }, [watch()])
+  }, [watch])
 
   return (
     <>
@@ -50,20 +49,22 @@ export default function Playground() {
           <form
             className="w-full flex flex-col gap-y-5"
             onSubmit={handleSubmit((data) => handleLogin(data))}
+            noValidate
           >
             <div>
-              <label htmlFor="inputText">InputText:</label>
               <Input
-                {...register('inputText', { required: true })}
+                name="inputText"
+                label="InputText:"
                 placeholder="Placeholder input de texto"
-                error={formState.errors.inputText}
+                control={control}
+                rules={{ required: true }}
               />
             </div>
 
             <div>
-              <label htmlFor="dropdown">Dropdown:</label>
               <Dropdown
                 name="dropdown"
+                label="Dropdown"
                 placeholder="Selecione"
                 control={control}
                 options={options}

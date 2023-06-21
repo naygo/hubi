@@ -1,50 +1,94 @@
 import clsx from 'clsx'
-import { forwardRef } from 'react'
-import { FieldError } from 'react-hook-form'
+import {
+  Control,
+  FieldError,
+  RegisterOptions,
+  useController,
+} from 'react-hook-form'
+import InputMask from 'react-input-mask'
 
-import { InputAlert } from '@/shared/components/form/inputAlert'
 import { NativeProps } from '@/shared/types/native-props'
 
-type ExtraProps = {
-  error?: FieldError
-}
-type Props = NativeProps & ExtraProps
+import { InputAlert } from '../inputAlert'
+import { Label } from '../label'
 
-function InputGenerate(
-  { id, name, placeholder, type, error, ...props }: Props,
-  ref: React.ForwardedRef<HTMLInputElement>,
-) {
+type Props = NativeProps & {
+  name: string
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  control: Control<any>
+  label?: string
+  error?: FieldError
+  rules?: RegisterOptions
+  mask?: string
+}
+
+export function Input({
+  className,
+  control,
+  defaultValue,
+  label,
+  mask,
+  name,
+  placeholder,
+  rules,
+  type,
+  ...props
+}: Props) {
+  const { field, fieldState } = useController({
+    name,
+    control,
+    defaultValue,
+    rules,
+  })
+
+  const inputClassName = clsx(
+    `
+      w-full rounded-lg 
+      p-1 md:p-2
+      bg-black 
+      
+      border border-black-lighter
+      
+      font-light text-white text-sm
+      placeholder:italic
+    `,
+    {
+      italic: !field.value,
+      'border-red-500': fieldState.error,
+      'hover:border-yellow focus:border-yellow ': !fieldState.error,
+      'text-gray-400': !field.value,
+    },
+  )
+
+  const required = !!rules?.required
+
   return (
-    <>
-      <input
-        ref={ref}
-        id={id}
-        name={name}
-        placeholder={placeholder}
-        type={type}
-        className={clsx(
-          `
-            w-full 
-            bg-black-light
-            
-            border
-            border-black-lighter
-            
-            font-light
-            text-white
-            placeholder:italic
-            
-            rounded-lg 
-            p-2
-          `,
-          { 'border-red-500 focus:ring-red-500 ': error },
-          { 'hover:border-yellow focus:border-yellow': !error },
-        )}
-        {...props}
-      />
-      {error && <InputAlert error={error} />}
-    </>
+    <div className={className}>
+      {label && <Label label={label} name={name} required={required} />}
+
+      {mask && (
+        <InputMask
+          mask={mask}
+          placeholder={placeholder}
+          className={inputClassName}
+          {...props}
+          {...field}
+        />
+      )}
+
+      {!mask && (
+        <input
+          id={name}
+          placeholder={placeholder}
+          type={type}
+          className={inputClassName}
+          required={required}
+          {...props}
+          {...field}
+        />
+      )}
+
+      {fieldState.error?.message && <InputAlert error={fieldState.error} />}
+    </div>
   )
 }
-
-export const Input = forwardRef<HTMLInputElement, Props>(InputGenerate)
