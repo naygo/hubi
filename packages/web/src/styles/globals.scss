@@ -3,16 +3,10 @@
 @tailwind utilities;
 
 * {
-  margin: 0;
-  padding: 0;
-  outline: none;
-  box-sizing: border-box;
-  scroll-behavior: smooth;
-
-  color: #e5e5e5;
+  @apply text-white m-0 p-0 outline-none box-border scroll-smooth;
 
   body {
-    background: #1a1a1a;
+    @apply bg-black-light;
   }
 }
 
@@ -23,14 +17,13 @@
 
 /* Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
+  @apply w-1 h-1;
 }
 
 *::-webkit-scrollbar-track {
-  background: transparent;
+  @apply bg-transparent;
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: #e09600;
+  @apply bg-yellow;
 }

@@ -1,6 +1,8 @@
 import clsx from 'clsx'
 import { ButtonHTMLAttributes, DetailedHTMLProps, forwardRef } from 'react'
 
+import styles from '@/styles/classes'
+
 type NativeProps = DetailedHTMLProps<
   ButtonHTMLAttributes<HTMLButtonElement>,
   HTMLButtonElement
@@ -25,14 +27,7 @@ function ButtonGenerate(
       type={type}
       {...props}
       className={clsx(
-        `
-          text-white 
-          uppercase 
-          font-bold 
-          rounded-lg 
-          px-4 
-          py-2
-        `,
+        [styles.button],
         {
           'bg-yellow hover:bg-yellow-dark': color === 'primary',
           'border border-transparent bg-black-lighter hover:bg-black-light hover:border-yellow':

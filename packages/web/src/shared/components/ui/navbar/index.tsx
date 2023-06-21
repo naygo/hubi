@@ -1,9 +1,8 @@
 import clsx from 'clsx'
 import { useSession } from 'next-auth/react'
 import Image from 'next/image'
-import Link from 'next/link'
+import NextLink from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
 import { IoInvertMode } from 'react-icons/io5'
@@ -12,7 +11,7 @@ import { useWindowSize } from '@/shared/hooks/useWindowSize'
 import { LogoNouns } from '@/shared/icons/LogoNouns'
 import { routes } from '@/shared/utils/routes'
 
-import { Button } from '../button'
+import { Link } from '../link'
 import { MobileNavbar } from '../mobileNavbar'
 
 import Logo from '@public/img/logo.svg'
@@ -36,7 +35,6 @@ export function Navbar() {
   const [isNavbarOpened, setIsNavbarOpened] = useState(false)
   const windowSize = useWindowSize()
   const pathname = usePathname()
-  const router = useRouter()
 
   function toggleNavbar() {
     setIsNavbarOpened(!isNavbarOpened)
@@ -60,14 +58,14 @@ export function Navbar() {
           <nav className="hidden lg:flex gap-4 text-gray">
             {arrayRoutes.map((routes) => (
               <div key={routes.route}>
-                <Link
+                <NextLink
                   href={routes.route}
                   className={clsx('hover:text-yellow', {
                     'font-bold text-white': pathname === routes.route,
                   })}
                 >
                   {routes.name}
-                </Link>
+                </NextLink>
               </div>
             ))}
           </nav>
@@ -85,11 +83,7 @@ export function Navbar() {
             Saiba mais
           </a>
 
-          <Button
-            color="primary"
-            label="Jogar"
-            onClick={() => router.push('/login')}
-          />
+          <Link href="/signup" text="Jogar" buttonStyle="primary" />
         </div>
 
         {/* burger menu  */}
