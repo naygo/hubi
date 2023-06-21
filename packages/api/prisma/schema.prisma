@@ -51,6 +51,7 @@ model Pronouns {
 model Ranks {
   id     Int    @id @default(autoincrement())
   name   String
+  order  Int
   status String
 
   Users Users[]
@@ -63,9 +64,10 @@ model Ranks {
 //
 
 model Socials {
-  id           Int            @id @default(autoincrement())
-  name         String
-  status       String
+  id     Int    @id @default(autoincrement())
+  name   String
+  status String
+
   UsersSocials UsersSocials[]
 
   @@map("socials")
@@ -76,16 +78,15 @@ model Socials {
 //
 
 model UsersSocials {
-  id        Int      @id @default(autoincrement())
   userId    Int
   socialId  Int
   url       String
   createdAt DateTime
-  status    String
 
   user   Users   @relation(fields: [userId], references: [id])
   social Socials @relation(fields: [socialId], references: [id])
 
+  @@id([userId, socialId])
   @@map("usersSocials")
 }
 
