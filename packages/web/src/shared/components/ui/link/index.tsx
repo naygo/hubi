@@ -15,8 +15,8 @@ export function Link({ text, href, buttonStyle, className }: Props) {
     <ReactLink href={href}>
       <span
         className={clsx(className, {
-          'text-yellow hover:underline': !buttonStyle,
-          [styles.button]: !!buttonStyle,
+          [styles.link]: Boolean(!buttonStyle),
+          [styles.button]: Boolean(buttonStyle),
           [styles.buttonPrimary]: buttonStyle === 'primary',
           [styles.buttonSecondary]: buttonStyle === 'secondary',
         })}

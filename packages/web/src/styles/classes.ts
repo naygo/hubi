@@ -1,5 +1,6 @@
 const styles = {
   logoBox: 'w-full border border-yellow px-20 py-5 rounded hover:bg-black-dark',
+  link: 'text-yellow hover:underline',
   button: 'text-white uppercase font-bold rounded-lg px-4 py-2',
   buttonPrimary: 'bg-yellow hover:bg-yellow-dark',
   buttonSecondary:
