@@ -85,7 +85,7 @@ export function LoginForm() {
           Ainda não possui uma conta?{'  '}
           <Link
             text="Crie uma aqui &gt;"
-            link={routes.signup}
+            href={routes.signup}
             className="font-medium"
           />
         </div>
