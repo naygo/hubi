@@ -1,8 +1,8 @@
-import { Socials, PrismaClient } from '@prisma/client'
+import { Social as SocialModel, PrismaClient } from '@prisma/client'
 
 import { insert } from './utils/insert'
 
-type Social = Omit<Socials, 'id'>
+type Social = Omit<SocialModel, 'id'>
 
 const SOCIALS: Social[] = [
   {

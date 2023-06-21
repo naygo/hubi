@@ -1,8 +1,8 @@
-import { PrismaClient, Ranks } from '@prisma/client'
+import { PrismaClient, Rank as RandModel } from '@prisma/client'
 
 import { insert } from './utils/insert'
 
-type Rank = Omit<Ranks, 'id'>
+type Rank = Omit<RandModel, 'id'>
 
 const RANKS: Rank[] = [
   {

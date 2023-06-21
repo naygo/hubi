@@ -1,8 +1,8 @@
-import { Genders, PrismaClient } from '@prisma/client'
+import { Gender as GenderModel, PrismaClient } from '@prisma/client'
 
 import { insert } from './utils/insert'
 
-type Gender = Omit<Genders, 'id'>
+type Gender = Omit<GenderModel, 'id'>
 
 const GENDERS: Gender[] = [
   {

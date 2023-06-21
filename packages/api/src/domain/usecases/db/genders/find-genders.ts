@@ -1,5 +1,5 @@
+import { Gender } from '@hubi/types'
 import { Injectable } from '@nestjs/common'
-import { Genders } from '@prisma/client'
 
 import { GendersRepository } from '@/infra/db/prisma/repositories'
 
@@ -7,7 +7,11 @@ import { GendersRepository } from '@/infra/db/prisma/repositories'
 export class FindGenders {
   constructor(private readonly gendersRepository: GendersRepository) {}
 
-  async execute(): Promise<Genders[]> {
+  async execute(): Promise<FindGenders.Result> {
     return this.gendersRepository.findMany()
   }
+}
+
+export namespace FindGenders {
+  export type Result = Gender[]
 }

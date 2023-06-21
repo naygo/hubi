@@ -5,7 +5,7 @@ import { PRISMA_PROVIDER } from '../provider'
 
 @Injectable()
 export class GendersRepository {
-  private gendersRepository: Prisma.GendersDelegate<
+  private gendersRepository: Prisma.GenderDelegate<
     Prisma.RejectOnNotFound | Prisma.RejectPerOperation
   >
 
@@ -13,7 +13,7 @@ export class GendersRepository {
     @Inject(PRISMA_PROVIDER)
     private readonly prisma: PrismaClient,
   ) {
-    this.gendersRepository = this.prisma.genders
+    this.gendersRepository = this.prisma.gender
   }
 
   async findMany() {
