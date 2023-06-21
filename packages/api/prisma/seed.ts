@@ -9,8 +9,6 @@ async function main() {
   await seedPronouns(prisma)
   await seedRanks(prisma)
   await seedSocials(prisma)
-
-  await prisma.$disconnect()
 }
 
 main()
