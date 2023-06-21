@@ -1,0 +1,15 @@
+import { Social } from "social"
+import { User } from "user"
+
+model UserSocial {
+    userId    Int
+    socialId  Int
+    url       String
+    createdAt DateTime
+
+    user   User   @relation(fields: [userId], references: [id])
+    social Social @relation(fields: [socialId], references: [id])
+
+    @@id([userId, socialId])
+    @@map("UserSocials")
+}

@@ -6,12 +6,12 @@ import { PRISMA_PROVIDER } from '@/infra/db/prisma/provider'
 
 @Injectable()
 export class UsersRepository {
-  private userRepository: Prisma.UsersDelegate<
+  private userRepository: Prisma.UserDelegate<
     Prisma.RejectOnNotFound | Prisma.RejectPerOperation
   >
 
   constructor(@Inject(PRISMA_PROVIDER) private readonly prisma: PrismaClient) {
-    this.userRepository = this.prisma.users
+    this.userRepository = this.prisma.user
   }
 
   async create(

@@ -1,8 +1,8 @@
-import { PrismaClient, Pronouns } from '@prisma/client'
+import { PrismaClient, Pronoun as PronounModel } from '@prisma/client'
 
 import { insert } from './utils/insert'
 
-type Pronoun = Omit<Pronouns, 'id'>
+type Pronoun = Omit<PronounModel, 'id'>
 
 const PRONOUNS: Pronoun[] = [
   {
@@ -20,11 +20,9 @@ const PRONOUNS: Pronoun[] = [
 ]
 
 export async function seedPronouns(prisma: PrismaClient) {
-  return Promise.all(
-    await insert({
-      data: PRONOUNS,
-      name: 'pronouns',
-      prisma,
-    }),
-  )
+  await insert({
+    data: PRONOUNS,
+    name: 'pronouns',
+    prisma,
+  })
 }
