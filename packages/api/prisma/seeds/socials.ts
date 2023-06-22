@@ -1,8 +1,8 @@
-import { Socials, PrismaClient } from '@prisma/client'
+import { Social as SocialModel, PrismaClient } from '@prisma/client'
 
 import { insert } from './utils/insert'
 
-type Social = Omit<Socials, 'id'>
+type Social = Omit<SocialModel, 'id'>
 
 const SOCIALS: Social[] = [
   {
@@ -44,11 +44,9 @@ const SOCIALS: Social[] = [
 ]
 
 export async function seedSocials(prisma: PrismaClient) {
-  return Promise.all(
-    await insert({
-      data: SOCIALS,
-      name: 'socials',
-      prisma,
-    }),
-  )
+  await insert({
+    data: SOCIALS,
+    name: 'socials',
+    prisma,
+  })
 }

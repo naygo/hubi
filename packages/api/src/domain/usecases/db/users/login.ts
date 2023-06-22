@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
 
-import { InvalidField, UserNotFound } from '@/domain/helpers/exceptions'
+import { InvalidFieldException } from '@/domain/helpers/exceptions'
 import { Encrypter, Hasher } from '@/infra/cryptography'
 import { UsersRepository } from '@/infra/db/prisma/repositories'
 
@@ -17,14 +17,16 @@ export class Login {
 
     const user = await this.usersRepository.loadByEmail({ email })
 
+    const message = 'Email e/ou Senha Inválidos'
+
     if (!user) {
-      throw new UserNotFound()
+      throw new InvalidFieldException(message)
     }
 
     const passwordIsValid = await this.hasher.compare(password, user.password)
 
     if (!passwordIsValid) {
-      throw new InvalidField('Senha Inválida.')
+      throw new InvalidFieldException(message)
     }
 
     const token = await this.encrypter.encrypt({ id: user.id, email })
