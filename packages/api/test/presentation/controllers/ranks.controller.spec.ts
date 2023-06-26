@@ -18,8 +18,8 @@ describe('RanksController', () => {
     }).compile()
 
     controller = module.get<RanksController>(RanksController)
-
     app = module.createNestApplication()
+
     await app.init()
   })
 

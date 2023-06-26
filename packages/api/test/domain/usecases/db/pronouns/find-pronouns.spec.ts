@@ -1,18 +1,25 @@
-import { PrismaClient } from '@prisma/client'
+import { Test } from '@nestjs/testing'
 
 import { FindPronouns } from '@/domain/usecases/db/pronouns/find-pronouns'
+import { prismaProvider } from '@/infra/db/prisma/provider'
 import { PronounsRepository } from '@/infra/db/prisma/repositories/pronouns.repository'
 
-const prisma = new PrismaClient()
-
 describe('FindPronouns', () => {
+  let findPronouns: FindPronouns
+
+  beforeAll(async () => {
+    const moduleRef = await Test.createTestingModule({
+      providers: [FindPronouns, PronounsRepository, prismaProvider],
+    }).compile()
+
+    findPronouns = moduleRef.get<FindPronouns>(FindPronouns)
+  })
+
   it('should be defined', () => {
-    expect(new FindPronouns(new PronounsRepository(prisma))).toBeDefined()
+    expect(findPronouns).toBeDefined()
   })
 
   it('should return an array of pronouns', async () => {
-    const findPronouns = new FindPronouns(new PronounsRepository(prisma))
-
     const pronouns = await findPronouns.execute()
 
     expect(pronouns).toBeDefined()

@@ -2,7 +2,6 @@ import { INestApplication } from '@nestjs/common'
 import { Test, TestingModule } from '@nestjs/testing'
 import request from 'supertest'
 
-import { AppModule } from '@/app.module'
 import { FindPronouns } from '@/domain/usecases/db/pronouns/find-pronouns'
 import { prismaProvider } from '@/infra/db/prisma/provider'
 import { PronounsRepository } from '@/infra/db/prisma/repositories/pronouns.repository'
@@ -19,12 +18,8 @@ describe('PronounsController', () => {
     }).compile()
 
     controller = module.get<PronounsController>(PronounsController)
+    app = module.createNestApplication()
 
-    const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [AppModule],
-    }).compile()
-
-    app = moduleFixture.createNestApplication()
     await app.init()
   })
 

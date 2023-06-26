@@ -1,22 +1,29 @@
-import { PrismaClient } from '@prisma/client'
+import { Test } from '@nestjs/testing'
 
 import { FindRanks } from '@/domain/usecases/db/ranks/find-ranks'
+import { prismaProvider } from '@/infra/db/prisma/provider'
 import { RanksRepository } from '@/infra/db/prisma/repositories'
 
-const prisma = new PrismaClient()
-
 describe('FindRanks', () => {
+  let findRanks: FindRanks
+
+  beforeAll(async () => {
+    const moduleRef = await Test.createTestingModule({
+      providers: [FindRanks, RanksRepository, prismaProvider],
+    }).compile()
+
+    findRanks = moduleRef.get<FindRanks>(FindRanks)
+  })
+
   it('should be defined', () => {
-    expect(new FindRanks(new RanksRepository(prisma))).toBeDefined()
+    expect(findRanks).toBeDefined()
   })
 
   it('should return an array of ranks', async () => {
-    const findRanks = new FindRanks(new RanksRepository(prisma))
-
     const ranks = await findRanks.execute()
 
     expect(ranks).toBeDefined()
-    expect(ranks).toBeInstanceOf(Array)
+    expect(Array.isArray(ranks)).toBeTruthy()
     expect(ranks.length).toBeGreaterThan(0)
 
     expect(ranks[0]).toHaveProperty('id')
