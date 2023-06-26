@@ -2,6 +2,12 @@
   "name": "@hubi/types",
   "version": "1.0.0",
   "private": true,
-  "main": "index.js",
-  "license": "UNLICENSED"
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "typescript": "^5.1.3"
+  }
 }

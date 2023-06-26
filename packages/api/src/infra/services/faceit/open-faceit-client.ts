@@ -1,4 +1,4 @@
-import { HubLeaderboard } from '@hubi/types/faceit'
+import { HubLeaderboard } from '@hubi/types'
 import { Injectable } from '@nestjs/common'
 import axios, { AxiosInstance } from 'axios'
 

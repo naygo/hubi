@@ -1,4 +1,4 @@
-import { PlayerLeaderboard } from '@hubi/types/faceit'
+import { PlayerLeaderboard } from '@hubi/types'
 import { Injectable } from '@nestjs/common'
 
 import { PlayerNotFound } from '@/domain/helpers/exceptions/player-not-found'
