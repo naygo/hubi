@@ -5,4 +5,4 @@ var StatusEnum;
 (function (StatusEnum) {
     StatusEnum["INACTIVE"] = "INACTIVE";
     StatusEnum["ACTIVE"] = "ACTIVE";
-})(StatusEnum || (exports.StatusEnum = StatusEnum = {}));
+})(StatusEnum = exports.StatusEnum || (exports.StatusEnum = {}));
