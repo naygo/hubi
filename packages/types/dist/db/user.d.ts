@@ -1,4 +1,7 @@
-import { Gender, Pronoun, Rank, UserSocial } from "@hubi/types";
+import { Gender } from "./gender";
+import { Pronoun } from "./pronoun";
+import { Rank } from "./rank";
+import { UserSocial } from "./user-social";
 export interface User {
     id: number;
     firstName: string;
