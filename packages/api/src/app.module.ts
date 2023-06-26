@@ -15,7 +15,9 @@ import {
   UserSocialsRepository,
 } from '@/infra/db/prisma/repositories'
 import { UserController } from './presentation/controllers/users.controller'
-import { Hasher } from '@/infra/cryptography'
+import { Hasher, Encrypter } from '@/infra/cryptography'
+import { Login } from './domain/usecases/db/users/login'
+import { prismaProvider } from '@/infra/db/prisma/provider'
 
 @Module({
   controllers: [
@@ -32,13 +34,17 @@ import { Hasher } from '@/infra/cryptography'
 
     // --- Usecases --- //
     CreateUser,
+    Login,
 
     // --- Infra --- //
     // Faceit
     ApiFaceitClientService,
     OpenFaceitClientService,
 
+    prismaProvider,
+
     Hasher,
+    Encrypter,
 
     // Repositories
     UsersRepository,
