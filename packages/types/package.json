@@ -3,5 +3,11 @@
   "version": "1.0.0",
   "private": true,
   "main": "index.js",
-  "license": "UNLICENSED"
+  "scripts": {
+    "build": "tsc"
+  },
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "typescript": "^5.1.3"
+  }
 }
