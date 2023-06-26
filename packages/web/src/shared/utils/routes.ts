@@ -4,4 +4,6 @@ export const routes = {
   agenda: '/agenda',
   faq: '/faq',
   contato: '/contato',
+  login: '/login',
+  signup: '/signup',
 }
