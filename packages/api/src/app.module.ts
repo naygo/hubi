@@ -8,12 +8,14 @@ import {
   UsersRepository,
   UserSocialsRepository,
   GendersRepository,
+  RanksRepository,
 } from '@/infra/db/prisma/repositories'
 
 import { LeaderboardService } from './domain/services/faceit/leaderboard.service'
 import { PlayerService } from './domain/services/faceit/player.service'
 import { FindGenders } from './domain/usecases/db/genders/find-genders'
 import { FindPronouns } from './domain/usecases/db/pronouns/find-pronouns'
+import { FindRanks } from './domain/usecases/db/ranks/find-ranks'
 import { CreateUser } from './domain/usecases/db/users/create-user'
 import { Login } from './domain/usecases/db/users/login'
 import { PronounsRepository } from './infra/db/prisma/repositories/pronouns.repository'
@@ -24,6 +26,7 @@ import { GendersController } from './presentation/controllers/genders.controller
 import { HubController } from './presentation/controllers/hub.controller'
 import { LeaderboardController } from './presentation/controllers/leaderboard.controller'
 import { PronounsController } from './presentation/controllers/pronouns.controller'
+import { RanksController } from './presentation/controllers/ranks.controller'
 import { UserController } from './presentation/controllers/users.controller'
 
 @Module({
@@ -34,6 +37,7 @@ import { UserController } from './presentation/controllers/users.controller'
     LeaderboardController,
     PronounsController,
     UserController,
+    RanksController,
   ],
   providers: [
     // --- Services --- //
@@ -47,6 +51,9 @@ import { UserController } from './presentation/controllers/users.controller'
 
     // Pronouns
     FindPronouns,
+
+    // Ranks
+    FindRanks,
 
     // User
     CreateUser,
@@ -65,6 +72,7 @@ import { UserController } from './presentation/controllers/users.controller'
     // Repositories
     GendersRepository,
     PronounsRepository,
+    RanksRepository,
     UsersRepository,
     UserSocialsRepository,
   ],
