@@ -1,4 +1,4 @@
-import { HubLeaderboard } from '@hubi/types/faceit'
+import { HubLeaderboard } from '@hubi/types'
 import { Controller, Get } from '@nestjs/common'
 
 import { LeaderboardService } from '@/domain/services/faceit/leaderboard.service'
