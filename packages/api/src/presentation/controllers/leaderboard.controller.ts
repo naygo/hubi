@@ -1,4 +1,4 @@
-import { LeadboardPlayer, PlayerLeaderboard } from '@hubi/types/faceit'
+import { LeadboardPlayer, PlayerLeaderboard } from '@hubi/types'
 import { Controller, Get, Param, Query } from '@nestjs/common'
 
 import { LeaderboardService } from '@/domain/services/faceit/leaderboard.service'

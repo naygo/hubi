@@ -1,4 +1,4 @@
-import { HubLeaderboard, LeadboardPlayer } from '@hubi/types/faceit'
+import { HubLeaderboard, LeadboardPlayer } from '@hubi/types'
 import { Injectable } from '@nestjs/common'
 
 import { OpenFaceitClientService } from '@/infra/services/faceit/open-faceit-client'
