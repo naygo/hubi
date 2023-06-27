@@ -22,7 +22,7 @@ const PRONOUNS: Pronoun[] = [
 export async function seedPronouns(prisma: PrismaClient) {
   await insert({
     data: PRONOUNS,
-    name: 'pronouns',
+    name: 'pronoun',
     prisma,
   })
 }
