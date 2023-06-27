@@ -7,6 +7,7 @@ import { Button } from '@/shared/components/ui/button'
 import { Link } from '@/shared/components/ui/link'
 import { useYupValidationResolver } from '@/shared/hooks/useYupValidationResolver'
 import { SignUpFormFields } from '@/shared/types/signup-forms'
+import { routes } from '@/shared/utils/routes'
 
 import { StepOne, stepOneFields } from '../step-1'
 import { StepTwo, stepTwoFields } from '../step-2'

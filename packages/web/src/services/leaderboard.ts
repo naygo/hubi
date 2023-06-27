@@ -2,14 +2,20 @@ import { Leaderboard, PlayerLeaderboard } from '@hubi/types'
 
 import { api } from './api'
 
-export async function getLeaderboard(
-  leaderboardId: string,
-): Promise<PlayerLeaderboard[]> {
+interface GetLeaderboardParams {
+  leaderboardId: string
+  limit?: number
+}
+
+export async function getLeaderboard({
+  leaderboardId,
+  limit = 50,
+}: GetLeaderboardParams): Promise<PlayerLeaderboard[]> {
   const response = await api.get<PlayerLeaderboard[]>(
     `/leaderboard/${leaderboardId}`,
     {
       params: {
-        limit: 50,
+        limit,
       },
     },
   )
@@ -19,4 +25,9 @@ export async function getLeaderboard(
 export async function getListLeaderboards(): Promise<Leaderboard[]> {
   const response = await api.get<Leaderboard[]>('/hub/leaderboards')
   return response.data
+}
+
+export async function getCurrentLeaderboard(): Promise<Leaderboard> {
+  const response = await api.get<Leaderboard[]>('/hub/leaderboards')
+  return response.data[0]
 }

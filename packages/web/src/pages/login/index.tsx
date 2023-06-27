@@ -1,18 +1,18 @@
 import Head from 'next/head'
 
-import { SignUpForm } from '@/screens/signup/form'
+import { LoginForm } from '@/screens/login/form'
 import { CenteredLayout } from '@/shared/components/layout/centered'
 import { AuthCard } from '@/shared/components/ui/auth-card'
 
-export default function SignUp() {
+export default function Login() {
   return (
     <CenteredLayout>
       <Head>
-        <title>Cadastro | HUBI</title>
+        <title>Login | HUBI</title>
       </Head>
 
       <AuthCard>
-        <SignUpForm />
+        <LoginForm />
       </AuthCard>
     </CenteredLayout>
   )
