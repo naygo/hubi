@@ -87,32 +87,7 @@ export function StepOne({ form, hidden }: Props) {
         name="gender"
         label="Gênero:"
         control={control}
-        options={[
-          {
-            label: 'Mulher CIS',
-            value: 'mulher-cis',
-          },
-          {
-            label: 'Mulher TRANS',
-            value: 'mulher-trans',
-          },
-          {
-            label: 'Homem CIS',
-            value: 'homem-cis',
-          },
-          {
-            label: 'Homem TRANS',
-            value: 'homem-trans',
-          },
-          {
-            label: 'Não-binário',
-            value: 'nao-binario',
-          },
-          {
-            label: 'Outros',
-            value: 'outros',
-          },
-        ]}
+        options={[]}
         rules={{ required: true }}
       />
     </div>

@@ -14,7 +14,7 @@ export type DropdownOptions = {
 
 type Props = {
   name: string
-  options: { label: string; value: unknown }[]
+  options: { id: number; name: string; status?: unknown }[]
   label?: string
   placeholder?: string
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -65,7 +65,7 @@ export function Dropdown({
           )}
         >
           {field.value
-            ? options.find((option) => option.value === field.value)?.label
+            ? options.find((option) => option.id === field.value)?.name
             : placeholder}
 
           <div className="flex">
@@ -77,13 +77,13 @@ export function Dropdown({
         </Listbox.Button>
 
         <Listbox.Options className="bg-black-lighter rounded-lg py-1 md:py-2 mt-1 absolute w-full z-10 max-h-44 overflow-y-auto">
-          {options.map((option) => (
+          {options?.map((option) => (
             <Listbox.Option
-              key={option.label}
-              value={option.value}
+              key={option.id}
+              value={option.id}
               className="hover:bg-yellow px-1 py-1 cursor-pointer bg-black-lighter text-sm md:text-base"
             >
-              {option.label}
+              {option.name}
             </Listbox.Option>
           ))}
         </Listbox.Options>
