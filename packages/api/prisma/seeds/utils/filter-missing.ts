@@ -7,7 +7,7 @@ interface Args {
   data: unknown[]
 }
 
-export async function filterNonExistent<T>({ data, name }: Args) {
+export async function filterMissing<T>({ data, name }: Args) {
   const existent = await checkExistent(data, name)
   const objKeys = Object.keys(data[0])
 
