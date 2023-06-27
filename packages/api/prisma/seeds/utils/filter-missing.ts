@@ -7,40 +7,30 @@ interface Args {
   data: unknown[]
 }
 
-export async function filterMissing<T>({ data, name }: Args) {
-  const existent = await checkExistent(data, name)
+export async function filterMissing({ data, name }: Args) {
   const objKeys = Object.keys(data[0])
 
-  const filtered = data.filter(
-    (item) =>
-      !existent.find((existentItem: unknown) => {
-        if (existentItem) {
-          return existentItem[objKeys[0]] === item[objKeys[0]]
-        }
-      }),
-  )
+  const whereConditions = data.map((item) => {
+    const where = {}
 
-  return filtered as T[]
-}
+    for (const key of objKeys) {
+      where[key] = item[key]
+    }
 
-async function checkExistent(data: unknown[], name: string) {
-  return Promise.all(
-    data.map((item) => {
-      const objKeys = Object.keys(item)
+    return where
+  })
 
-      if (objKeys.length > 1) {
-        const where = objKeys.reduce((acc, key) => {
-          acc[key] = item[key]
+  const existingData = await prisma[name].findMany({
+    where: {
+      OR: whereConditions,
+    },
+  })
 
-          return acc
-        }, {})
+  const missingData = data.filter((item) => {
+    return !existingData.find(
+      (existentItem) => existentItem[objKeys[0]] === item[objKeys[0]],
+    )
+  })
 
-        return prisma[name].findFirst({
-          where,
-        })
-      }
-
-      return Promise.resolve(null)
-    }),
-  )
+  return missingData
 }

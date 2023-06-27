@@ -8,11 +8,13 @@ interface Args {
   prisma: PrismaClient
 }
 
-export async function insert<T>({ data, name, prisma }: Args) {
-  const missingData = await filterMissing<T>({
+export async function insert({ data, name, prisma }: Args) {
+  const missingData = await filterMissing({
     data,
     name,
   })
+
+  console.table(missingData)
 
   return prisma[name].createMany({
     data: missingData,
