@@ -26,7 +26,7 @@ export function AuthCard({ children }: Props) {
           VALORANT.
         </div>
         <div className="text-xs mt-2 mb-10">
-          <Link text="Voltar ao início &gt;" link="" className="font-medium" />
+          <Link text="Voltar ao início &gt;" href="/" className="font-medium" />
         </div>
       </section>
 
@@ -49,7 +49,33 @@ export function AuthCard({ children }: Props) {
           <div className="hidden lg:block mt-4">
             <Link
               text="Voltar ao início &gt;"
-              link="/"
+              href=""
+              className="font-medium"
+            />
+          </div>
+        </div>
+      </section>
+
+      {children}
+
+      <section className="flex flex-col items-center mt-2 w-full lg:items-center lg:justify-center">
+        <div className="lg:items-start">
+          <div className="hidden lg:block">
+            <Image
+              src={Logo}
+              alt="HUBI"
+              className={`${styles.logoBox} w-72 lg:w-80`}
+            />
+            <div className="lg:w-96 lg:mt-2">
+              Somos uma plataforma e comunidade de players do cenário inclusivo
+              de VALORANT.
+            </div>
+          </div>
+          <SocialMediaLinks />
+          <div className="hidden lg:block mt-4">
+            <Link
+              text="Voltar ao início &gt;"
+              href="/"
               className="font-medium"
             />
           </div>

@@ -1,6 +1,10 @@
+import { StatusEnum } from "@hubi/types";
+
 export interface UserSocial {
   id: number;
-  socialId: string;
-  userId: string;
+  socialId: number;
+  userId: number;
   url: string;
+  createdAt: Date;
+  status: string;
 }

@@ -74,12 +74,12 @@ export function SignUpForm() {
             privadas.
           </div>
 
-          <div className="flex gap-5">
+          <div className="flex gap-5 my-5">
             {currentStep !== 0 && (
               <Button
                 color="secondary"
                 label="Voltar"
-                className="w-full my-5"
+                className="w-full"
                 type="button"
                 onClick={() => setCurrentStep(currentStep - 1)}
               />
@@ -88,7 +88,7 @@ export function SignUpForm() {
               <Button
                 color="primary"
                 label="Continuar"
-                className="w-full my-5"
+                className="w-full"
                 type="button"
                 onClick={() => handleStep(currentStep)}
               />
@@ -97,7 +97,7 @@ export function SignUpForm() {
               <Button
                 color="primary"
                 label="Salvar"
-                className="w-full my-5"
+                className="w-full"
                 type="submit"
               />
             )}
@@ -106,11 +106,7 @@ export function SignUpForm() {
 
         <div className="text-center text-xs md:text-sm">
           Já possui uma conta?{' '}
-          <Link
-            text="Entre aqui &gt;"
-            link={routes.login}
-            className="font-medium"
-          />
+          <Link text="Entre aqui &gt;" href="" className="font-medium" />
         </div>
       </div>
     </section>

@@ -1,146 +1,136 @@
 import clsx from 'clsx'
-import { GetServerSidePropsContext } from 'next'
-import { getSession } from 'next-auth/react'
 import Head from 'next/head'
 import Image from 'next/image'
 import ReactLink from 'next/link'
 
 import { TiArrowSortedDown } from 'react-icons/ti'
 
-import { NavbarFooterLayout } from '@/shared/components/layout/navbar-footer'
 import { Link } from '@/shared/components/ui/link'
 import linksIcons from '@/shared/utils/icons'
-import team, { Team } from '@/shared/utils/team'
+import team from '@/shared/utils/team'
 
 import NounsLogo from '@public/img/initial-page/nouns-logo.svg'
 import Prizes from '@public/img/initial-page/prizes.png'
 
-const heightFirstSection = 'calc(100vh - 71px)'
-
 export default function Home() {
   return (
-    <NavbarFooterLayout>
-      <main>
-        <Head>
-          <title>HUBI</title>
-        </Head>
+    <main>
+      <Head>
+        <title>HUBI</title>
+      </Head>
 
-        <section
-          className="flex items-center justify-center"
-          style={{
-            height: heightFirstSection,
-          }}
-        >
-          <div className="w-52 flex flex-col items-center justify-between gap-20">
-            <h1 className="text-4xl text-center font-bold md:text-6xl lg:text-8xl">
-              Mais do que ranqueadas
-            </h1>
+      <section
+        className="flex items-center justify-center"
+        style={{
+          height: 'calc(100vh - 71px)',
+        }}
+      >
+        <div className="w-52 flex flex-col items-center justify-between gap-20">
+          <h1 className="text-4xl text-center font-bold md:text-6xl lg:text-8xl">
+            Mais do que ranqueadas
+          </h1>
 
-            <TiArrowSortedDown
-              className="animate-bounce fill-yellow"
-              size={60}
+          <TiArrowSortedDown className="animate-bounce fill-yellow" size={60} />
+        </div>
+      </section>
+
+      <Section>
+        <div className="w-full">
+          <Title text="Local de aprendizado" />
+          <div className="mt-10">
+            <Description>
+              Aprenda, evolua e melhore o seu{' '}
+              <span className="text-yellow font-medium">potencial</span> dentro
+              de uma <strong>comunidade</strong> dedicada e acolhedora.
+            </Description>
+
+            <Link
+              text="Veja o que dizem as jogadoras &gt;"
+              href="/playground"
+              className="font-medium text-xs md:text-sm lg:text-lg"
             />
           </div>
-        </section>
+        </div>
 
-        <Section>
-          <div className="w-full">
-            <Title text="Local de aprendizado" />
-            <div className="mt-10">
-              <Description>
-                Aprenda, evolua e melhore o seu{' '}
-                <span className="text-yellow font-medium">potencial</span>{' '}
-                dentro de uma <strong>comunidade</strong> dedicada e acolhedora.
-              </Description>
+        <div className="w-full mt-20 lg:m-0 flex justify-center items-center">
+          <Image
+            src={'https://picsum.photos/800/400?random=1'}
+            alt="Random Image"
+            width={800}
+            height={300}
+          />
+        </div>
+      </Section>
 
-              <Link
-                text="Veja o que dizem as jogadoras &gt;"
-                link="/playground"
-                className="font-medium text-xs md:text-sm lg:text-lg"
-              />
-            </div>
-          </div>
+      <Section inverse>
+        <div className="w-full lg:ml-10">
+          <Image src={NounsLogo} alt="NOUNS Logo" width={500} />
+          <div className="mt-10">
+            <Description>
+              Temos parceria com uma das maiores organizações autônomas
+              descentralizadas{' '}
+              <span className="text-yellow font-medium">(DAO)</span>. Saiba mais
+              sobre a <strong>NOUNS</strong> e coloca seu óclin!
+            </Description>
 
-          <div className="w-full mt-20 lg:m-0 flex justify-center items-center">
-            <Image
-              src={'https://picsum.photos/800/400?random=1'}
-              alt="Random Image"
-              width={800}
-              height={300}
+            <Link
+              text="Seja mais NOUNS &gt;"
+              href="/"
+              className="font-medium text-xs md:text-sm lg:text-lg"
             />
           </div>
-        </Section>
+        </div>
 
-        <Section inverse>
-          <div className="w-full lg:ml-10">
-            <Image src={NounsLogo} alt="NOUNS Logo" width={500} />
-            <div className="mt-10">
-              <Description>
-                Temos parceria com uma das maiores organizações autônomas
-                descentralizadas{' '}
-                <span className="text-yellow font-medium">(DAO)</span>. Saiba
-                mais sobre a <strong>NOUNS</strong> e coloca seu óclin!
-              </Description>
+        <div className="w-full mt-20 lg:m-0 flex justify-center items-center">
+          <Image
+            src={'https://picsum.photos/800/400?random=2'}
+            alt="Random Image"
+            width={800}
+            height={300}
+          />
+        </div>
+      </Section>
 
-              <Link
-                text="Seja mais NOUNS &gt;"
-                link="/"
-                className="font-medium text-xs md:text-sm lg:text-lg"
-              />
-            </div>
-          </div>
-
-          <div className="w-full mt-20 lg:m-0 flex justify-center items-center">
-            <Image
-              src={'https://picsum.photos/800/400?random=2'}
-              alt="Random Image"
-              width={800}
-              height={300}
+      <Section>
+        <div className="w-full">
+          <Title text="Tabela de Prêmios" />
+          <div className="mt-10">
+            <Description>
+              Nada melhor do que aprender e ainda{' '}
+              <strong className="font-bold">ganhar recompensas</strong> com o
+              seu esforço, certo?
+            </Description>
+            <Link
+              text="Confira toda a tabela de premiação &gt;"
+              href="/"
+              className="font-medium text-xs md:text-sm lg:text-lg"
             />
           </div>
-        </Section>
+        </div>
 
-        <Section>
-          <div className="w-full">
-            <Title text="Tabela de Prêmios" />
-            <div className="mt-10">
-              <Description>
-                Nada melhor do que aprender e ainda{' '}
-                <strong className="font-bold">ganhar recompensas</strong> com o
-                seu esforço, certo?
-              </Description>
-              <Link
-                text="Confira toda a tabela de premiação &gt;"
-                link="/"
-                className="font-medium text-xs md:text-sm lg:text-lg"
-              />
-            </div>
+        <div className="w-full mt-20 lg:m-0 flex justify-center items-center">
+          <Image src={Prizes} width={400} alt="Prizes Image" />
+        </div>
+      </Section>
+
+      <section className="py-20 px-10 lg:py-10 flex justify-center">
+        <div className="container lg:p-20">
+          <Title text="Equipe" />
+          <div className="mt-10">
+            <Description>
+              Conheça o time dedicado por trás do{' '}
+              <strong className="text-yellow">HUB Inclusivo</strong>!
+            </Description>
           </div>
 
-          <div className="w-full mt-20 lg:m-0 flex justify-center items-center">
-            <Image src={Prizes} width={400} alt="Prizes Image" />
-          </div>
-        </Section>
-
-        <section className="py-20 px-10 lg:py-10 flex justify-center">
-          <div className="container lg:p-20">
-            <Title text="Equipe" />
-            <div className="mt-10">
-              <Description>
-                Conheça o time dedicado por trás do{' '}
-                <strong className="text-yellow">HUB Inclusivo</strong>!
-              </Description>
-            </div>
-
-            <div className="overflow-x-auto max-w-full">
-              <div className="flex flex-row gap-5">
-                {team.map((member) => TeamMemberInfo(member))}
-              </div>
+          <div className="overflow-x-auto max-w-full">
+            <div className="flex flex-row gap-5">
+              <TeamMemberInfo />
             </div>
           </div>
-        </section>
-      </main>
-    </NavbarFooterLayout>
+        </div>
+      </section>
+    </main>
   )
 }
 
@@ -155,7 +145,7 @@ function Section({
     <section
       className={clsx(
         'py-20 px-10 lg:py-10 flex justify-center',
-        inverse ? 'bg-black' : 'bg-black-light',
+        inverse ? 'bg-black-light' : 'bg-black',
       )}
     >
       <div
@@ -182,66 +172,52 @@ function Description({ children }: { children: React.ReactNode }) {
   )
 }
 
-function TeamMemberInfo({ photo, name, nick, links, roles }: Team) {
+function TeamMemberInfo() {
   return (
-    <div key={nick} className="bg-black-dark rounded mb-4">
-      <Image
-        src={photo}
-        alt="Random Image"
-        className="w-full h-36 rounded-t"
-        width={150}
-        height={150}
-      />
+    <>
+      {team.map(({ name, roles, nick, photo, links }) => (
+        <div key={name} className="bg-black-dark rounded mb-4">
+          <Image
+            src={photo}
+            alt={name}
+            className="w-full h-36 rounded-t"
+            width={150}
+            height={150}
+          />
 
-      <div className="flex w-44 flex-col justify-between items-center p-2 mt-4">
-        <p className="font-medium text-center">{name}</p>
-        <span className="text-yellow text-xs">({nick})</span>
-        <div className="mt-2">
-          {roles?.map((role) => (
-            <div
-              key={role}
-              className="font-light text-gray text-xs text-center"
-            >
-              {role}
+          <div className="flex w-44 flex-col justify-between items-center p-2 mt-4">
+            <p className="font-medium text-center">{name}</p>
+            <span className="text-yellow text-xs">({nick})</span>
+            <div className="mt-2">
+              {roles?.map((role) => (
+                <div
+                  key={role}
+                  className="font-light text-gray text-xs text-center"
+                >
+                  {role}
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
 
-        <div className="mt-4 mb-2 flex gap-3 justify-center">
-          {links?.map((link) => {
-            const Icon = linksIcons[link.name]
+            <div className="mt-4 mb-2 flex gap-3 justify-center">
+              {links?.map((link) => {
+                const Icon = linksIcons[link.name]
 
-            return (
-              <ReactLink
-                key={link.name}
-                href={link.url}
-                target="_blank"
-                className="bg-black p-1.5 rounded hover:bg-black-lighter"
-              >
-                <Icon size={16} className="fill-yellow" />
-              </ReactLink>
-            )
-          })}
+                return (
+                  <ReactLink
+                    key={link.name}
+                    href={link.url}
+                    target="_blank"
+                    className="bg-black p-1.5 rounded hover:bg-black-lighter"
+                  >
+                    <Icon size={16} className="fill-yellow" />
+                  </ReactLink>
+                )
+              })}
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      ))}
+    </>
   )
-}
-
-export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const session = await getSession(context)
-  console.log('------------------------------')
-  console.log(session)
-  console.log('------------------------------')
-  if (session) {
-    return {
-      redirect: {
-        destination: '/lobby',
-        permanent: false,
-      },
-    }
-  }
-  return {
-    props: {},
-  }
 }
