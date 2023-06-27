@@ -34,7 +34,7 @@ const GENDERS: Gender[] = [
 export async function seedGenders(prisma: PrismaClient) {
   await insert({
     data: GENDERS,
-    name: 'genders',
+    name: 'gender',
     prisma,
   })
 }

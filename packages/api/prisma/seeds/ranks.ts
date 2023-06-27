@@ -135,7 +135,7 @@ const RANKS: Rank[] = [
 export async function seedRanks(prisma: PrismaClient) {
   await insert({
     data: RANKS,
-    name: 'ranks',
+    name: 'rank',
     prisma,
   })
 }

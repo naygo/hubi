@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client'
 
-import { filterNonExistent } from './filter-non-existent'
+import { filterMissing } from './filter-missing'
 
 interface Args {
   data: unknown[]
@@ -8,13 +8,13 @@ interface Args {
   prisma: PrismaClient
 }
 
-export async function insert<T>({ data, name, prisma }: Args) {
-  const nonExistentData = await filterNonExistent<T>({
+export async function insert({ data, name, prisma }: Args) {
+  const missingData = await filterMissing({
     data,
     name,
   })
 
   return prisma[name].createMany({
-    data: nonExistentData,
+    data: missingData,
   })
 }

@@ -46,7 +46,7 @@ const SOCIALS: Social[] = [
 export async function seedSocials(prisma: PrismaClient) {
   await insert({
     data: SOCIALS,
-    name: 'socials',
+    name: 'social',
     prisma,
   })
 }
