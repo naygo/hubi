@@ -14,8 +14,6 @@ export async function insert({ data, name, prisma }: Args) {
     name,
   })
 
-  console.table(missingData)
-
   return prisma[name].createMany({
     data: missingData,
   })
