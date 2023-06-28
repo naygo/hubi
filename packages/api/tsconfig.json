@@ -22,5 +22,5 @@
     },
     "moduleResolution": "node"
   },
-  "include": ["./src/**/*", "./test/**/*", "./prisma"]
+  "include": ["./src/**/*", "./test/**/*", "./prisma", "./jest.setup.ts"]
 }
