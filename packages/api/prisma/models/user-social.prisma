@@ -11,5 +11,5 @@ model UserSocial {
     social Social @relation(fields: [socialId], references: [id])
 
     @@id([userId, socialId])
-    @@map("UserSocials")
+    @@map("userSocials")
 }
