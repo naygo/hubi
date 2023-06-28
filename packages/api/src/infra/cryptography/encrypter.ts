@@ -21,10 +21,10 @@ export class Encrypter {
         this.secret,
         async (error, encoded: { info: InfoToken }) => {
           if (error) {
-            reject(error)
+            return reject(error)
           }
 
-          resolve(encoded.info)
+          return resolve(encoded.info)
         },
       )
     })
