@@ -1,5 +1,6 @@
 import { Test } from '@nestjs/testing'
 import { PrismaClient, UserSocial, User, Social } from '@prisma/client'
+import { createTestUser } from '@test/fixtures/user'
 
 import { prismaProvider } from '@/infra/db/prisma/provider'
 import { UserSocialsRepository } from '@/infra/db/prisma/repositories'
@@ -19,42 +20,7 @@ describe('UserSocialsRepository', () => {
     prismaClient = new PrismaClient()
 
     // Create User and Socials
-    user = await prismaClient.user.create({
-      data: {
-        firstName: 'Yoda',
-        lastName: 'Master',
-        email: '',
-        password: '',
-        dateBirth: new Date(),
-        createdAt: new Date(),
-        updatedAt: new Date(),
-        howDidKnowHubi: '',
-        isAdmin: false,
-        riotId: '',
-        status: 'ativo',
-        timeInCommunity: '',
-        gender: {
-          create: {
-            name: 'Yoda',
-            status: 'ativo',
-          },
-        },
-        pronoun: {
-          create: {
-            name: 'Yoda',
-            status: 'ativo',
-          },
-        },
-        rank: {
-          create: {
-            name: 'Yoda',
-            status: 'ativo',
-            order: 1,
-          },
-        },
-      },
-    })
-
+    user = await createTestUser(prismaClient)
     await prismaClient.social.createMany({
       data: [
         {
@@ -87,32 +53,34 @@ describe('UserSocialsRepository', () => {
     expect(userSocialsRepository).toBeDefined()
   })
 
-  it('should create new user socials', async () => {
-    const data: UserSocial[] = [
-      {
-        socialId: socials[0].id,
-        url: 'https://twitch.tv/yoda',
-        createdAt: new Date(),
-        userId: user.id,
-      },
-      {
-        socialId: socials[1].id,
-        url: 'https://discord.gg/yoda',
-        createdAt: new Date(),
-        userId: user.id,
-      },
-    ]
+  describe('create()', () => {
+    it('should create new user socials', async () => {
+      const data: UserSocial[] = [
+        {
+          socialId: socials[0].id,
+          url: 'https://twitch.tv/yoda',
+          createdAt: new Date(),
+          userId: user.id,
+        },
+        {
+          socialId: socials[1].id,
+          url: 'https://discord.gg/yoda',
+          createdAt: new Date(),
+          userId: user.id,
+        },
+      ]
 
-    await userSocialsRepository.create(data)
+      await userSocialsRepository.create(data)
 
-    const result = await prismaClient.userSocial.findMany()
+      const result = await prismaClient.userSocial.findMany()
 
-    expect(result).toHaveLength(2)
-    expect(result).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining(data[0]),
-        expect.objectContaining(data[1]),
-      ]),
-    )
+      expect(result).toHaveLength(2)
+      expect(result).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining(data[0]),
+          expect.objectContaining(data[1]),
+        ]),
+      )
+    })
   })
 })

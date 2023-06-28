@@ -30,25 +30,27 @@ describe('PronounsRepository', () => {
     expect(pronounsRepository).toBeDefined()
   })
 
-  it('should retrieve all active pronouns from the database', async () => {
-    const data = [
-      { name: 'He/Him', status: 'ativo' },
-      { name: 'She/Her', status: 'ativo' },
-      { name: 'They/Them', status: 'inativo' },
-    ]
+  describe('findMany()', () => {
+    it('should retrieve all active pronouns from the database', async () => {
+      const data = [
+        { name: 'He/Him', status: 'ativo' },
+        { name: 'She/Her', status: 'ativo' },
+        { name: 'They/Them', status: 'inativo' },
+      ]
 
-    await prismaClient.pronoun.createMany({
-      data,
+      await prismaClient.pronoun.createMany({
+        data,
+      })
+
+      const result = await pronounsRepository.findMany()
+
+      expect(result).toHaveLength(2)
+      expect(result).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining(data[0]),
+          expect.objectContaining(data[1]),
+        ]),
+      )
     })
-
-    const result = await pronounsRepository.findMany()
-
-    expect(result).toHaveLength(2)
-    expect(result).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining(data[0]),
-        expect.objectContaining(data[1]),
-      ]),
-    )
   })
 })

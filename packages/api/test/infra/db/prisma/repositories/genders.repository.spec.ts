@@ -30,25 +30,27 @@ describe('GendersRepository', () => {
     expect(gendersRepository).toBeDefined()
   })
 
-  it('should retrieve all genders from the database', async () => {
-    const data = [
-      { name: 'Male', status: 'ativo' },
-      { name: 'Female', status: 'ativo' },
-      { name: 'Non-binary', status: 'inativo' },
-    ]
+  describe('findMany()', () => {
+    it('should retrieve all active genders from the database', async () => {
+      const data = [
+        { name: 'Male', status: 'ativo' },
+        { name: 'Female', status: 'ativo' },
+        { name: 'Non-binary', status: 'inativo' },
+      ]
 
-    await prismaClient.gender.createMany({
-      data,
+      await prismaClient.gender.createMany({
+        data,
+      })
+
+      const result = await gendersRepository.findMany()
+
+      expect(result).toHaveLength(2)
+      expect(result).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining(data[0]),
+          expect.objectContaining(data[1]),
+        ]),
+      )
     })
-
-    const result = await gendersRepository.findMany()
-
-    expect(result).toHaveLength(2)
-    expect(result).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining(data[0]),
-        expect.objectContaining(data[1]),
-      ]),
-    )
   })
 })
