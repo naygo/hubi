@@ -76,6 +76,11 @@ import { UserController } from './presentation/controllers/users.controller'
     UsersRepository,
     UserSocialsRepository,
   ],
-  imports: [ConfigModule.forRoot(), HttpModule],
+  imports: [
+    ConfigModule.forRoot({
+      envFilePath: process.env.NODE_ENV === 'test' ? '.env.test' : '.env',
+    }),
+    HttpModule,
+  ],
 })
 export class AppModule {}
