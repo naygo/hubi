@@ -27,7 +27,7 @@ import { HubController } from './presentation/controllers/hub.controller'
 import { LeaderboardController } from './presentation/controllers/leaderboard.controller'
 import { PronounsController } from './presentation/controllers/pronouns.controller'
 import { RanksController } from './presentation/controllers/ranks.controller'
-import { UserController } from './presentation/controllers/users.controller'
+import { UsersController } from './presentation/controllers/users.controller'
 
 @Module({
   controllers: [
@@ -36,7 +36,7 @@ import { UserController } from './presentation/controllers/users.controller'
     HubController,
     LeaderboardController,
     PronounsController,
-    UserController,
+    UsersController,
     RanksController,
   ],
   providers: [
@@ -76,6 +76,11 @@ import { UserController } from './presentation/controllers/users.controller'
     UsersRepository,
     UserSocialsRepository,
   ],
-  imports: [ConfigModule.forRoot(), HttpModule],
+  imports: [
+    ConfigModule.forRoot({
+      envFilePath: process.env.NODE_ENV === 'test' ? '.env.test' : '.env',
+    }),
+    HttpModule,
+  ],
 })
 export class AppModule {}

@@ -5,7 +5,7 @@ import { Login } from '@/domain/usecases/db/users/login'
 import { LoginDTO, SignupDTO } from '@/presentation/dtos/user'
 
 @Controller('/user')
-export class UserController {
+export class UsersController {
   constructor(
     private readonly createUser: CreateUser,
     private readonly login: Login,

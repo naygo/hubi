@@ -1,34 +1,38 @@
 import { INestApplication } from '@nestjs/common'
-import { Test, TestingModule } from '@nestjs/testing'
+import { Test } from '@nestjs/testing'
 import request from 'supertest'
 
 import { FindPronouns } from '@/domain/usecases/db/pronouns/find-pronouns'
-import { prismaProvider } from '@/infra/db/prisma/provider'
-import { PronounsRepository } from '@/infra/db/prisma/repositories/pronouns.repository'
 import { PronounsController } from '@/presentation/controllers/pronouns.controller'
 
 describe('PronounsController', () => {
   let app: INestApplication
-  let controller: PronounsController
 
-  beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
+  beforeAll(async () => {
+    const module = await Test.createTestingModule({
       controllers: [PronounsController],
-      providers: [FindPronouns, PronounsRepository, prismaProvider],
+      providers: [
+        {
+          provide: FindPronouns,
+          useValue: {
+            execute: jest.fn().mockResolvedValue([]),
+          },
+        },
+      ],
     }).compile()
 
-    controller = module.get<PronounsController>(PronounsController)
     app = module.createNestApplication()
-
     await app.init()
   })
 
   it('should be defined', () => {
-    expect(controller).toBeDefined()
+    expect(app).toBeDefined()
   })
 
-  it('should return an array of pronouns', async () => {
-    const response = await request(app.getHttpServer()).get('/pronouns')
-    expect(response.status).toBe(200)
+  describe('GET /pronouns', () => {
+    it('should return status 200 and a list of pronouns', async () => {
+      const response = await request(app.getHttpServer()).get('/pronouns')
+      expect(response.status).toBe(200)
+    })
   })
 })

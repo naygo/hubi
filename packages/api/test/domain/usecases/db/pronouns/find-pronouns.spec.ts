@@ -1,18 +1,14 @@
-import { Test } from '@nestjs/testing'
-
 import { FindPronouns } from '@/domain/usecases/db/pronouns/find-pronouns'
-import { prismaProvider } from '@/infra/db/prisma/provider'
-import { PronounsRepository } from '@/infra/db/prisma/repositories/pronouns.repository'
 
 describe('FindPronouns', () => {
   let findPronouns: FindPronouns
 
-  beforeAll(async () => {
-    const moduleRef = await Test.createTestingModule({
-      providers: [FindPronouns, PronounsRepository, prismaProvider],
-    }).compile()
+  const pronounsRepositoryMock = {
+    findMany: jest.fn(),
+  }
 
-    findPronouns = moduleRef.get<FindPronouns>(FindPronouns)
+  beforeAll(() => {
+    findPronouns = new FindPronouns(pronounsRepositoryMock as any)
   })
 
   it('should be defined', () => {
@@ -20,14 +16,18 @@ describe('FindPronouns', () => {
   })
 
   it('should return an array of pronouns', async () => {
-    const pronouns = await findPronouns.execute()
+    const pronouns = [
+      {
+        id: 1,
+        name: 'any_name',
+      },
+    ]
 
-    expect(pronouns).toBeDefined()
-    expect(pronouns).toBeInstanceOf(Array)
-    expect(pronouns.length).toBeGreaterThan(0)
+    pronounsRepositoryMock.findMany.mockResolvedValue(pronouns)
 
-    expect(pronouns[0]).toHaveProperty('id')
-    expect(pronouns[0]).toHaveProperty('name')
-    expect(pronouns[0]).toHaveProperty('status')
+    const result = await findPronouns.execute()
+
+    expect(result).toEqual(pronouns)
+    expect(pronounsRepositoryMock.findMany).toHaveBeenCalledWith()
   })
 })

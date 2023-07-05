@@ -17,6 +17,10 @@ export class PronounsRepository {
   }
 
   async findMany() {
-    return this.pronounsRepository.findMany()
+    return this.pronounsRepository.findMany({
+      where: {
+        status: 'ativo',
+      },
+    })
   }
 }

@@ -17,6 +17,13 @@ export class RanksRepository {
   }
 
   async findMany() {
-    return this.ranksRepository.findMany()
+    return this.ranksRepository.findMany({
+      where: {
+        status: 'ativo',
+      },
+      orderBy: {
+        order: 'asc',
+      },
+    })
   }
 }

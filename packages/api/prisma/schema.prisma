@@ -87,7 +87,7 @@ model UserSocial {
   social Social @relation(fields: [socialId], references: [id])
 
   @@id([userId, socialId])
-  @@map("UserSocials")
+  @@map("userSocials")
 }
 
 //
@@ -117,5 +117,5 @@ model User {
   rank    Rank         @relation(fields: [rankId], references: [id])
   socials UserSocial[]
 
-  @@map("User")
+  @@map("user")
 }

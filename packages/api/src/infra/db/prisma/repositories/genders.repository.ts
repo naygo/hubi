@@ -17,6 +17,10 @@ export class GendersRepository {
   }
 
   async findMany() {
-    return this.gendersRepository.findMany()
+    return this.gendersRepository.findMany({
+      where: {
+        status: 'ativo',
+      },
+    })
   }
 }
