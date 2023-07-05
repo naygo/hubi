@@ -1,11 +1,12 @@
 import Head from 'next/head'
 
 import { SignUpForm } from '@/screens/signup/form'
+import { CenteredLayout } from '@/shared/components/layout/centered'
 import { AuthCard } from '@/shared/components/ui/auth-card'
 
 export default function SignUp() {
   return (
-    <>
+    <CenteredLayout>
       <Head>
         <title>Cadastro | HUBI</title>
       </Head>
@@ -13,6 +14,6 @@ export default function SignUp() {
       <AuthCard>
         <SignUpForm />
       </AuthCard>
-    </>
+    </CenteredLayout>
   )
 }

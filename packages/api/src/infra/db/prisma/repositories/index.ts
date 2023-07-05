@@ -1,3 +1,5 @@
 export * from './genders.repository'
+export * from './pronouns.repository'
+export * from './ranks.repository'
 export * from './user-socials.repository'
 export * from './users.repository'

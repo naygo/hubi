@@ -87,8 +87,8 @@ export function StepTwo({ form, hidden }: Props) {
         control={control}
         options={[
           {
-            label: 'Redes sociais',
-            value: 'socialMedia',
+            name: 'Redes sociais',
+            id: 1,
           },
         ]}
         rules={{ required: true }}
@@ -109,16 +109,16 @@ export function StepTwo({ form, hidden }: Props) {
         control={control}
         options={[
           {
-            label: 'Ela/Dela',
-            value: 'she/her',
+            name: 'Ela/Dela',
+            id: 2,
           },
           {
-            label: 'Ele/Dele',
-            value: 'he/him',
+            name: 'Ele/Dele',
+            id: 1,
           },
           {
-            label: 'Qualquer pronome',
-            value: 'any',
+            name: 'Qualquer pronome',
+            id: 3,
           },
         ]}
         rules={{ required: true }}

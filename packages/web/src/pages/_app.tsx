@@ -1,18 +1,18 @@
-import clsx from 'clsx'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { SessionProvider } from 'next-auth/react'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
-import { useRouter } from 'next/router'
+import { SkeletonTheme } from 'react-loading-skeleton'
+import { ToastContainer } from 'react-toastify'
 
-import { Footer } from '@/shared/components/ui/footer'
-import { Navbar } from '@/shared/components/ui/navbar'
-
-import '../styles/globals.scss'
+import 'react-loading-skeleton/dist/skeleton.css'
 import 'react-toastify/dist/ReactToastify.css'
+import '../styles/globals.scss'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
-  const router = useRouter()
-  const hideNavFooter = ['/signup']
-  const shouldHideNavFooter = hideNavFooter.includes(router.pathname)
+  const queryClient = new QueryClient()
+
   return (
     <>
       <Head>
@@ -21,20 +21,16 @@ export default function MyApp({ Component, pageProps }: AppProps) {
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
         />
       </Head>
-      <div
-        className={clsx('flex flex-col min-h-screen', {
-          'justify-between': !shouldHideNavFooter,
-          'justify-center': shouldHideNavFooter,
-        })}
-      >
-        {!shouldHideNavFooter && <Navbar />}
-        <Component {...pageProps} />
-        {!shouldHideNavFooter && (
-          <div className="flex justify-center">
-            <Footer />
-          </div>
-        )}
-      </div>
+      <QueryClientProvider client={queryClient}>
+        <SessionProvider>
+          <SkeletonTheme baseColor="#202020" highlightColor="#444">
+            <Component {...pageProps} />
+
+            <ToastContainer />
+            <ReactQueryDevtools initialIsOpen={false} />
+          </SkeletonTheme>
+        </SessionProvider>
+      </QueryClientProvider>
     </>
   )
 }
