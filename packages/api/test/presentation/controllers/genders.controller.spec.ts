@@ -29,8 +29,10 @@ describe('GendersController', () => {
     expect(app).toBeDefined()
   })
 
-  it('should return status 200 and a list of genders', async () => {
-    const response = await request(app.getHttpServer()).get('/genders')
-    expect(response.status).toBe(200)
+  describe('GET /genders', () => {
+    it('should return status 200 and a list of genders', async () => {
+      const response = await request(app.getHttpServer()).get('/genders')
+      expect(response.status).toBe(200)
+    })
   })
 })

@@ -29,8 +29,10 @@ describe('PronounsController', () => {
     expect(app).toBeDefined()
   })
 
-  it('should return status 200 and a list of pronouns', async () => {
-    const response = await request(app.getHttpServer()).get('/pronouns')
-    expect(response.status).toBe(200)
+  describe('GET /pronouns', () => {
+    it('should return status 200 and a list of pronouns', async () => {
+      const response = await request(app.getHttpServer()).get('/pronouns')
+      expect(response.status).toBe(200)
+    })
   })
 })

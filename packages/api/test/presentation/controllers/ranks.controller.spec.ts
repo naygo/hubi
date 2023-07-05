@@ -29,8 +29,10 @@ describe('RanksController', () => {
     expect(app).toBeDefined()
   })
 
-  it('should return status 200 and a list of ranks', async () => {
-    const response = await request(app.getHttpServer()).get('/ranks')
-    expect(response.status).toBe(200)
+  describe('GET /ranks', () => {
+    it('should return status 200 and a list of ranks', async () => {
+      const response = await request(app.getHttpServer()).get('/ranks')
+      expect(response.status).toBe(200)
+    })
   })
 })
