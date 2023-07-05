@@ -2,18 +2,18 @@ import { INestApplication } from '@nestjs/common'
 import { Test, TestingModule } from '@nestjs/testing'
 import request from 'supertest'
 
-import { FindRanks } from '@/domain/usecases/db/ranks/find-ranks'
-import { RanksController } from '@/presentation/controllers/ranks.controller'
+import { FindGenders } from '@/domain/usecases/db/genders/find-genders'
+import { GendersController } from '@/presentation/controllers/genders.controller'
 
-describe('RanksController', () => {
+describe('GendersController', () => {
   let app: INestApplication
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      controllers: [RanksController],
+      controllers: [GendersController],
       providers: [
         {
-          provide: FindRanks,
+          provide: FindGenders,
           useValue: {
             execute: jest.fn().mockResolvedValue([]),
           },
@@ -29,8 +29,8 @@ describe('RanksController', () => {
     expect(app).toBeDefined()
   })
 
-  it('should return status 200 and a list of ranks', async () => {
-    const response = await request(app.getHttpServer()).get('/ranks')
+  it('should return status 200 and a list of genders', async () => {
+    const response = await request(app.getHttpServer()).get('/genders')
     expect(response.status).toBe(200)
   })
 })
