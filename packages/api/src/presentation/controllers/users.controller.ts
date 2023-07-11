@@ -1,4 +1,5 @@
 import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common'
+
 import { CreateUser } from '@/domain/usecases/db/users/create-user'
 import { Login } from '@/domain/usecases/db/users/login'
 import { LoginDTO, SignupDTO } from '@/presentation/dtos/user'

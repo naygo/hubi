@@ -1,11 +1,11 @@
-import { Users } from "users"
+import { User } from "user"
 
-model Genders {
+model Gender {
     id     Int    @id @default(autoincrement())
     name   String
     status String
 
-    Users Users[]
+    User User[]
 
     @@map("genders")
 }

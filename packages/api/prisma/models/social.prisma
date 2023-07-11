@@ -1,7 +1,11 @@
-model Socials {
+import { UserSocial } from "user-social"
+
+model Social {
     id     Int    @id @default(autoincrement())
     name   String
     status String
+
+    UserSocial UserSocial[]
 
     @@map("socials")
 }

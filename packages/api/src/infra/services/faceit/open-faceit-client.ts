@@ -1,6 +1,6 @@
-import axios, { AxiosInstance } from 'axios'
+import { HubLeaderboard } from '@hubi/types'
 import { Injectable } from '@nestjs/common'
-import { HubLeaderboard } from '@hubi/types/faceit'
+import axios, { AxiosInstance } from 'axios'
 
 @Injectable()
 export class OpenFaceitClientService {

@@ -1,5 +1,3 @@
-import { Match } from '@/presentation/custom-validators'
-import { MessageValidator } from '@/presentation/utils'
 import { Type } from 'class-transformer'
 import {
   ArrayMinSize,
@@ -11,6 +9,9 @@ import {
   IsString,
   ValidateNested,
 } from 'class-validator'
+
+import { Match } from '@/presentation/custom-validators'
+import { MessageValidator } from '@/presentation/utils'
 
 export class SignupDTO {
   @IsString({ message: MessageValidator.string('firstName') })
