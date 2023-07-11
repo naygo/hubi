@@ -14,11 +14,10 @@ export type DropdownOptions = {
 
 type Props = {
   name: string
-  options: { id: number; name: string; status?: unknown }[]
+  options: { id: number | string; name: string; status?: unknown }[]
   label?: string
   placeholder?: string
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  control: Control<any>
+  control: Control<any> // eslint-disable-line @typescript-eslint/no-explicit-any
   rules?: RegisterOptions
 }
 

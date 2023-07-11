@@ -12,9 +12,9 @@ interface FormFields {
 }
 
 const options = [
-  { value: 1, label: 'Jamalzinho' },
-  { value: 2, label: 'Luquinhas' },
-  { value: 3, label: 'Marcinho' },
+  { id: 1, name: 'Jamalzinho' },
+  { id: 2, name: 'Luquinhas' },
+  { id: 3, name: 'Marcinho' },
 ]
 
 export default function Playground() {

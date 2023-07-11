@@ -236,8 +236,8 @@ export const getStaticProps: GetStaticProps = async () => {
   const leaderboardSelect: ILeaderboardSelect[] = getLeaderboardsResponse.map(
     (leaderboard: Leaderboard) => {
       return {
-        value: leaderboard.leaderboard_id,
-        label: removeAfterHyphen(leaderboard.leaderboard_name),
+        id: leaderboard.leaderboard_id,
+        name: removeAfterHyphen(leaderboard.leaderboard_name),
       }
     },
   )
@@ -248,6 +248,6 @@ export const getStaticProps: GetStaticProps = async () => {
 }
 
 interface ILeaderboardSelect {
-  value: string
-  label: string
+  id: number | string
+  name: string
 }
