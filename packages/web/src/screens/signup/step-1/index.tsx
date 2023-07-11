@@ -1,6 +1,11 @@
 import clsx from 'clsx'
+import { useContext } from 'react'
 import { FieldPath, UseFormReturn } from 'react-hook-form'
 
+import {
+  SignupFormContext,
+  SignupFormContextOptions,
+} from '@/contexts/signup-form-context'
 import { Dropdown } from '@/shared/components/form/dropdown'
 import { Input } from '@/shared/components/form/input'
 import {
@@ -25,6 +30,8 @@ export const stepOneFields: FieldPath<StepOneFormFields>[] = [
 
 export function StepOne({ form, hidden }: Props) {
   const { control } = form
+
+  const { genders } = useContext<SignupFormContextOptions>(SignupFormContext)
 
   return (
     <div
@@ -87,7 +94,7 @@ export function StepOne({ form, hidden }: Props) {
         name="gender"
         label="Gênero:"
         control={control}
-        options={[]}
+        options={genders}
         rules={{ required: true }}
       />
     </div>

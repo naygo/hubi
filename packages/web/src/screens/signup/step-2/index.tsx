@@ -1,6 +1,11 @@
 import clsx from 'clsx'
+import { useContext } from 'react'
 import { FieldPath, UseFormReturn } from 'react-hook-form'
 
+import {
+  SignupFormContext,
+  SignupFormContextOptions,
+} from '@/contexts/signup-form-context'
 import { Dropdown } from '@/shared/components/form/dropdown'
 import { Input } from '@/shared/components/form/input'
 import {
@@ -28,6 +33,8 @@ export function StepTwo({ form, hidden }: Props) {
   const { control, getValues } = form
 
   const nonBinaryForm = getValues('gender') === 'nao-binario'
+
+  const { pronouns } = useContext<SignupFormContextOptions>(SignupFormContext)
 
   return (
     <div
@@ -107,20 +114,7 @@ export function StepTwo({ form, hidden }: Props) {
         name="pronouns"
         label="Pronomes:"
         control={control}
-        options={[
-          {
-            name: 'Ela/Dela',
-            id: 2,
-          },
-          {
-            name: 'Ele/Dele',
-            id: 1,
-          },
-          {
-            name: 'Qualquer pronome',
-            id: 3,
-          },
-        ]}
+        options={pronouns}
         rules={{ required: true }}
       />
     </div>
